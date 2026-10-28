@@ -1,0 +1,6 @@
+/home/pramag/Documents/CP-Judge/local-packages
+.venv/
+.deps/
+__pycache__/
+build/
+local-packages/

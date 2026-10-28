@@ -1,0 +1,4 @@
+**
+!Dockerfile.judge
+!tools/
+!tools/judge-entry.sh

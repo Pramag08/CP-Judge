@@ -1,0 +1,48 @@
+Polygon reader commit: 93aca21db49131baa0ca3077d6fec037ac52b5e6
+Polygon reader: 3 tests, 500 ms, 64 MiB
+Reader group/scoring/dependency fields: []
+Hydro scoring config:
+type: default
+checker_type: testlib
+checker:
+  file: checker.cpp
+time: 500ms
+memory: 64MB
+subtasks:
+  - score: 100
+    if: []
+    id: 1
+    type: min
+    cases:
+      - input: 1.in
+        output: 1.out
+
+Unadapted DMOJ init:
+archive: data.zip
+test_cases:
+- batched:
+  - in: 1.in
+    out: 1.out
+  points: 30.0
+- batched:
+  - in: 2.in
+    out: 2.out
+  points: 50.0
+  dependencies:
+  - 1
+- batched:
+  - in: 3.in
+    out: 3.out
+  points: 20.0
+checker:
+  name: bridged
+  args:
+    files:
+    - checker.cpp
+    - testlib.h
+    lang: CPP20
+    type: testlib
+time_limit: 0.5
+memory_limit: 64
+
+This audit did not run generators, checkers or submissions.

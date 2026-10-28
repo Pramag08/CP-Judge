@@ -1,0 +1,10 @@
+{
+  "conversion": {
+    "groups": "PASS (SYNTHETIC)",
+    "multiple": "PASS (SYNTHETIC)",
+    "tokens": "PASS (SYNTHETIC)",
+    "gaming-grid": "PASS (real package)"
+  },
+  "judging": "NOT TESTED",
+  "reason": "docker executable is missing"
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "tests_verified": 103,
+  "statement_assets_verified": 15,
+  "sample_tests_verified": 1,
+  "checker_bytes": "PASS",
+  "limits_and_groups": "PASS (configuration only)",
+  "judging": "NOT TESTED",
+  "source_sha256": "260abce9770f2c88cf8c93271cbfcbd6cea3f028c6eda536ad16256731d8a769"
+}

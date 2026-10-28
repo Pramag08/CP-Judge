@@ -1,0 +1,2 @@
+# Keep the pinned third-party header byte-for-byte, including upstream whitespace.
+fixtures/testlib/testlib.h -whitespace
