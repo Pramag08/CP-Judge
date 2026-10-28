@@ -17,3 +17,8 @@ test per group; multi-test all-or-nothing batches remain NOT TESTED.
 
 Every package has one sample, still included among the active judging tests, and
 separate sample sidecars. ZIP generation uses fixed ordering and timestamps.
+
+The gaming-grid real-package probe now prints valid `NO` tokens rather than `-999`.
+Its expected 55 WA / 48 AC checks semantic mismatch; testlib presentation errors
+are excluded by feedback expectations. The reference, all probes and the checker
+retain the real package's declared CPP23. These probes have not yet run in DMOJ.

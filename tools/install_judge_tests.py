@@ -1,6 +1,7 @@
 """Install expected verdicts for the supported DMOJ `test` command."""
 from pathlib import Path
 import yaml
+import zipfile
 
 SUM = '#include <iostream>\nint main(){long long a,b;std::cin>>a>>b;std::cout<<a+b<<"  \\n";}\n'
 RE = '#include <cstdlib>\nint main(){std::abort();}'
@@ -24,6 +25,17 @@ def install(directory, kind, real_source=None):
                    ('dependency', '#include <iostream>\nint main(){int a,b;std::cin>>a>>b;std::cout<<(a==2?-999:a+b);}', ['WA','SC','AC'], [0,0,20]),
                    ('wrong', WA, ['WA','SC','WA'], [0,0,0])]
     if real_source:
+        if kind != 'gaming-grid':
+            raise ValueError('real judging probes are currently defined only for gaming-grid')
+        # Valid NO tokens reach the semantic mismatch path; -999 only triggers PE.
+        # The checker accepts case-insensitive tokens, as do we when deriving expectations.
+        with zipfile.ZipFile(directory / conf['archive']) as data:
+            expected = ['WA' if 'YES' in data.read(case['out']).decode().upper().split() else 'AC'
+                        for case in conf['test_cases']]
+        if 'WA' not in expected:
+            raise ValueError('all-NO probe has no genuine mismatch in this package')
+        wrong = '#include <iostream>\nint main(){int t;std::cin>>t;while(t--)std::cout<<"NO\\n";}'
+        sources[1] = ('wrong_answer', wrong, expected, None)
         sources[0] = ('reference', Path(real_source).read_text(), 'AC', None)
     (directory / 'solutions').mkdir(exist_ok=True)
     for label, source, expected, scores in sources:
@@ -34,6 +46,8 @@ def install(directory, kind, real_source=None):
             test['cases'] = expected
         else:
             test['expect'] = expected
+        if label == 'wrong_answer':
+            test['feedback'] = ''  # Testlib WA (1), not PE (2, 'Presentation Error')
         if scores is not None:
             test['score_cases'] = scores
         tests.append(test)

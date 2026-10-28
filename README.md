@@ -32,9 +32,8 @@ The following recipe follows DMOJ's upstream runtime image and `SYS_PTRACE` setu
 
 ```sh
 docker pull dmoj/runtimes-tier1:latest
-docker image inspect dmoj/runtimes-tier1:latest --format '{{index .RepoDigests 0}}'
-# Prefer the recorded digest instead of the tag below for repeat runs:
-docker build -f Dockerfile.judge --build-arg RUNTIME_IMAGE=dmoj/runtimes-tier1:latest -t cp-judge-compat .
+runtime_image=$(docker image inspect dmoj/runtimes-tier1:latest --format '{{index .RepoDigests 0}}')
+docker build -f Dockerfile.judge --build-arg RUNTIME_IMAGE="$runtime_image" -t cp-judge-compat .
 .venv/bin/python -m tools.pipeline --output build/judged --real local-packages/gaming-grid.zip --judge
 ```
 
@@ -42,11 +41,16 @@ The runner installs each converted problem under `/problems/<short-name>`, then
 uses the supported `dmoj-cli test` command. It passes the converted seconds/KiB
 limits to DMOJ submissions and compiles testlib checkers via `bridged/type:testlib`.
 An unavailable executor reported as `Skipped` makes the run fail, even if DMOJ
-exits zero. Exit 2 means Docker is missing; exit 1 means conversion or judging
-failed. Raw logs and a JSON report remain under the selected output directory.
+exits zero. Every expected case must appear with its expected verdict.
+Exit 2 means Docker, image or runtime setup is unavailable; exit 1 means judging
+failed (conversion exceptions also exit nonzero). Raw logs and a JSON report remain under the selected output directory.
 
-The image recipe is **NOT TESTED** here. Record the resolved runtime image digest,
-image ID and `/env/bin/pip freeze` output when building it. Judge source is pinned;
+The image recipe is **NOT TESTED** here: Docker is absent and sudo requires interactive
+authentication. An administrator must first install/start Docker and make `docker info`
+work for this session, or provide access to a Linux worker.
+The runner records the built image ID and runtime-base label, then captures Python,
+compiler and installed package versions from an isolated metadata container. It
+requires a digest-pinned base and matching judge commit before reporting PASS. Judge source is pinned;
 the upstream runtime base/build packages still need a validated immutable lock.
 CPP23 requires a suitable compiler in the runtime image; missing CPP23 is a failure,
 not permission to downgrade the real checker/reference solution to C++20.

@@ -1,5 +1,71 @@
 # Compatibility report
 
+Current judging milestone (2026-10-28): **BLOCKED before image build**.
+The converter/adapter and supported input formats are unchanged. A fresh pipeline
+run converted all four existing packages, but no DMOJ submissions have executed.
+
+- `docker build -f Dockerfile.judge -t cp-judge-compat .` returned **127**:
+  `docker: command not found`. See [build log](judging-milestone/docker-build.log).
+- The attempted administrator prerequisite check, `sudo -n true`, returned **1**:
+  `sudo: interactive authentication is required` (outside the workspace sandbox).
+  No system packages or daemon configuration were changed.
+- Smallest next action: an administrator must install/start Docker on this Linux
+  worker and make `docker info` work for the session, or provide an accessible
+  Linux Docker worker. The agent cannot supply interactive sudo authentication.
+- [Sanitized evidence](judging-milestone/evidence.json) records tested converter
+  and requested judge pins; executed judge commit, base-image digest, built image
+  ID and compiler/runtime versions are explicitly **null / NOT TESTED**.
+- [Fresh pipeline report](judging-milestone/pipeline.json) and
+  [log](judging-milestone/pipeline.log): conversion PASS, judging NOT TESTED,
+  pipeline exit 2. Command:
+  `PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -m tools.pipeline --output build/judging-milestone-1 --real local-packages/gaming-grid.zip --judge`.
+- [Ten tests pass](judging-milestone/unit-tests.log), using
+  `PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -m unittest discover -s tests -v`.
+  These verify conversion and result validation using synthetic log examples;
+  they are **not** actual DMOJ judging evidence. Python compilation, shell syntax
+  and Git whitespace checks also pass.
+
+Review against the clean pinned DMOJ source confirms the existing command shape:
+`dmoj-cli -c /config.yml --history /tmp/history --no-ansi test <problem IDs>`.
+`commands/test.py` reads `init.yml:tests`; `testsuite.py` supports `language`, `time`
+(seconds), `memory` (KiB), `cases`, `score_cases` and feedback expectations. Its
+missing-language branch returns zero after printing `Skipped`; the runner rejects
+that outcome. `DMOJ_IN_DOCKER=1` loads `/judge-runtime-paths.yml`. Unprivileged
+execution and `SYS_PTRACE` match the upstream Docker setup; read-only mounts,
+network isolation and resource caps remain enabled. Build/sandbox execution has
+**not** been confirmed; no claim is made that static review establishes runtime
+compatibility. The official entrypoint's writable `pip install -e` step is avoided
+because this container deliberately has a read-only root; the image installs DMOJ
+at build time and invokes its supported CLI directly.
+
+The real checker and reference retain **CPP23**, never a C++20 fallback. Its old
+`-999` probe was only malformed-output rejection. The replacement reads the input
+case count and prints well-formed `NO` answers. The private jury answers imply
+**55 WA and 48 AC** across the 103 tests; these are **expected**, not observed.
+The checker source's genuine mismatch path calls `_wa` when participant NO meets
+jury YES. A blank feedback assertion excludes DMOJ's `Presentation Error` fallback
+for testlib exit 2. Reference expects 103 AC; RTE and TLE probes each cover 103 tests.
+Existing synthetic token, alternative-answer, presentation and group probes remain.
+No checker source, hidden input, jury answer or reference source is added to Git.
+
+The runner now verifies sequential case numbers and exact expected verdicts in
+addition to the official tester's assertions. It separates missing/skipped
+executors, checker/judge internal errors, compilation failures and incomplete logs
+from contestant verdicts. A truncated 102-case reference log cannot report PASS.
+It records the actual image ID, runtime-base label and isolated runtime/package
+versions before grading; execution uses the image ID rather than a mutable tag.
+PASS also requires a digest-pinned runtime base and matching judge source metadata.
+The Docker recipe remains the existing upstream-based recipe with metadata capture,
+not a replacement pipeline. None of these container paths could be exercised yet.
+
+After Docker is available, build with the resolved immutable base (see README),
+then rerun the pipeline with a new output directory, preserve its private raw logs
+under ignored `build/`, and commit only sanitized summaries. Investigate concrete
+build, CPP23 self-test, sandbox or jury failures without accepting skips as success.
+**Website import and standings remain NOT TESTED.**
+
+The original conversion/audit evidence follows unchanged for traceability.
+
 Measured 2026-10-28 on Ubuntu 26.04.1, x86-64, Python 3.14.4.
 **Conversion is verified for the supplied real package; end-to-end Polygon → DMOJ
 judging compatibility is NOT TESTED.** Docker and the DMOJ runtime are absent.

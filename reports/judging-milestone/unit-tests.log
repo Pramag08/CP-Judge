@@ -1,0 +1,15 @@
+test_limit_rounding_and_fixture_reproducibility (test_conversion.ConversionTests.test_limit_rounding_and_fixture_reproducibility) ... ok
+test_missing_answer_and_duplicate_zip_member (test_conversion.ConversionTests.test_missing_answer_and_duplicate_zip_member) ... ok
+test_refuses_existing_output (test_conversion.ConversionTests.test_refuses_existing_output) ... ok
+test_rejects_lossy_features (test_conversion.ConversionTests.test_rejects_lossy_features) ... ok
+test_rejects_traversal_duplicate_symlink_and_entity (test_conversion.ConversionTests.test_rejects_traversal_duplicate_symlink_and_entity) ... ok
+test_three_fixtures_preserve_data_limits_checker_and_groups (test_conversion.ConversionTests.test_three_fixtures_preserve_data_limits_checker_and_groups) ... ok
+test_dependency_skip_and_wrong_verdict (test_judge_results.JudgeEvidenceTests.test_dependency_skip_and_wrong_verdict) ... ok
+test_requires_every_case (test_judge_results.JudgeEvidenceTests.test_requires_every_case) ... ok
+test_separates_skips_checker_errors_and_compile_errors (test_judge_results.JudgeEvidenceTests.test_separates_skips_checker_errors_and_compile_errors) ... ok
+test_real_probe_uses_valid_tokens_and_checks_semantic_verdicts (test_judge_results.WrongAnswerProbeTests.test_real_probe_uses_valid_tokens_and_checks_semantic_verdicts) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.330s
+
+OK

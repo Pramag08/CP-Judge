@@ -1,9 +1,12 @@
 # Same runtime base and build process as the pinned upstream .docker/tier1/Dockerfile.
-# Record the resolved base digest; this image has NOT been built in this workspace.
+# Build with an immutable RUNTIME_IMAGE digest and retain the build log.
 ARG RUNTIME_IMAGE=dmoj/runtimes-tier1:latest
 FROM ${RUNTIME_IMAGE}
+ARG RUNTIME_IMAGE
 ARG DMOJ_COMMIT=1245dc4158dbb9e906c4c103e1ea939e012ee79b
-RUN mkdir /judge /problems && cd /judge && \
+LABEL org.opencontainers.image.revision=${DMOJ_COMMIT} \
+      org.cpjudge.runtime-base=${RUNTIME_IMAGE}
+RUN mkdir /judge /problems && printf '%s\n' "${DMOJ_COMMIT}" > /judge-source-commit && cd /judge && \
     curl --fail -L https://github.com/DMOJ/judge-server/archive/${DMOJ_COMMIT}.tar.gz | tar -xz --strip-components=1 && \
     python3 -m venv --prompt=DMOJ /env && \
     /env/bin/pip3 install cython setuptools && \
@@ -11,6 +14,7 @@ RUN mkdir /judge /problems && cd /judge && \
     HOME=~judge . ~judge/.profile && \
     runuser -u judge -w PATH -- /env/bin/dmoj-autoconf -V > /judge-runtime-paths.yml
 COPY tools/judge-entry.sh /compat-entry
+COPY tools/runtime_metadata.py /runtime-metadata.py
 RUN chmod 755 /compat-entry
 USER judge
 ENV DMOJ_IN_DOCKER=1 PYTHONUNBUFFERED=1
