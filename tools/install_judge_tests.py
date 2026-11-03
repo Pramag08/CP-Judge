@@ -43,13 +43,18 @@ def install(directory, kind, real_source=None):
         (directory / filename).write_text(source)
         test = dict(label=label, source=filename, language='CPP20', time=conf['time_limit'], memory=conf['memory_limit'])
         if isinstance(expected, list):
-            test['cases'] = expected
+            # ProblemConfig wraps YAML lists in ConfigNode; the official CLI's
+            # list check then misses them. Numbered mappings survive that wrapper.
+            test['cases'] = dict(enumerate(expected, 1))
         else:
             test['expect'] = expected
         if label == 'wrong_answer':
             test['feedback'] = ''  # Testlib WA (1), not PE (2, 'Presentation Error')
-        if scores is not None:
-            test['score_cases'] = scores
+        if scores is None:
+            verdicts = expected if isinstance(expected, list) else [expected] * len(conf['test_cases'])
+            scores = [case.get('points', 1) if verdict == 'AC' else 0
+                      for case, verdict in zip(conf['test_cases'], verdicts)]
+        test['score_cases'] = dict(enumerate(scores, 1))
         tests.append(test)
     conf['tests'] = tests
     (directory / 'init.yml').write_text(yaml.safe_dump(conf, sort_keys=False))

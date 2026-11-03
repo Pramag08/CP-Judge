@@ -1,0 +1,11 @@
+test_dependency_skip_and_wrong_verdict (test_judge_results.JudgeEvidenceTests.test_dependency_skip_and_wrong_verdict) ... ok
+test_requires_every_case (test_judge_results.JudgeEvidenceTests.test_requires_every_case) ... ok
+test_separates_skips_checker_errors_and_compile_errors (test_judge_results.JudgeEvidenceTests.test_separates_skips_checker_errors_and_compile_errors) ... ok
+test_all_verdict_probes_assert_configured_case_points (test_judge_results.WrongAnswerProbeTests.test_all_verdict_probes_assert_configured_case_points) ... ok
+test_group_expectations_use_numbered_mappings_for_dmoj_config (test_judge_results.WrongAnswerProbeTests.test_group_expectations_use_numbered_mappings_for_dmoj_config) ... ok
+test_real_probe_uses_valid_tokens_and_checks_semantic_verdicts (test_judge_results.WrongAnswerProbeTests.test_real_probe_uses_valid_tokens_and_checks_semantic_verdicts) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.028s
+
+OK

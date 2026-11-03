@@ -1,0 +1,11 @@
+test_metadata_changes_full_digest (test_site_problem_install.ImmutableInstallTests.test_metadata_changes_full_digest) ... ok
+test_repeat_preserves_inode_mtime_and_bytes (test_site_problem_install.ImmutableInstallTests.test_repeat_preserves_inode_mtime_and_bytes) ... ok
+test_same_code_different_bytes_refused_without_replacement (test_site_problem_install.ImmutableInstallTests.test_same_code_different_bytes_refused_without_replacement) ... ok
+test_stale_expected_manifest_refused_before_staging (test_site_problem_install.ImmutableInstallTests.test_stale_expected_manifest_refused_before_staging) ... ok
+test_symlink_destination_parent_refused (test_site_problem_install.ImmutableInstallTests.test_symlink_destination_parent_refused) ... ok
+test_symlink_input_refused (test_site_problem_install.ImmutableInstallTests.test_symlink_input_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.004s
+
+OK

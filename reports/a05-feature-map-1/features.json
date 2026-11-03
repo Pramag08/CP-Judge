@@ -1,0 +1,644 @@
+{
+  "task": "A05",
+  "status": "COMPLETE \u2014 source feature map only",
+  "depends_on": "A04 source audit completed first",
+  "site_commit": "6aaddea6aaeabf4927b83787714509ff9fff8897",
+  "site_repository": "https://github.com/DMOJ/online-judge.git",
+  "feature_count": 20,
+  "classifications": {
+    "Available upstream": 5,
+    "Needs modification": 10,
+    "Custom work": 4,
+    "Unknown": 1
+  },
+  "features": [
+    {
+      "feature": "Individual contests",
+      "classification": "Available upstream",
+      "source_paths": [
+        "judge/models/contest.py",
+        "judge/views/contests.py"
+      ],
+      "symbols": [
+        "Contest",
+        "ContestParticipation",
+        "ContestJoin"
+      ],
+      "observed_source": "Contest and individual Profile participation, problem assignment, live/spectate/virtual modes exist.",
+      "required_changes": "Configure a minimal individual contest and native pages; preserve author/tester unranked participation.",
+      "verification_required": "B10: two real accounts join/submit; test author/tester unranked status and no cross-contest access.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/contest.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/contests.py"
+      ]
+    },
+    {
+      "feature": "Groups / course organizations",
+      "classification": "Available upstream",
+      "source_paths": [
+        "judge/models/profile.py",
+        "judge/models/contest.py",
+        "judge/views/organization.py"
+      ],
+      "symbols": [
+        "Organization",
+        "Class",
+        "Contest.access_check",
+        "is_live_joinable_by"
+      ],
+      "observed_source": "Organizations/classes, membership/admins and private/join-only contest restrictions exist; these are not teams.",
+      "required_changes": "Map course groups to native organizations/classes; configure visibility versus admission separately.",
+      "verification_required": "C04/D04: outsider/direct-URL denial, member admission, removal and organization-admin scope checks.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/profile.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/contest.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/organization.py"
+      ]
+    },
+    {
+      "feature": "Author permissions / delegation",
+      "classification": "Needs modification",
+      "source_paths": [
+        "judge/models/contest.py",
+        "judge/admin/contest.py",
+        "judge/models/problem.py"
+      ],
+      "symbols": [
+        "is_editable_by",
+        "ContestAdmin.get_queryset",
+        "has_change_permission"
+      ],
+      "observed_source": "Authors/curators/testers and edit-own/edit-all permissions exist; no SecureExam author-mode contract is established.",
+      "required_changes": "Reuse scoped checks; add only missing grant/dashboard/audit behavior. UI mode must not grant permissions.",
+      "verification_required": "A06/C03/C04: author A cannot edit B; forged requests cannot self-promote; reviewers and test submissions stay scoped.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/contest.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/admin/contest.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/problem.py"
+      ]
+    },
+    {
+      "feature": "Participant rosters and private student details",
+      "classification": "Needs modification",
+      "source_paths": [
+        "judge/models/profile.py",
+        "judge/views/organization.py",
+        "judge/views/contests.py",
+        "templates/organization/users-table.html"
+      ],
+      "symbols": [
+        "Profile",
+        "OrganizationUsers",
+        "ContestParticipationList"
+      ],
+      "observed_source": "Native membership/participation listings exist; the latter lists one user\u2019s participations, not the requested author email/student roster.",
+      "required_changes": "Add scoped contest roster with required collected fields, private emails/student ID, filters/pagination and authorized exports; do not expose public member data as a private roster.",
+      "verification_required": "C01/D09/D10: assigned author sees only own roster; participant/cross-group export denied; verify private fields and CSV escaping.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/profile.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/organization.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/contests.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/templates/organization/users-table.html"
+      ]
+    },
+    {
+      "feature": "Google OAuth login",
+      "classification": "Available upstream",
+      "source_paths": [
+        "dmoj/settings.py",
+        "judge/social_auth.py",
+        "judge/views/register.py"
+      ],
+      "symbols": [
+        "AUTHENTICATION_BACKENDS",
+        "SOCIAL_AUTH_PIPELINE",
+        "verify_email"
+      ],
+      "observed_source": "GoogleOAuth2 and social-auth account association exist. The local verify_email function only checks nonempty email; provider verification semantics were not audited.",
+      "required_changes": "Configure provider/redirects and audit the pinned backend\u2019s verified-email claim and linking policy; retain local login for offline operation.",
+      "verification_required": "C02: callback/login/logout, CSRF/state and account linking; reject missing/untrusted email claims; local login works independently of Google.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/dmoj/settings.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/social_auth.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/register.py"
+      ]
+    },
+    {
+      "feature": "One account per verified email",
+      "classification": "Needs modification",
+      "source_paths": [
+        "judge/views/register.py",
+        "judge/forms.py",
+        "judge/social_auth.py",
+        "dmoj/settings.py"
+      ],
+      "symbols": [
+        "CustomRegistrationForm.clean_email",
+        "EmailChangeForm.clean_email",
+        "associate_by_email"
+      ],
+      "observed_source": "Registration/email-change forms query for duplicates; site uses Django User. Django 4.2 default email field is not unique. OAuth verification/association and concurrency guarantees remain unproven.",
+      "required_changes": "Choose normalization/verification policy and race-safe uniqueness across signup, OAuth/linking, email changes, admin/provisioning; do not rely on a form query alone.",
+      "verification_required": "C01/C02: concurrent duplicate signup/link/change, case/collation policy, unverified versus verified provider identities, activation replay and recovery.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/register.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/forms.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/social_auth.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/dmoj/settings.py"
+      ]
+    },
+    {
+      "feature": "Scheduled registration window",
+      "classification": "Needs modification",
+      "source_paths": [
+        "judge/views/contests.py",
+        "judge/models/contest.py"
+      ],
+      "symbols": [
+        "ContestJoin.join_contest",
+        "ContestParticipation"
+      ],
+      "observed_source": "The stock participant join route rejects pre-start live entry; invited/private_contestants are access controls, not proof of a separate preregistration lifecycle.",
+      "required_changes": "Add/map explicit registration-open/closed and pre-start entry state with server-side eligibility/capacity rules.",
+      "verification_required": "D07/D08: scheduled/open/closed boundaries; concurrent admission versus start/capacity; preserve registration time and submissions.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/contests.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/contest.py"
+      ]
+    },
+    {
+      "feature": "Late entry and common contest clock",
+      "classification": "Needs modification",
+      "source_paths": [
+        "judge/models/contest.py",
+        "judge/views/contests.py"
+      ],
+      "symbols": [
+        "is_live_joinable_by",
+        "ContestParticipation.start",
+        "ContestParticipation.end_time",
+        "ContestJoin"
+      ],
+      "observed_source": "Live joining after start and common clock when time_limit is None exist; a per-participant duration is also supported. No requested late-registration switch was located in these paths.",
+      "required_changes": "Explicitly select common-clock mode; add late-entry policy controls and consistent deadline enforcement, without granting late entrants extra time.",
+      "verification_required": "A10/D08/B11: before/at/after start/end, late toggle and shared end; check solve penalty uses official start/server receipt, not grading completion.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/contest.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/contests.py"
+      ]
+    },
+    {
+      "feature": "Deregistration versus leaving a contest",
+      "classification": "Needs modification",
+      "source_paths": [
+        "judge/views/contests.py",
+        "judge/models/profile.py"
+      ],
+      "symbols": [
+        "ContestLeave.post",
+        "Profile.remove_contest"
+      ],
+      "observed_source": "Leave clears Profile.current_contest; it does not delete participation or implement pre-start deregistration. Do not label that endpoint deregistration.",
+      "required_changes": "Implement distinct pre-start withdrawal and post-start prohibition; retain attempt/history and explicit author removal/disqualification semantics.",
+      "verification_required": "D07/D08/D11: withdraw before start, deny once running even without submissions, rejoin semantics and no lost historical record.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/contests.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/profile.py"
+      ]
+    },
+    {
+      "feature": "Problem installation into website and worker",
+      "classification": "Needs modification",
+      "source_paths": [
+        "judge/models/problem.py",
+        "judge/models/problem_data.py",
+        "judge/views/problem_data.py",
+        "judge/utils/problem_data.py",
+        "judge/bridge/judge_handler.py",
+        "judge/fixtures/language_small.json",
+        "judge/fixtures/language_all.json"
+      ],
+      "symbols": [
+        "Problem",
+        "ProblemData",
+        "ProblemTestCase",
+        "ProblemDataCompiler",
+        "ProblemManagerMixin",
+        "get_related_submission_data"
+      ],
+      "observed_source": "Native problem/data storage, batches/dependencies and manual management exist; bridge reads database time/memory. Stock checker choices omit bridged. Both stock language fixtures omit CPP23 even though the existing worker supports it.",
+      "required_changes": "Map converted code/statement/limits/languages and private files atomically; preserve CPP23 bridged/testlib init rather than blindly regenerate through builtin-only checker UI. Verify import versus manually-managed route. Provision matching CPP23 database/allowed-language metadata.",
+      "verification_required": "B04\u2013B06: bytes/case order, active samples, group dependencies, checker standard, DB/dispatch limits and safe statement assets; real browser AC/WA after installation. Confirm CPP23 appears in the live site/worker language matrix.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/problem.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/problem_data.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/problem_data.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/utils/problem_data.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_handler.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/fixtures/language_small.json",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/fixtures/language_all.json"
+      ]
+    },
+    {
+      "feature": "Guided Polygon ZIP import",
+      "classification": "Custom work",
+      "source_paths": [
+        "judge/views/problem_data.py",
+        "judge/utils/problem_data.py",
+        "judge/models/problem_data.py"
+      ],
+      "symbols": [
+        "ProblemDataView",
+        "ProblemDataCompiler.generate"
+      ],
+      "observed_source": "Native upload edits DMOJ problem data; no Polygon reader/job/publication workflow was found in the inspected site paths. Our existing compat/convert.py already handles the supported CLI conversion subset.",
+      "required_changes": "Wrap the existing converter with private bounded uploads, job findings, safe preview, versioned atomic publication and worker installation. Do not rewrite or widen the converter silently.",
+      "verification_required": "C05\u2013C14: malicious/unsupported ZIP rejection, bytes/checker/limit/group preservation, partial import rollback, independent multi-ZIP status and isolated prepublication probe.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/problem_data.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/utils/problem_data.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/problem_data.py"
+      ]
+    },
+    {
+      "feature": "Submissions and native dispatch",
+      "classification": "Available upstream",
+      "source_paths": [
+        "judge/views/problem.py",
+        "judge/models/submission.py",
+        "judge/judgeapi.py",
+        "judge/bridge/judge_handler.py"
+      ],
+      "symbols": [
+        "ProblemSubmit.form_valid",
+        "Submission",
+        "SubmissionSource",
+        "judge_submission",
+        "JudgeHandler.submit"
+      ],
+      "observed_source": "Native forms store source/participation, apply language/rate checks and dispatch via bridge; handler supplies database seconds/memory and optional language overrides.",
+      "required_changes": "Reuse native persistence/transport. Add only missing receipt/idempotency/version/rejudge safeguards after contract review; do not replace dispatch with our CLI regression runner.",
+      "verification_required": "B07\u2013B09/E09: browser AC/WA/CE/RTE/TLE and unavailable-worker behavior; receipt identity, loss/retry, ordering and correct DB-to-worker limits.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/problem.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/submission.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/judgeapi.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_handler.py"
+      ]
+    },
+    {
+      "feature": "Per-case feedback and visibility",
+      "classification": "Needs modification",
+      "source_paths": [
+        "judge/models/submission.py",
+        "judge/views/submission.py",
+        "judge/bridge/judge_handler.py",
+        "templates/submission/status-testcases.html"
+      ],
+      "symbols": [
+        "SubmissionTestCase",
+        "SubmissionStatus",
+        "SubmissionTestCaseQuery",
+        "JudgeHandler.on_test_case"
+      ],
+      "observed_source": "Per-case status/time/memory/points/batches/output/feedback are stored and rendered. SC is displayed separately. Native feedback rendering is not our full contest privacy policy.",
+      "required_changes": "Map original case/group identity and enforce configured feedback/source/hidden-data rules across pages, queries, events and exports; filter sensitive checker diagnostics.",
+      "verification_required": "B09/E11/E12: compare UI to actual case records, distinguish SC/IE from AC, inspect network/event payloads and test cross-user access with hidden-data fixtures.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/submission.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/submission.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_handler.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/templates/submission/status-testcases.html"
+      ]
+    },
+    {
+      "feature": "Scoring and standings presets",
+      "classification": "Needs modification",
+      "source_paths": [
+        "judge/contest_format/icpc.py",
+        "judge/contest_format/ioi.py",
+        "judge/contest_format/legacy_ioi.py",
+        "judge/views/contests.py",
+        "judge/models/submission.py"
+      ],
+      "symbols": [
+        "ICPCContestFormat.update_participation",
+        "IOIContestFormat.update_participation",
+        "LegacyIOIContestFormat.update_participation",
+        "get_contest_ranking_list",
+        "Submission.update_contest"
+      ],
+      "observed_source": "ICPC/IOI formats and rankings exist. ICPC has last-score-altering-time tiebreak and excludes only IE/CE from failed-attempt counting; IOI16 combines best batches across submissions, while legacy ioi chooses a best submission.",
+      "required_changes": "A10 must map/configure or adapt the exact requested solved/penalty/tie and best-submission rules. Native format names alone are insufficient; preserve judge results versus contest points distinction.",
+      "verification_required": "B11/F08/F09: hand-calculated solve/failure/tie/late-entry sequences; equal solved/penalty shares rank; group behavior, rejudge, provisional/frozen standings and skipped-case scoring.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/contest_format/icpc.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/contest_format/ioi.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/contest_format/legacy_ioi.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/contests.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/submission.py"
+      ]
+    },
+    {
+      "feature": "Monaco editor",
+      "classification": "Custom work",
+      "source_paths": [
+        "templates/problem/submit.html",
+        "judge/widgets/ace.py",
+        "judge/forms.py"
+      ],
+      "symbols": [
+        "AceWidget",
+        "ProblemSubmit",
+        "ace_load handler"
+      ],
+      "observed_source": "The inspected submit flow uses Ace; Monaco appearing as a font name elsewhere is not an editor integration.",
+      "required_changes": "Add a bounded Monaco component while retaining native submission/auth/language behavior, local assets, accessibility and a text fallback; no full-site SPA required.",
+      "verification_required": "E03/E04/E14/E15: enabled language choices, source round trip, keyboard/zoom/resizing and usable fallback when editor assets fail.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/templates/problem/submit.html",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/widgets/ace.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/forms.py"
+      ]
+    },
+    {
+      "feature": "Autosave / draft recovery",
+      "classification": "Needs modification",
+      "source_paths": [
+        "templates/problem/submit.html"
+      ],
+      "symbols": [
+        "update_language_template",
+        "editor save command"
+      ],
+      "observed_source": "Ctrl-S manually writes localStorage under submit:<language>; key has no account/problem/contest scope and this is not automatic saving or server synchronization.",
+      "required_changes": "Add timed/debounced per-account/problem/contest/language drafts and truthful local/synced state; specify tab conflicts and optional server sync before implementing it.",
+      "verification_required": "E05/E06: reload recovery, language/problem/account isolation on shared browser, concurrent tabs, offline edits and reconnect conflict behavior.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/templates/problem/submit.html"
+      ]
+    },
+    {
+      "feature": "Custom-input Run integration",
+      "classification": "Unknown",
+      "source_paths": [
+        "dmoj/urls.py",
+        "judge/views/problem.py",
+        "judge/judgeapi.py",
+        "judge/bridge/judge_handler.py"
+      ],
+      "symbols": [
+        "ProblemSubmit",
+        "judge_submission",
+        "JudgeHandler.submit"
+      ],
+      "observed_source": "No custom-stdin Run route was identified in inspected submit/URL/dispatch paths; existing testcase query displays judged cases. A native compatible worker extension was not established.",
+      "required_changes": "A12 must locate supported execution/protocol extension points or scope custom work, then implement an isolated bounded custom-input path with separate quotas, no hidden data and no scoring.",
+      "verification_required": "A12/E07/E08: actual stdout/stderr/compile/runtime/timeout behavior, input/output caps, authorization, no standings writes and no starvation of official submissions.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/dmoj/urls.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/problem.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/judgeapi.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_handler.py"
+      ]
+    },
+    {
+      "feature": "Individual-account teams",
+      "classification": "Custom work",
+      "source_paths": [
+        "judge/models/contest.py",
+        "judge/models/submission.py",
+        "judge/models/profile.py"
+      ],
+      "symbols": [
+        "ContestParticipation.user",
+        "Submission.user",
+        "Organization"
+      ],
+      "observed_source": "Inspected participation/submission identity points to one Profile. No team roster/captain/entry model was located in these paths; organization membership is not team scoring.",
+      "required_changes": "Extend native contest identity for invitations/acceptance, unique membership, roster locks, actual submitter plus team entry and shared aggregation. Do not use shared credentials.",
+      "verification_required": "F01\u2013F07: concurrent membership/invite acceptance, start-time lock, attribution, one credit for simultaneous AC and prior-failure counting across teammates.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/contest.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/submission.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/profile.py"
+      ]
+    },
+    {
+      "feature": "1v1 / 2v2 / XvX matches",
+      "classification": "Custom work",
+      "source_paths": [
+        "judge/models/contest.py",
+        "judge/views/contests.py"
+      ],
+      "symbols": [
+        "Contest",
+        "ContestJoin",
+        "ContestParticipation"
+      ],
+      "observed_source": "Private individual contests are a useful base; scoring format does not enforce exactly two complete sides or configurable team sizes.",
+      "required_changes": "After team identity exists, add match admission/readiness rules, capacity enforcement and incomplete-match handling; do not treat ICPC selection as competition-format selection.",
+      "verification_required": "F03/F04: exactly two entries, required members per side, one entry per person and concurrent last-slot admission; incomplete sides cannot silently start.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/contest.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/contests.py"
+      ]
+    },
+    {
+      "feature": "Multiple judge workers",
+      "classification": "Available upstream",
+      "source_paths": [
+        "judge/models/runtime.py",
+        "judge/bridge/daemon.py",
+        "judge/bridge/judge_list.py",
+        "judge/bridge/judge_handler.py"
+      ],
+      "symbols": [
+        "Judge",
+        "JudgeList",
+        "JudgeHandler._authenticate",
+        "can_judge"
+      ],
+      "observed_source": "Native authenticated worker set, queue, problem/language matching and tier/disabled handling exist. No SecureExam multi-machine deployment or immutable-version pool routing was tested.",
+      "required_changes": "Reuse bridge scheduling; add tested enrollment/revocation, private version synchronization, approved-pool/timing policy and recovery operations where absent.",
+      "verification_required": "B03/A11/G03\u2013G11: two trusted workers, wrong problem/runtime/version refusal, disconnect/reconnect/duplicate-result safety and measured throughput; no 300-job claim from source.",
+      "runtime_verified": false,
+      "source_urls": [
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/runtime.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/daemon.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_list.py",
+        "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_handler.py"
+      ]
+    }
+  ],
+  "source_files": {
+    "dmoj/settings.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/dmoj/settings.py",
+      "sha256": "10195552cff26bb3e4bfa4e8a887e1f541a90898b6508fbb6472339b84d36855"
+    },
+    "dmoj/urls.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/dmoj/urls.py",
+      "sha256": "3e0a02bc0371e0783fa9c24c05fa159cbabadb975799e5e32a80442dabba771d"
+    },
+    "judge/admin/contest.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/admin/contest.py",
+      "sha256": "b0b35c1326981df3221c7b72bde6dd976e065a6dbeb616961dec9382e6ad82a4"
+    },
+    "judge/bridge/daemon.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/daemon.py",
+      "sha256": "b98c2559c7abfef56d010a25c5d607b87b8bd8955bc0bc7e021b29bfa3b808d8"
+    },
+    "judge/bridge/judge_handler.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_handler.py",
+      "sha256": "3dbcf88bf7fe99c6b175b04517dd697641716f1968214ecd8e32e7db27a2f631"
+    },
+    "judge/bridge/judge_list.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_list.py",
+      "sha256": "aa58b3ae34c1878928e9504e8a6f0fe74c16d7ad327918266cb6923a4c22784d"
+    },
+    "judge/contest_format/icpc.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/contest_format/icpc.py",
+      "sha256": "41143644350dd3aabeced25979bfd74380c23ace061e34f968e69d4d27dfd690"
+    },
+    "judge/contest_format/ioi.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/contest_format/ioi.py",
+      "sha256": "51915409c98ec149cb3985b61af1283a0a47dc299770836712b3dabe59989e39"
+    },
+    "judge/contest_format/legacy_ioi.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/contest_format/legacy_ioi.py",
+      "sha256": "e2b3a85bb7ea258f5286d74bc46a574ac4273cbab8c2242259e3fb74fad3c4e2"
+    },
+    "judge/forms.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/forms.py",
+      "sha256": "63d74126e73683bbbcb10cc6598e560fb45160ec655454bb1d2142b8dc72c5a2"
+    },
+    "judge/judgeapi.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/judgeapi.py",
+      "sha256": "0b4bc0e2df4bf28cf3bd264d61a3859d2181235206d40eff0b429f5ec579cc4a"
+    },
+    "judge/models/contest.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/contest.py",
+      "sha256": "c6c4a446df27d95958fda7db222a84340fd16b9952380803a08bde1188abbbf4"
+    },
+    "judge/models/problem.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/problem.py",
+      "sha256": "982fab4ca15c3a41301fe4026b0220ab89a0930b128b086ebea08fafa363086e"
+    },
+    "judge/models/problem_data.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/problem_data.py",
+      "sha256": "3983776c1a3021b6919817efcef29a41c767daa77f507c38ca47a7b27e0a517f"
+    },
+    "judge/models/profile.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/profile.py",
+      "sha256": "0e6f6b284d78261b3ab0a1ca2fe6fb92408705850a63ce8330ed17662ad86c5a"
+    },
+    "judge/models/runtime.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/runtime.py",
+      "sha256": "5fed65374cb876600948f98feee362d33c38b145a58fc795f0702142b348d00f"
+    },
+    "judge/models/submission.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/models/submission.py",
+      "sha256": "e2ef0da41cf37483a97644e7a65272a8f33f4e527b8956568ccd437b00b24cb7"
+    },
+    "judge/social_auth.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/social_auth.py",
+      "sha256": "6ac7e3d1d9712b33456911146709d8d58bd5ae5840174f485a3f6a4ca8eb0c81"
+    },
+    "judge/utils/problem_data.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/utils/problem_data.py",
+      "sha256": "5d5afe5923f056ea15b6859c37ff01586fed299ffa26bcf3bc5209c174ba82b6"
+    },
+    "judge/views/contests.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/contests.py",
+      "sha256": "fa04e2c1f6120767e67ffd9f5a715ab18ef83dd0f508c055ad9e8e65614b34dd"
+    },
+    "judge/views/organization.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/organization.py",
+      "sha256": "bd6c3a6e4dbcb5cf470e2e7a8771533cc3fc073351172249b6bbe34995bd2f9d"
+    },
+    "judge/views/problem.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/problem.py",
+      "sha256": "7206979b4a61752b7f0fdc97d8bcd7d60634f4e0d092ff4fcf049009439e1634"
+    },
+    "judge/views/problem_data.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/problem_data.py",
+      "sha256": "1258b0277a7cb0e647ea27269d75fad6ddf45cff0028cf2716870d4a7a22ecc2"
+    },
+    "judge/views/register.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/register.py",
+      "sha256": "cbda5869ee390ebdcd3b1685091a345a2513669416e76fa180aa805ad7cfc413"
+    },
+    "judge/views/submission.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/views/submission.py",
+      "sha256": "b4e5ba18571248d3c8b996e521bb081af65036b657ee24dfff676f381f0e49b3"
+    },
+    "judge/widgets/ace.py": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/widgets/ace.py",
+      "sha256": "746dedc3e64eb8ff76a9c9b0c78ad0fb0adb1f23fe2db9542616d9a19e224ca9"
+    },
+    "templates/organization/users-table.html": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/templates/organization/users-table.html",
+      "sha256": "f453e6afdb9a85ce2fa402963d0c5c1064c89236440a8ef44ce37a57760bb248"
+    },
+    "templates/problem/submit.html": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/templates/problem/submit.html",
+      "sha256": "873872b3ed8bed705642038a4d92bb4cbc2d5f2da9eb3376ff4244b91c214cb2"
+    },
+    "templates/submission/status-testcases.html": {
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/templates/submission/status-testcases.html",
+      "sha256": "d4e17bdd06cf2eec438b3a2068b9a73b21dd0cfb81c7353046ae536209c9911a"
+    },
+    "judge/fixtures/language_small.json": {
+      "sha256": "fa84e0409446eb30954cdbfb719708781cf07daea7ac3be51bb5a45924663b32",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/fixtures/language_small.json"
+    },
+    "judge/fixtures/language_all.json": {
+      "sha256": "e0ce5ee94dadbf2a4e6872f7724eb76e7ceac416d68dbd74f8c2544e2bd68292",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/fixtures/language_all.json"
+    }
+  },
+  "runtime_tests_run": false,
+  "features_implemented": false,
+  "website_judge_compatibility": "NOT TESTED",
+  "a06": "NOT STARTED",
+  "limitations": [
+    "Source availability means inspected code exists, not that SecureExam has deployed it.",
+    "Negative findings are bounded to selected model/view/template/dispatch paths; no exhaustive ecosystem/plugin audit.",
+    "Asset submodule and third-party authentication backend code were not fetched/installed; verified-provider claim handling remains to audit.",
+    "Candidate Django 4.2 is unsupported; A09 gate remains before site feature work."
+  ],
+  "completed_utc": "2026-10-28T14:04:14.058254+00:00",
+  "language_fixture_observations": {
+    "judge/fixtures/language_small.json": {
+      "language_count": 18,
+      "CPP17": true,
+      "CPP20": true,
+      "CPP23": false
+    },
+    "judge/fixtures/language_all.json": {
+      "language_count": 59,
+      "CPP17": true,
+      "CPP20": true,
+      "CPP23": false
+    }
+  }
+}

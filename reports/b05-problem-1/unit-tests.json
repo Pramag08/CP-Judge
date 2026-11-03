@@ -1,0 +1,17 @@
+{
+  "argv": [
+    ".venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_site_problem_install.py",
+    "-v"
+  ],
+  "exit_status": 0,
+  "tests": 6,
+  "log": "reports/b05-problem-1/unit-tests.log"
+}

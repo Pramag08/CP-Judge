@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block body %}
+<p><a href="{{ url('cpj_contest_create') }}">Create contest</a></p>
+<table class="table"><tr><th>Contest</th><th>Status</th></tr>{% for c,state in rows %}<tr><td><a href="{{ url('cpj_contest_edit',contest_key=c.key) }}">{{ c.name }}</a></td><td>{{ state }}</td></tr>{% endfor %}</table>
+{% endblock %}

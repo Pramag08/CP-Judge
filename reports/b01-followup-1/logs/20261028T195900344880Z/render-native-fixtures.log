@@ -1,0 +1,5 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+56 objects imported automatically (use -v 2 for details).
+
+{"fixture_ids": {"staff": 3, "participant": 4}, "temporary_accounts": 2, "existing_users_saved_privately": 2, "statement_fixture": "native problem/raw.html with synthetic context; no Problem row/import", "preview_fixture": "native user/preview.html plus actual martor loader", "domain_counts_unchanged": true}

@@ -1,0 +1,13 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+System check identified some issues:
+
+WARNINGS:
+judge.Class: (models.W036) MariaDB does not support unique constraints with conditions.
+	HINT: A constraint won't be created. Silence this warning if you don't care about it.
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, flatpages, impersonate, judge, redirects, registration, reversion, sessions, sites, social_django
+Running migrations:
+  No migrations to apply.
+  Your models in app(s): 'judge' have changes that are not yet reflected in a migration, and so won't be applied.
+  Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.

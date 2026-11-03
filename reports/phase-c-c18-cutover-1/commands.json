@@ -1,0 +1,396 @@
+[
+  {
+    "name": "fresh-private-backup",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb-dump --user=root --password=\"$MARIADB_ROOT_PASSWORD\" --single-transaction --routines --events --databases b01"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100002297690Z-fresh-private-backup.log"
+  },
+  {
+    "name": "c18_cutover_snapshot",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100002297690Z-c18_cutover_snapshot.log"
+  },
+  {
+    "name": "retain-private-baseline",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/c18-cutover-before.json",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c18-cutover-1/before.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100002297690Z-retain-private-baseline.log"
+  },
+  {
+    "name": "stage-provenance-and-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100321449179Z-stage-provenance-and-tests.log"
+  },
+  {
+    "name": "focused-email-only-checks",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.cutover_tests.CutoverTests",
+      "cpjudge.cutover_tests.EmailOnlySessionTests",
+      "cpjudge.c18_tests.EmailTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100321652225Z-focused-email-only-checks.log"
+  },
+  {
+    "name": "check-authorized-mappings",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/email_mappings.py",
+      "check"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100603487304Z-check-authorized-mappings.log"
+  },
+  {
+    "name": "apply-authorized-mappings",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/email_mappings.py",
+      "apply"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100605073773Z-apply-authorized-mappings.log"
+  },
+  {
+    "name": "reload-http-celery-idle",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100607285044Z-reload-http-celery-idle.log"
+  },
+  {
+    "name": "actual-cutover-browser-before",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "512m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-c18-cutover-1/browser,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/c18_cutover_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py",
+      "before"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100610624759Z-actual-cutover-browser-before.log"
+  },
+  {
+    "name": "c18_cutover_activate",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100839262662Z-c18_cutover_activate.log"
+  },
+  {
+    "name": "actual-cutover-browser-after",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "512m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-c18-cutover-1/browser,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/c18_cutover_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py",
+      "after"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T100841020048Z-actual-cutover-browser-after.log"
+  },
+  {
+    "name": "c18_cutover_preserve",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101127505761Z-c18_cutover_preserve.log"
+  },
+  {
+    "name": "c18_cutover_preserve",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101215385040Z-c18_cutover_preserve.log"
+  },
+  {
+    "name": "deployed-final-identity-source",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import hashlib,json;from pathlib import Path;print(json.dumps({n:hashlib.sha256((Path('/app/cpjudge')/n).read_bytes()).hexdigest() for n in ['email_identity.py', 'identity.py', 'views.py', 'sessions.py', 'native.py']}))"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101216331127Z-deployed-final-identity-source.log"
+  },
+  {
+    "name": "schema-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101216331127Z-schema-consistency.log"
+  },
+  {
+    "name": "whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101216331127Z-whitespace.log"
+  },
+  {
+    "name": "c18_local_recovery_prepare",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101456510896Z-c18_local_recovery_prepare.log"
+  },
+  {
+    "name": "actual-cutover-browser-admin-route",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "512m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-c18-cutover-1/browser,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/c18_cutover_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py",
+      "admin-route"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101633536470Z-actual-cutover-browser-admin-route.log"
+  },
+  {
+    "name": "deployed-final-identity-source",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import hashlib,json;from pathlib import Path;print(json.dumps({n:hashlib.sha256((Path('/app/cpjudge')/n).read_bytes()).hexdigest() for n in ['email_identity.py', 'identity.py', 'views.py', 'sessions.py', 'native.py']}))"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101634564514Z-deployed-final-identity-source.log"
+  },
+  {
+    "name": "schema-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101634564514Z-schema-consistency.log"
+  },
+  {
+    "name": "whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T101634564514Z-whitespace.log"
+  },
+  {
+    "name": "stage-provenance-and-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T102358538965Z-stage-provenance-and-tests.log"
+  },
+  {
+    "name": "focused-email-only-checks",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.cutover_tests.CutoverTests",
+      "cpjudge.cutover_tests.EmailOnlySessionTests",
+      "cpjudge.c18_tests.EmailTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T102358633562Z-focused-email-only-checks.log"
+  },
+  {
+    "name": "deployed-final-identity-source",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import hashlib,json;from pathlib import Path;print(json.dumps({n:hashlib.sha256((Path('/app/cpjudge')/n).read_bytes()).hexdigest() for n in ['email_identity.py', 'identity.py', 'views.py', 'sessions.py', 'native.py']}))"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T102403892804Z-deployed-final-identity-source.log"
+  },
+  {
+    "name": "schema-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T102403892804Z-schema-consistency.log"
+  },
+  {
+    "name": "whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c18-cutover-1/20261030T102403892804Z-whitespace.log"
+  }
+]

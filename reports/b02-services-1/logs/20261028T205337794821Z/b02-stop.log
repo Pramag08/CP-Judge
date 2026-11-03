@@ -1,0 +1,4 @@
+native-processes-stop: running
+native-processes-stop: exit 0
+event-stop: running
+event-stop: exit 0

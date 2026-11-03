@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checks": [
+    "five live role accounts require initial password change using real PBKDF2 hashing",
+    "native admin/list/direct and cross-contest roster email isolation",
+    "real Celery roster export and private owner-only download",
+    "session replacement revokes requests/channels; stale logout preserves replacement",
+    "private files, statement assets and direct channel scope denied"
+  ],
+  "live_url": "http://127.0.0.1:8000",
+  "test_settings": false
+}

@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/DMOJ/online-judge.git",
+  "branch": "django-52-upgrade",
+  "commit": "604d60cfd764bc708b04ffd75b715a5398b91f8b",
+  "baseline": "6aaddea6aaeabf4927b83787714509ff9fff8897",
+  "license": "GNU AGPL v3",
+  "asset_commit": "cba2efbf86e6e933704d8130fe256f2eab18621a",
+  "vcs": {
+    "dmoj-wpadmin": "dfafe1b20d69e2e0f8cf625fecbb957414040b80",
+    "django-fernet-fields": "eaea7e760472106c015f65535f4837a1189c4e7c",
+    "jsonfield": "560bdca857a69b4a5b2773a79d7511ebc628f339",
+    "ansi2html": "485b4ad02cca1c078c35c3982e9c345b23905445"
+  },
+  "selection": "Official upgrade branch preferred over third-party fork; unmerged branch, pinned exactly; no application redesign.",
+  "license_sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+  "committed_at": "2026-08-23T18:45:17+02:00",
+  "local_application_patches": [],
+  "source_files_sha256": {
+    "requirements.txt": "0ae2eeb0e5425f90e7342ac397801955b4965234d7a11200d9e4f100ac0c3599",
+    "dmoj/settings.py": "1bda4217bb931170a80a1f4c394c10f3840974303051665781d84438371b3dfe",
+    "dmoj/urls.py": "3e0a02bc0371e0783fa9c24c05fa159cbabadb975799e5e32a80442dabba771d",
+    "judge/models/runtime.py": "5fed65374cb876600948f98feee362d33c38b145a58fc795f0702142b348d00f",
+    "judge/views/language.py": "42a9bad9bbb0ed1e9e9ef4da77437b7ac38f0d9a0ae21b1b5aab9a6c7d422772",
+    "judge/bridge/judge_handler.py": "3dbcf88bf7fe99c6b175b04517dd697641716f1968214ecd8e32e7db27a2f631",
+    "judge/models/choices.py": "1229c9cac00ff0dd33260561514b26b967a66682dd0c27b449c085b2e29393f5",
+    "judge/timezone.py": "bfb1228875a592c92965bd87fee6ad9328d013563eaeaa3e19d15eb7c866ecdc",
+    "judge/utils/raw_sql.py": "2cdca3f3da3b370a37ee3d86f374be5efbba1a1bab077af2a81ed9a1adfc277f"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "focused_checks": 10,
+  "relevant_regressions": 12,
+  "skips": 0,
+  "test_logs": {
+    "focused-d07-d11-tests": "build/phase-d-d07-d11-1/20261030T124358011185Z-focused-d07-d11-tests.log",
+    "relevant-author-and-session-regressions": "build/phase-d-d07-d11-1/20261030T120814023755Z-relevant-author-and-session-regressions.log",
+    "post-d07-registration-receipt-regressions": "build/phase-d-d07-d11-1/20261030T131434737104Z-post-d07-registration-receipt-regressions.log"
+  },
+  "actual_browser": "browser.json",
+  "actual_judging_and_preservation": "preservation.json",
+  "new_conversions": 0,
+  "new_native_submissions": 1,
+  "new_actual_executed_cases": 3,
+  "migration_consistency_exit": 0,
+  "whitespace_exit": 0,
+  "backup_gzip_readback": true,
+  "backup_restore_rerun": false,
+  "stop_before": "D13",
+  "deferred": [
+    "D10",
+    "D12",
+    "D14",
+    "D15"
+  ]
+}

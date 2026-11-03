@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "contest": "d07local2",
+  "checks": {
+    "selected_problem_statement_limits_languages_and_private_label": true,
+    "official_standings_registration_count_unchanged": true,
+    "persisted_private_ac_wa_after_new_login": true,
+    "participants_unrelated_author_removed_entry_denied_test_and_deadline_bypass": true,
+    "author_crafted_official_native_direct_denied": true
+  },
+  "tests": [
+    {
+      "test_id": 1,
+      "verdict": "AC",
+      "cases": 3
+    },
+    {
+      "test_id": 2,
+      "verdict": "WA",
+      "cases": 3
+    }
+  ]
+}

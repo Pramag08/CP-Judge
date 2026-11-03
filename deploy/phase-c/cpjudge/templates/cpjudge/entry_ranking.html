@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block body %}
+{% if not preview or preview is undefined %}{% include "cpjudge/contest_tabs.html" %}{% endif %}
+<p><a href="{{ url('contest_view',contest=contest.key) }}">Contest</a>. Removed entries retain their earned rank; disqualified entries are excluded.</p>
+{% include "contest/ranking-table.html" %}
+{% if dq %}<table class="table"><tr><th>Disqualified (unranked)</th></tr>{% for entry in dq %}<tr><td>{{ entry.user.username }} — DQ</td></tr>{% endfor %}</table>{% endif %}
+{% endblock %}

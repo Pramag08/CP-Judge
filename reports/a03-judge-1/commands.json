@@ -1,0 +1,34 @@
+[
+  {
+    "command": "sg docker -c 'docker info --format \"{{json .}}\" && docker image inspect cp-judge-compat' > build/a03-judge-1/docker-prerequisites.log 2>&1",
+    "exit": 0
+  },
+  {
+    "command": "PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -B -m unittest discover -s tests -p test_judge_results.py -v > build/a03-judge-1/probe-tests.log 2>&1",
+    "exit": 0
+  },
+  {
+    "command": "sg docker -c '.venv/bin/python -B build/a03-judge-1/run_pipeline.py'",
+    "runner_command": "PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -B -m tools.pipeline --output build/a03-judge-1/pipeline --real local-packages/gaming-grid.zip --judge --judge-image sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "-m",
+      "tools.pipeline",
+      "--output",
+      "build/a03-judge-1/pipeline",
+      "--real",
+      "local-packages/gaming-grid.zip",
+      "--judge",
+      "--judge-image",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8"
+    ],
+    "exit": 0,
+    "started_utc": "2026-10-28T13:21:21.207930+00:00",
+    "finished_utc": "2026-10-28T13:30:55.058015+00:00"
+  },
+  {
+    "command": "sg docker -c '.venv/bin/python -B build/a03-judge-1/capture_container.py'",
+    "exit": 0
+  }
+]

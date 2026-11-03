@@ -1,0 +1,45 @@
+{
+  "phase_c_status": "PARTIAL \u2014 NOT COMPLETE; live app not enabled",
+  "checks": [
+    {
+      "command": "sg docker -c 'python3 -B deploy/phase-c/coordinator.py test-identity'",
+      "exit_status": 0,
+      "tests": 32,
+      "scope": "isolated MariaDB test DB; no live route/queue acceptance"
+    },
+    {
+      "command": ".venv/bin/python -B -m unittest discover -s tests -p test_archive.py -v",
+      "exit_status": 0,
+      "tests": 16,
+      "scope": "strict archive library"
+    },
+    {
+      "command": "PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -B -m unittest discover -s tests -p test_conversion.py -v",
+      "exit_status": 0,
+      "tests": 6,
+      "scope": "conversion, not judging"
+    },
+    {
+      "command": "sg docker -c 'python3 -B deploy/phase-c/coordinator.py resume-browser'",
+      "exit_status": 0,
+      "evidence": "identity-browser.json"
+    },
+    {
+      "command": "sg docker -c 'python3 -B deploy/phase-c/coordinator.py recover-browser'",
+      "exit_status": 0,
+      "evidence": "recovery-browser.json"
+    },
+    {
+      "command": "sg docker -c 'python3 -B deploy/phase-c/coordinator.py stop-browser'",
+      "exit_status": 0
+    },
+    {
+      "command": "sg docker -c 'python3 -B deploy/phase-c/coordinator.py preserve'",
+      "exit_status": 0,
+      "evidence": "preservation.json"
+    }
+  ],
+  "actual_phase_c_judging": "NOT RUN",
+  "final_integrated_import_publication_submission_verdict_standings": "NOT RUN",
+  "next": "Native permissions/routes/background jobs and revocable event/channel authorization before live checkpoint1 activation"
+}

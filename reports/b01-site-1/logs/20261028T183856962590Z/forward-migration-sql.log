@@ -1,0 +1,46 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+--
+-- Alter field private_contestants on contest
+--
+-- (no-op)
+--
+-- Alter field rate_exclude on contest
+--
+-- (no-op)
+--
+-- Alter field name on problem
+--
+-- (no-op)
+--
+-- Alter field checker on problemdata
+--
+-- (no-op)
+--
+-- Alter field nobigmath on problemdata
+--
+-- (no-op)
+--
+-- Alter field checker on problemtestcase
+--
+-- (no-op)
+--
+-- Alter field checker_args on problemtestcase
+--
+-- (no-op)
+--
+-- Alter field language on problemtranslation
+--
+-- (no-op)
+--
+-- Alter field ace_theme on profile
+--
+-- (no-op)
+--
+-- Alter field math_engine on profile
+--
+-- (no-op)
+--
+-- Alter field timezone on profile
+--
+-- (no-op)

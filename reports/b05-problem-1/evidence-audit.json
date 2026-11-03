@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "command": ".venv/bin/python -B reports/b05-problem-1/verify_evidence.py",
+  "exit_status": 0,
+  "baseline_files": {
+    "b04-installation-1": 665,
+    "b05-problem-1": 676
+  },
+  "changed_existing_files": [
+    "AGENTS.md",
+    "MVP_DEPENDENCIES.md",
+    "PROJECT_STATUS.md",
+    "README.md",
+    "SecureExam-Implementation-Plan.md",
+    "deploy/site-local/problem_install.py"
+  ],
+  "prior_reports_pins_accounts_passwords_worker_configuration_preserved": true,
+  "snapshot_datetime_precision": "milliseconds; diagnostic last_access restored to recorded precision",
+  "public_credential_values_found": false,
+  "private_packages_registry_data_gitignored": true,
+  "http_download_denials": 696,
+  "unit_tests_passed": 6,
+  "independent_B04_B05_reviews": "PASS",
+  "git_diff_check_exit": 0,
+  "conversion": "REUSED A02; independently verified, not rerun",
+  "judging": "NOT TESTED",
+  "B06": "NOT STARTED"
+}

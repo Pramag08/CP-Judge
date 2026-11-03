@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": [
+    "offline local login and forced-change gate",
+    "password change permits authenticated access",
+    "replacement browser invalidates prior session"
+  ],
+  "isolated_port": 8001
+}

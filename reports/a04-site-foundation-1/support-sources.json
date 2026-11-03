@@ -1,0 +1,50 @@
+{
+  "checked_on": "2026-10-28",
+  "sources": [
+    {
+      "title": "DMOJ installation",
+      "url": "https://github.com/DMOJ/docs/blob/bfae0464438a1bb2570cde523837ed575c54197e/docs/site/installation.md",
+      "finding": "Official installation content inspected from pinned Git clone; rendered docs site returned HTTP 403 in browser tool."
+    },
+    {
+      "title": "Django 4.2 support end",
+      "url": "https://www.djangoproject.com/weblog/2026/apr/07/security-releases/",
+      "finding": "Official announcement: extended support ended 2026-04-07."
+    },
+    {
+      "title": "Django 4.2 Python matrix",
+      "url": "https://docs.djangoproject.com/en/4.2/faq/install/",
+      "finding": "Official matrix: Python 3.8\u20133.12; Python 3.14 is not included."
+    },
+    {
+      "title": "Django supported branches",
+      "url": "https://www.djangoproject.com/download/",
+      "finding": "Official branch lifecycle table checked; 5.2 LTS extended support to April 2028."
+    },
+    {
+      "title": "Django 5.2 Python matrix",
+      "url": "https://docs.djangoproject.com/en/5.2/faq/install/",
+      "finding": "Python 3.14 supported starting 5.2.8; this does not establish DMOJ dependency compatibility."
+    },
+    {
+      "title": "Python lifecycle",
+      "url": "https://devguide.python.org/versions/",
+      "finding": "3.14 maintained; 3.12 security-only; 3.10 EOL 2026-10. This is not evidence that every package supports 3.14."
+    },
+    {
+      "title": "Node lifecycle",
+      "url": "https://nodejs.org/en/about/previous-releases",
+      "finding": "Node 18 and 20 EOL; 22 and 24 LTS. Existing Node 22 build not tested."
+    },
+    {
+      "title": "Django database backend",
+      "url": "https://docs.djangoproject.com/en/5.2/ref/databases/",
+      "finding": "Backend requirements must be checked for chosen modernized stack; Django generic backend support does not prove DMOJ SQL portability."
+    },
+    {
+      "title": "MariaDB maintenance",
+      "url": "https://mariadb.org/about/#maintenance-policy",
+      "finding": "Choose a maintained server series and pin its tested patch in A09; no DB version selected or started here."
+    }
+  ]
+}

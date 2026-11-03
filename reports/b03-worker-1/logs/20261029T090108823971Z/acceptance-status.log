@@ -1,0 +1,22 @@
+worker-container-status: running
+worker-container-status: exit 0
+exited sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8
+
+native-worker-state: running
+native-worker-state: exit 0
+{
+  "name": "cpjudge-local-worker",
+  "online": false,
+  "executors": [
+    "CPP11",
+    "CPP14",
+    "CPP17",
+    "CPP20",
+    "CPP23"
+  ],
+  "runtime_versions": [],
+  "problems": 0,
+  "start_time": "2026-10-29 08:56:06.018551+00:00",
+  "native_website_status_matches": true,
+  "website_status_http": 200
+}

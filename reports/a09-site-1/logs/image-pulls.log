@@ -1,0 +1,95 @@
+3.12-slim-bookworm: Pulling from library/python
+560ad164c1fd: Pulling fs layer
+a4516a4e2637: Pulling fs layer
+5b676d7ddb72: Pulling fs layer
+3c5439d0ae62: Pulling fs layer
+560ad164c1fd: Download complete
+a4516a4e2637: Download complete
+5b676d7ddb72: Download complete
+0f668910435a: Download complete
+3c5439d0ae62: Download complete
+7fc31ff7cd82: Download complete
+3c5439d0ae62: Pull complete
+a4516a4e2637: Pull complete
+560ad164c1fd: Pull complete
+5b676d7ddb72: Pull complete
+Digest: sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337
+Status: Downloaded newer image for python:3.12-slim-bookworm
+docker.io/library/python:3.12-slim-bookworm
+11.4: Pulling from library/mariadb
+7a48b8f0e5c7: Pulling fs layer
+169a3585046d: Pulling fs layer
+033abc237d95: Pulling fs layer
+8e404bda0d31: Pulling fs layer
+826bdf2b8ec0: Pulling fs layer
+c020fd5fd1c9: Pulling fs layer
+45aa4fa67b68: Pulling fs layer
+f12f0f6e127b: Pulling fs layer
+169a3585046d: Download complete
+8e404bda0d31: Download complete
+033abc237d95: Download complete
+c020fd5fd1c9: Download complete
+7a48b8f0e5c7: Download complete
+45aa4fa67b68: Download complete
+826bdf2b8ec0: Download complete
+7a48b8f0e5c7: Pull complete
+8e404bda0d31: Pull complete
+4617d5aebbd9: Download complete
+c020fd5fd1c9: Pull complete
+826bdf2b8ec0: Pull complete
+45aa4fa67b68: Pull complete
+470c92ca3f89: Download complete
+f12f0f6e127b: Download complete
+f12f0f6e127b: Pull complete
+169a3585046d: Pull complete
+033abc237d95: Pull complete
+Digest: sha256:d1891ede5a559f1086f55053bb8cc1569b0298338c4d72d71725a7f74f6ba620
+Status: Downloaded newer image for mariadb:11.4
+docker.io/library/mariadb:11.4
+22-bookworm-slim: Pulling from library/node
+0bee45faafff: Pulling fs layer
+709e8267cebf: Pulling fs layer
+df736340692d: Pulling fs layer
+3c5439d0ae62: Pulling fs layer
+d22dd8aef508: Pulling fs layer
+3c5439d0ae62: Already exists
+0bee45faafff: Download complete
+709e8267cebf: Download complete
+709e8267cebf: Pull complete
+d22dd8aef508: Download complete
+f67d0db1810f: Download complete
+0253b7b3b1f5: Download complete
+df736340692d: Download complete
+d22dd8aef508: Pull complete
+df736340692d: Pull complete
+0bee45faafff: Pull complete
+Digest: sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da
+Status: Downloaded newer image for node:22-bookworm-slim
+docker.io/library/node:22-bookworm-slim
+7.4-alpine: Pulling from library/redis
+e25d07126ba7: Pulling fs layer
+759efa4719c9: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+1ea868e596ec: Pulling fs layer
+cef7ad5a05c6: Pulling fs layer
+ae75cb664c8f: Pulling fs layer
+a239ec2b8fe1: Pulling fs layer
+4f4fb700ef54: Already exists
+e25d07126ba7: Download complete
+ae75cb664c8f: Download complete
+1ea868e596ec: Download complete
+cef7ad5a05c6: Download complete
+759efa4719c9: Download complete
+a239ec2b8fe1: Download complete
+759efa4719c9: Pull complete
+a239ec2b8fe1: Pull complete
+cef7ad5a05c6: Pull complete
+1ea868e596ec: Pull complete
+b5e4a0ae9c7c: Download complete
+4f4fb700ef54: Pull complete
+ae75cb664c8f: Pull complete
+e25d07126ba7: Pull complete
+4d584b19579f: Download complete
+Digest: sha256:6ba19c50b56777f5c11c58eff8ddb69d0d5f27ba131cffb63f180ccfd43c66af
+Status: Downloaded newer image for redis:7.4-alpine
+docker.io/library/redis:7.4-alpine

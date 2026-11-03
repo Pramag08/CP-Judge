@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "baseline_model_sets": 70,
+  "baseline_non_session_rows": 2138,
+  "original_password_hashes_accounts_imports_sources_cases_contests_audits_preserved": true,
+  "native_runtime_advertisement_content_preserved": true,
+  "original_navigation_contexts_restored": true,
+  "native_problem_aggregate_updates_for_new_submission": true,
+  "new_actual_submission": 23,
+  "actual_verdict": "AC",
+  "actual_cases": 3,
+  "native_limits": [
+    0.5,
+    65536
+  ],
+  "runtime": "CPP17",
+  "one_durable_submission_receipt": true,
+  "same_common_start_end_for_late_entrant": true,
+  "dq_original_score_retained": 1.0,
+  "dq_excluded_from_rank": true,
+  "remaining_entrant_rank": 1,
+  "removal_and_dq_reason_audits": true,
+  "no_pending_work": true
+}

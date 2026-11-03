@@ -1,0 +1,21 @@
+[
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/a10-native-1/probe.py"
+    ],
+    "exit_status": 0,
+    "scope": "Executed native method bodies using cursor/query fixtures; SQL/ORM/bridge/worker not run",
+    "result": "PASS; observations in evidence.json"
+  },
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_status": 0,
+    "result": "No tracked diff whitespace errors"
+  }
+]

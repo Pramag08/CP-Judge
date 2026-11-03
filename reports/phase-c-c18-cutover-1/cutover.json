@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "assigned_development_accounts": 4,
+  "mailbox_verified": false,
+  "real_participant_identities_claimed": false,
+  "canonical_keys": 10,
+  "missing": 0,
+  "invalid": 0,
+  "conflicts": 0,
+  "email_only_enabled": true,
+  "all_existing_password_hashes_unchanged": true,
+  "all_existing_sessions_generation_revoked": true
+}

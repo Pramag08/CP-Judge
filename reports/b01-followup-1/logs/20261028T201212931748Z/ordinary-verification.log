@@ -1,0 +1,19 @@
+password-state-before: running
+password-state-before: exit 0
+dependency-check: running
+dependency-check: exit 0
+dependency-freeze: running
+dependency-freeze: exit 0
+system-check: running
+system-check: exit 0
+migration-consistency: running
+migration-consistency: exit 0
+no-unapplied-migrations: running
+no-unapplied-migrations: exit 0
+deployment-warnings: running
+deployment-warnings: exit 0
+read-only-runtime-audit: running
+read-only-runtime-audit: exit 0
+password-state-unchanged: running
+password-state-unchanged: exit 0
+PASS: ordinary verification preserved all existing passwords; no reseeding or migrations applied.

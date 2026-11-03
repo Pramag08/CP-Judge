@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block media %}
+<style>
+#statement-preview .section-title, #statement-preview .title {font-weight:bold;margin-top:1em}
+#statement-preview pre {white-space:pre-wrap;border:1px solid #ccc;padding:0.6em}
+#statement-preview img {max-width:100%;height:auto}
+#statement-preview .tex-font-style-bf {font-weight:bold}
+#statement-preview .tex-font-style-it {font-style:italic}
+</style>
+{% endblock %}
+{% block body %}
+<div class="content-description">
+<p>Private statement preview — import {{ job.pk }}, attempt <span id="statement-attempt">{{ job.attempt }}</span>.</p>
+<p><strong>Not published. Judging NOT TESTED.</strong> Preview is separate from publication.</p>
+<p>Supported: structural HTML, samples, local allowlisted math and decoded PNG/JPEG/WebP images. Uploaded CSS, links and active content are removed; layout may differ. PDF and SVG are unsupported.</p>
+{% for notice in notices %}<p class="statement-notice" role="alert">{{ notice }}</p>{% endfor %}
+{% if fragment is not none %}<section id="statement-preview">{{ fragment|safe }}</section>{% endif %}
+<p><a href="{{ url('cpj_import_confirm',job_id=job.pk) }}">Back to import status</a></p>
+</div>
+{% endblock %}
+{% block bodyend %}{% if fragment is not none %}{% include "mathjax-load.html" %}{% endif %}{% endblock %}

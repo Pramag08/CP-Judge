@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "focused_tests": 39,
+  "skips": 0,
+  "judging": "NOT RUN",
+  "final_test_command_record": {
+    "name": "focused-c09-and-regressions",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.c09_tests.StatementTests",
+      "cpjudge.tests.PresentationTests",
+      "cpjudge.c07_tests.ConversionTests",
+      "cpjudge.integration_tests.NativeUploadHTTPTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c09-1/20261029T192251330027Z-focused-c09-and-regressions.log"
+  },
+  "source_sha256": {
+    "deploy/phase-c/cpjudge/presentation.py": "9665a747643a451c36dff7be7ab4b19ba6580dc9124c037ff09c60ddcb0764d1",
+    "deploy/phase-c/cpjudge/statement.py": "c57dfbb1a91d2af15407a7a88760278a28b4c15b9edc6bb2c1991c775a366b37",
+    "deploy/phase-c/cpjudge/native.py": "064d117116a6cb04138e99cd6f41c899861aba6e9e1910065950768ebd185cd3",
+    "deploy/phase-c/cpjudge/urls.py": "c33975185f2a7552e6d3901635115104db4ac7cc7c82fb23f52cd10b0130f16a",
+    "deploy/phase-c/cpjudge/c09_tests.py": "6b43f51454afb2b0e7beb8399ab6f5843e047bdc3750032858cae74fb02d04ad",
+    "deploy/phase-c/cpjudge/templates/cpjudge/statement.html": "10320c74c01594e7f7a678ded216c00d49ea83476b4953fbacf701ce3617ef39",
+    "deploy/phase-c/cpjudge/templates/cpjudge/import_confirm.html": "b1d3c31212fb2a73d2144284a7ee7517c8865675509fe664e8e6de58dc851bbf"
+  },
+  "site_source_pin": "604d60cfd764bc708b04ffd75b715a5398b91f8b",
+  "pcc_source_pin": "41ce3afcedf6c02793b308ba2e6ddb2ea5f82134",
+  "mathjax": "existing local 3.2.2; no dependency changes",
+  "real_package_limit": "Original 111 MiB ZIP / 247507278 expanded bytes exceeds unchanged 32 MiB upload / 128 MiB conversion limits; exact statement bytes tested in supported synthetic conversion package."
+}

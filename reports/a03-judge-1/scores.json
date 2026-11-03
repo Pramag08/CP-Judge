@@ -1,0 +1,118 @@
+{
+  "groups": {
+    "accepted": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 100,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "easy_only": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 30,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "dependency": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 20,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "wrong": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    }
+  },
+  "multiple": {
+    "accepted": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 3,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "wrong": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "runtime": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "timeout": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "alternative": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 3,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "presentation": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    }
+  },
+  "tokens": {
+    "accepted": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 3,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "wrong": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "runtime": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "timeout": {
+      "status": "PASS",
+      "case_score_assertions_verified": 3,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    }
+  },
+  "gaming-grid": {
+    "reference": {
+      "status": "PASS",
+      "case_score_assertions_verified": 103,
+      "asserted_score_total": 103,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "wrong_answer": {
+      "status": "PASS",
+      "case_score_assertions_verified": 103,
+      "asserted_score_total": 48,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "runtime": {
+      "status": "PASS",
+      "case_score_assertions_verified": 103,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    },
+    "timeout": {
+      "status": "PASS",
+      "case_score_assertions_verified": 103,
+      "asserted_score_total": 0,
+      "method": "Pinned DMOJ official per-case TestManager assertions; completed probe Success and complete case log. Numeric scores are not printed by the CLI."
+    }
+  }
+}

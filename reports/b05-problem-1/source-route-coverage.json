@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "corrected_xml_xpath_targets_equal_tested_targets": true,
+  "original_source_paths": 3,
+  "reference_paths_found": 1,
+  "command": ".venv/bin/python -B reports/b05-problem-1/verify_source_routes.py",
+  "exit_status": 0
+}

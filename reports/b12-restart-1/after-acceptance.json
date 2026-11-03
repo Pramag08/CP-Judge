@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "server_results_exact_match": true,
+  "browser_standings_exact_match": true,
+  "all_existing_credential_roles_authenticated": [
+    "a",
+    "b",
+    "staff",
+    "participant"
+  ]
+}

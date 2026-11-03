@@ -1,0 +1,5 @@
+{"bridge":0,"celery":0}
+event-status: running
+event-status: exit 0
+false {}
+

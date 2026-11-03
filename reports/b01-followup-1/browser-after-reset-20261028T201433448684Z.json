@@ -1,0 +1,28 @@
+{
+  "phase": "after-reset",
+  "url": "http://127.0.0.1:8000",
+  "checks": {
+    "explicit_reset_works": "PASS; changed credential accepted, replaced credential rejected"
+  },
+  "scope": "native auth/admin/profile and synthetic statement/preview rendering only",
+  "chromium_version": "156.0.8078.4",
+  "status": "PASS",
+  "page_error_count": 0,
+  "static_errors": [],
+  "math_assets": {
+    "/static/vendor/mathjax-3.2.2/es5/tex-chtml.js": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff": 200
+  },
+  "external_math_request_attempts": 0,
+  "all_external_requests_blocked_before_network": true,
+  "blocked_decoration_hosts": [
+    "www.gravatar.com"
+  ],
+  "no_backend_admin_action_executed": true,
+  "actual_import_judging_standings": "NOT TESTED",
+  "private_artifacts": "build/b01-followup-1/browser/20261028T201433448684Z"
+}

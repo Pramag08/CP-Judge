@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "scope": "Independent read-only inspection of the B01 migration repair, reproducibility code and measured evidence; no runtime rerun",
+  "reviewer": "/root/b01_review",
+  "sole_write_ownership": "reports/b01-site-1/review.json",
+  "site_pin": "604d60cfd764bc708b04ffd75b715a5398b91f8b",
+  "migration_review": {
+    "cause": "Historical metadata differs from current models; eager zoneinfo choice enumeration is environment-dependent",
+    "forward_only": true,
+    "expected_alterfields": 11,
+    "original_migration_files_byte_identical": 70,
+    "schema_changing_sql_statements": 0,
+    "genuinely_recorded_applied_migrations": 202,
+    "callable_choice_values_preserved": true,
+    "changed_inventory_stability_check_inspected": true,
+    "fake_migration_flags_absent": true,
+    "original_drift_failure_retained": true
+  },
+  "browser_review": {
+    "actual_browser_script_and_successful_docker_invocation_inspected": true,
+    "exact_localhost_report": "reports/b01-site-1/browser-20261028T190727231770Z.json",
+    "required_checks_passed": 9,
+    "static_paths_http_200": 28,
+    "native_login_screenshot_visually_inspected": true,
+    "recorded_page_errors": 4,
+    "errors_explicitly_retained": "reports/b01-site-1/browser-limitations.json",
+    "reviewer_did_not_rerun_browser": true
+  },
+  "local_services_review": {
+    "recorded_running": true,
+    "localhost_binding_only": true,
+    "actual_stop_start_records_inspected": true,
+    "named_development_database_volume_preserved": true,
+    "website_dependency_lock_equal": true,
+    "site_dependencies_separate_from_converter_judge": true,
+    "private_credential_permissions_verified": true,
+    "private_credential_value_scan_in_reports": "PASS, no matches"
+  },
+  "preservation": {
+    "baseline_files_checked": 249,
+    "changed_existing_files": [],
+    "all_other_baseline_files_byte_identical": true,
+    "clean_original_upstream_checkout": true
+  },
+  "reviewer_checks": {
+    "method": "stdlib AST, hashes, saved command/log assertions, credential-value scan without disclosure; visual screenshot inspection",
+    "read_only_evidence_audit_exit_status": 0,
+    "git_diff_check_exit_status": 0
+  },
+  "nonblocking_limitations": [
+    "Known MariaDB conditional Class uniqueness and upstream deployment/system warnings remain; local development only",
+    "Two profile MathJax errors while remote renderer is intentionally blocked; profile/statement math and offline asset completeness not established",
+    "Two native admin django namespace errors disable custom action-link initialization; stock admin index/login and required forms pass; all-admin-feature/error-free-JS claim excluded",
+    "C account policies, judge connection, judging, standings, custom UI and B02 were not implemented or tested"
+  ],
+  "blockers": [],
+  "follow_up": [
+    "Retain exported make_timezones import path for historical 0153; review upstream migration-number collisions on any pin update",
+    "Keep native admin shortcut/media-order and local math assets as named follow-ups; do not hide the recorded errors"
+  ],
+  "website_to_judge": "NOT TESTED",
+  "conversion": "NOT RUN",
+  "actual_judging": "NOT RUN",
+  "inspected_sha256": {
+    "deploy/site-local/migrations/0153_reconcile_model_metadata.py": "a54d4815f69aeaeb67008a21c04f81e502bab058c0242a45c80af5f7b947eeb3",
+    "patches/site/0001-stable-timezone-choices.patch": "d0e8653c0f1449a431175629bf5984f0c891c74b272d2b4d2daf8214501354b8",
+    "patches/site/README.md": "2b7108d4acbbd4e73b14d07d2c3b7769c126858ea75a4db4324d2f9cb83c376e",
+    "deploy/site-local/local_settings.py": "6ce3babb90385622d767ae50037492b12ce4503915475e9744839ee579decc00",
+    "deploy/site-local/manage.py": "2a8193c7c9fc83fd42a7ed6302fa260f2fccc58c0c23de68f7c359f0b1167aa0",
+    "deploy/site-local/browser.py": "0b0f49987ebb394a408b622258120589d4c481b549aaf4a32c3597992f988d25",
+    "deploy/site-local/accounts.py": "4afd24d41d43e1ab175aa80d8fec965a7ff911a584bee7fb6fa63ae5c3e98c53",
+    "deploy/site-local/audit.py": "d2461cedc036d8437b329ea1a2ae89916c268cd0bf5c3cf0289e6b8046a10542",
+    "deploy/site-local/Dockerfile": "1205cb6c1b1a9717243b3966a2f315c5c1c8118d155f0018523667b2a66b9bb1",
+    "deploy/site-local/browser-image.json": "f075bfb66073ecac488d0a745b343822ad5b94c6a9bc6a33e1392b7e7a3eb66d",
+    "reports/b01-site-1/baseline.json": "70b8cc72ce6816f9bb16bbcabc2cd1e7dfa2ed26a8dd2db6b23aee3e4d320fe2",
+    "reports/b01-site-1/browser-20261028T190727231770Z.json": "9bcc8f41c859298774d71c0e3a14a412f879b2bcdeb91d60699f95681f85c294",
+    "reports/b01-site-1/services.json": "04757ac9becb7d32cf11d1815c1a1648fa821a7f5fee172e8a050b3c5799f681",
+    "reports/b01-site-1/commands.json": "b7d7a8d0c05cbbd19ffc8c219aed44783647fbdad53d6928b277e80a3ad04ee0",
+    "reports/b01-site-1/browser-limitations.json": "80eea49fbf1fbfd2b6d8bb24d0a8f8f908b1fcb5f2c1e797ec4b6a0c42e23ac9"
+  }
+}

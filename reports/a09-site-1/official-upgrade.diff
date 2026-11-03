@@ -1,0 +1,166 @@
+diff --git a/dmoj/settings.py b/dmoj/settings.py
+index 7acabd5..f766488 100644
+--- a/dmoj/settings.py
++++ b/dmoj/settings.py
+@@ -2,10 +2,10 @@
+ Django settings for dmoj project.
+ 
+ For more information on this file, see
+-https://docs.djangoproject.com/en/4.2/topics/settings/
++https://docs.djangoproject.com/en/5.2/topics/settings/
+ 
+ For the full list of settings and their values, see
+-https://docs.djangoproject.com/en/4.2/ref/settings/
++https://docs.djangoproject.com/en/5.2/ref/settings/
+ """
+ 
+ # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+@@ -19,7 +19,7 @@ from jinja2 import select_autoescape
+ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+ 
+ # Quick-start development settings - unsuitable for production
+-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
++# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+ 
+ # SECURITY WARNING: keep the secret key used in production secret!
+ SECRET_KEY = '5*9f5q57mqmlz2#f$x1h76&jxy#yortjl1v+l*6hd18$d*yx#0'
+@@ -514,7 +514,7 @@ MARTOR_UPLOAD_MEDIA_DIR = 'martor'
+ MARTOR_UPLOAD_SAFE_EXTS = {'.jpg', '.png', '.gif'}
+ 
+ # Database
+-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
++# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+ 
+ DATABASES = {
+     'default': {
+@@ -541,7 +541,7 @@ EVENT_DAEMON_AMQP_EXCHANGE = 'dmoj-events'
+ EVENT_DAEMON_SUBMISSION_KEY = '6Sdmkx^%pk@GsifDfXcwX*Y7LRF%RGT8vmFpSxFBT$fwS7trc8raWfN#CSfQuKApx&$B#Gh2L7p%W!Ww'
+ 
+ # Internationalization
+-# https://docs.djangoproject.com/en/4.2/topics/i18n/
++# https://docs.djangoproject.com/en/5.2/topics/i18n/
+ 
+ # Whatever you do, this better be one of the entries in `LANGUAGES`.
+ LANGUAGE_CODE = 'en'
+@@ -554,7 +554,7 @@ USE_TZ = True
+ SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+ 
+ # Static files (CSS, JavaScript, Images)
+-# https://docs.djangoproject.com/en/4.2/howto/static-files/
++# https://docs.djangoproject.com/en/5.2/howto/static-files/
+ 
+ DMOJ_RESOURCES = os.path.join(BASE_DIR, 'resources')
+ STATICFILES_FINDERS = (
+diff --git a/judge/models/choices.py b/judge/models/choices.py
+index 0797d59..1ac4416 100644
+--- a/judge/models/choices.py
++++ b/judge/models/choices.py
+@@ -1,13 +1,13 @@
+ from collections import defaultdict
+ from operator import itemgetter
++from zoneinfo import available_timezones
+ 
+-import pytz
+ from django.utils.translation import gettext_lazy as _
+ 
+ 
+ def make_timezones():
+     data = defaultdict(list)
+-    for tz in pytz.all_timezones:
++    for tz in sorted(available_timezones()):
+         if '/' in tz:
+             area, loc = tz.split('/', 1)
+         else:
+diff --git a/judge/timezone.py b/judge/timezone.py
+index c3b5b04..060dad9 100644
+--- a/judge/timezone.py
++++ b/judge/timezone.py
+@@ -1,4 +1,5 @@
+-import pytz
++from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
++
+ from django.conf import settings
+ from django.db import connection
+ from django.utils import timezone
+@@ -13,7 +14,10 @@ class TimezoneMiddleware(object):
+         tzname = settings.DEFAULT_USER_TIME_ZONE
+         if request.profile:
+             tzname = request.profile.timezone
+-        return pytz.timezone(tzname)
++        try:
++            return ZoneInfo(tzname)
++        except (ValueError, ZoneInfoNotFoundError):
++            return ZoneInfo(settings.DEFAULT_USER_TIME_ZONE)
+ 
+     def __call__(self, request):
+         with timezone.override(self.get_timezone(request)):
+diff --git a/judge/utils/raw_sql.py b/judge/utils/raw_sql.py
+index a196e37..5cbb52d 100644
+--- a/judge/utils/raw_sql.py
++++ b/judge/utils/raw_sql.py
+@@ -1,4 +1,5 @@
+ from django.db import connections
++from django.db.models import Field
+ from django.db.models.sql.constants import INNER, LOUTER
+ from django.db.models.sql.datastructures import Join
+ 
+@@ -22,8 +23,13 @@ class FakeJoinField:
+         self.joining_columns = joining_columns
+         self.related_model = related_model
+ 
+-    def get_joining_columns(self):
+-        return self.joining_columns
++    def get_joining_fields(self):
++        def make_field(column):
++            field = Field()
++            field.column = column
++            return field
++
++        return [(make_field(lhs), make_field(rhs)) for lhs, rhs in self.joining_columns]
+ 
+     def get_extra_restriction(self, alias, remote_alias):
+         pass
+@@ -35,10 +41,7 @@ def join_sql_subquery(
+         parent_alias = parent_model._meta.db_table
+     else:
+         parent_alias = queryset.query.get_initial_alias()
+-    if isinstance(queryset.query.external_aliases, dict):  # Django 3.x
+-        queryset.query.external_aliases[alias] = True
+-    else:
+-        queryset.query.external_aliases.add(alias)
++    queryset.query.external_aliases[alias] = True
+     join = RawSQLJoin(subquery, params, parent_alias, alias, join_type, FakeJoinField(join_fields, related_model),
+                       join_type == LOUTER)
+     queryset.query.join(join)
+diff --git a/requirements.txt b/requirements.txt
+index 3f1d1dc..dd450c3 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,4 +1,4 @@
+-Django>=4.2,<5
++Django>=5.2,<5.3
+ django_compressor>=3
+ django-mptt>=0.13
+ django-registration-redux>=2.10
+@@ -11,9 +11,8 @@ lxml
+ lxml_html_clean
+ Pygments
+ mistune<2
+-social-auth-core==4.3.0
+-social-auth-app-django==5.0.0
+-pytz
++social-auth-core>=4.8.3,<5
++social-auth-app-django>=5.9,<6
+ django-statici18n
+ pika
+ ua-parser
+@@ -28,7 +27,8 @@ qrcode[pil]
+ jsonfield @ git+https://github.com/DMOJ/jsonfield.git
+ pymoss
+ packaging<22
+-celery
++# Celery 6.0 removes the legacy setting aliases (e.g. CELERY_RESULT_BACKEND) used by dmoj/celery.py.
++celery<6
+ ansi2html @ git+https://github.com/DMOJ/ansi2html.git
+ sqlparse
+ lupa

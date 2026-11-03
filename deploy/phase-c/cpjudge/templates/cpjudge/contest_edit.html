@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block body %}
+<p><a href="{{ url('cpj_contest_list') }}">My contests</a> · <a href="{{ url('cpj_contest_preview',contest_key=contest.key) }}">Author preview / test mode</a> · <a href="{{ url('cpj_import_upload',contest=contest.key) }}">Import Polygon ZIP</a></p>
+<p><a href="{{ url('cpj_roster',contest=contest.key) }}">Roster and entrant management</a></p>
+<p>Status: {{ 'Published — settings locked' if contest.is_visible else 'Draft' }}. All problem versions remain private.</p>
+{% if not contest.is_visible %}<form method="post">{% csrf_token %}{{ form.as_p() }}<button type="submit">Save draft</button></form>
+<h3>Problems</h3><p>Select an authorized immutable version. Re-select after schedule edits to bind the current accepted probe to the new rules. Run missing probes from the import page.</p>
+<form method="post" action="{{ url('cpj_contest_problem',contest_key=contest.key) }}">{% csrf_token %}{{ problem_form.as_p() }}<button type="submit">Save problem</button></form>{% endif %}
+<table class="table"><tr><th>Label / order</th><th>Problem</th><th>Limits</th><th>Action</th></tr>{% for cp in problems %}<tr><td>{{ cp.workflow_label.label }} / {{ cp.order }}</td><td>{{ cp.problem.name }} ({{ cp.problem.code }})</td><td>{{ cp.problem.time_limit }}s / {{ cp.problem.memory_limit }} KiB</td><td>{% if not contest.is_visible %}<form method="post" action="{{ url('cpj_contest_remove',contest_key=contest.key) }}">{% csrf_token %}<input type="hidden" name="problem" value="{{ cp.pk }}"><button>Remove</button></form>{% endif %}</td></tr>{% endfor %}</table>
+<h3>Rules</h3><ul>{% for rule in rules %}<li>{{ rule }}</li>{% endfor %}</ul>
+{% if not contest.is_visible %}<h3>Publication checks</h3>{% if errors %}<ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul>{% else %}<p>Ready. Publication rechecks live worker bytes and runtimes.</p>{% endif %}
+<form method="post" action="{{ url('cpj_contest_publish',contest_key=contest.key) }}">{% csrf_token %}<button type="submit">Publish contest</button></form>{% endif %}
+{% endblock %}

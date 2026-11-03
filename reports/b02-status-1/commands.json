@@ -1,0 +1,33 @@
+[
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-status-1/logs/20261029T080703121558Z/b02-status.log",
+    "timestamp_utc": "2026-10-29T08:07:03.264244+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-status-1/logs/20261029T080703121558Z/services-status.log",
+    "timestamp_utc": "2026-10-29T08:07:03.296207+00:00"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "focused_tests": 27,
+  "skips": 0,
+  "site_pin": "604d60cfd764bc708b04ffd75b715a5398b91f8b",
+  "worker_pin": "1245dc4158dbb9e906c4c103e1ea939e012ee79b",
+  "worker_image": "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+  "deployed_site_source_sha256": {
+    "readiness_wire.py": "ab8c25d58008449b7c520472d3b18af7c80c963c9bc7d171935ff99cc7323bfd",
+    "bridge_readiness.py": "1db8559d047b5aeee6ef1b2d1a7996566c6d08d3127ae93bc3d0c806cc15a2a5",
+    "c11_tests.py": "d0bbbb1f1e5dd6955c27c03445ae0bfbcd0c2f8be665121d10d53fd3501936be"
+  },
+  "deployed_worker_source_sha256": {
+    "c11_worker.py": "6675d0887546d090901d144966cfc480bc75fd26298e23750b49429631696f7a",
+    "readiness_wire.py": "ab8c25d58008449b7c520472d3b18af7c80c963c9bc7d171935ff99cc7323bfd"
+  },
+  "real_submissions": 1,
+  "submission_id": 16,
+  "actual_cases": 103,
+  "final_code_loaded_after_idle_reload": true,
+  "no_C12_C13_work": true,
+  "backup_restore": "NOT TESTED",
+  "inflight_crash_recovery": "NOT TESTED"
+}

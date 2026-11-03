@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "live_url": "http://127.0.0.1:8000",
+  "accepted_job_id": 1,
+  "configured_limit_bytes": 33554432,
+  "checks": {
+    "author_upload_confirm_refresh_download": "PASS",
+    "missing_and_invalid_csrf": "PASS",
+    "missing_invalid_malformed_and_multiple_files": "PASS",
+    "oversized_declared_and_untrusted_stream": "PASS",
+    "observed_upload_statuses": {
+      "declared_oversize": 413,
+      "chunked_without_content_length": 411,
+      "unframed_without_content_length": 411
+    },
+    "anonymous_participant_cross_contest_author_denials": "PASS",
+    "public_static_media_denied": "PASS"
+  },
+  "external_hosts_blocked": [
+    "www.gravatar.com"
+  ]
+}

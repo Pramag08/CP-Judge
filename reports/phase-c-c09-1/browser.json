@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "checks": {
+    "real_unchanged_statement_30_equations_sections_samples": true,
+    "malicious_markup_removed_real_png_loaded": true,
+    "zero_fixture_external_attempts_playwright_and_cdp": true,
+    "raw_response_sanitized_before_browser_or_request_blocking": true,
+    "spoof_external_unsafe_math_no_partial_preview": true,
+    "direct_role_traversal_cross_import_and_attempt_denials": true
+  },
+  "jobs": {
+    "real-statement": 31,
+    "malicious": 32,
+    "spoof": 33,
+    "external": 34,
+    "unsafe-math": 35
+  },
+  "external_fixture_attempts": [],
+  "asset_path": "/imports/32/statement/1/assets/5331b957ef1f272fa51d16e8d6d844a4db5767975fb2ce987544594b2d96744f.png",
+  "legacy_external_hosts": [
+    "www.gravatar.com"
+  ],
+  "page_errors": []
+}

@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "bundle_local_links": 10,
+  "original_private_email_values_absent_from_bundle_reports": true,
+  "phase_c_python_ast_parse": true,
+  "no_commit_or_push": true
+}

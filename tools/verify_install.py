@@ -1,9 +1,9 @@
 """Independently verify source bytes and installed judge configuration."""
 import argparse
-import hashlib
 import json
 import zipfile
 from pathlib import Path
+from compat.convert import file_sha256
 
 import yaml
 from defusedxml import ElementTree as ET
@@ -47,7 +47,7 @@ def verify(package, conversion):
     return {'status': 'PASS', 'tests_verified': len(tests), 'statement_assets_verified': len(statement_files),
             'sample_tests_verified': sum(t.get('sample') == 'true' for t in tests), 'checker_bytes': 'PASS',
             'limits_and_groups': 'PASS (configuration only)', 'judging': 'NOT TESTED',
-            'source_sha256': hashlib.sha256(package.read_bytes()).hexdigest()}
+            'source_sha256': file_sha256(package)}
 
 
 if __name__ == '__main__':

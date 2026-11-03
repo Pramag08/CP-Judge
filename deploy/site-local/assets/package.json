@@ -1,0 +1,8 @@
+{
+  "name": "cpjudge-local-math-assets",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "mathjax": "3.2.2"
+  }
+}

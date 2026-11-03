@@ -1,0 +1,758 @@
+[
+  {
+    "action": "snapshot",
+    "command": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/snapshot-20261029T124037783720Z/inspect-cpjudge-b01-site.log"
+  },
+  {
+    "action": "snapshot",
+    "command": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/snapshot-20261029T124037783720Z/inspect-cpjudge-b03-worker.log"
+  },
+  {
+    "action": "snapshot",
+    "command": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/snapshot-20261029T125626314121Z/inspect-cpjudge-b01-site.log"
+  },
+  {
+    "action": "snapshot",
+    "command": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/snapshot-20261029T125626314121Z/inspect-cpjudge-b03-worker.log"
+  },
+  {
+    "action": "snapshot",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/snapshot-20261029T125626314121Z/snapshot.log"
+  },
+  {
+    "action": "wrong_answer",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/wrong_answer-20261029T125947831887Z/preflight.log"
+  },
+  {
+    "action": "wrong_answer",
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/submission_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/wrong_answer-20261029T125947831887Z/probe.cpp,dst=/run/probe.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/wrong_answer-20261029T125947831887Z/probe.json,dst=/run/probe.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/wrong_answer-20261029T125947831887Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/wrong_answer-20261029T125947831887Z/browser.log"
+  },
+  {
+    "action": "wrong_answer",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/wrong_answer-20261029T125947831887Z/cleanup-browser-sessions.log"
+  },
+  {
+    "action": "wrong_answer",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/wrong_answer-20261029T125947831887Z/stored-results.log"
+  },
+  {
+    "action": "wrong_answer",
+    "command": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/wrong_answer-20261029T125947831887Z/passive-trace.log"
+  },
+  {
+    "action": "wrong_answer",
+    "command": [
+      "docker",
+      "logs",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/wrong_answer-20261029T125947831887Z/worker-private.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T130931059635Z/preflight.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/submission_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/compile_error-20261029T130931059635Z/probe.cpp,dst=/run/probe.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/compile_error-20261029T130931059635Z/probe.json,dst=/run/probe.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/compile_error-20261029T130931059635Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T130931059635Z/browser.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T130931059635Z/cleanup-browser-sessions.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131237004754Z/preflight.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/submission_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/compile_error-20261029T131237004754Z/probe.cpp,dst=/run/probe.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/compile_error-20261029T131237004754Z/probe.json,dst=/run/probe.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/compile_error-20261029T131237004754Z,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/reports/b08-b09-probes-1/compile_error-receipt.json,dst=/run/receipt.json,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131237004754Z/browser.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131237004754Z/cleanup-browser-sessions.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131324648276Z/preflight.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/submission_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/compile_error-20261029T131324648276Z/probe.cpp,dst=/run/probe.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/compile_error-20261029T131324648276Z/probe.json,dst=/run/probe.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/compile_error-20261029T131324648276Z,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/reports/b08-b09-probes-1/compile_error-receipt.json,dst=/run/receipt.json,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131324648276Z/browser.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131324648276Z/cleanup-browser-sessions.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131324648276Z/stored-results.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131324648276Z/passive-trace.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131821460132Z/preflight.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131821460132Z/stored-results.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131821460132Z/passive-trace.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-compiler-message.txt"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131821460132Z/compiler-error-private.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "logs",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T131821460132Z/worker-private.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T132621970621Z/preflight.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T132621970621Z/stored-results.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T132621970621Z/passive-trace.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-compiler-message.txt"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T132621970621Z/compiler-error-private.log"
+  },
+  {
+    "action": "compile_error",
+    "command": [
+      "docker",
+      "logs",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/compile_error-20261029T132621970621Z/worker-private.log"
+  },
+  {
+    "action": "runtime",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/runtime-20261029T133332465186Z/preflight.log"
+  },
+  {
+    "action": "runtime",
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/submission_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/runtime-20261029T133332465186Z/probe.cpp,dst=/run/probe.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/runtime-20261029T133332465186Z/probe.json,dst=/run/probe.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/runtime-20261029T133332465186Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/runtime-20261029T133332465186Z/browser.log"
+  },
+  {
+    "action": "runtime",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/runtime-20261029T133332465186Z/cleanup-browser-sessions.log"
+  },
+  {
+    "action": "runtime",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/runtime-20261029T133332465186Z/stored-results.log"
+  },
+  {
+    "action": "runtime",
+    "command": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/runtime-20261029T133332465186Z/passive-trace.log"
+  },
+  {
+    "action": "runtime",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/runtime-20261029T133411619528Z/preflight.log"
+  },
+  {
+    "action": "runtime",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/runtime-20261029T133411619528Z/stored-results.log"
+  },
+  {
+    "action": "runtime",
+    "command": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/runtime-20261029T133411619528Z/passive-trace.log"
+  },
+  {
+    "action": "runtime",
+    "command": [
+      "docker",
+      "logs",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/runtime-20261029T133411619528Z/worker-private.log"
+  },
+  {
+    "action": "timeout",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/timeout-20261029T133435976056Z/preflight.log"
+  },
+  {
+    "action": "timeout",
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/submission_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/timeout-20261029T133435976056Z/probe.cpp,dst=/run/probe.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/timeout-20261029T133435976056Z/probe.json,dst=/run/probe.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b08-b09-probes-1/timeout-20261029T133435976056Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/timeout-20261029T133435976056Z/browser.log"
+  },
+  {
+    "action": "timeout",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/timeout-20261029T133435976056Z/cleanup-browser-sessions.log"
+  },
+  {
+    "action": "timeout",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/timeout-20261029T133435976056Z/stored-results.log"
+  },
+  {
+    "action": "timeout",
+    "command": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/timeout-20261029T133435976056Z/passive-trace.log"
+  },
+  {
+    "action": "timeout",
+    "command": [
+      "docker",
+      "logs",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/timeout-20261029T133435976056Z/worker-private.log"
+  },
+  {
+    "action": "preserve",
+    "command": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/preserve-20261029T134228032704Z/inspect-cpjudge-b01-site.log"
+  },
+  {
+    "action": "preserve",
+    "command": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/preserve-20261029T134228032704Z/inspect-cpjudge-b03-worker.log"
+  },
+  {
+    "action": "preserve",
+    "command": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "build/b08-b09-probes-1/preserve-20261029T134228032704Z/preserve.log"
+  }
+]

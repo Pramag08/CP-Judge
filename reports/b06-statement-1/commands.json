@@ -1,0 +1,779 @@
+[
+  {
+    "action": "snapshot",
+    "name": "precise-initial-snapshot",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112205568534Z",
+    "log": "reports/b06-statement-1/logs/20261029T112205568534Z/precise-initial-snapshot.log"
+  },
+  {
+    "action": "prepare",
+    "name": "copy-sanitizer",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/statement_sanitize.py",
+      "cpjudge-b01-site:/tmp/b06_statement_sanitize.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112303177028Z",
+    "log": "reports/b06-statement-1/logs/20261029T112303177028Z/copy-sanitizer.log"
+  },
+  {
+    "action": "prepare",
+    "name": "strict-presentation-prepare",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112303177028Z",
+    "log": "reports/b06-statement-1/logs/20261029T112303177028Z/strict-presentation-prepare.log"
+  },
+  {
+    "action": "prepare",
+    "name": "copy-sanitizer",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/statement_sanitize.py",
+      "cpjudge-b01-site:/tmp/b06_statement_sanitize.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112336357118Z",
+    "log": "reports/b06-statement-1/logs/20261029T112336357118Z/copy-sanitizer.log"
+  },
+  {
+    "action": "prepare",
+    "name": "strict-presentation-prepare",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112336357118Z",
+    "log": "reports/b06-statement-1/logs/20261029T112336357118Z/strict-presentation-prepare.log"
+  },
+  {
+    "action": "install",
+    "name": "native-description-and-scoped-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112337972161Z",
+    "log": "reports/b06-statement-1/logs/20261029T112337972161Z/native-description-and-scoped-grant.log"
+  },
+  {
+    "action": "install",
+    "name": "install-private-asset-view",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/imported_statement_view.py",
+      "cpjudge-b01-site:/app/judge/views/imported_statement.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112337972161Z",
+    "log": "reports/b06-statement-1/logs/20261029T112337972161Z/install-private-asset-view.log"
+  },
+  {
+    "action": "install",
+    "name": "bounded-native-template-route",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112337972161Z",
+    "log": "reports/b06-statement-1/logs/20261029T112337972161Z/bounded-native-template-route.log"
+  },
+  {
+    "action": "install",
+    "name": "reload-web-only",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112337972161Z",
+    "log": "reports/b06-statement-1/logs/20261029T112337972161Z/reload-web-only.log"
+  },
+  {
+    "action": "install",
+    "name": "start-preserved-web",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b06-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112337972161Z",
+    "log": "reports/b06-statement-1/logs/20261029T112337972161Z/start-preserved-web.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-statement-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/statement_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b06-statement-1/browser/20261029T112515190273Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T112515190273Z",
+    "log": "build/b06-statement-1/logs/20261029T112515190273Z/real-statement-browser.log"
+  },
+  {
+    "action": "browser",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112515190273Z",
+    "log": "reports/b06-statement-1/logs/20261029T112515190273Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-statement-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/statement_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b06-statement-1/browser/20261029T112703630384Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T112703630384Z",
+    "log": "build/b06-statement-1/logs/20261029T112703630384Z/real-statement-browser.log"
+  },
+  {
+    "action": "browser",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112703630384Z",
+    "log": "reports/b06-statement-1/logs/20261029T112703630384Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "install",
+    "name": "native-description-and-scoped-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112833659796Z",
+    "log": "reports/b06-statement-1/logs/20261029T112833659796Z/native-description-and-scoped-grant.log"
+  },
+  {
+    "action": "install",
+    "name": "install-private-asset-view",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/imported_statement_view.py",
+      "cpjudge-b01-site:/app/judge/views/imported_statement.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112833659796Z",
+    "log": "reports/b06-statement-1/logs/20261029T112833659796Z/install-private-asset-view.log"
+  },
+  {
+    "action": "install",
+    "name": "install-receipt-bound-filter",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/imported_statement_filter.py",
+      "cpjudge-b01-site:/app/judge/jinja2/imported_statement.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112833659796Z",
+    "log": "reports/b06-statement-1/logs/20261029T112833659796Z/install-receipt-bound-filter.log"
+  },
+  {
+    "action": "install",
+    "name": "bounded-native-template-route",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112833659796Z",
+    "log": "reports/b06-statement-1/logs/20261029T112833659796Z/bounded-native-template-route.log"
+  },
+  {
+    "action": "install",
+    "name": "reload-web-only",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112833659796Z",
+    "log": "reports/b06-statement-1/logs/20261029T112833659796Z/reload-web-only.log"
+  },
+  {
+    "action": "install",
+    "name": "start-preserved-web",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b06-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112833659796Z",
+    "log": "reports/b06-statement-1/logs/20261029T112833659796Z/start-preserved-web.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-statement-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/statement_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b06-statement-1/browser/20261029T112844141639Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T112844141639Z",
+    "log": "build/b06-statement-1/logs/20261029T112844141639Z/real-statement-browser.log"
+  },
+  {
+    "action": "browser",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T112844141639Z",
+    "log": "reports/b06-statement-1/logs/20261029T112844141639Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-statement-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/statement_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b06-statement-1/browser/20261029T113003996615Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T113003996615Z",
+    "log": "build/b06-statement-1/logs/20261029T113003996615Z/real-statement-browser.log"
+  },
+  {
+    "action": "browser",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113003996615Z",
+    "log": "reports/b06-statement-1/logs/20261029T113003996615Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "verify",
+    "name": "native-models-verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113005990369Z",
+    "log": "reports/b06-statement-1/logs/20261029T113005990369Z/native-models-verify.log"
+  },
+  {
+    "action": "verify",
+    "name": "actual-worker-installed-bytes",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113005990369Z",
+    "log": "reports/b06-statement-1/logs/20261029T113005990369Z/actual-worker-installed-bytes.log"
+  },
+  {
+    "action": "preserve",
+    "name": "precise-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113053065285Z",
+    "log": "reports/b06-statement-1/logs/20261029T113053065285Z/precise-preservation.log"
+  },
+  {
+    "action": "prepare",
+    "name": "copy-sanitizer",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/statement_sanitize.py",
+      "cpjudge-b01-site:/tmp/b06_statement_sanitize.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113225137050Z",
+    "log": "reports/b06-statement-1/logs/20261029T113225137050Z/copy-sanitizer.log"
+  },
+  {
+    "action": "prepare",
+    "name": "strict-presentation-prepare",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113225137050Z",
+    "log": "reports/b06-statement-1/logs/20261029T113225137050Z/strict-presentation-prepare.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-statement-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/statement_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b06-statement-1/browser/20261029T113227238139Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T113227238139Z",
+    "log": "build/b06-statement-1/logs/20261029T113227238139Z/real-statement-browser.log"
+  },
+  {
+    "action": "browser",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113227238139Z",
+    "log": "reports/b06-statement-1/logs/20261029T113227238139Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "inspect",
+    "name": "native-font-origin",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113325730515Z",
+    "log": "reports/b06-statement-1/logs/20261029T113325730515Z/native-font-origin.log"
+  },
+  {
+    "action": "install",
+    "name": "native-description-and-scoped-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113418268387Z",
+    "log": "reports/b06-statement-1/logs/20261029T113418268387Z/native-description-and-scoped-grant.log"
+  },
+  {
+    "action": "install",
+    "name": "install-private-asset-view",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/imported_statement_view.py",
+      "cpjudge-b01-site:/app/judge/views/imported_statement.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113418268387Z",
+    "log": "reports/b06-statement-1/logs/20261029T113418268387Z/install-private-asset-view.log"
+  },
+  {
+    "action": "install",
+    "name": "install-receipt-bound-filter",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/imported_statement_filter.py",
+      "cpjudge-b01-site:/app/judge/jinja2/imported_statement.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113418268387Z",
+    "log": "reports/b06-statement-1/logs/20261029T113418268387Z/install-receipt-bound-filter.log"
+  },
+  {
+    "action": "install",
+    "name": "bounded-native-template-route",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113418268387Z",
+    "log": "reports/b06-statement-1/logs/20261029T113418268387Z/bounded-native-template-route.log"
+  },
+  {
+    "action": "install",
+    "name": "reload-web-only",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113418268387Z",
+    "log": "reports/b06-statement-1/logs/20261029T113418268387Z/reload-web-only.log"
+  },
+  {
+    "action": "install",
+    "name": "start-preserved-web",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b06-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113418268387Z",
+    "log": "reports/b06-statement-1/logs/20261029T113418268387Z/start-preserved-web.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-statement-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/statement_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b06-statement-1/browser/20261029T113428134362Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T113428134362Z",
+    "log": "build/b06-statement-1/logs/20261029T113428134362Z/real-statement-browser.log"
+  },
+  {
+    "action": "browser",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113428134362Z",
+    "log": "reports/b06-statement-1/logs/20261029T113428134362Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-statement-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/statement_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b06-statement-1/browser/20261029T113623631542Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113623631542Z",
+    "log": "build/b06-statement-1/logs/20261029T113623631542Z/real-statement-browser.log"
+  },
+  {
+    "action": "browser",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113623631542Z",
+    "log": "reports/b06-statement-1/logs/20261029T113623631542Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "preserve",
+    "name": "precise-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T113706654304Z",
+    "log": "reports/b06-statement-1/logs/20261029T113706654304Z/precise-preservation.log"
+  }
+]

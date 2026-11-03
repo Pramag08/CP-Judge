@@ -1,0 +1,181 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+56 objects imported automatically (use -v 2 for details).
+
+{
+  "duplicates": {
+    "wpadmin/css/wpadmin.site.css": [
+      {
+        "path": "/app/resources/wpadmin/css/wpadmin.site.css",
+        "sha256": "18db61092454134208d053cae8bcd72fc55c1b457d2603c7d7258c0c3f90660b",
+        "content": ".select2-selection ul li {\n    list-style-type: inherit;\n}\n\n.select2-container--default .select2-selection--multiple .select2-selection__choice {\n    line-height: unset !important;\n}\n\n#content .content-description h1,\n#content .content-description h2,\n#content .content-description h3,\n#content .content-description h4,\n#content .content-description h5,\n#content .content-description h6 {\n    padding: 0;\n}\n\n#content .content-description h5 {\n  letter-spacing: initial;\n  text-transform: initial;\n}\n\n#content input.select2-search__field {\n    border: none;\n    box-shadow: none !important;\n}\n\n#content .content-description ul,\n#content .content-description ol {\n    margin: 0;\n}\n\n#content .content-description li {\n    list-style-type: inherit;\n}\n\n.select2-container--dmoj {\n    min-width: 20em;\n}\n\n@media (max-width: 780px) {\n    #content .vLargeTextField {\n        max-width: unset;\n    }\n}\n"
+      },
+      {
+        "path": "/usr/local/lib/python3.12/site-packages/wpadmin/static/wpadmin/css/wpadmin.site.css",
+        "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+        "content": "\n"
+      },
+      {
+        "path": "/app/static/wpadmin/css/wpadmin.site.css",
+        "sha256": "18db61092454134208d053cae8bcd72fc55c1b457d2603c7d7258c0c3f90660b",
+        "content": ".select2-selection ul li {\n    list-style-type: inherit;\n}\n\n.select2-container--default .select2-selection--multiple .select2-selection__choice {\n    line-height: unset !important;\n}\n\n#content .content-description h1,\n#content .content-description h2,\n#content .content-description h3,\n#content .content-description h4,\n#content .content-description h5,\n#content .content-description h6 {\n    padding: 0;\n}\n\n#content .content-description h5 {\n  letter-spacing: initial;\n  text-transform: initial;\n}\n\n#content input.select2-search__field {\n    border: none;\n    box-shadow: none !important;\n}\n\n#content .content-description ul,\n#content .content-description ol {\n    margin: 0;\n}\n\n#content .content-description li {\n    list-style-type: inherit;\n}\n\n.select2-container--dmoj {\n    min-width: 20em;\n}\n\n@media (max-width: 780px) {\n    #content .vLargeTextField {\n        max-width: unset;\n    }\n}\n"
+      }
+    ],
+    "admin/js/jquery.init.js": [
+      {
+        "path": "/usr/local/lib/python3.12/site-packages/wpadmin/static/admin/js/jquery.init.js",
+        "sha256": "d73d4ac2d73b9594c5696f2ff3e8159d58d01cc5eee7e218a6562e9e7ab889c2",
+        "content": "var django = django || {};\ndjango.jQuery = jQuery;\n"
+      },
+      {
+        "path": "/usr/local/lib/python3.12/site-packages/django/contrib/admin/static/admin/js/jquery.init.js",
+        "sha256": "b8cfca7fb10e04c8a97029ae4076f2b9b424c9c95e4960c24bcf9cdd67af156d",
+        "content": "/*global jQuery:false*/\n'use strict';\n/* Puts the included jQuery into our own namespace using noConflict and passing\n * it 'true'. This ensures that the included jQuery doesn't pollute the global\n * namespace (i.e. this preserves pre-existing values for both window.$ and\n * window.jQuery).\n */\nwindow.django = {jQuery: jQuery.noConflict(true)};\n"
+      },
+      {
+        "path": "/app/static/admin/js/jquery.init.js",
+        "sha256": "d73d4ac2d73b9594c5696f2ff3e8159d58d01cc5eee7e218a6562e9e7ab889c2",
+        "content": "var django = django || {};\ndjango.jQuery = jQuery;\n"
+      }
+    ]
+  },
+  "judge_rows": 0,
+  "runtime_rows": 0,
+  "users": 2
+}
+WPADMIN /usr/local/lib/python3.12/site-packages/wpadmin
+TEMPLATE templates/admin/base.html 
+{% load wpadmin_tags wpadmin_menu_tags %}{% load static %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+<head>
+{# WP Admin start #}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{# WP Admin end #}
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}" />
+{% block extrastyle %}{% endblock %}
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
+{# WP Admin start #}
+{% if INLINE_FONTAWESOME %}
+<link rel="stylesheet" type="text/css" href="{% static "libs/fontawesome/font-awesome.css" %}" />
+{% elif FONTAWESOME_CSS %}
+<link rel="stylesheet" type="text/css" href="{{ FONTAWESOME_CSS }}" />
+{% else %}
+<link rel="stylesheet" type="text/css" href="{% static "wpadmin/css/font-awesome.min.css" %}" />
+{% endif %}
+{% with WPADMIN_DEV=0 %}{% if WPADMIN_DEV %}
+<link rel="stylesheet/less" type="text/css" href="{% static "wpadmin/less/wpadmin.less" %}" />
+<link rel="stylesheet/less" type="text/css" href="{% static "wpadmin/less/themes/default/theme.less" %}" />
+<script type="text/javascript">less = {env: "development"};</script>
+<script type="text/javascript" src="{% static "wpadmin/js/lib/less.min.js" %}"></script>
+{% else %}
+<link rel="stylesheet" type="text/css" href="{% static "wpadmin/css/wpadmin.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "wpadmin/css/themes/default.css" %}" />
+{% endif %}{% endwith %}
+{# WP Admin end #}
+<script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
+<script type="text/javascript">window.__admin_utc_offset__ = "{% filter escapejs %}{% now "Z" %}{% endfilter %}";</script>
+{% block extrahead %}{% endblock %}
+{% wpadmin_render_custom_style %}
+{% block wpadmin_extrastyle %}{% endblock %}
+{% block wpadmin_extrahead %}{% endblock %}
+{# WP Admin start #}
+<script type="text/javascript">
+	// needed for setting cookie path
+	window.__admin_url = '{% url 'admin:index' %}';
+	// cookie name
+	window.__wpadmin_cookie_name = 'djangoWpAdminSettings';
+
+	// we need jQuery in default namespace (not django.jQuery) because we use some external jQuery plugins
+	if (typeof jQuery == 'undefined') {
+		// we can get jQuery object from django object but there are some admin templates where jQuery is not loaded
+		if (typeof django == 'undefined' || typeof django.jQuery == 'undefined') {
+			// so lets load our jQuery synchronously
+			document.write(decodeURI("%3Cscript src='{% static "wpadmin/js/lib/jquery.min.js" %}' type='text/javascript'%3E%3C/script%3E"));
+		} else {
+			// lest copy jQuery from django object to default namespace
+			window.jQuery = django.jQuery;
+		}
+	}
+</script>
+<script type="text/javascript" src="{% static "wpadmin/js/lib/jquery.cookie.min.js" %}"></script>
+<script type="text/javascript" src="{% static "wpadmin/js/menus.js" %}"></script>
+<script type="text/javascript" src="{% static "wpadmin/js/content.js" %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static "wpadmin/css/wpadmin.site.css" %}" />
+{# WP Admin end #}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+{% load i18n %}
+
+{% wpadmin_are_breadcrumbs_enabled %}{% wpadmin_is_left_menu_enabled %}
+<body class="{% if is_popup %}popup {% endif %}{% if not wpadmin_are_breadcrumbs_enabled %}wp-no-breadcrumbs {% endif %}{% if wpadmin_is_left_menu_enabled %}wp-with-left-menu {% endif %}{% block bodyclass %}{% endblock %} wp-pinned">
+
+<!-- Wrapper -->
+<div id="wrapper">
+	{% if not is_popup %}
+		{% block adminmenu %}
+			{% wpadmin_render_left_menu %}
+		{% endblock%}
+	{% endif %}
+
+	<!-- Container -->
+	<div id="container">
+
+		{% if not is_popup %}
+			{% block adminbar %}
+				{% wpadmin_render_top_menu %}
+			{% endblock %}
+			{% block breadcrumbs %}
+				<div class="breadcrumbs">
+					<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+					{% if title %} &rsaquo; {{ title }}{% endif %}
+				</div>
+			{% endblock %}
+		{% endif %}
+
+		{% block messages %}
+			{% if messages %}
+				<ul class="messagelist">
+					{% for message in messages %}
+						<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endblock messages %}
+
+		<!-- Content -->
+		<div id="content" class="{% block coltype %}colM{% endblock %}">
+			{% block pretitle %}{% endblock %}
+			{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+			{% block content %}
+			{% block object-tools %}{% endblock %}
+			{{ content }}
+			{% endblock %}
+			{% block sidebar %}{% endblock %}
+			<br class="clear" />
+		</div>
+		<!-- END Content -->
+
+		{% block footer %}<div id="footer"></div>{% endblock %}
+	</div>
+	<!-- END Container -->
+
+</div>
+<!-- END Wrapper -->
+
+</body>
+</html>
+
+TEMPLATE templates/admin/base_site.html 
+{% extends "admin/base.html" %}
+{% load i18n wpadmin_tags %}
+
+{% block title %}{{ title }} | {% wpadmin_render_custom_title %}{% endblock %}
+
+{% block branding %}
+  {# Django WP Admin: this is not rendered anyway #}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+

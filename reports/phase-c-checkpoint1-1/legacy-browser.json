@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "existing_legacy_password_works": true,
+  "college_id_not_guessed": true
+}

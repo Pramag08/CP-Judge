@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "models": 88,
+  "full_datetime_precision": true,
+  "expected_new_native_rows": {
+    "judge.submission": 1,
+    "judge.submissionsource": 1,
+    "judge.submissiontestcase": 103
+  },
+  "passwords_auth_limits_statement_existing_data_preserved": true,
+  "allowed_activity": "native login/access and native problem AC statistics only"
+}

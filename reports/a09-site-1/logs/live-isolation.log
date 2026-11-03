@@ -1,0 +1,3 @@
+"/cpjudge-a09-site" "cpjudge-a09-1" {} 1610612736 "site" []
+"/cpjudge-a09-db" "cpjudge-a09-1" {} 1610612736 "" []
+"/cpjudge-a09-redis" "cpjudge-a09-1" {} 268435456 "" [{"Type":"volume","Name":"faa93b0fb4db884b74360f7b392ff16e4689fec165623f4ed13a479326b60b23","Source":"/var/lib/docker/volumes/faa93b0fb4db884b74360f7b392ff16e4689fec165623f4ed13a479326b60b23/_data","Destination":"/data","Driver":"local","Mode":"","RW":true,"Propagation":""}]

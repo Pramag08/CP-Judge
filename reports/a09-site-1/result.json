@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "scope": "A09 supported-stack startup only",
+  "known_failed_diagnostic": "makemigrations --check --dry-run: 11 metadata-only alterations, no DDL",
+  "website_to_judge": "NOT TESTED"
+}

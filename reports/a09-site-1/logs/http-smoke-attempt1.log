@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/tmp/http_smoke.py", line 15, in <module>
+    login=get(s,'/accounts/login/' if False else '/login/')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/http_smoke.py", line 13, in get
+    r=s.get(urljoin(BASE,path),timeout=15); assert r.status_code==status,(path,r.status_code); return r
+                                                   ^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('/login/', 404)

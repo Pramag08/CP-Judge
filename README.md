@@ -1,9 +1,24 @@
 # Polygon → DMOJ compatibility experiment
 
-This repository implements only batch-package conversion and compatibility checks.
+Current task progress, architecture and evidence: [PROJECT_STATUS.md](PROJECT_STATUS.md).
+
+B01–B07 are **COMPLETE — PASS** for their scoped website, worker, private problem,
+rendering and first actual browser judging checks.
+[B06 rendering/access](reports/b06-statement-1/README.md),
+[B07 actual submission/evidence](reports/b07-submission-1/README.md).
+Private gaming-grid revision1 is installed as `pv000000000000000001`; the actual
+participant browser submission1 returned **AC,103/103** using CPP23 with observed
+2s/262144KiB limits. B08 is NOT STARTED; failure verdicts and contest standings
+remain untested. Use
+`python3 -B deploy/site-local/manage.py start|stop|status` (one action).
+
+This repository implements batch-package conversion and isolated DMOJ judging checks.
 It reuses the pinned Problem-Change-Center DMOJ writer with a strict source adapter.
 **Successful conversion does not establish successful DMOJ judging.** See
 [the compatibility report](reports/compatibility.md) for measured results.
+
+Validated on 2026-10-28: real reference **103 AC**, known-wrong **55 WA / 48 AC**,
+runtime **103 RTE**, timeout **103 TLE**; all synthetic probes also pass in DMOJ.
 
 Python 3.10+ and Git are required for conversion; tested here with Python 3.14.4.
 From this directory:
@@ -31,9 +46,10 @@ Actual judging requires a dedicated Linux Docker worker with ptrace/seccomp supp
 The following recipe follows DMOJ's upstream runtime image and `SYS_PTRACE` setup:
 
 ```sh
-docker pull dmoj/runtimes-tier1:latest
-runtime_image=$(docker image inspect dmoj/runtimes-tier1:latest --format '{{index .RepoDigests 0}}')
-docker build -f Dockerfile.judge --build-arg RUNTIME_IMAGE="$runtime_image" -t cp-judge-compat .
+docker info
+docker run --rm hello-world
+# Dockerfile.judge pins the validated runtime digest and judge source commit.
+docker build -f Dockerfile.judge -t cp-judge-compat .
 .venv/bin/python -m tools.pipeline --output build/judged --real local-packages/gaming-grid.zip --judge
 ```
 
@@ -45,15 +61,18 @@ exits zero. Every expected case must appear with its expected verdict.
 Exit 2 means Docker, image or runtime setup is unavailable; exit 1 means judging
 failed (conversion exceptions also exit nonzero). Raw logs and a JSON report remain under the selected output directory.
 
-The image recipe is **NOT TESTED** here: Docker is absent and sudo requires interactive
-authentication. An administrator must first install/start Docker and make `docker info`
-work for this session, or provide access to a Linux worker.
-The runner records the built image ID and runtime-base label, then captures Python,
-compiler and installed package versions from an isolated metadata container. It
-requires a digest-pinned base and matching judge commit before reporting PASS. Judge source is pinned;
-the upstream runtime base/build packages still need a validated immutable lock.
-CPP23 requires a suitable compiler in the runtime image; missing CPP23 is a failure,
-not permission to downgrade the real checker/reference solution to C++20.
+The image builds and its C++11/14/17/20/23 executors pass self-tests on this worker
+(Docker client/server 29.9.2, Linux x86-64). The runtime uses Python 3.14.7 and
+GCC 16.2.0; CPP23 reports `__cplusplus=202302L`. The runtime base is pinned in
+`Dockerfile.judge`, and build/runtime Python dependencies in `requirements-judge.txt`.
+The runner records the built image ID, runtime-base label, source commit, compiler
+versions and installed packages, and grades using that image ID. PASS requires the
+pinned base, matching judge commit, every expected case, and successful official
+DMOJ assertions. CPP23 remains required for the real checker and reference.
+
+If this terminal predates adding your user to the Docker group, use a refreshed
+group session, for example `sg docker -c 'docker info'`. Wrap the build/pipeline
+command the same way when needed; this was required in the resumed agent session.
 
 Run this on an isolated worker with no application, credentials or host secrets.
 The container receives only installed problem data and a minimal judge configuration,

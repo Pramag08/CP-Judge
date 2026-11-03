@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "checks": {
+    "private_roles_anonymous": true,
+    "csrf": true,
+    "stale_version_rejected": true
+  },
+  "runs": [
+    {
+      "probe_id": 1,
+      "verdict": "AC",
+      "cases": 3,
+      "pending_seen": true
+    },
+    {
+      "probe_id": 2,
+      "verdict": "WA",
+      "cases": 3,
+      "pending_seen": true
+    }
+  ]
+}

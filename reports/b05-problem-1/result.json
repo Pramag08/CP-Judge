@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "tasks": [
+    "B04",
+    "B05"
+  ],
+  "independent_reviews": "PASS",
+  "display_problem": "gaming-grid",
+  "revision": 1,
+  "native_code": "pv000000000000000001",
+  "problem_pk": 1,
+  "manifest_digest": "7e7b7ec333912da774b066e821eae4c2cb9cb9426ea3417320352d128b5dcf90",
+  "source_package_sha256": "260abce9770f2c88cf8c93271cbfcbd6cea3f028c6eda536ad16256731d8a769",
+  "verified_input_output_pairs": 103,
+  "worker_archive_entries": 206,
+  "verified_installed_files": 21,
+  "statement_assets": 15,
+  "sample_pairs": 1,
+  "checker": "bridged/testlib CPP23",
+  "allowed_languages": [
+    "CPP23"
+  ],
+  "limits": {
+    "source_ms": 2000,
+    "source_bytes": 268435456,
+    "site_seconds": 2.0,
+    "site_KiB": 262144,
+    "expected_request_seconds": 2.0,
+    "expected_request_KiB": 262144
+  },
+  "same_version_repeat": "no duplicate row/file replacement",
+  "native_worker_recognizes_problem": true,
+  "problem_public": false,
+  "http_download_denials": 696,
+  "unit_tests": 6,
+  "existing_rows": "match recorded snapshot; other non-datetime fields/passwords exact",
+  "datetime_precision_limitation": "milliseconds (DjangoJSONEncoder)",
+  "worker_configuration": "UNCHANGED",
+  "submissions_created": 0,
+  "conversion": "existing A02 output reused and independently byte-verified; not rerun",
+  "judging": "NOT TESTED",
+  "B06": "NOT STARTED",
+  "blockers": [],
+  "commit_or_push": false
+}

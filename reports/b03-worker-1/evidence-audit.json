@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "command": "python3 -B reports/b03-worker-1/verify_evidence.py",
+  "exit_status": 0,
+  "baseline_files": 522,
+  "changed_existing_files": [
+    "AGENTS.md",
+    "MVP_DEPENDENCIES.md",
+    "PROJECT_STATUS.md",
+    "README.md",
+    "SecureExam-Implementation-Plan.md",
+    "deploy/site-local/audit.py",
+    "deploy/site-local/b02.py",
+    "deploy/site-local/manage.py"
+  ],
+  "all_prior_reports_and_pins_byte_identical": true,
+  "credential_values_found": false,
+  "private_file_permissions_and_ignore": "PASS",
+  "git_diff_check_exit": 0,
+  "ordinary_verify_passwords_preserved": true,
+  "all_required_services_running": true,
+  "website_judging": "NOT TESTED"
+}

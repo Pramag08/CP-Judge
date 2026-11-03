@@ -1,0 +1,32 @@
+[
+  {
+    "command": "git clone --depth 1 https://github.com/DMOJ/online-judge.git build/a04-site-foundation-1/site",
+    "context": "workspace sandbox",
+    "exit": 128,
+    "result": "DNS resolution blocked"
+  },
+  {
+    "command": "git clone --depth 1 https://github.com/DMOJ/online-judge.git build/a04-site-foundation-1/site",
+    "context": "approved outside-sandbox retry",
+    "exit": 0
+  },
+  {
+    "command": "git clone --depth 1 https://github.com/DMOJ/docs.git build/a04-site-foundation-1/upstream-docs",
+    "context": "approved outside sandbox",
+    "exit": 0
+  },
+  {
+    "command": "git -C build/a04-site-foundation-1/site checkout --detach 6aaddea6aaeabf4927b83787714509ff9fff8897",
+    "exit": 0
+  },
+  {
+    "command": ".venv/bin/python -B build/a04-site-foundation-1/inspect_environment.py",
+    "exit": 0,
+    "subcommand_observations": "Version probes exit 0; dpkg-query exit 1 indicates missing/uninstalled development packages (details in environment.json)."
+  },
+  {
+    "command": "git -C build/a04-site-foundation-1/site rev-parse HEAD; git -C build/a04-site-foundation-1/site status --short; git -C build/a04-site-foundation-1/site ls-tree HEAD resources/libs",
+    "exit": 0,
+    "result": "Exact source/gitlink pins recorded; clean tree."
+  }
+]

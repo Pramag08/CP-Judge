@@ -1,0 +1,10 @@
+b03-status: running
+b03-status: exit 0
+b02-status: running
+b02-status: exit 0
+services-status: running
+services-status: exit 0
+cpjudge-b01-site	Up 2 minutes	127.0.0.1:8000->8000/tcp
+cpjudge-b01-redis	Up 2 minutes	6379/tcp
+cpjudge-b01-db	Up 2 minutes	3306/tcp
+

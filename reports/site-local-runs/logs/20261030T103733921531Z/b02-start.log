@@ -1,0 +1,8 @@
+safe-bridge-start: running
+safe-bridge-start: exit 0
+native-processes-start: running
+native-processes-start: exit 0
+native-processes-status: running
+native-processes-status: exit 0
+{"bridge": 1, "celery": 1}
+

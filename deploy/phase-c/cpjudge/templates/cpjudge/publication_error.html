@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block body %}
+<p role="alert">Private publication did not complete. The conversion, statement, native metadata or storage could not be verified. Previous versions are unchanged. No submissions are enabled. Review the preview; ask the organizer to inspect the private diagnostic if retry does not recover.</p>
+<p><a href="{{ url('cpj_import_confirm',job_id=job_id) }}">Return to import status and retry publication</a></p>
+{% endblock %}

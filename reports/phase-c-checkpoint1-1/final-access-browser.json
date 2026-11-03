@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "actual_submission_id": 14,
+  "checks": [
+    "real submission source/result/channel owner and explicit reviewer access",
+    "other author, participant and account-admin denials with known object/channel IDs",
+    "native hidden files/global task/API routes fail closed",
+    "corrected canonical college ID displayed in scoped roster"
+  ]
+}

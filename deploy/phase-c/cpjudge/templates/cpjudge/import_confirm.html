@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="content-description">
+    <h2>Private import status</h2>
+    <p>Contest: {{ job.contest.name }}</p>
+    <p>Upload ID: {{ job.pk }}</p>
+    <p>Status: <span id="import-status">{{ job.status }}</span></p>
+    <p>Attempt: <span id="import-attempt">{{ job.attempt }}</span></p>
+    {% if job.error %}<p id="import-error" role="alert">{{ public_error }}</p>{% endif %}
+    <p>Received: {{ job.created|date("Y-m-d H:i:s T") }}</p>
+    <p>Package fingerprint: <span id="package-sha256">{{ job.package_sha256 }}</span></p>
+    {% if job.status == 'uploaded' %}<p>The ZIP remains private. No conversion, publication, or execution was started.</p>{% endif %}
+    {% if job.status in ('uploaded','failed') %}
+    <form method="post" action="{{ url('cpj_import_convert',job_id=job.pk) }}">
+        {% csrf_token %}<button type="submit">{{ 'Retry conversion' if job.attempt else 'Convert ZIP' }}</button>
+    </form>
+    {% elif job.status in ('queued','running') %}<p>Conversion is in progress. Refresh this page to check its status.</p>
+    {% elif job.status == 'succeeded' %}<p><strong>Converted successfully</strong>. Judging has separate private probe receipts.</p>{% endif %}
+    <p id="judging-status">{% if version %}<a href="{{ url('cpj_probes',version_id=version.pk) }}">View current private probe results</a>{% else %}<strong>Judging NOT TESTED for this import.</strong>{% endif %}</p>
+    <p>Participant access requires a separate verified private contest admission.</p>
+    {% if version %}
+    <p>Private version: <span id="publication-state">{{ version.state }}</span>.
+    {% if version.state == 'published' %}<p><a href="{{ url('cpj_probes',version_id=version.pk) }}">Private judging probes</a></p><a id="published-version" href="{{ url('problem_detail',problem=version.code) }}">{{ version.code }}</a>{% endif %}</p>
+    {% endif %}
+    {% if job.status == 'succeeded' %}
+    {% if can_publish and (not version or version.state != 'published') %}
+    <p>Publish an immutable private version after reviewing the sanitized preview and its removal notices. This installs coordinator files only; it does not assign a contest problem or enable submissions.</p>
+    <form method="post" action="{{ url('cpj_publish',job_id=job.pk) }}" id="publish-form">
+        {% csrf_token %}<input type="hidden" name="attempt" value="{{ job.attempt }}">
+        <button type="submit">{{ 'Resume private publication' if version else 'Publish private version' }}</button>
+    </form>
+    {% endif %}
+    {% if preview %}
+    <p><a id="statement-preview-link" href="{{ url('cpj_statement_preview',job_id=job.pk) }}">Preview sanitized statement</a></p>
+    <section id="compatibility-preview">
+        <h3>Compatibility preview — conversion only</h3>
+        <table class="table">
+            <tr><th>Problem name</th><td id="problem-name">{{ preview.name if preview.name is not none else 'Not recorded' }}</td></tr>
+            <tr><th>Package problem identity</th><td>{{ preview.code if preview.code is not none else 'Not recorded' }}</td></tr>
+            <tr><th>Active tests (including samples)</th><td id="test-count">{{ preview.test_count }}</td></tr>
+            <tr><th>Samples</th><td id="sample-count">{{ preview.sample_count }}</td></tr>
+            <tr><th>Time limit</th><td id="time-limit">{{ preview.time_ms }} ms → {{ preview.seconds }} seconds</td></tr>
+            <tr><th>Memory limit</th><td id="memory-limit">{{ preview.memory_bytes }} bytes → {{ preview.kib }} KiB (1 KiB = 1024 bytes; rounded up)</td></tr>
+            <tr><th>Checker</th><td>{{ preview.checker }}</td></tr>
+            <tr><th>Required checker standard</th><td id="checker-standard">{{ preview.standard }}{% if preview.source_type %} ({{ preview.source_type }}){% endif %}</td></tr>
+            <tr><th>Reference / submission compiler standard</th><td>Not verified by this conversion. No compiler standard is inferred from the checker.</td></tr>
+        </table>
+        <h4>Scoring</h4>
+        {% if preview.groups %}
+        <p>Complete-group scoring. Group numbers below are positions in the converted configuration; original group names were not recorded in this output.</p>
+        <table class="table" id="scoring-groups">
+            <tr><th>Converted group</th><th>Tests</th><th>Points</th><th>Depends on converted groups</th></tr>
+            {% for group in preview.groups %}<tr><td>{{ group.number }}</td><td>{{ group.tests }}</td><td>{{ group.points if group.points is not none else 'Not recorded' }}</td><td>{{ group.dependencies|join(', ') if group.dependencies else 'None' }}</td></tr>{% endfor %}
+        </table>
+        {% else %}<p>Ungrouped tests: one point per test. No group dependencies.</p>{% endif %}
+        <h4>Supported features verified by conversion</h4>
+        <p>Standard batch input/output; stored test/answer pairs; samples retained as active cases and private sidecars; explicit C++ testlib checker standard{% if preview.groups %}; complete-group points and dependencies{% endif %}.</p>
+        <h4>Warnings and verification limits</h4>
+        <ul>
+            <li>The checker language standard is preserved. The exact Polygon compiler version and platform are not reproduced; compilation and execution were not tested.</li>
+            <li>Generators, validators and package scripts were not executed. Required generated tests must be included in the ZIP.</li>
+            <li>Statement preview is private and separate from publication; review its safety and unsupported-content notices.</li>
+            {% for warning in preview.warnings %}<li>{{ warning }}</li>{% endfor %}
+        </ul>
+        <h4>Unsupported features</h4>
+        <p>No rejected feature was reported for this successful conversion. This verifies only the converter's supported subset, not judging compatibility or publication readiness.</p>
+    </section>
+    {% else %}<p id="preview-unavailable">Verified compatibility details are unavailable for this attempt. Ask the organizer to inspect its conversion receipt; no metadata is inferred.</p>{% endif %}
+    {% elif job.status == 'failed' %}<p>Conversion failed. The error above describes the rejected feature or validation step and the corrective action. Upload a corrected ZIP as a new import; retry the same ZIP only for temporary service failures. No successful findings apply to this attempt.</p>
+    {% else %}<p>No verified compatibility findings are available yet for this attempt.</p>{% endif %}
+    <p><a class="btn btn-default" href="{{ url('cpj_import_download', job_id=job.pk) }}">Download your private ZIP</a></p>
+    <p><a href="{{ url('cpj_import_upload', contest=job.contest.key) }}">Upload another ZIP</a></p>
+</div>
+{% endblock %}

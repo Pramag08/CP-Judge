@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "same_version_chain": {
+    "job_id": 24,
+    "conversion_attempt": 2,
+    "version_id": 2,
+    "native_code": "pv900000000000000002",
+    "version_digest": "6c99ae9709054dcbbe8ea4a84473319c46a4cd4475b5d50ce2c95ef8f29454be",
+    "package_sha256": "9802371e53719ed7e7c476df08d794a02a89013b858a5112fc21fe807fbc792f",
+    "accepted_probe": 1,
+    "probe_execution": 17,
+    "private_contest": "cintlocal1",
+    "admission": 1
+  },
+  "runs": [
+    {
+      "id": 20,
+      "verdict": "WA",
+      "cases": 3,
+      "callbacks": 3,
+      "packets": 1,
+      "native_code": "pv900000000000000002",
+      "runtime": "CPP17",
+      "participation": "LIVE/official"
+    },
+    {
+      "id": 21,
+      "verdict": "AC",
+      "cases": 3,
+      "callbacks": 3,
+      "packets": 1,
+      "native_code": "pv900000000000000002",
+      "runtime": "CPP17",
+      "participation": "LIVE/official"
+    },
+    {
+      "id": 22,
+      "verdict": "AC",
+      "cases": 3,
+      "callbacks": 3,
+      "packets": 1,
+      "native_code": "pv900000000000000002",
+      "runtime": "CPP17",
+      "participation": "LIVE/official"
+    }
+  ],
+  "expected": {
+    "C1LIVEP": {
+      "solved": 1,
+      "penalty": 1699,
+      "failures": 1,
+      "elapsed": 499
+    },
+    "C1LIVEQ": {
+      "solved": 1,
+      "penalty": 510,
+      "failures": 0,
+      "elapsed": 510
+    }
+  },
+  "native_ranks": [
+    {
+      "rank": 1,
+      "username": "C1LIVEQ",
+      "solved": 1.0,
+      "penalty": 510
+    },
+    {
+      "rank": 2,
+      "username": "C1LIVEP",
+      "solved": 1.0,
+      "penalty": 1699
+    }
+  ],
+  "old_model_sets": 67,
+  "old_non_session_rows_checked": 2049,
+  "all_original_password_hashes_emails_ids_and_history_preserved": true,
+  "prior_submissions_and_official_standings_preserved": true,
+  "original_immutable_version_manifest_and_file_hashes_preserved": true,
+  "four_missing_emails_unchanged": true,
+  "email_only_enabled": false,
+  "probe_has_no_official_association": true,
+  "no_active_jobs": true,
+  "worker_online": true
+}

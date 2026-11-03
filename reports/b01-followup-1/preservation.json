@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "command": "python3 -B reports/b01-followup-1/verify_evidence.py",
+  "exit_status": 0,
+  "baseline_files_checked": 332,
+  "changed_existing_files": [
+    "AGENTS.md",
+    "PROJECT_STATUS.md",
+    "SecureExam-Implementation-Plan.md",
+    "deploy/site-local/accounts.py",
+    "deploy/site-local/audit.py",
+    "deploy/site-local/manage.py",
+    "patches/site/README.md"
+  ],
+  "all_other_existing_files_byte_identical": true,
+  "original_b01_a09_and_prior_reports_byte_identical": true,
+  "source_checkout_clean": true,
+  "credentials_found": false,
+  "credential_scan_files": 116,
+  "authoritative_browser_reports": {
+    "change": "browser-change-20261028T201020662889Z.json",
+    "after-verify": "browser-after-verify-20261028T201223955631Z.json",
+    "after-reset": "browser-after-reset-20261028T201433448684Z.json",
+    "math-final": "browser-math-final-20261028T202053138170Z.json"
+  },
+  "private_fixtures_removed": true,
+  "ui_direction": "recorded; Foobar asset not invented; product home not implemented",
+  "actual_problem_import_judging_standings": "NOT TESTED",
+  "commit_or_push": false,
+  "git_diff_check_exit_status": 0
+}

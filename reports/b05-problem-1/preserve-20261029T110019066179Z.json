@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "preexisting_rows_match_recorded_snapshot": true,
+  "datetime_snapshot_precision": "milliseconds (DjangoJSONEncoder)",
+  "diagnostic_last_access_restored_to_recorded_precision": true,
+  "models_including_relations": 88,
+  "accounts_passwords_sessions_existing_problems_submissions_worker_auth_unchanged": true,
+  "only_new_rows": {
+    "judge.problemgroup": 1,
+    "judge.problem": 1,
+    "judge.judge_problems": 1,
+    "judge.problem_allowed_languages": 1
+  },
+  "judging": "NOT TESTED"
+}

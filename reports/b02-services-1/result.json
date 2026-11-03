@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "task": "B02 only",
+  "local_url": "http://127.0.0.1:8000/",
+  "running": [
+    "website",
+    "MariaDB",
+    "Redis",
+    "native bridge",
+    "Celery worker",
+    "native event daemon"
+  ],
+  "service_probe_runs": 3,
+  "browser_runs": 3,
+  "independent_review": "PASS",
+  "restart_and_idempotent_start": "PASS",
+  "existing_passwords": "UNCHANGED",
+  "b01_overlay_math_0153": "UNCHANGED",
+  "migrations": 202,
+  "event_dependencies": {
+    "ws": "8.22.0",
+    "qu": "0.1.0",
+    "simplesets": "1.0.0"
+  },
+  "final_npm_audit": "exit 0, zero reported findings",
+  "limitations": [
+    "native browser HTTP polling CORS fallback unverified",
+    "volatile event history/Redis results, no durable replay proof",
+    "zero-Judge startup guard must be revisited for B03",
+    "production warnings retained"
+  ],
+  "worker_enrollment": "NOT STARTED",
+  "successful_judging": "NOT TESTED",
+  "custom_homepage": "NOT STARTED",
+  "commit_or_push": false
+}

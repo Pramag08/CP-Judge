@@ -1,5 +1,6 @@
 **
 !Dockerfile.judge
+!requirements-judge.txt
 !tools/
 !tools/judge-entry.sh
 !tools/runtime_metadata.py

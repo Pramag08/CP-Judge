@@ -1,0 +1,133 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+56 objects imported automatically (use -v 2 for details).
+
+{
+  "alter_fields": [
+    {
+      "model": "contest",
+      "field": "private_contestants",
+      "changed_options": [
+        "related_name"
+      ]
+    },
+    {
+      "model": "contest",
+      "field": "rate_exclude",
+      "changed_options": [
+        "related_name"
+      ]
+    },
+    {
+      "model": "problem",
+      "field": "name",
+      "changed_options": [
+        "validators"
+      ]
+    },
+    {
+      "model": "problemdata",
+      "field": "checker",
+      "changed_options": [
+        "choices"
+      ]
+    },
+    {
+      "model": "problemdata",
+      "field": "nobigmath",
+      "changed_options": [
+        "verbose_name"
+      ]
+    },
+    {
+      "model": "problemtestcase",
+      "field": "checker",
+      "changed_options": [
+        "choices"
+      ]
+    },
+    {
+      "model": "problemtestcase",
+      "field": "checker_args",
+      "changed_options": [
+        "help_text"
+      ]
+    },
+    {
+      "model": "problemtranslation",
+      "field": "language",
+      "changed_options": [
+        "choices"
+      ]
+    },
+    {
+      "model": "profile",
+      "field": "ace_theme",
+      "changed_options": [
+        "choices"
+      ]
+    },
+    {
+      "model": "profile",
+      "field": "math_engine",
+      "changed_options": [
+        "choices"
+      ]
+    },
+    {
+      "model": "profile",
+      "field": "timezone",
+      "changed_options": [
+        "choices"
+      ]
+    }
+  ],
+  "collected_sql": [
+    "--",
+    "-- Alter field private_contestants on contest",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field rate_exclude on contest",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field name on problem",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field checker on problemdata",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field nobigmath on problemdata",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field checker on problemtestcase",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field checker_args on problemtestcase",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field language on problemtranslation",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field ace_theme on profile",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field math_engine on profile",
+    "--",
+    "-- (no-op)",
+    "--",
+    "-- Alter field timezone on profile",
+    "--",
+    "-- (no-op)"
+  ],
+  "database_changing_statements": [],
+  "conclusion": "11 upstream model-state differences; no database DDL generated on MariaDB 11.4.13. No migration file or schema change made."
+}

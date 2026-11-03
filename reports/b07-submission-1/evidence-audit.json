@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "command": ".venv/bin/python -B reports/b07-submission-1/verify_evidence.py",
+  "exit_status": 0,
+  "baseline_files": {
+    "b06-statement-1": 736,
+    "b07-submission-1": 794
+  },
+  "changed_existing_files": [
+    "AGENTS.md",
+    "MVP_DEPENDENCIES.md",
+    "PROJECT_STATUS.md",
+    "README.md",
+    "SecureExam-Implementation-Plan.md",
+    "deploy/site-local/problem_install.py",
+    "deploy/site-local/problem_journey.py",
+    "deploy/site-local/problem_models.py",
+    "patches/site/README.md"
+  ],
+  "historical_reports_and_pins_preserved": true,
+  "immutable_worker_files_config_key_exact": true,
+  "public_credential_values_found": false,
+  "precise_native_row_preservation": true,
+  "B06": "PASS",
+  "B07": "PASS",
+  "submission_id": 1,
+  "verdict": "AC",
+  "cases": 103,
+  "actual_request_seconds": 2.0,
+  "actual_request_KiB": 262144,
+  "native_browser_worker_callback_SQL_agreement": true,
+  "compiler_warnings_retained": 3,
+  "git_diff_check_exit": 0,
+  "B08": "NOT STARTED",
+  "contest_standings": "NOT TESTED"
+}

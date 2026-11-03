@@ -1,0 +1,10 @@
+{
+  "raw_log_sha256": "04f5311eace2ff522a40b952bf6dd4e0bbe0d69a5f4683e8546ba2ed436791db",
+  "matched_submission_lines": [
+    "INFO 2026-10-29 11:57:50,268 1 judge Start grading pv000000000000000001/1 in CPP23...",
+    "INFO 2026-10-29 11:57:50,282 1 packet Accept submission: 1: executor: CPP23, code: pv000000000000000001",
+    "INFO 2026-10-29 11:58:14,348 1 judge Done grading pv000000000000000001/1."
+  ],
+  "explicit_native_worker_AC_cases": 103,
+  "raw_private_log": "build/b07-submission-1/logs/20261029T120318319549Z/actual-worker-raw-log.log"
+}

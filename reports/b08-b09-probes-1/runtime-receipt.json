@@ -1,0 +1,15 @@
+{
+  "submission_id": 4,
+  "url": "http://127.0.0.1:8000/submission/4",
+  "browser_form_post": {
+    "method": "POST",
+    "path": "/problem/pv000000000000000001/submit",
+    "language_id": "19",
+    "source_sha256": "cc954b8b4daa2e142c194da633674021c1ad8d64c1957371c740f24e85bdd1f4",
+    "source_canonical_sha256": "f92fa1c5da9c3d9b475cb1a443f985ceff669f48cd8dec858f1a26ad77694bb7",
+    "source_bytes": 45,
+    "csrf_field_present": true
+  },
+  "selected_language": "GNU C++23",
+  "reference_source_sha256": "f92fa1c5da9c3d9b475cb1a443f985ceff669f48cd8dec858f1a26ad77694bb7"
+}

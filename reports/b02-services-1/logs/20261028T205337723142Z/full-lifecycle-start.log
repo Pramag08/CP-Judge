@@ -1,0 +1,11 @@
+restart-cpjudge-b01-db: running
+restart-cpjudge-b01-db: exit 0
+restart-cpjudge-b01-redis: running
+restart-cpjudge-b01-redis: exit 0
+restart-cpjudge-b01-site: running
+restart-cpjudge-b01-site: exit 0
+http-start: running
+http-start: exit 0
+b02-start: running
+b02-start: exit 0
+Local website running: http://127.0.0.1:8000

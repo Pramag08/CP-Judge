@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block body %}
+<p><strong>Author preview / test mode — private, unranked.</strong> These attempts never affect official scores, penalties, ranks, contestant counts or solve statistics.</p>
+<p><a href="{{ url('cpj_contest_preview',contest_key=contest.key) }}">Selected contest problems</a> · <a href="{{ url('problem_detail',problem=cp.problem.code) }}">Preview statement</a></p>
+<p>{{ cp.workflow_label.label }} · {{ cp.problem.name }} · {{ cp.problem.time_limit }}s / {{ cp.problem.memory_limit }} KiB · {{ runtime.name }} ({{ runtime.key }})</p>
+<form method="post">{% csrf_token %}{{ form.as_p() }}<button>Submit private author test</button></form>
+<h3>My private test verdicts</h3><p>Refresh for the persisted judge result. Pending work waits for the verified isolated worker.</p>
+<table class="table"><tr><th>Test</th><th>Verdict</th><th>Executed cases</th><th>Time / memory</th></tr>{% for t in tests %}<tr><td>{{ t.pk }}</td><td>{{ t.execution.result or t.execution.status }}</td><td>{{ t.execution.test_cases.count() }}</td><td>{{ t.execution.time }}s / {{ t.execution.memory }} KiB</td></tr>{% endfor %}</table>
+{% endblock %}

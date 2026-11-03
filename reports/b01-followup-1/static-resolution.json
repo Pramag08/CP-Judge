@@ -1,0 +1,18 @@
+{
+  "static_candidates": {
+    "wpadmin/css/wpadmin.site.css": [
+      "/usr/local/lib/python3.12/site-packages/wpadmin/static/wpadmin/css/wpadmin.site.css"
+    ],
+    "admin/js/jquery.init.js": [
+      "/usr/local/lib/python3.12/site-packages/django/contrib/admin/static/admin/js/jquery.init.js"
+    ],
+    "cpjudge/wpadmin-site.css": [
+      "/app/resources/cpjudge/wpadmin-site.css"
+    ]
+  },
+  "static_root": "/app/static-followup",
+  "finders": [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+  ]
+}

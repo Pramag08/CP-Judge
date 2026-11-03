@@ -1,0 +1,28 @@
+{
+  "authenticated_account_roles": [
+    "a",
+    "b",
+    "staff",
+    "participant"
+  ],
+  "standings": [
+    {
+      "username": "b10tmpb",
+      "rank": 1,
+      "solved": 1,
+      "penalty_display": "00:36:01",
+      "problem_cell": "1 (1)\n00:16:01"
+    },
+    {
+      "username": "b10tmpa",
+      "rank": 1,
+      "solved": 1,
+      "penalty_display": "00:36:01",
+      "problem_cell": "1 (1)\n00:16:01"
+    }
+  ],
+  "posts": [],
+  "receipts": [],
+  "page_errors": [],
+  "private_evidence": "build/b12-restart-1/snapshot-20261029T144310432076Z/browser"
+}

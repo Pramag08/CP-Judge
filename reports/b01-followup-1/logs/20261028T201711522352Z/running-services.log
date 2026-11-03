@@ -1,0 +1,3 @@
+/cpjudge-b01-site true {"8000/tcp":[{"HostIp":"127.0.0.1","HostPort":"8000"}]}
+/cpjudge-b01-db true {"3306/tcp":null}
+/cpjudge-b01-redis true {"6379/tcp":null}

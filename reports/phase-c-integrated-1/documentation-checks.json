@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "bundle_local_links": 4,
+  "private_emails_absent_from_sanitized_reports": true,
+  "new_python_ast_parse": true,
+  "worksheet_mode": "0600",
+  "worksheet_populated_rows": 0,
+  "password_or_email_updates_applied": false,
+  "email_only_activated": false
+}

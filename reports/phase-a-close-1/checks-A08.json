@@ -1,0 +1,42 @@
+{
+  "task": "A08",
+  "status": "PASS",
+  "command": "python3 -B reports/phase-a-close-1/verify.py --task A08",
+  "exit_status": 0,
+  "scope": "contract/documentation/source-identity audit, not runtime enforcement",
+  "historical_completed_rows_preserved": [
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "A09"
+  ],
+  "backlog_rows": 112,
+  "selected_mvp_dependency_closure": 90,
+  "acyclic_and_no_deferred_prerequisites": true,
+  "local_links_checked": 61,
+  "baseline_files_checked": 221,
+  "baseline_files_changed": [
+    "AGENTS.md",
+    "MVP_DEPENDENCIES.md",
+    "PROJECT_STATUS.md",
+    "SecureExam-Implementation-Plan.md"
+  ],
+  "previous_evidence_pins_and_application_bytes_preserved": true,
+  "source_git_show_commands_exit_status": 0,
+  "site_pin": "604d60cfd764bc708b04ffd75b715a5398b91f8b",
+  "inspected_source_sha256": {
+    "judge/models/contest.py": "c6c4a446df27d95958fda7db222a84340fd16b9952380803a08bde1188abbbf4",
+    "judge/models/problem.py": "982fab4ca15c3a41301fe4026b0220ab89a0930b128b086ebea08fafa363086e",
+    "judge/models/submission.py": "e2ef0da41cf37483a97644e7a65272a8f33f4e527b8956568ccd437b00b24cb7",
+    "judge/views/user.py": "fd959cc00a498bf6d2cf814a48ab5c2c66e7181b245cff370fc3ba2adbf37494",
+    "judge/views/submission.py": "b4e5ba18571248d3c8b996e521bb081af65036b657ee24dfff676f381f0e49b3",
+    "dmoj/settings.py": "1bda4217bb931170a80a1f4c394c10f3840974303051665781d84438371b3dfe"
+  },
+  "git_diff_check_exit_status": 0,
+  "application_database_browser_tests": "NOT RUN",
+  "conversion": "NOT RUN",
+  "actual_judging": "NOT RUN",
+  "website_to_worker": "NOT TESTED"
+}

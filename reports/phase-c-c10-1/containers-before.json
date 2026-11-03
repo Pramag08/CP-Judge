@@ -1,0 +1,26 @@
+{
+  "cpjudge-b01-site": {
+    "id": "0ed6b69655af8484a3a15b1a5121a0856d68be53be0ad557e01cf6c513fe9408",
+    "image": "sha256:1151551384467c7dabb452dabfd52d05c94162e7203e1734f01b5b817db1edaf",
+    "started": "2026-10-29T14:44:43.653340704Z",
+    "config_hash": "046940713216e7d5a041075d7330db1adfa8e1ecf330cb5e67111c0c99edac64"
+  },
+  "cpjudge-b03-worker": {
+    "id": "98a58e7fab960d34a048022d2b2a770714a7b37252c1eadde4cdbaf50f7a4a1e",
+    "image": "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+    "started": "2026-10-29T17:47:33.217426137Z",
+    "config_hash": "2fcd7f1672fd85ec25e5b3f770c9db81027d66187ded621928e225b14d8c575f"
+  },
+  "cpjudge-b01-db": {
+    "id": "76c31e1348a0bf58f07dccae27a8d6320b2d05cd5edd2ed11d06407ca9cda1d2",
+    "image": "sha256:d1891ede5a559f1086f55053bb8cc1569b0298338c4d72d71725a7f74f6ba620",
+    "started": "2026-10-29T14:44:43.233239782Z",
+    "config_hash": "0a85c1918e1e01bd8dc1367057cf45be604b013c60f1f5f26404f529e454b03f"
+  },
+  "cpjudge-b01-redis": {
+    "id": "3b9700a5a49b6e2f1f29932d7bfe52b65b658092024313ca3576850d44d5c7a4",
+    "image": "sha256:6ba19c50b56777f5c11c58eff8ddb69d0d5f27ba131cffb63f180ccfd43c66af",
+    "started": "2026-10-29T14:44:43.446216046Z",
+    "config_hash": "06e008ba47a740346b8ddc8215422a53494a2b30683bb82d4216a55e77bf9400"
+  }
+}

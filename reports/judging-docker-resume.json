@@ -1,0 +1,343 @@
+{
+  "date": "2026-10-28",
+  "status": "PASS",
+  "docker": {
+    "client": "29.9.2",
+    "server": "29.9.2",
+    "info": "PASS via sg docker",
+    "hello_world": "PASS via sg docker"
+  },
+  "source_pins": {
+    "converter": {
+      "url": "https://github.com/Albert-Li-Sz/Problem-Change-Center.git",
+      "commit": "41ce3afcedf6c02793b308ba2e6ddb2ea5f82134",
+      "license": "MIT"
+    },
+    "judge": {
+      "url": "https://github.com/DMOJ/judge-server.git",
+      "commit": "1245dc4158dbb9e906c4c103e1ea939e012ee79b",
+      "license": "AGPL-3.0-or-later"
+    },
+    "testlib": {
+      "url": "https://github.com/MikeMirzayanov/testlib",
+      "commit": "3bf5ba5aca6007bf8dcde6d00949ec3116ee3cc7",
+      "license": "MIT",
+      "vendored": "fixtures/testlib/testlib.h"
+    }
+  },
+  "image": {
+    "id": "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+    "repo_digests": [
+      "cp-judge-compat@sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8"
+    ],
+    "judge_commit": "1245dc4158dbb9e906c4c103e1ea939e012ee79b",
+    "runtime_base": "dmoj/runtimes-tier1@sha256:dc5cba4a00fdaca99a7b597d2451fb8b4e731574949593cc52f4291d3e5189f1"
+  },
+  "runtime": {
+    "python": "3.14.7",
+    "kernel": "7.0.0-38-generic",
+    "judge_commit": "1245dc4158dbb9e906c4c103e1ea939e012ee79b",
+    "compilers": {
+      "g++17": {
+        "command": "/usr/bin/g++",
+        "version": "g++ (Debian 16.2.0-2) 16.2.0",
+        "cplusplus": "201703L"
+      },
+      "g++20": {
+        "command": "/usr/bin/g++",
+        "version": "g++ (Debian 16.2.0-2) 16.2.0",
+        "cplusplus": "202002L"
+      },
+      "g++23": {
+        "command": "/usr/bin/g++",
+        "version": "g++ (Debian 16.2.0-2) 16.2.0",
+        "cplusplus": "202302L"
+      }
+    },
+    "python_packages": [
+      "Cython==3.3.0",
+      "# Editable install with no version control (dmoj==4.1.0)",
+      "-e /judge",
+      "Pygments==2.21.0",
+      "pylru==1.3.3",
+      "PyYAML==6.0.3",
+      "setproctitle==1.3.8",
+      "setuptools==84.2.1",
+      "termcolor==3.3.0",
+      "watchdog==6.0.0",
+      "wheel==0.45.1"
+    ]
+  },
+  "conversion": {
+    "groups": "PASS (SYNTHETIC)",
+    "multiple": "PASS (SYNTHETIC)",
+    "tokens": "PASS (SYNTHETIC)",
+    "gaming-grid": "PASS (real package)"
+  },
+  "judging": "PASS",
+  "execution": {
+    "status": "PASS",
+    "issues": [],
+    "probes": {
+      "groups": {
+        "accepted": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "AC": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "easy_only": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "AC": 1,
+            "WA": 2
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "dependency": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "WA": 1,
+            "SC": 1,
+            "AC": 1
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "wrong": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "WA": 2,
+            "SC": 1
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        }
+      },
+      "multiple": {
+        "accepted": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "AC": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "wrong": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "WA": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "runtime": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "RTE": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "timeout": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "TLE": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "alternative": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "AC": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "presentation": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "WA": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        }
+      },
+      "tokens": {
+        "accepted": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "AC": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "wrong": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "WA": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "runtime": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "RTE": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "timeout": {
+          "status": "PASS",
+          "expected_cases": 3,
+          "observed_cases": 3,
+          "verdict_counts": {
+            "TLE": 3
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        }
+      },
+      "gaming-grid": {
+        "reference": {
+          "status": "PASS",
+          "expected_cases": 103,
+          "observed_cases": 103,
+          "verdict_counts": {
+            "AC": 103
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "wrong_answer": {
+          "status": "PASS",
+          "expected_cases": 103,
+          "observed_cases": 103,
+          "verdict_counts": {
+            "WA": 55,
+            "AC": 48
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "runtime": {
+          "status": "PASS",
+          "expected_cases": 103,
+          "observed_cases": 103,
+          "verdict_counts": {
+            "RTE": 103
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        },
+        "timeout": {
+          "status": "PASS",
+          "expected_cases": 103,
+          "observed_cases": 103,
+          "verdict_counts": {
+            "TLE": 103
+          },
+          "complete": true,
+          "expected_verdicts_match": true
+        }
+      }
+    }
+  },
+  "pipeline_command": "sg docker -c 'PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -m tools.pipeline --output build/judging-milestone-docker-resume-3 --real local-packages/gaming-grid.zip --judge'",
+  "pipeline_exit": 0,
+  "unit_tests": {
+    "command": "PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -m unittest discover -s tests -v",
+    "passed": 11,
+    "exit": 0
+  },
+  "independent_preservation": {
+    "status": "PASS",
+    "tests_verified": 103,
+    "statement_assets_verified": 15,
+    "sample_tests_verified": 1,
+    "checker_bytes": "PASS",
+    "limits_and_groups": "PASS (configuration only)",
+    "judging": "NOT TESTED",
+    "source_sha256": "260abce9770f2c88cf8c93271cbfcbd6cea3f028c6eda536ad16256731d8a769"
+  },
+  "limits": {
+    "gaming-grid": {
+      "time_seconds": 2,
+      "memory_KiB": 262144,
+      "language": "CPP23"
+    }
+  },
+  "timeout_execution_seconds": {
+    "min": 3.001,
+    "max": 4.001
+  },
+  "timing_note": "The configured 2-second limit is passed unchanged to DMOJ; its periodic timeout enforcement takes about 4 seconds for this busy-loop probe. Exact timing parity with Polygon is not established.",
+  "official_group_score_expectations": {
+    "accepted": [
+      30,
+      50,
+      20
+    ],
+    "easy_only": [
+      30,
+      0,
+      0
+    ],
+    "dependency": [
+      0,
+      0,
+      20
+    ],
+    "wrong": [
+      0,
+      0,
+      0
+    ]
+  },
+  "private_raw_logs": "build/judging-milestone-docker-resume-3/judge.log",
+  "first_attempt": {
+    "status": "FAIL",
+    "reason": "YAML list expectations are wrapped in ConfigNode; numbered mappings required. Unrelated Objective-C executor self-test also raised TypeError.",
+    "stopped_before_completion": true,
+    "private_report": "build/judging-milestone-docker-resume-2/report.json"
+  },
+  "website_implementation": "NOT STARTED",
+  "limitations": [
+    "One supplied real package; other coverage is synthetic.",
+    "Multi-test all-or-nothing groups and jury-internal-error behavior NOT TESTED.",
+    "Website import, statement rendering and standings NOT TESTED.",
+    "Polygon MSYS2 GCC14 environment is not reproduced; tested with Linux GCC16.",
+    "Generators and validators are not executed; unsupported formats remain rejected."
+  ]
+}

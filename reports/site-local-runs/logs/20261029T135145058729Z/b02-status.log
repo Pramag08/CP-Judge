@@ -1,0 +1,8 @@
+native-processes-status: running
+native-processes-status: exit 0
+{"bridge": 1, "celery": 1}
+
+event-status: running
+event-status: exit 0
+true {"9995/tcp":[{"HostIp":"127.0.0.1","HostPort":"9995"}],"9996/tcp":[{"HostIp":"127.0.0.1","HostPort":"9996"}]}
+

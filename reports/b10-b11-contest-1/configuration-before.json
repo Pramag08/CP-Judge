@@ -1,0 +1,112 @@
+{
+  "cpjudge-b01-site": "52f3c080609a2a369d78333e5f4860b75250ef40e3db02941c99b1454ddb1e10",
+  "cpjudge-b03-worker": "9dc17c3ec4d366938a14354aacec8a554bf313c1d428886f2074449d414fe53b",
+  "problem_files": [
+    {
+      "path": "attachments/statement-sections/english/example.01",
+      "size": 35,
+      "sha256": "04b5256c2907192bb33562bc94e87048cb13e73cfd3465a76995a2c157fc4294"
+    },
+    {
+      "path": "attachments/statement-sections/english/example.01.a",
+      "size": 28,
+      "sha256": "1a604f315fdd15f7d0ad1383397690f9627e1f041400b420668e42afd4987e02"
+    },
+    {
+      "path": "attachments/statement-sections/english/input.tex",
+      "size": 446,
+      "sha256": "c7cb93f8cb14bac5754f6277bdf3c16e609f9bc4e58ab70a96dfe14bcb418c3e"
+    },
+    {
+      "path": "attachments/statement-sections/english/legend.tex",
+      "size": 855,
+      "sha256": "8e69425180408f19e0f16c4a97ab01c9376c3437c8ae311411f2364098fcd811"
+    },
+    {
+      "path": "attachments/statement-sections/english/name.tex",
+      "size": 20,
+      "sha256": "32f1e8209e0ade34b8ccfe77341cf295d6d7ea221a819dbeab98f2a7d56917bf"
+    },
+    {
+      "path": "attachments/statement-sections/english/notes.tex",
+      "size": 575,
+      "sha256": "b98597b6943227fdb6d5b0d9ad8b70eddff83c044fdde3d89608521f385e3036"
+    },
+    {
+      "path": "attachments/statement-sections/english/output.tex",
+      "size": 460,
+      "sha256": "25b98820bbdd72bf497c1940d11c109ae6de00ff28129629f85d9a79609e6d9b"
+    },
+    {
+      "path": "attachments/statements/.html/english/problem-statement.css",
+      "size": 7782,
+      "sha256": "e482d2272ecaf92ecbcdb67bebb19000f07d01d93ce1d9288e6e631d063b63e1"
+    },
+    {
+      "path": "attachments/statements/.html/english/problem.html",
+      "size": 5081,
+      "sha256": "ae582b33bad9ce9792e8184300447e6b70b9311c047d4aa628fe1d476dfaf967"
+    },
+    {
+      "path": "attachments/statements/.pdf/english/problem.pdf",
+      "size": 152910,
+      "sha256": "e41855cce9a766d102f86f6203dccf838c8130d576cc39e84828d9da05eba0bd"
+    },
+    {
+      "path": "attachments/statements/english/example.01",
+      "size": 28,
+      "sha256": "a4d4fbe074d9f1602d28c4fe4a7510c948341db286201624d183a20c99e1e1ea"
+    },
+    {
+      "path": "attachments/statements/english/example.01.a",
+      "size": 24,
+      "sha256": "9f64575bc840697ac325c9ae1fccc402c879d5a4f3f549281e6fb29e069ad669"
+    },
+    {
+      "path": "attachments/statements/english/example.01.mu",
+      "size": 51,
+      "sha256": "23aaeed7acb90475ba77a7bc05826512e58fecae07f47c04dda5b7026ea2d472"
+    },
+    {
+      "path": "attachments/statements/english/problem-properties.json",
+      "size": 2943,
+      "sha256": "e79916cfae3be795fece39e021bb6ed951f3785365b67abebdada5f5b6f891d0"
+    },
+    {
+      "path": "attachments/statements/english/problem.tex",
+      "size": 2598,
+      "sha256": "772755bd88b2feff145f32006367f934fe0ad75aaf1cd0504f22ffd1584fba9b"
+    },
+    {
+      "path": "checker.cpp",
+      "size": 4349,
+      "sha256": "aeb3dd99b840bea358148c5d823ae357b11a5c9d76e3a2edbf38d995f1b3842a"
+    },
+    {
+      "path": "data.zip",
+      "size": 112906189,
+      "sha256": "199c1be525be9a14ffcbd8d605482f72562be20ab50071aadeeafcc3cfab98d6"
+    },
+    {
+      "path": "init.yml",
+      "size": 4104,
+      "sha256": "d93d5a7542930e12724d98025ec356ec985adfddb985347def44da278ecd1702"
+    },
+    {
+      "path": "sidecar/samples/1.in",
+      "size": 28,
+      "sha256": "a4d4fbe074d9f1602d28c4fe4a7510c948341db286201624d183a20c99e1e1ea"
+    },
+    {
+      "path": "sidecar/samples/1.out",
+      "size": 26,
+      "sha256": "92ef40a41a50e5882e4d21ff4fa25028ffdfe704272a7916d8106afde65b25c9"
+    },
+    {
+      "path": "testlib.h",
+      "size": 204197,
+      "sha256": "5c8f8bc7ee655ec4ed71e4ce34fa06c4dfab0b35e9ca8effdfd5440dcdec8991"
+    }
+  ],
+  "worker_config_sha256": "9fd385f23ff64797795f8b8fae0bd6d44fb658a915fa4366685923a8f119fb02"
+}

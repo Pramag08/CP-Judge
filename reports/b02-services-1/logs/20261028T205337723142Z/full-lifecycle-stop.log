@@ -1,0 +1,9 @@
+b02-stop: running
+b02-stop: exit 0
+stop-cpjudge-b01-site: running
+stop-cpjudge-b01-site: exit 0
+stop-cpjudge-b01-redis: running
+stop-cpjudge-b01-redis: exit 0
+stop-cpjudge-b01-db: running
+stop-cpjudge-b01-db: exit 0
+B01 containers stopped; development database volume preserved.

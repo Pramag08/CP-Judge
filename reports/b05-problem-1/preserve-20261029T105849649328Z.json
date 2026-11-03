@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "all_preexisting_rows_exact": true,
+  "models_including_relations": 88,
+  "accounts_passwords_sessions_existing_problems_submissions_worker_auth_unchanged": true,
+  "only_new_rows": {
+    "judge.problem_allowed_languages": 1,
+    "judge.judge_problems": 1,
+    "judge.problem": 1,
+    "judge.problemgroup": 1
+  },
+  "judging": "NOT TESTED"
+}

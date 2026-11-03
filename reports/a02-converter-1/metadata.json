@@ -1,0 +1,84 @@
+{
+  "groups": {
+    "status": "PASS",
+    "judging": "NOT TESTED",
+    "checker_standard": "CPP17",
+    "probe_standard": "CPP20",
+    "time_seconds": 0.5,
+    "memory_KiB": 65536,
+    "active_cases": 3,
+    "case_order_and_membership": "PASS",
+    "checker_type": "bridged/testlib",
+    "exported_files_verified": 7,
+    "exported_zip_matches_installed_bytes": "PASS",
+    "group_points": [
+      30.0,
+      50.0,
+      20.0
+    ],
+    "group_dependencies": [
+      [],
+      [
+        1
+      ],
+      []
+    ],
+    "scoring": "complete-group",
+    "synthetic_matches_previous_fixture_hash": true,
+    "package_code_execution": "NOT RUN"
+  },
+  "multiple": {
+    "status": "PASS",
+    "judging": "NOT TESTED",
+    "checker_standard": "CPP17",
+    "probe_standard": "CPP20",
+    "time_seconds": 0.5,
+    "memory_KiB": 65536,
+    "active_cases": 3,
+    "case_order_and_membership": "PASS",
+    "checker_type": "bridged/testlib",
+    "exported_files_verified": 7,
+    "exported_zip_matches_installed_bytes": "PASS",
+    "group_points": [],
+    "group_dependencies": [],
+    "scoring": "one point per case",
+    "synthetic_matches_previous_fixture_hash": true,
+    "package_code_execution": "NOT RUN"
+  },
+  "tokens": {
+    "status": "PASS",
+    "judging": "NOT TESTED",
+    "checker_standard": "CPP17",
+    "probe_standard": "CPP20",
+    "time_seconds": 0.5,
+    "memory_KiB": 65536,
+    "active_cases": 3,
+    "case_order_and_membership": "PASS",
+    "checker_type": "bridged/testlib",
+    "exported_files_verified": 7,
+    "exported_zip_matches_installed_bytes": "PASS",
+    "group_points": [],
+    "group_dependencies": [],
+    "scoring": "one point per case",
+    "synthetic_matches_previous_fixture_hash": true,
+    "package_code_execution": "NOT RUN"
+  },
+  "gaming-grid": {
+    "status": "PASS",
+    "judging": "NOT TESTED",
+    "checker_standard": "CPP23",
+    "probe_standard": "CPP23",
+    "time_seconds": 2.0,
+    "memory_KiB": 262144,
+    "active_cases": 103,
+    "case_order_and_membership": "PASS",
+    "checker_type": "bridged/testlib",
+    "exported_files_verified": 21,
+    "exported_zip_matches_installed_bytes": "PASS",
+    "group_points": [],
+    "group_dependencies": [],
+    "scoring": "one point per case",
+    "synthetic_matches_previous_fixture_hash": null,
+    "package_code_execution": "NOT RUN"
+  }
+}

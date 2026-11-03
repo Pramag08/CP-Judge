@@ -1,0 +1,75 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+56 objects imported automatically (use -v 2 for details).
+
+{
+  "languages": [
+    {
+      "id": 6,
+      "key": "CPP11",
+      "name": "C++11",
+      "short_name": "C++11",
+      "common_name": "C++",
+      "ace": "c_cpp",
+      "pygments": "cpp",
+      "template": "",
+      "info": "",
+      "description": "Compile options: `g++ -std=c++11 -Wall -DONLINE_JUDGE -O2 -lm -fmax-errors=5 -march=native -s`",
+      "extension": "cpp"
+    },
+    {
+      "id": 13,
+      "key": "CPP14",
+      "name": "C++14",
+      "short_name": "C++14",
+      "common_name": "C++",
+      "ace": "c_cpp",
+      "pygments": "cpp",
+      "template": "",
+      "info": "",
+      "description": "Compile options: `g++ -std=c++14 -Wall -DONLINE_JUDGE -O2 -lm -fmax-errors=5 -march=native -s`",
+      "extension": "cpp"
+    },
+    {
+      "id": 15,
+      "key": "CPP17",
+      "name": "C++17",
+      "short_name": "C++17",
+      "common_name": "C++",
+      "ace": "c_cpp",
+      "pygments": "cpp",
+      "template": "",
+      "info": "",
+      "description": "Compile options: `g++ -std=c++17 -Wall -DONLINE_JUDGE -O2 -lm -fmax-errors=5 -march=native -s`",
+      "extension": "cpp"
+    },
+    {
+      "id": 18,
+      "key": "CPP20",
+      "name": "C++20",
+      "short_name": "C++20",
+      "common_name": "C++",
+      "ace": "c_cpp",
+      "pygments": "cpp",
+      "template": "",
+      "info": "",
+      "description": "Compile options: `g++ -std=c++20 -Wall -DONLINE_JUDGE -O2 -lm -fmax-errors=5 -march=native -s`",
+      "extension": "cpp"
+    },
+    {
+      "id": 19,
+      "key": "CPP23",
+      "name": "GNU C++23",
+      "short_name": "C++23",
+      "common_name": "C++",
+      "ace": "c_cpp",
+      "pygments": "cpp",
+      "template": "",
+      "info": "",
+      "description": "",
+      "extension": "cpp"
+    }
+  ],
+  "judges": 0,
+  "runtime_versions": 0
+}

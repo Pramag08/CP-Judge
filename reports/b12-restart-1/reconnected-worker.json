@@ -1,0 +1,12 @@
+{
+  "online": true,
+  "executors": [
+    "CPP11",
+    "CPP14",
+    "CPP17",
+    "CPP20",
+    "CPP23"
+  ],
+  "start_time": "2026-10-29T14:44:53.506814+00:00",
+  "installed_problem_advertised": true
+}

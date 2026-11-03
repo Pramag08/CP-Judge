@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "actual_C05_HTTP_upload_reached_strict_extractor": true,
+  "non_Polygon_fixture_rejected_safely": true,
+  "original_and_other_jobs_preserved": true,
+  "record_unchanged": true,
+  "conversion_started": false,
+  "new_website_extraction_action": false
+}

@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "submission_id": 16,
+  "verdict": "AC",
+  "case_count": 103,
+  "native_packets": 1,
+  "callback_cases": 103,
+  "points": 103.0,
+  "case_points": 103.0,
+  "time_limit": 2,
+  "memory_kib": 262144,
+  "authenticated_worker_reconnected_before_dispatch": true,
+  "compiler_warning_count": 3,
+  "mismatch_pending": {
+    "id": 16,
+    "status": "QU",
+    "result": null,
+    "case_count": 0,
+    "worker_online": true
+  },
+  "disconnected_pending": {
+    "id": 16,
+    "status": "QU",
+    "result": null,
+    "case_count": 0,
+    "worker_online": false
+  },
+  "reconnected_mismatch_pending": {
+    "id": 16,
+    "status": "QU",
+    "result": null,
+    "case_count": 0,
+    "worker_online": true
+  },
+  "browser_native_form_posts": 1,
+  "browser_verdict": "AC",
+  "browser_case_count": 103,
+  "all_browser_polls_authorized": true,
+  "real_problem_bytes_modified": false,
+  "other_languages_or_new_versions_judged": false
+}

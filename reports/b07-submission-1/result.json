@@ -1,0 +1,866 @@
+{
+  "submission_id": 1,
+  "native_code": "pv000000000000000001",
+  "status": "D",
+  "verdict": "AC",
+  "language": "CPP23",
+  "judge": "cpjudge-local-worker",
+  "source_sha256": "941da5783b456b47e221955bc1e462ac4496c49ad1131a0048996ae78b7d1fa7",
+  "source_canonical_sha256": "09939d650a08b95aa4500e8b026bbbe9cad1edd3b8dfce2e8fd24587e7cd0042",
+  "case_points": 103.0,
+  "case_total": 103.0,
+  "points": 103.0,
+  "time_seconds_sum": 1.9311500430000001,
+  "peak_memory_KiB": 10004.0,
+  "cases": [
+    {
+      "case": 1,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.005533756,
+      "memory": 3776.0
+    },
+    {
+      "case": 2,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019160457,
+      "memory": 4164.0
+    },
+    {
+      "case": 3,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.014695595,
+      "memory": 4156.0
+    },
+    {
+      "case": 4,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017055507,
+      "memory": 4316.0
+    },
+    {
+      "case": 5,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016729957,
+      "memory": 4248.0
+    },
+    {
+      "case": 6,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017519934,
+      "memory": 4356.0
+    },
+    {
+      "case": 7,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017139535,
+      "memory": 4008.0
+    },
+    {
+      "case": 8,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017230977,
+      "memory": 4376.0
+    },
+    {
+      "case": 9,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017498374,
+      "memory": 4436.0
+    },
+    {
+      "case": 10,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.014871389,
+      "memory": 4364.0
+    },
+    {
+      "case": 11,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.018775121,
+      "memory": 4148.0
+    },
+    {
+      "case": 12,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019351372,
+      "memory": 4464.0
+    },
+    {
+      "case": 13,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019972511,
+      "memory": 4116.0
+    },
+    {
+      "case": 14,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016099227,
+      "memory": 3964.0
+    },
+    {
+      "case": 15,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017194359,
+      "memory": 4184.0
+    },
+    {
+      "case": 16,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019816682,
+      "memory": 3924.0
+    },
+    {
+      "case": 17,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016325604,
+      "memory": 4344.0
+    },
+    {
+      "case": 18,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019570107,
+      "memory": 4480.0
+    },
+    {
+      "case": 19,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.021980323,
+      "memory": 4052.0
+    },
+    {
+      "case": 20,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.01932456,
+      "memory": 4084.0
+    },
+    {
+      "case": 21,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017511652,
+      "memory": 4020.0
+    },
+    {
+      "case": 22,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.021032397,
+      "memory": 3976.0
+    },
+    {
+      "case": 23,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017101123,
+      "memory": 4080.0
+    },
+    {
+      "case": 24,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019191167,
+      "memory": 4080.0
+    },
+    {
+      "case": 25,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019194344,
+      "memory": 4068.0
+    },
+    {
+      "case": 26,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.022053351,
+      "memory": 4532.0
+    },
+    {
+      "case": 27,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.023354494,
+      "memory": 4440.0
+    },
+    {
+      "case": 28,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016374232,
+      "memory": 4080.0
+    },
+    {
+      "case": 29,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017815602,
+      "memory": 3988.0
+    },
+    {
+      "case": 30,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.023388391,
+      "memory": 4188.0
+    },
+    {
+      "case": 31,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.023133355,
+      "memory": 3932.0
+    },
+    {
+      "case": 32,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.021079271,
+      "memory": 4084.0
+    },
+    {
+      "case": 33,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.022178575,
+      "memory": 4052.0
+    },
+    {
+      "case": 34,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.023128316,
+      "memory": 4096.0
+    },
+    {
+      "case": 35,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016652396,
+      "memory": 4124.0
+    },
+    {
+      "case": 36,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.020475237,
+      "memory": 3904.0
+    },
+    {
+      "case": 37,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.018775405,
+      "memory": 3948.0
+    },
+    {
+      "case": 38,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017082126,
+      "memory": 3960.0
+    },
+    {
+      "case": 39,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.015572157,
+      "memory": 4028.0
+    },
+    {
+      "case": 40,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019426957,
+      "memory": 4096.0
+    },
+    {
+      "case": 41,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.012162588,
+      "memory": 3964.0
+    },
+    {
+      "case": 42,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.012120946,
+      "memory": 3812.0
+    },
+    {
+      "case": 43,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.012880525,
+      "memory": 3760.0
+    },
+    {
+      "case": 44,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016207225,
+      "memory": 3764.0
+    },
+    {
+      "case": 45,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.013194537,
+      "memory": 3864.0
+    },
+    {
+      "case": 46,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017112201,
+      "memory": 3856.0
+    },
+    {
+      "case": 47,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.020245079,
+      "memory": 3836.0
+    },
+    {
+      "case": 48,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.014149532,
+      "memory": 3776.0
+    },
+    {
+      "case": 49,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.014262999,
+      "memory": 3912.0
+    },
+    {
+      "case": 50,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.014619452,
+      "memory": 3776.0
+    },
+    {
+      "case": 51,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017327992,
+      "memory": 3876.0
+    },
+    {
+      "case": 52,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.012457368,
+      "memory": 3924.0
+    },
+    {
+      "case": 53,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.018015839,
+      "memory": 3852.0
+    },
+    {
+      "case": 54,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.014495173,
+      "memory": 3756.0
+    },
+    {
+      "case": 55,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.013433534,
+      "memory": 3872.0
+    },
+    {
+      "case": 56,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.011873927,
+      "memory": 3800.0
+    },
+    {
+      "case": 57,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.011287548,
+      "memory": 3844.0
+    },
+    {
+      "case": 58,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.012581071,
+      "memory": 3864.0
+    },
+    {
+      "case": 59,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.015322766,
+      "memory": 3892.0
+    },
+    {
+      "case": 60,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.012951447,
+      "memory": 3832.0
+    },
+    {
+      "case": 61,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.024094646,
+      "memory": 3912.0
+    },
+    {
+      "case": 62,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.022118711,
+      "memory": 3984.0
+    },
+    {
+      "case": 63,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.02826624,
+      "memory": 3880.0
+    },
+    {
+      "case": 64,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.022496061,
+      "memory": 4036.0
+    },
+    {
+      "case": 65,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.020607086,
+      "memory": 3908.0
+    },
+    {
+      "case": 66,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019819013,
+      "memory": 4036.0
+    },
+    {
+      "case": 67,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.026775436,
+      "memory": 4044.0
+    },
+    {
+      "case": 68,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.022139591,
+      "memory": 4096.0
+    },
+    {
+      "case": 69,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.025519414,
+      "memory": 4100.0
+    },
+    {
+      "case": 70,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.024705432,
+      "memory": 3972.0
+    },
+    {
+      "case": 71,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.02670334,
+      "memory": 3996.0
+    },
+    {
+      "case": 72,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.027428703,
+      "memory": 3992.0
+    },
+    {
+      "case": 73,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.024407156,
+      "memory": 3916.0
+    },
+    {
+      "case": 74,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.021929147,
+      "memory": 3776.0
+    },
+    {
+      "case": 75,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.028180526,
+      "memory": 3988.0
+    },
+    {
+      "case": 76,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.027052213,
+      "memory": 3908.0
+    },
+    {
+      "case": 77,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.023694427,
+      "memory": 4012.0
+    },
+    {
+      "case": 78,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.021990222,
+      "memory": 3956.0
+    },
+    {
+      "case": 79,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.020815985,
+      "memory": 3952.0
+    },
+    {
+      "case": 80,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.025941398,
+      "memory": 3948.0
+    },
+    {
+      "case": 81,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.018905359,
+      "memory": 4116.0
+    },
+    {
+      "case": 82,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.021017152,
+      "memory": 4552.0
+    },
+    {
+      "case": 83,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.020754826,
+      "memory": 4684.0
+    },
+    {
+      "case": 84,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016915111,
+      "memory": 4548.0
+    },
+    {
+      "case": 85,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016699653,
+      "memory": 4448.0
+    },
+    {
+      "case": 86,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.022418212,
+      "memory": 4764.0
+    },
+    {
+      "case": 87,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.018795553,
+      "memory": 4292.0
+    },
+    {
+      "case": 88,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019116581,
+      "memory": 4528.0
+    },
+    {
+      "case": 89,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016352688,
+      "memory": 4356.0
+    },
+    {
+      "case": 90,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016775765,
+      "memory": 4300.0
+    },
+    {
+      "case": 91,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.020629906,
+      "memory": 6564.0
+    },
+    {
+      "case": 92,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.022818129,
+      "memory": 6448.0
+    },
+    {
+      "case": 93,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017605747,
+      "memory": 7800.0
+    },
+    {
+      "case": 94,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.022900662,
+      "memory": 9752.0
+    },
+    {
+      "case": 95,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.017823266,
+      "memory": 5672.0
+    },
+    {
+      "case": 96,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.015838121,
+      "memory": 6448.0
+    },
+    {
+      "case": 97,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019269,
+      "memory": 9788.0
+    },
+    {
+      "case": 98,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019739286,
+      "memory": 9612.0
+    },
+    {
+      "case": 99,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.021323697,
+      "memory": 5460.0
+    },
+    {
+      "case": 100,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.016269417,
+      "memory": 6552.0
+    },
+    {
+      "case": 101,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.014624634,
+      "memory": 4016.0
+    },
+    {
+      "case": 102,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.019211117,
+      "memory": 10004.0
+    },
+    {
+      "case": 103,
+      "status": "AC",
+      "points": 1.0,
+      "total": 1.0,
+      "time": 0.00359377,
+      "memory": 3756.0
+    }
+  ],
+  "problem_time_seconds": 2.0,
+  "problem_memory_KiB": 262144,
+  "language_limits": 0,
+  "contest_attached": false,
+  "pretests_only": false,
+  "error_present": true,
+  "compiler_message_sha256": "4c2c6272bea8ca6092ffd55409c2fadc252659a155883dd26f0d63354105f745",
+  "compiler_warning_count": 3,
+  "compiler_message_lines": 10,
+  "acceptance": "PASS",
+  "actual_sent_request": {
+    "name": "submission-request",
+    "submission-id": 1,
+    "problem-id": "pv000000000000000001",
+    "language": "CPP23",
+    "time-limit": 2.0,
+    "memory-limit": 262144,
+    "short-circuit": false,
+    "direction": "sent",
+    "observed_utc": "2026-10-29T11:57:50.268134+00:00",
+    "source_sha256": "941da5783b456b47e221955bc1e462ac4496c49ad1131a0048996ae78b7d1fa7"
+  },
+  "native_callback_cases": 103,
+  "browser_display_agrees": true,
+  "contest_standings": "NOT TESTED"
+}

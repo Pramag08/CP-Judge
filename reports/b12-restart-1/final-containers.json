@@ -1,0 +1,162 @@
+{
+  "cpjudge-b01-site": {
+    "id": "0ed6b69655af8484a3a15b1a5121a0856d68be53be0ad557e01cf6c513fe9408",
+    "image": "sha256:1151551384467c7dabb452dabfd52d05c94162e7203e1734f01b5b817db1edaf",
+    "running": true,
+    "started": "2026-10-29T14:44:43.653340704Z",
+    "exit_code": 0,
+    "oom": false,
+    "configuration_sha256": "046940713216e7d5a041075d7330db1adfa8e1ecf330cb5e67111c0c99edac64",
+    "named_volumes": []
+  },
+  "cpjudge-b01-db": {
+    "id": "76c31e1348a0bf58f07dccae27a8d6320b2d05cd5edd2ed11d06407ca9cda1d2",
+    "image": "sha256:d1891ede5a559f1086f55053bb8cc1569b0298338c4d72d71725a7f74f6ba620",
+    "running": true,
+    "started": "2026-10-29T14:44:43.233239782Z",
+    "exit_code": 0,
+    "oom": false,
+    "configuration_sha256": "0a85c1918e1e01bd8dc1367057cf45be604b013c60f1f5f26404f529e454b03f",
+    "named_volumes": [
+      "cpjudge-b01-data"
+    ]
+  },
+  "cpjudge-b01-redis": {
+    "id": "3b9700a5a49b6e2f1f29932d7bfe52b65b658092024313ca3576850d44d5c7a4",
+    "image": "sha256:6ba19c50b56777f5c11c58eff8ddb69d0d5f27ba131cffb63f180ccfd43c66af",
+    "running": true,
+    "started": "2026-10-29T14:44:43.446216046Z",
+    "exit_code": 0,
+    "oom": false,
+    "configuration_sha256": "06e008ba47a740346b8ddc8215422a53494a2b30683bb82d4216a55e77bf9400",
+    "named_volumes": []
+  },
+  "cpjudge-b03-worker": {
+    "id": "98a58e7fab960d34a048022d2b2a770714a7b37252c1eadde4cdbaf50f7a4a1e",
+    "image": "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+    "running": true,
+    "started": "2026-10-29T14:44:50.807228976Z",
+    "exit_code": 0,
+    "oom": false,
+    "configuration_sha256": "2fcd7f1672fd85ec25e5b3f770c9db81027d66187ded621928e225b14d8c575f",
+    "named_volumes": [],
+    "immutable_files": [
+      {
+        "path": "attachments/statement-sections/english/example.01",
+        "size": 35,
+        "sha256": "04b5256c2907192bb33562bc94e87048cb13e73cfd3465a76995a2c157fc4294"
+      },
+      {
+        "path": "attachments/statement-sections/english/example.01.a",
+        "size": 28,
+        "sha256": "1a604f315fdd15f7d0ad1383397690f9627e1f041400b420668e42afd4987e02"
+      },
+      {
+        "path": "attachments/statement-sections/english/input.tex",
+        "size": 446,
+        "sha256": "c7cb93f8cb14bac5754f6277bdf3c16e609f9bc4e58ab70a96dfe14bcb418c3e"
+      },
+      {
+        "path": "attachments/statement-sections/english/legend.tex",
+        "size": 855,
+        "sha256": "8e69425180408f19e0f16c4a97ab01c9376c3437c8ae311411f2364098fcd811"
+      },
+      {
+        "path": "attachments/statement-sections/english/name.tex",
+        "size": 20,
+        "sha256": "32f1e8209e0ade34b8ccfe77341cf295d6d7ea221a819dbeab98f2a7d56917bf"
+      },
+      {
+        "path": "attachments/statement-sections/english/notes.tex",
+        "size": 575,
+        "sha256": "b98597b6943227fdb6d5b0d9ad8b70eddff83c044fdde3d89608521f385e3036"
+      },
+      {
+        "path": "attachments/statement-sections/english/output.tex",
+        "size": 460,
+        "sha256": "25b98820bbdd72bf497c1940d11c109ae6de00ff28129629f85d9a79609e6d9b"
+      },
+      {
+        "path": "attachments/statements/.html/english/problem-statement.css",
+        "size": 7782,
+        "sha256": "e482d2272ecaf92ecbcdb67bebb19000f07d01d93ce1d9288e6e631d063b63e1"
+      },
+      {
+        "path": "attachments/statements/.html/english/problem.html",
+        "size": 5081,
+        "sha256": "ae582b33bad9ce9792e8184300447e6b70b9311c047d4aa628fe1d476dfaf967"
+      },
+      {
+        "path": "attachments/statements/.pdf/english/problem.pdf",
+        "size": 152910,
+        "sha256": "e41855cce9a766d102f86f6203dccf838c8130d576cc39e84828d9da05eba0bd"
+      },
+      {
+        "path": "attachments/statements/english/example.01",
+        "size": 28,
+        "sha256": "a4d4fbe074d9f1602d28c4fe4a7510c948341db286201624d183a20c99e1e1ea"
+      },
+      {
+        "path": "attachments/statements/english/example.01.a",
+        "size": 24,
+        "sha256": "9f64575bc840697ac325c9ae1fccc402c879d5a4f3f549281e6fb29e069ad669"
+      },
+      {
+        "path": "attachments/statements/english/example.01.mu",
+        "size": 51,
+        "sha256": "23aaeed7acb90475ba77a7bc05826512e58fecae07f47c04dda5b7026ea2d472"
+      },
+      {
+        "path": "attachments/statements/english/problem-properties.json",
+        "size": 2943,
+        "sha256": "e79916cfae3be795fece39e021bb6ed951f3785365b67abebdada5f5b6f891d0"
+      },
+      {
+        "path": "attachments/statements/english/problem.tex",
+        "size": 2598,
+        "sha256": "772755bd88b2feff145f32006367f934fe0ad75aaf1cd0504f22ffd1584fba9b"
+      },
+      {
+        "path": "checker.cpp",
+        "size": 4349,
+        "sha256": "aeb3dd99b840bea358148c5d823ae357b11a5c9d76e3a2edbf38d995f1b3842a"
+      },
+      {
+        "path": "data.zip",
+        "size": 112906189,
+        "sha256": "199c1be525be9a14ffcbd8d605482f72562be20ab50071aadeeafcc3cfab98d6"
+      },
+      {
+        "path": "init.yml",
+        "size": 4104,
+        "sha256": "d93d5a7542930e12724d98025ec356ec985adfddb985347def44da278ecd1702"
+      },
+      {
+        "path": "sidecar/samples/1.in",
+        "size": 28,
+        "sha256": "a4d4fbe074d9f1602d28c4fe4a7510c948341db286201624d183a20c99e1e1ea"
+      },
+      {
+        "path": "sidecar/samples/1.out",
+        "size": 26,
+        "sha256": "92ef40a41a50e5882e4d21ff4fa25028ffdfe704272a7916d8106afde65b25c9"
+      },
+      {
+        "path": "testlib.h",
+        "size": 204197,
+        "sha256": "5c8f8bc7ee655ec4ed71e4ce34fa06c4dfab0b35e9ca8effdfd5440dcdec8991"
+      }
+    ],
+    "worker_config_sha256": "9fd385f23ff64797795f8b8fae0bd6d44fb658a915fa4366685923a8f119fb02"
+  },
+  "cpjudge-b02-events": {
+    "id": "92676fd4dd6c3f515c26d671c28bcdd997308f99e8a486fea8d1a4136b77412a",
+    "image": "sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+    "running": true,
+    "started": "2026-10-29T14:44:47.284956509Z",
+    "exit_code": 0,
+    "oom": false,
+    "configuration_sha256": "15ced3658531712d7f4f43a78868d1b43e03b54e679e9580f782229e3b15763c",
+    "named_volumes": []
+  }
+}

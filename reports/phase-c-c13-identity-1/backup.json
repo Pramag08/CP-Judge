@@ -1,0 +1,6 @@
+{
+  "full_private_gzip_readback": true,
+  "c11_historical_acceptance_inspected": true,
+  "c11_current_configuration_online_worker": true,
+  "restore_tested": false
+}

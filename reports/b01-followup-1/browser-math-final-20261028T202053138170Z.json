@@ -1,0 +1,41 @@
+{
+  "scope": "final native profile and synthetic statement/preview math; no import/judging",
+  "checks": {
+    "profile": {
+      "status": "PASS",
+      "equations": 3,
+      "duplicate_equations": false,
+      "color_extension_correct": false
+    },
+    "statement": {
+      "status": "PASS",
+      "equations": 3,
+      "duplicate_equations": false,
+      "color_extension_correct": true
+    },
+    "preview": {
+      "status": "PASS",
+      "equations": 3,
+      "duplicate_equations": false,
+      "color_extension_correct": true
+    }
+  },
+  "status": "PASS",
+  "mathjax_version": "3.2.2",
+  "page_error_count": 0,
+  "local_math_assets": {
+    "/static/vendor/mathjax-3.2.2/es5/tex-chtml.js": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/input/tex/extensions/color.js": 200
+  },
+  "external_math_requests": 0,
+  "blocked_decoration_hosts": [
+    "www.gravatar.com"
+  ],
+  "actual_import_judging_standings": "NOT TESTED",
+  "private_artifacts": "build/b01-followup-1/browser/20261028T202053138170Z"
+}

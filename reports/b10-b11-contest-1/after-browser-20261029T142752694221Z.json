@@ -1,0 +1,36 @@
+{
+  "standings": [
+    {
+      "username": "b10tmpb",
+      "rank": 1,
+      "solved": 1,
+      "penalty_display": "00:36:01",
+      "problem_cell": "1 (1)\n00:16:01"
+    },
+    {
+      "username": "b10tmpa",
+      "rank": 1,
+      "solved": 1,
+      "penalty_display": "00:36:01",
+      "problem_cell": "1 (1)\n00:16:01"
+    }
+  ],
+  "posts": [
+    {
+      "username": "b10tmpa",
+      "language": "19",
+      "source_sha256": "b03e6bb9c712fbe3461b7165990f462201f33186757393617416210fd2148958",
+      "canonical_sha256": "de5da09b605faeaadd2e7a1ba5d88bdc56cc0b91480ec852d56678848a1665c1",
+      "csrf": true
+    }
+  ],
+  "receipts": [
+    {
+      "id": 11,
+      "label": "wrong",
+      "username": "b10tmpa"
+    }
+  ],
+  "page_errors": [],
+  "raw_evidence": "build/b10-b11-contest-1/after-20261029T142752694221Z"
+}

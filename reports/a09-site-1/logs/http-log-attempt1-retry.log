@@ -1,0 +1,110 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+Performing system checks...
+
+System check identified no issues (51 silenced).
+October 28, 2026 - 16:37:50
+Django version 5.2.18, using settings 'dmoj.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Not Found: /login/
+[28/Oct/2026 16:37:52] "GET /login/ HTTP/1.1" 404 12280
+[28/Oct/2026 16:40:18] "GET /accounts/login/ HTTP/1.1" 200 12259
+[28/Oct/2026 16:40:18] "POST /accounts/login/ HTTP/1.1" 200 12415
+Forbidden (CSRF cookie not set.): /accounts/login/
+[28/Oct/2026 16:40:19] "POST /accounts/login/ HTTP/1.1" 403 2855
+[28/Oct/2026 16:40:19] "GET /static/a09/ace/ace.js HTTP/1.1" 200 479380
+[28/Oct/2026 16:40:19] "GET /static/a09/ace/mode-c_cpp.js HTTP/1.1" 200 12202
+[28/Oct/2026 16:40:19] "GET /static/a09/jquery.min.js HTTP/1.1" 200 87533
+[28/Oct/2026 16:40:19] "GET /static/common.js HTTP/1.1" 200 11320
+[28/Oct/2026 16:40:19] "GET /static/dark/style.css HTTP/1.1" 200 131224
+[28/Oct/2026 16:40:19] "GET /static/libs/clipboard/tooltip.css HTTP/1.1" 200 3570
+[28/Oct/2026 16:40:19] "GET /static/libs/fontawesome/font-awesome.css HTTP/1.1" 200 28645
+[28/Oct/2026 16:40:19] "GET /static/libs/fontawesome/fontawesome-webfont.woff2 HTTP/1.1" 200 56780
+[28/Oct/2026 16:40:19] "GET /static/libs/jquery-cookie.js HTTP/1.1" 200 3121
+[28/Oct/2026 16:40:19] "GET /static/libs/jquery-taphold.js HTTP/1.1" 200 4665
+[28/Oct/2026 16:40:19] "GET /static/libs/jquery.unveil.js HTTP/1.1" 200 1325
+[28/Oct/2026 16:40:19] "GET /static/libs/moment.js HTTP/1.1" 200 189672
+[28/Oct/2026 16:40:19] "GET /static/libs/select2/select2.css HTTP/1.1" 200 17839
+[28/Oct/2026 16:40:19] "GET /static/libs/select2/select2.js HTTP/1.1" 200 70851
+[28/Oct/2026 16:40:19] "GET /static/style.css HTTP/1.1" 200 128015
+Skipped Pwned Passwords check due to error
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connection.py", line 239, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/socket.py", line 978, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connection.py", line 827, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connection.py", line 246, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='api.pwnedpasswords.com', port=443): Failed to resolve 'api.pwnedpasswords.com' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.pwnedpasswords.com', port=443): Max retries exceeded with url: /range/83977 (Caused by NameResolutionError("HTTPSConnection(host='api.pwnedpasswords.com', port=443): Failed to resolve 'api.pwnedpasswords.com' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/app/judge/utils/pwned.py", line 59, in _get_pwned
+    response = requests.get(
+               ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pwnedpasswords.com', port=443): Max retries exceeded with url: /range/83977 (Caused by NameResolutionError("HTTPSConnection(host='api.pwnedpasswords.com', port=443): Failed to resolve 'api.pwnedpasswords.com' ([Errno -3] Temporary failure in name resolution)"))
+[28/Oct/2026 16:40:19] "POST /accounts/login/ HTTP/1.1" 302 0
+[28/Oct/2026 16:40:19] "GET /user HTTP/1.1" 200 16131
+[28/Oct/2026 16:40:19] "GET /accounts/login/ HTTP/1.1" 302 0
+[28/Oct/2026 16:40:20] "GET / HTTP/1.1" 200 15082
+/app/judge/utils/diggpaginator.py:197: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'judge.models.problem.Problem'> TranslatedProblemQuerySet.
+  super(DiggPaginator, self).__init__(*args, **kwargs)
+[28/Oct/2026 16:40:20] "GET /problems/ HTTP/1.1" 200 19372
+[28/Oct/2026 16:40:20] "GET /contests/ HTTP/1.1" 200 13694
+[28/Oct/2026 16:40:20] "GET /status/ HTTP/1.1" 200 14670
+[28/Oct/2026 16:40:20] "GET /runtimes/ HTTP/1.1" 200 12528

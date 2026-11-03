@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "focused_native_tests": 25,
+  "focused_native_breakdown": {
+    "C10": 20,
+    "C09": 3,
+    "session_regressions": 2
+  },
+  "skips": 0,
+  "existing_installer_unit_tests": {
+    "command": "python3 -B -m unittest discover -s tests -p test_site_problem_install.py -v",
+    "exit_status": 0,
+    "passed": 6
+  },
+  "judging": "NOT RUN",
+  "final_native_test_record": {
+    "name": "focused-c10-publication-and-c09-regressions",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.c10_tests.PublicationTests",
+      "cpjudge.integration_tests.NativeIntegrationTests.test_ajax_shortcircuit_and_sources_use_current_session_and_scope",
+      "cpjudge.integration_tests.NativeIntegrationTests.test_events_anonymous_cross_scope_and_replaced_session",
+      "cpjudge.c09_tests.StatementTests.test_render_sample_lines_math_asset_headers_and_no_raw_data",
+      "cpjudge.c09_tests.StatementTests.test_removals_reported_and_no_css_urls_events_or_active_dom",
+      "cpjudge.c09_tests.StatementTests.test_logged_out_participant_unrelated_author_and_revocation_asset_denials",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c10-1/20261029T200347414116Z-focused-c10-publication-and-c09-regressions.log"
+  },
+  "source_sha256": {
+    "deploy/phase-c/cpjudge/models.py": "aa6df94f8e7743b711d55b51098329cbbfc91ac15ca9c735102a2bfc9fd10c14",
+    "deploy/phase-c/cpjudge/sessions.py": "cde0f760ea4bc3eeddc276c20b72f45b93b7bacc576142a17a4650be8ca2502b",
+    "deploy/phase-c/cpjudge/publication.py": "e096165834fd86d1ed10251e8252148638c0ccaff9a8401d0072acdf7d4db25e",
+    "deploy/phase-c/cpjudge/native.py": "49e269d51de7a5e3da0f9e3cb69d60e858aa0b842780a2fa2276027ef729e997",
+    "deploy/phase-c/cpjudge/urls.py": "ccd1b0f65c5871c6a2cb650e8572442e72f22101d3fcd9c11bf1d3eca3caab0f",
+    "deploy/phase-c/cpjudge/views.py": "5393185b00cc8f9af7fd33fc62adca89320489f053a503ce1adfe031fb384b54",
+    "deploy/phase-c/cpjudge/c10_tests.py": "5a508e2090a2cec8cb39fdf518dabe6e0272c573e0734052346871cca746bbbe",
+    "deploy/phase-c/cpjudge/migrations/0006_problemversion.py": "e23f3244d9726a9f696e374b7ad0a6e856fead53f98872dc3526fc19b82402bf",
+    "deploy/phase-c/cpjudge/management/commands/recover_publications.py": "0f87d0b9c8fad76fabf3f2fa1cb74f5a8cd12aeff40e585e3895d5c43fe6da94",
+    "deploy/phase-c/cpjudge/templates/cpjudge/import_confirm.html": "0abf15c115cc24034cb773a5780878a5cfba71cad971fef686ab4fdd1a148d0f",
+    "deploy/phase-c/cpjudge/templates/cpjudge/publication_error.html": "9a0088e600fa15c8c12667e4360e280067800b7bcf7de89afa989411d9b2038b",
+    "tools/site_problem.py": "2ab8955b2e14fcacb7ad8cddf6bd91c6f5905b3d453f8a227b40b797e568ede3",
+    "deploy/site-local/imported_statement_filter.py": "d39e4fae80428ccbc8e327e0ccca38e0a8e99fd3fdfac96f57a306dddcdb5aa7",
+    "deploy/phase-c/c10_overlay.py": "220cbe2e7a57ec6150683076c523092f7f5a9dee367e4c0b12910c247d3b640b"
+  },
+  "site_pin": "604d60cfd764bc708b04ffd75b715a5398b91f8b",
+  "converter_pin": "41ce3afcedf6c02793b308ba2e6ddb2ea5f82134",
+  "migration": "cpjudge.0006_problemversion",
+  "private_backup": {
+    "path": "build/phase-c-c10-1/20261029T193642028700Z-database.sql.gz",
+    "full_gzip_readback": true,
+    "restore_tested": false
+  },
+  "original_111MiB_archive": "Exceeds unchanged 32MiB upload/128MiB conversion limits; full package NOT VERIFIED by C10."
+}

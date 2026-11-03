@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "contest": "d07local2",
+  "checks": {
+    "browser_prestart_register_withdraw_reregister_idempotent_native_leave_csrf_author_conflict": true,
+    "roster_private_scoped_management": true,
+    "actual_clock_late_registration_and_no_post_start_withdrawal": true,
+    "one_actual_official_browser_ac_and_idempotent_retry": true,
+    "removal_native_direct_assets_submit_poll_denied_other_contest_unaffected": true,
+    "browser_reasoned_removal_then_dq_standings": true
+  },
+  "resume_note": "Prior browser stopped after completed pre-start assertions; exact pre-start registration/withdrawal audits checked. Reused-version access isolated by audited removal from task-owned expired first fixture.",
+  "entry_id": 3,
+  "submission_id": 23
+}

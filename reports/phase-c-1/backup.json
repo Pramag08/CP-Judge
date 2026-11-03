@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "readable_gzip_round_trip": true,
+  "private_backup": "build/phase-c-1/20261029T145920287143Z-database.sql.gz",
+  "restore_test": "NOT RUN"
+}

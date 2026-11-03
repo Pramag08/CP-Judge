@@ -1,0 +1,17 @@
+/work/daemon.js:36
+    followers.each(function (client) {
+              ^
+
+TypeError: followers.each is not a function
+    at messages.post (/work/daemon.js:36:15)
+    at Object.post (/work/daemon.js:122:30)
+    at WebSocket.<anonymous> (/work/daemon.js:145:65)
+    at WebSocket.emit (node:events:519:28)
+    at Receiver.receiverOnMessage (/work/node_modules/ws/lib/websocket.js:1220:20)
+    at Receiver.emit (node:events:519:28)
+    at Receiver.dataMessage (/work/node_modules/ws/lib/receiver.js:596:14)
+    at Receiver.getData (/work/node_modules/ws/lib/receiver.js:496:10)
+    at Receiver.startLoop (/work/node_modules/ws/lib/receiver.js:167:16)
+    at Receiver._write (/work/node_modules/ws/lib/receiver.js:94:10)
+
+Node.js v22.23.4

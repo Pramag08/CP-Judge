@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "name": "secureexam-a09-assets",
+  "dependencies": {
+    "ace-builds": {
+      "version": "1.45.2",
+      "resolved": "https://registry.npmjs.org/ace-builds/-/ace-builds-1.45.2.tgz",
+      "overridden": false
+    },
+    "autoprefixer": {
+      "version": "10.6.2",
+      "resolved": "https://registry.npmjs.org/autoprefixer/-/autoprefixer-10.6.2.tgz",
+      "overridden": false
+    },
+    "jquery": {
+      "version": "3.7.1",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.7.1.tgz",
+      "overridden": false
+    },
+    "postcss-cli": {
+      "version": "12.0.0",
+      "resolved": "https://registry.npmjs.org/postcss-cli/-/postcss-cli-12.0.0.tgz",
+      "overridden": false
+    },
+    "postcss": {
+      "version": "8.5.32",
+      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.32.tgz",
+      "overridden": false
+    },
+    "sass": {
+      "version": "1.106.1",
+      "resolved": "https://registry.npmjs.org/sass/-/sass-1.106.1.tgz",
+      "overridden": false
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "old_model_sets": 68,
+  "old_non_session_rows_checked": 2089,
+  "old_accounts": 10,
+  "all_original_password_hashes_usernames_ids_college_history_roles_and_permissions_preserved": true,
+  "prior_submissions_source_case_rows_contests_standings_and_audits_preserved": true,
+  "only_four_authorized_email_fields_and_canonical_keys_changed": true,
+  "additive_identity_rows_for_previously_unmapped_native_accounts": 3,
+  "four_development_provenance_audits": true,
+  "mailboxes_verified": false,
+  "real_participant_identity_claim": false,
+  "audit_additions": {
+    "email.correct": 4,
+    "email.stage": 1,
+    "email.cutover": 1
+  },
+  "email_only_enabled": true,
+  "canonical_keys": 10,
+  "unresolved": 0,
+  "existing_native_versions_and_integration_receipts_preserved": true,
+  "no_new_judging_or_rejudge": true,
+  "no_password_reset_or_change": true,
+  "admin_actor_1_active": true,
+  "no_active_jobs": true,
+  "normal_login_generations_access_timestamps_liveness_and_fixture_context_restoration_only": true
+}

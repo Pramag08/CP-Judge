@@ -67,7 +67,10 @@ def main():
     for slug in report['conversion']:
         config = yaml.safe_load((problems / slug / 'init.yml').read_text())
         count = sum(len(case['batched']) if 'batched' in case else 1 for case in config['test_cases'])
-        expectations[slug] = {t['label']: t.get('cases', [t.get('expect', 'AC')] * count) for t in config['tests']}
+        expectations[slug] = {
+            t['label']: [t.get('cases', {}).get(i, t.get('expect', 'AC')) for i in range(1, count + 1)]
+            for t in config['tests']
+        }
     report['expected_cases_per_probe'] = {slug: {label: len(cases) for label, cases in probes.items()}
                                           for slug, probes in expectations.items()}
     status = 0

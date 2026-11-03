@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "task": "B05 installation only",
+  "native_code": "pv000000000000000001",
+  "revision": 1,
+  "manifest_digest": "7e7b7ec333912da774b066e821eae4c2cb9cb9426ea3417320352d128b5dcf90",
+  "package_sha256": "260abce9770f2c88cf8c93271cbfcbd6cea3f028c6eda536ad16256731d8a769",
+  "directory_created": false,
+  "problem_created": false,
+  "problem_pk": 1,
+  "all_source_checks": {
+    "status": "PASS",
+    "tests_verified": 103,
+    "statement_assets_verified": 15,
+    "sample_tests_verified": 1,
+    "checker_bytes": "PASS",
+    "limits_and_groups": "PASS (configuration only)",
+    "judging": "NOT TESTED",
+    "source_sha256": "260abce9770f2c88cf8c93271cbfcbd6cea3f028c6eda536ad16256731d8a769"
+  },
+  "native_worker_recognizes_problem": true,
+  "judging": "NOT TESTED"
+}

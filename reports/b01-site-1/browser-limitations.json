@@ -1,0 +1,22 @@
+{
+  "scope": "known native/optional browser limitations; required B01 forms passed",
+  "errors": [
+    {
+      "message": "MathJax.typesetPromise is not a function",
+      "observed_count_first_run": 2,
+      "cause": "profile includes external CDN MathJax; browser intentionally blocked remote assets",
+      "effect": "profile math rendering not verified; no statement/math or offline readiness claim",
+      "resolution": "defer local math renderer assets to statement/frontend task; no MathJax stub"
+    },
+    {
+      "message": "django is not defined",
+      "observed_count_first_run": 2,
+      "cause": "native templates/admin/base_site.html pretitle invokes django.jQuery before a django namespace exists on stock admin login/dashboard",
+      "effect": "custom admin action-link shortcut initialization fails; standard admin index/login and native forms in B01 pass",
+      "resolution": "record separate upstream admin shortcut/media-order follow-up; not part of migration baseline fix"
+    }
+  ],
+  "required_login_logout_admin_denial_flows": "PASS",
+  "javascript_error_free": "NOT CLAIMED",
+  "website_to_judge": "NOT TESTED"
+}

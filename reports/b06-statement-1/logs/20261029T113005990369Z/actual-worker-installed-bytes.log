@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "input_output_pairs": 103,
+  "archive_entries": 206,
+  "all_installed_file_hashes_match": true,
+  "checker_header_samples_assets_exact": true,
+  "ordered_active_cases": 103,
+  "case_points_total": 103,
+  "checker_language": "CPP23",
+  "source_time_ms": 2000,
+  "source_memory_bytes": 268435456,
+  "time_seconds": 2.0,
+  "memory_KiB": 262144,
+  "native_root_unique": true,
+  "reference_source_installed": false,
+  "judging": "NOT TESTED"
+}

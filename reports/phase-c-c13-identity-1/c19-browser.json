@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "checks": {
+    "provisioned_external_without_college_id": true,
+    "first_email_login_no_forced_change": true,
+    "verified_organizer_reset": true,
+    "stale_read_post_polling_rejected": true,
+    "old_password_rejected": true,
+    "reset_email_login_no_forced_change": true,
+    "replacement_revocation": true,
+    "optional_password_change": true,
+    "recovery_contact_only": true,
+    "role_privacy": true
+  }
+}

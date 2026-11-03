@@ -50,8 +50,39 @@ class WrongAnswerProbeTests(unittest.TestCase):
             install(root, 'gaming-grid', reference)
             config = yaml.safe_load((root / 'init.yml').read_text())
             probe = next(t for t in config['tests'] if t['label'] == 'wrong_answer')
-            self.assertEqual(probe['cases'], ['WA', 'AC'])
+            self.assertEqual(probe['cases'], {1: 'WA', 2: 'AC'})
+            self.assertEqual(probe['score_cases'], {1: 0, 2: 1})
             self.assertEqual(probe['feedback'], '')
             source = (root / probe['source']).read_text()
             self.assertIn('"NO\\n"', source)
             self.assertNotIn('-999', source)
+
+    def test_group_expectations_use_numbered_mappings_for_dmoj_config(self):
+        import tempfile
+        from pathlib import Path
+        import yaml
+        from tools.install_judge_tests import install
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / 'init.yml').write_text(yaml.safe_dump({'time_limit': 2, 'memory_limit': 65536}))
+            install(root, 'groups')
+            config = yaml.safe_load((root / 'init.yml').read_text())
+            probe = next(t for t in config['tests'] if t['label'] == 'dependency')
+            self.assertEqual(probe['cases'], {1: 'WA', 2: 'SC', 3: 'AC'})
+            self.assertEqual(probe['score_cases'], {1: 0, 2: 0, 3: 20})
+
+    def test_all_verdict_probes_assert_configured_case_points(self):
+        import tempfile
+        from pathlib import Path
+        import yaml
+        from tools.install_judge_tests import install
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / 'init.yml').write_text(yaml.safe_dump({
+                'time_limit': 2, 'memory_limit': 65536,
+                'test_cases': [{'points': 7}, {'points': 3}]}))
+            install(root, 'multiple')
+            config = yaml.safe_load((root / 'init.yml').read_text())
+            for probe in config['tests']:
+                expected = {1: 7, 2: 3} if probe['expect'] == 'AC' else {1: 0, 2: 0}
+                self.assertEqual(probe['score_cases'], expected, probe['label'])

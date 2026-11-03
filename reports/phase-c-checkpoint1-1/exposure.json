@@ -1,0 +1,15 @@
+{
+  "assessment": "The initial command emitted a full SQL dump into tool output; treat its nonempty sensitive tables as potentially exposed. No values reproduced.",
+  "categories_present": {
+    "account identifiers, names/contact emails and password hashes": true,
+    "profile metadata including access IPs and configured authentication metadata": true,
+    "active session identifiers and signed/serialized session records": true,
+    "worker registration authentication material": true,
+    "private problem statements/metadata and contest/entrant records": true,
+    "submitted solution source, results, compiler diagnostics and case metrics": true,
+    "private case records, including any saved checker feedback and program output": true
+  },
+  "plaintext_account_passwords": "Not stored in auth_user; password hashes were in the dump.",
+  "environment_secrets": "Database/server SECRET_KEY and DB passwords are not included merely by a database dump; no claim that separate environment files were exposed.",
+  "remediation": "The exposed worker key was replaced in the private worker credential/config, bridge registration and native Judge row. A real pinned worker handshake with the old key was rejected; the new key authenticated and reconnected. All 23 stored session rows were deleted and six identity generations incremented; a previously authenticated browser cookie then received 401, while an existing legacy account password still logged in. No account password, college ID, submission, result, sandbox setting or worker image was changed. The old key may remain in access-restricted historical private database backups, which are mode 0600 and ignored. Account password hashes and private data remain in the previously emitted transcript; password rotation is not performed by this authorized remediation. Local file deletion cannot remove an existing Codex transcript. Restrict/remove that transcript through its owning interface where available and assess whether its audience was untrusted; no transcript-removal capability was available to this project task."
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "job_id": 12,
+  "actual_Kombu_connection_refused": true,
+  "safe_failed_attempt": 1,
+  "browser_retry_succeeded_attempt": 2,
+  "project_Redis_not_stopped_or_reconfigured": true
+}

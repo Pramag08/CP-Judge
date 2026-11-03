@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "worker_disconnect_reconnect": true,
+  "native_offline_online_and_website_status": true,
+  "full_stop_start": true,
+  "idempotent_start_same_container_pid": true,
+  "all_services_stopped_between_restart": true,
+  "website_judging": "NOT TESTED"
+}

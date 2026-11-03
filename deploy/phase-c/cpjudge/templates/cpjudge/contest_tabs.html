@@ -1,0 +1,7 @@
+<style>
+    nav.cpj-contest-tabs { position: static; float: none; clear: both; display: flex; flex-wrap: wrap;
+        gap: .4rem 1rem; width: auto; margin: .75rem 0; padding: 0; background: transparent; color: #222; }
+    nav.cpj-contest-tabs a { color: #1767a3; }
+    nav.cpj-contest-tabs a:focus-visible { outline: 3px solid #111; outline-offset: 2px; }
+</style>
+<nav class="cpj-contest-tabs" aria-label="Contest pages"><a href="{{ url('contest_view',contest=contest.key) }}">Problems</a><a href="{{ url('cpj_my_submissions',contest=contest.key) }}">My Submissions</a><a href="{{ url('contest_ranking',contest=contest.key) }}">Standings</a></nav>

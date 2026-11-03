@@ -1,0 +1,13 @@
+{
+  "status": "RUNNING",
+  "local_url": "http://127.0.0.1:8000",
+  "host_login_http_status": 200,
+  "bind_address": "127.0.0.1",
+  "services": [
+    "cpjudge-b01-db",
+    "cpjudge-b01-redis",
+    "cpjudge-b01-site"
+  ],
+  "stop_start_verified": true,
+  "observed_utc": "2026-10-28T19:08:55.383019+00:00"
+}

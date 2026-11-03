@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "models_checked": 64,
+  "existing_rows_checked": 1896,
+  "old_private_files_unchanged": 319,
+  "new_archives": 2,
+  "orphan_new_files": 0,
+  "existing_job_version_attempt_audit_history_unchanged": true,
+  "accounts_passwords_results_preserved": true,
+  "normal_login_access_generation_and_liveness_only": true,
+  "ended_native_contest_pointers_restored": true,
+  "container_identity_configuration_preserved": true
+}

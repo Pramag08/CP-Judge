@@ -1,0 +1,2474 @@
+[
+  {
+    "name": "snapshot-idle-existing-data",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-snapshot-idle-existing-data.log"
+  },
+  {
+    "name": "save-private-baseline",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/c11-before.json",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/before.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-save-private-baseline.log"
+  },
+  {
+    "name": "inspect-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-inspect-cpjudge-b01-site.log"
+  },
+  {
+    "name": "inspect-cpjudge-b03-worker",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-inspect-cpjudge-b03-worker.log"
+  },
+  {
+    "name": "inspect-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-inspect-cpjudge-b01-db.log"
+  },
+  {
+    "name": "inspect-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-inspect-cpjudge-b01-redis.log"
+  },
+  {
+    "name": "private-db-backup",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb-dump --user=root --password=\"$MARIADB_ROOT_PASSWORD\" --single-transaction --routines --events --databases b01"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-private-db-backup.log"
+  },
+  {
+    "name": "snapshot-source-judge_handler.py",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/judge/bridge/judge_handler.py",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/originals/judge/bridge/judge_handler.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-snapshot-source-judge_handler.py.log"
+  },
+  {
+    "name": "snapshot-source-judge_list.py",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/judge/bridge/judge_list.py",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/originals/judge/bridge/judge_list.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-snapshot-source-judge_list.py.log"
+  },
+  {
+    "name": "snapshot-source-status-testcases.html",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/templates/submission/status-testcases.html",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/originals/templates/submission/status-testcases.html"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211226120246Z-snapshot-source-status-testcases.html.log"
+  },
+  {
+    "name": "stage-readiness_wire.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/readiness_wire.py",
+      "cpjudge-b01-site:/app/cpjudge/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211650348780Z-stage-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-bridge_readiness.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/bridge_readiness.py",
+      "cpjudge-b01-site:/app/cpjudge/bridge_readiness.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211650348780Z-stage-bridge_readiness.py.log"
+  },
+  {
+    "name": "stage-c11_tests.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/c11_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211650348780Z-stage-c11_tests.py.log"
+  },
+  {
+    "name": "stage-worker-c11_worker.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_worker.py",
+      "cpjudge-b03-worker:/tmp/c11_worker.py"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-c11-1/20261029T211650348780Z-stage-worker-c11_worker.py.log"
+  },
+  {
+    "name": "stage-readiness_wire.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/readiness_wire.py",
+      "cpjudge-b01-site:/app/cpjudge/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-stage-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-bridge_readiness.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/bridge_readiness.py",
+      "cpjudge-b01-site:/app/cpjudge/bridge_readiness.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-stage-bridge_readiness.py.log"
+  },
+  {
+    "name": "stage-c11_tests.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/c11_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-stage-c11_tests.py.log"
+  },
+  {
+    "name": "stage-worker-c11_worker.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-stage-worker-c11_worker.py.log"
+  },
+  {
+    "name": "stage-worker-readiness_wire.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-stage-worker-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-worker-verifier-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_worker.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-stage-worker-verifier-tests.log"
+  },
+  {
+    "name": "stage-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_overlay.py",
+      "cpjudge-b01-site:/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-stage-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "apply-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-apply-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "worker-runtime-inventory",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -B /tmp/c11_worker.py --inventory"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-worker-runtime-inventory.log"
+  },
+  {
+    "name": "stage-private-enrollment",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/enrollment.json",
+      "cpjudge-b01-site:/app/cpj-readiness.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-stage-private-enrollment.log"
+  },
+  {
+    "name": "protect-private-enrollment",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "chmod",
+      "600",
+      "/app/cpj-readiness.json"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-c11-1/20261029T211745248096Z-protect-private-enrollment.log"
+  },
+  {
+    "name": "stage-readiness_wire.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/readiness_wire.py",
+      "cpjudge-b01-site:/app/cpjudge/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-stage-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-bridge_readiness.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/bridge_readiness.py",
+      "cpjudge-b01-site:/app/cpjudge/bridge_readiness.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-stage-bridge_readiness.py.log"
+  },
+  {
+    "name": "stage-c11_tests.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/c11_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-stage-c11_tests.py.log"
+  },
+  {
+    "name": "stage-worker-c11_worker.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-stage-worker-c11_worker.py.log"
+  },
+  {
+    "name": "stage-worker-readiness_wire.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-stage-worker-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-worker-verifier-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_worker.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-stage-worker-verifier-tests.log"
+  },
+  {
+    "name": "stage-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_overlay.py",
+      "cpjudge-b01-site:/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-stage-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "apply-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-apply-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "worker-runtime-inventory",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -B /tmp/c11_worker.py --inventory"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-worker-runtime-inventory.log"
+  },
+  {
+    "name": "stage-private-enrollment",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/enrollment.json",
+      "cpjudge-b01-site:/app/cpj-readiness.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-stage-private-enrollment.log"
+  },
+  {
+    "name": "protect-private-enrollment",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "0",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "chown 1000:1000 /app/cpj-readiness.json && chmod 600 /app/cpj-readiness.json"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-c11-1/20261029T211757549709Z-protect-private-enrollment.log"
+  },
+  {
+    "name": "stage-readiness_wire.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/readiness_wire.py",
+      "cpjudge-b01-site:/app/cpjudge/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-stage-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-bridge_readiness.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/bridge_readiness.py",
+      "cpjudge-b01-site:/app/cpjudge/bridge_readiness.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-stage-bridge_readiness.py.log"
+  },
+  {
+    "name": "stage-c11_tests.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/c11_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-stage-c11_tests.py.log"
+  },
+  {
+    "name": "stage-worker-c11_worker.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-stage-worker-c11_worker.py.log"
+  },
+  {
+    "name": "stage-worker-readiness_wire.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-stage-worker-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-worker-verifier-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_worker.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-stage-worker-verifier-tests.log"
+  },
+  {
+    "name": "stage-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_overlay.py",
+      "cpjudge-b01-site:/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-stage-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "apply-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-apply-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "worker-runtime-inventory",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -B /tmp/c11_worker.py --inventory"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-worker-runtime-inventory.log"
+  },
+  {
+    "name": "stage-private-enrollment",
+    "argv": [
+      "docker",
+      "cp",
+      "-a",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/enrollment.json",
+      "cpjudge-b01-site:/app/cpj-readiness.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-stage-private-enrollment.log"
+  },
+  {
+    "name": "verify-private-enrollment-owner",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os;from pathlib import Path;p=Path('/app/cpj-readiness.json');assert p.stat().st_uid==os.getuid() and p.stat().st_mode & 0o777==0o600;assert p.read_bytes()"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211831980615Z-verify-private-enrollment-owner.log"
+  },
+  {
+    "name": "focused-native-c11-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.c11_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T211842384347Z-focused-native-c11-tests.log"
+  },
+  {
+    "name": "stage-readiness_wire.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/readiness_wire.py",
+      "cpjudge-b01-site:/app/cpjudge/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-stage-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-bridge_readiness.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/bridge_readiness.py",
+      "cpjudge-b01-site:/app/cpjudge/bridge_readiness.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-stage-bridge_readiness.py.log"
+  },
+  {
+    "name": "stage-c11_tests.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/c11_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-stage-c11_tests.py.log"
+  },
+  {
+    "name": "stage-worker-c11_worker.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-stage-worker-c11_worker.py.log"
+  },
+  {
+    "name": "stage-worker-readiness_wire.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-stage-worker-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-worker-verifier-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_worker.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-stage-worker-verifier-tests.log"
+  },
+  {
+    "name": "stage-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_overlay.py",
+      "cpjudge-b01-site:/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-stage-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "apply-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-apply-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "worker-runtime-inventory",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -B /tmp/c11_worker.py --inventory"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-worker-runtime-inventory.log"
+  },
+  {
+    "name": "stage-private-enrollment",
+    "argv": [
+      "docker",
+      "cp",
+      "-a",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/enrollment.json",
+      "cpjudge-b01-site:/app/cpj-readiness.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-stage-private-enrollment.log"
+  },
+  {
+    "name": "verify-private-enrollment-owner",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os;from pathlib import Path;p=Path('/app/cpj-readiness.json');assert p.stat().st_uid==os.getuid() and p.stat().st_mode & 0o777==0o600;assert p.read_bytes()"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212141474418Z-verify-private-enrollment-owner.log"
+  },
+  {
+    "name": "focused-native-c11-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.c11_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212213129577Z-focused-native-c11-tests.log"
+  },
+  {
+    "name": "stage-readiness_wire.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/readiness_wire.py",
+      "cpjudge-b01-site:/app/cpjudge/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-stage-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-bridge_readiness.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/bridge_readiness.py",
+      "cpjudge-b01-site:/app/cpjudge/bridge_readiness.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-stage-bridge_readiness.py.log"
+  },
+  {
+    "name": "stage-c11_tests.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/c11_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-stage-c11_tests.py.log"
+  },
+  {
+    "name": "stage-worker-c11_worker.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-stage-worker-c11_worker.py.log"
+  },
+  {
+    "name": "stage-worker-readiness_wire.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-stage-worker-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-worker-verifier-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_worker.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-stage-worker-verifier-tests.log"
+  },
+  {
+    "name": "stage-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_overlay.py",
+      "cpjudge-b01-site:/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-stage-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "apply-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-apply-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "worker-runtime-inventory",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -B /tmp/c11_worker.py --inventory"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-worker-runtime-inventory.log"
+  },
+  {
+    "name": "stage-private-enrollment",
+    "argv": [
+      "docker",
+      "cp",
+      "-a",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/enrollment.json",
+      "cpjudge-b01-site:/app/cpj-readiness.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-stage-private-enrollment.log"
+  },
+  {
+    "name": "verify-private-enrollment-owner",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os;from pathlib import Path;p=Path('/app/cpj-readiness.json');assert p.stat().st_uid==os.getuid() and p.stat().st_mode & 0o777==0o600;assert p.read_bytes()"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212421115031Z-verify-private-enrollment-owner.log"
+  },
+  {
+    "name": "guard-idle-code-reload",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212701904908Z-guard-idle-code-reload.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212702776541Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212702776541Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212702776541Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212702776541Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212702776541Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212702776541Z/wait-native-offline.log"
+  },
+  {
+    "name": "stop-native-worker-idle",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212701904908Z-stop-native-worker-idle.log"
+  },
+  {
+    "name": "stop-only-idle-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runbridged']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1\nfor _ in range(100):\n if all(not Path('/proc',str(pid),'cmdline').exists() or not Path('/proc',str(pid),'cmdline').read_bytes() for pid in found):break\n time.sleep(.1)\nelse:raise RuntimeError('Bridge did not stop')\n"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212701904908Z-stop-only-idle-bridge.log"
+  },
+  {
+    "name": "stage-native-overlay",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_overlay.py",
+      "cpjudge-b01-site:/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212701904908Z-stage-native-overlay.log"
+  },
+  {
+    "name": "install-native-overlay",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212701904908Z-install-native-overlay.log"
+  },
+  {
+    "name": "start-native-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runbridged >> /tmp/b02-bridge.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212701904908Z-start-native-bridge.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212708941552Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212708941552Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212708941552Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212708941552Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212708941552Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212708941552Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212708941552Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212708941552Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212708941552Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212708941552Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "name": "start-native-worker-and-private-verifier",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212701904908Z-start-native-worker-and-private-verifier.log"
+  },
+  {
+    "name": "stop-only-http",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runserver']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212701904908Z-stop-only-http.log"
+  },
+  {
+    "name": "start-only-http",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/c11-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212701904908Z-start-only-http.log"
+  },
+  {
+    "name": "write-private-enrollment-atomically",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path('/app/cpj-readiness.json');t=p.with_suffix('.next');t.write_bytes(sys.stdin.buffer.read());t.chmod(0o600);os.replace(t,p)"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-write-private-enrollment-atomically.log"
+  },
+  {
+    "name": "mismatch-blocks-real-dispatch",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-mismatch-blocks-real-dispatch.log"
+  },
+  {
+    "name": "assert-no-packet-mismatch-blocks-real-dispatch",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import json,sys;from pathlib import Path;p=Path('/tmp/c11-native-trace.jsonl');rows=[json.loads(l) for l in p.read_text().splitlines()] if p.exists() else [];assert not any(r.get('name')=='submission-request' and r.get('submission-id')==int(sys.argv[1]) for r in rows);print('No native dispatch packet for pending submission.')",
+      "16"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-assert-no-packet-mismatch-blocks-real-dispatch.log"
+  },
+  {
+    "name": "guard-worker-reconnect-with-only-task-queued",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-guard-worker-reconnect-with-only-task-queued.log"
+  },
+  {
+    "name": "reconnect-stop-only-idle-worker",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-reconnect-stop-only-idle-worker.log"
+  },
+  {
+    "name": "wait-worker-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-wait-worker-offline.log"
+  },
+  {
+    "name": "disconnect-keeps-pending",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-disconnect-keeps-pending.log"
+  },
+  {
+    "name": "assert-no-packet-disconnect-keeps-pending",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import json,sys;from pathlib import Path;p=Path('/tmp/c11-native-trace.jsonl');rows=[json.loads(l) for l in p.read_text().splitlines()] if p.exists() else [];assert not any(r.get('name')=='submission-request' and r.get('submission-id')==int(sys.argv[1]) for r in rows);print('No native dispatch packet for pending submission.')",
+      "16"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-assert-no-packet-disconnect-keeps-pending.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212917789581Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212917789581Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212917789581Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212917789581Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212917789581Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212917789581Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212917789581Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212917789581Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T212917789581Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T212917789581Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "name": "reconnect-worker-with-fresh-verifier",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-reconnect-worker-with-fresh-verifier.log"
+  },
+  {
+    "name": "reconnect-still-needs-valid-readiness",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-reconnect-still-needs-valid-readiness.log"
+  },
+  {
+    "name": "assert-no-packet-reconnect-still-needs-valid-readiness",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import json,sys;from pathlib import Path;p=Path('/tmp/c11-native-trace.jsonl');rows=[json.loads(l) for l in p.read_text().splitlines()] if p.exists() else [];assert not any(r.get('name')=='submission-request' and r.get('submission-id')==int(sys.argv[1]) for r in rows);print('No native dispatch packet for pending submission.')",
+      "16"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-assert-no-packet-reconnect-still-needs-valid-readiness.log"
+  },
+  {
+    "name": "write-private-enrollment-atomically",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path('/app/cpj-readiness.json');t=p.with_suffix('.next');t.write_bytes(sys.stdin.buffer.read());t.chmod(0o600);os.replace(t,p)"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-write-private-enrollment-atomically.log"
+  },
+  {
+    "name": "current-c11-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213201101995Z-current-c11-state.log"
+  },
+  {
+    "name": "private-bridge-diagnostic",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b02-bridge.log"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213201101995Z-private-bridge-diagnostic.log"
+  },
+  {
+    "name": "private-worker-diagnostic",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b03-worker",
+      "cat",
+      "/tmp/c11-readiness.log"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213201101995Z-private-worker-diagnostic.log"
+  },
+  {
+    "name": "write-private-enrollment-atomically",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path('/app/cpj-readiness.json');t=p.with_suffix('.next');t.write_bytes(sys.stdin.buffer.read());t.chmod(0o600);os.replace(t,p)"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T212903796631Z-write-private-enrollment-atomically.log"
+  },
+  {
+    "name": "inspect-native-worker-socket",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import json,os\nfrom pathlib import Path\ninodes={}\nfor p in Path('/proc/1/fd').iterdir():\n try:inodes[os.readlink(p)]=p.name\n except OSError:pass\nports=[]\nfor line in Path('/proc/net/tcp').read_text().splitlines()[1:]:\n c=line.split()\n if int(c[2].split(':')[1],16)==9999 and c[3]=='01':ports.append({'port':int(c[1].split(':')[1],16),'owned':('socket:['+c[9]+']') in inodes})\nprint('C11_SOCKET='+json.dumps({'argv':Path('/proc/1/cmdline').read_bytes().decode().split(chr(0)),'ports':ports}))\n"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213315421310Z-inspect-native-worker-socket.log"
+  },
+  {
+    "name": "isolated-coordinator-readiness-diagnostic",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213315421310Z-isolated-coordinator-readiness-diagnostic.log"
+  },
+  {
+    "name": "copy-private-readiness-diagnostic",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/c11-debug-body.json",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/debug-body.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213315421310Z-copy-private-readiness-diagnostic.log"
+  },
+  {
+    "name": "worker-local-deep-diagnostic",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213315421310Z-worker-local-deep-diagnostic.log"
+  },
+  {
+    "name": "stop-only-private-verifier",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213536241759Z-stop-only-private-verifier.log"
+  },
+  {
+    "name": "stage-c11_tests.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/c11_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213536241759Z-stage-c11_tests.py.log"
+  },
+  {
+    "name": "stage-worker-verifier-regression",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_worker.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213536241759Z-stage-worker-verifier-regression.log"
+  },
+  {
+    "name": "start-only-corrected-private-verifier",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213536241759Z-start-only-corrected-private-verifier.log"
+  },
+  {
+    "name": "verify-one-real-native-result-and-case-rows",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T213721348802Z-verify-one-real-native-result-and-case-rows.log"
+  },
+  {
+    "name": "stage-readiness_wire.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/readiness_wire.py",
+      "cpjudge-b01-site:/app/cpjudge/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-stage-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-bridge_readiness.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/bridge_readiness.py",
+      "cpjudge-b01-site:/app/cpjudge/bridge_readiness.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-stage-bridge_readiness.py.log"
+  },
+  {
+    "name": "stage-c11_tests.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/c11_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-stage-c11_tests.py.log"
+  },
+  {
+    "name": "stage-worker-c11_worker.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-stage-worker-c11_worker.py.log"
+  },
+  {
+    "name": "stage-worker-readiness_wire.py",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path(sys.argv[1]);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o600)",
+      "/tmp/readiness_wire.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-stage-worker-readiness_wire.py.log"
+  },
+  {
+    "name": "stage-worker-verifier-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_worker.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_worker.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-stage-worker-verifier-tests.log"
+  },
+  {
+    "name": "stage-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_overlay.py",
+      "cpjudge-b01-site:/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-stage-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "apply-overlay-for-isolated-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-apply-overlay-for-isolated-tests.log"
+  },
+  {
+    "name": "worker-runtime-inventory",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -B /tmp/c11_worker.py --inventory"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-worker-runtime-inventory.log"
+  },
+  {
+    "name": "stage-private-enrollment",
+    "argv": [
+      "docker",
+      "cp",
+      "-a",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-c11-1/enrollment.json",
+      "cpjudge-b01-site:/app/cpj-readiness.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-stage-private-enrollment.log"
+  },
+  {
+    "name": "verify-private-enrollment-owner",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os;from pathlib import Path;p=Path('/app/cpj-readiness.json');assert p.stat().st_uid==os.getuid() and p.stat().st_mode & 0o777==0o600;assert p.read_bytes()"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214105154604Z-verify-private-enrollment-owner.log"
+  },
+  {
+    "name": "focused-native-c11-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.c11_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214227132220Z-focused-native-c11-tests.log"
+  },
+  {
+    "name": "guard-idle-code-reload",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214549493808Z-guard-idle-code-reload.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T214550341974Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T214550341974Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T214550341974Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T214550341974Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T214550341974Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T214550341974Z/wait-native-offline.log"
+  },
+  {
+    "name": "stop-native-worker-idle",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214549493808Z-stop-native-worker-idle.log"
+  },
+  {
+    "name": "stop-only-idle-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runbridged']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1\nfor _ in range(100):\n if all(not Path('/proc',str(pid),'cmdline').exists() or not Path('/proc',str(pid),'cmdline').read_bytes() for pid in found):break\n time.sleep(.1)\nelse:raise RuntimeError('Bridge did not stop')\n"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214549493808Z-stop-only-idle-bridge.log"
+  },
+  {
+    "name": "stage-native-overlay",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/c11_overlay.py",
+      "cpjudge-b01-site:/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214549493808Z-stage-native-overlay.log"
+  },
+  {
+    "name": "install-native-overlay",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/c11_overlay.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214549493808Z-install-native-overlay.log"
+  },
+  {
+    "name": "start-native-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runbridged >> /tmp/b02-bridge.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214549493808Z-start-native-bridge.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T214554970761Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T214554970761Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T214554970761Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T214554970761Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T214554970761Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T214554970761Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T214554970761Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T214554970761Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T214554970761Z",
+    "log": "reports/phase-c-c11-1/logs/20261029T214554970761Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "name": "start-native-worker-and-private-verifier",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214549493808Z-start-native-worker-and-private-verifier.log"
+  },
+  {
+    "name": "stop-only-http",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runserver']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214549493808Z-stop-only-http.log"
+  },
+  {
+    "name": "start-only-http",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/c11-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214549493808Z-start-only-http.log"
+  },
+  {
+    "name": "stage-current-c11-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/c11_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/c11_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214657689960Z-stage-current-c11-tests.log"
+  },
+  {
+    "name": "focused-native-c11-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.c11_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T214657689960Z-focused-native-c11-tests.log"
+  },
+  {
+    "name": "restore-only-expired-native-browser-pointer",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-c11-1/20261029T214811859087Z-restore-only-expired-native-browser-pointer.log"
+  },
+  {
+    "name": "native-profile-pointer-diagnostic",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215152796196Z-native-profile-pointer-diagnostic.log"
+  },
+  {
+    "name": "restore-only-expired-native-browser-pointer",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215412336819Z-restore-only-expired-native-browser-pointer.log"
+  },
+  {
+    "name": "preserve-all-original-models",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215412336819Z-preserve-all-original-models.log"
+  },
+  {
+    "name": "inspect-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215412336819Z-inspect-cpjudge-b01-site.log"
+  },
+  {
+    "name": "inspect-cpjudge-b03-worker",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215412336819Z-inspect-cpjudge-b03-worker.log"
+  },
+  {
+    "name": "inspect-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215412336819Z-inspect-cpjudge-b01-db.log"
+  },
+  {
+    "name": "inspect-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215412336819Z-inspect-cpjudge-b01-redis.log"
+  },
+  {
+    "name": "migration-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215412336819Z-migration-consistency.log"
+  },
+  {
+    "name": "readiness-lifecycle-idempotent",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215412336819Z-readiness-lifecycle-idempotent.log"
+  },
+  {
+    "name": "verify-deployed-site-source",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "from pathlib import Path\nimport hashlib,json\nnames=['readiness_wire.py', 'bridge_readiness.py', 'c11_tests.py']\nprint('C11_HASHES='+json.dumps({n:hashlib.sha256((Path('/app/cpjudge')/n).read_bytes()).hexdigest() for n in names}))"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215751467556Z-verify-deployed-site-source.log"
+  },
+  {
+    "name": "verify-deployed-worker-source",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-c",
+      "from pathlib import Path;import hashlib,json;print(json.dumps({n:hashlib.sha256((Path('/tmp')/n).read_bytes()).hexdigest() for n in ('c11_worker.py','readiness_wire.py')}))"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215751467556Z-verify-deployed-worker-source.log"
+  },
+  {
+    "name": "git-diff-whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261029T215751467556Z-git-diff-whitespace.log"
+  },
+  {
+    "name": "idle-guard-for-readiness-reload",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T110653233835Z-idle-guard-for-readiness-reload.log"
+  },
+  {
+    "name": "stop-idle-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T110653233835Z-stop-idle-worker.log"
+  },
+  {
+    "name": "stop-idle-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runbridged']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1\nfor _ in range(100):\n if all(not Path('/proc',str(pid),'cmdline').exists() or not Path('/proc',str(pid),'cmdline').read_bytes() for pid in found):break\n time.sleep(.1)\nelse:raise RuntimeError('Bridge did not stop')\n"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T110653233835Z-stop-idle-bridge.log"
+  },
+  {
+    "name": "start-bridge-with-publication-check",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runbridged >> /tmp/b02-bridge.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T110653233835Z-start-bridge-with-publication-check.log"
+  },
+  {
+    "name": "start-same-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T110653233835Z-start-same-worker.log"
+  },
+  {
+    "name": "idle-guard-for-readiness-reload",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111532276518Z-idle-guard-for-readiness-reload.log"
+  },
+  {
+    "name": "stop-idle-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111532276518Z-stop-idle-worker.log"
+  },
+  {
+    "name": "stop-idle-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runbridged']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1\nfor _ in range(100):\n if all(not Path('/proc',str(pid),'cmdline').exists() or not Path('/proc',str(pid),'cmdline').read_bytes() for pid in found):break\n time.sleep(.1)\nelse:raise RuntimeError('Bridge did not stop')\n"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111532276518Z-stop-idle-bridge.log"
+  },
+  {
+    "name": "start-bridge-with-publication-check",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runbridged >> /tmp/b02-bridge.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111532276518Z-start-bridge-with-publication-check.log"
+  },
+  {
+    "name": "start-same-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111532276518Z-start-same-worker.log"
+  },
+  {
+    "name": "idle-guard-for-readiness-reload",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111822155609Z-idle-guard-for-readiness-reload.log"
+  },
+  {
+    "name": "stop-idle-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111822155609Z-stop-idle-worker.log"
+  },
+  {
+    "name": "stop-idle-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runbridged']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1\nfor _ in range(100):\n if all(not Path('/proc',str(pid),'cmdline').exists() or not Path('/proc',str(pid),'cmdline').read_bytes() for pid in found):break\n time.sleep(.1)\nelse:raise RuntimeError('Bridge did not stop')\n"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111822155609Z-stop-idle-bridge.log"
+  },
+  {
+    "name": "start-bridge-with-publication-check",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runbridged >> /tmp/b02-bridge.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111822155609Z-start-bridge-with-publication-check.log"
+  },
+  {
+    "name": "start-same-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111822155609Z-start-same-worker.log"
+  },
+  {
+    "name": "idle-guard-for-readiness-reload",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111952114149Z-idle-guard-for-readiness-reload.log"
+  },
+  {
+    "name": "stop-idle-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111952114149Z-stop-idle-worker.log"
+  },
+  {
+    "name": "stop-idle-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runbridged']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1\nfor _ in range(100):\n if all(not Path('/proc',str(pid),'cmdline').exists() or not Path('/proc',str(pid),'cmdline').read_bytes() for pid in found):break\n time.sleep(.1)\nelse:raise RuntimeError('Bridge did not stop')\n"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111952114149Z-stop-idle-bridge.log"
+  },
+  {
+    "name": "start-bridge-with-publication-check",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runbridged >> /tmp/b02-bridge.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111952114149Z-start-bridge-with-publication-check.log"
+  },
+  {
+    "name": "start-same-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T111952114149Z-start-same-worker.log"
+  },
+  {
+    "name": "idle-guard-for-readiness-reload",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T120829464531Z-idle-guard-for-readiness-reload.log"
+  },
+  {
+    "name": "stop-idle-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T120829464531Z-stop-idle-worker.log"
+  },
+  {
+    "name": "stop-idle-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runbridged']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1\nfor _ in range(100):\n if all(not Path('/proc',str(pid),'cmdline').exists() or not Path('/proc',str(pid),'cmdline').read_bytes() for pid in found):break\n time.sleep(.1)\nelse:raise RuntimeError('Bridge did not stop')\n"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T120829464531Z-stop-idle-bridge.log"
+  },
+  {
+    "name": "start-bridge-with-publication-check",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runbridged >> /tmp/b02-bridge.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T120829464531Z-start-bridge-with-publication-check.log"
+  },
+  {
+    "name": "start-same-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T120829464531Z-start-same-worker.log"
+  },
+  {
+    "name": "idle-guard-for-readiness-reload",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T133548420787Z-idle-guard-for-readiness-reload.log"
+  },
+  {
+    "name": "stop-idle-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T133548420787Z-stop-idle-worker.log"
+  },
+  {
+    "name": "stop-idle-bridge",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,signal,time\nfrom pathlib import Path\nfound=[]\nfor p in Path('/proc').iterdir():\n if not p.name.isdigit():continue\n try:args=(p/'cmdline').read_bytes().split(b'\\0')\n except OSError:continue\n if args[1:3]==[b'manage.py',b'runbridged']:\n  found.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)\nassert len(found)==1\nfor _ in range(100):\n if all(not Path('/proc',str(pid),'cmdline').exists() or not Path('/proc',str(pid),'cmdline').read_bytes() for pid in found):break\n time.sleep(.1)\nelse:raise RuntimeError('Bridge did not stop')\n"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T133548420787Z-stop-idle-bridge.log"
+  },
+  {
+    "name": "start-bridge-with-publication-check",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runbridged >> /tmp/b02-bridge.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T133548420787Z-start-bridge-with-publication-check.log"
+  },
+  {
+    "name": "start-same-worker",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c11-1/20261030T133548420787Z-start-same-worker.log"
+  }
+]

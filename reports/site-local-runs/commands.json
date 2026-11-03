@@ -1,0 +1,3061 @@
+[
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T123323303612Z/b03-status.log",
+    "timestamp_utc": "2026-10-29T12:33:24.182850+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T123323303612Z/b02-status.log",
+    "timestamp_utc": "2026-10-29T12:33:24.355283+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T123323303612Z/services-status.log",
+    "timestamp_utc": "2026-10-29T12:33:24.390448+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T135145058729Z/b03-status.log",
+    "timestamp_utc": "2026-10-29T13:51:45.904922+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T135145058729Z/b02-status.log",
+    "timestamp_utc": "2026-10-29T13:51:46.057525+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T135145058729Z/services-status.log",
+    "timestamp_utc": "2026-10-29T13:51:46.113308+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T143844820184Z/b03-status.log",
+    "timestamp_utc": "2026-10-29T14:38:45.707229+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T143844820184Z/b02-status.log",
+    "timestamp_utc": "2026-10-29T14:38:45.876078+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T143844820184Z/services-status.log",
+    "timestamp_utc": "2026-10-29T14:38:45.908744+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 1,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261029T174518762260Z/b03-status.log",
+    "timestamp_utc": "2026-10-29T17:45:19.714327+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075840766509Z/b03-status.log",
+    "timestamp_utc": "2026-10-30T07:58:41.069334+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075840766509Z/b02-status.log",
+    "timestamp_utc": "2026-10-30T07:58:41.236931+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075840766509Z/services-status.log",
+    "timestamp_utc": "2026-10-30T07:58:41.314892+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075929790928Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-10-30T07:59:30.243986+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075929790928Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-10-30T07:59:30.612039+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075929790928Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-10-30T07:59:31.018036+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075929790928Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-10-30T07:59:36.234968+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075929790928Z/http-start.log",
+    "timestamp_utc": "2026-10-30T07:59:36.322737+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075929790928Z/b02-start.log",
+    "timestamp_utc": "2026-10-30T07:59:43.597770+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T075929790928Z/b03-start.log",
+    "timestamp_utc": "2026-10-30T07:59:57.199288+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 1,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T103721227826Z/b03-status.log",
+    "timestamp_utc": "2026-10-30T10:37:22.061233+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T103733921531Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-10-30T10:37:34.681373+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T103733921531Z/b02-start.log",
+    "timestamp_utc": "2026-10-30T10:37:38.585278+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261030T103733921531Z/b03-start.log",
+    "timestamp_utc": "2026-10-30T10:37:39.431456+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080843676601Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T08:08:43.934617+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080843676601Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T08:08:44.019947+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080843676601Z/services-status.log",
+    "timestamp_utc": "2026-11-02T08:08:44.152985+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080858749694Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T08:08:59.189478+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080858749694Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T08:08:59.392339+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080858749694Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T08:08:59.660592+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080858749694Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T08:09:03.191237+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080858749694Z/http-start.log",
+    "timestamp_utc": "2026-11-02T08:09:03.255594+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080858749694Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T08:09:09.918809+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T080858749694Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T08:09:18.368494+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b03-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T081113871795Z/b03-stop.log",
+    "timestamp_utc": "2026-11-02T08:11:15.753479+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b02-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T081113871795Z/b02-stop.log",
+    "timestamp_utc": "2026-11-02T08:11:17.808371+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T081113871795Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T08:11:28.100770+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T081113871795Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T08:11:28.327235+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T081113871795Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T08:11:28.527753+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082018674665Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T08:20:18.874662+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082018674665Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T08:20:19.070430+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082018674665Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T08:20:19.373357+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082018674665Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T08:20:21.526566+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082018674665Z/http-start.log",
+    "timestamp_utc": "2026-11-02T08:20:21.586158+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082018674665Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T08:20:27.182130+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082018674665Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T08:20:34.469661+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b03-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082403756076Z/b03-stop.log",
+    "timestamp_utc": "2026-11-02T08:24:05.689983+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b02-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082403756076Z/b02-stop.log",
+    "timestamp_utc": "2026-11-02T08:24:08.955054+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082403756076Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T08:24:19.269991+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082403756076Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T08:24:19.510296+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082403756076Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T08:24:19.727584+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082424879857Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T08:24:25.079721+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082424879857Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T08:24:25.268293+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082424879857Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T08:24:25.508704+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082424879857Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T08:24:28.613592+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082424879857Z/http-start.log",
+    "timestamp_utc": "2026-11-02T08:24:28.674948+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082424879857Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T08:24:34.429210+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082424879857Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T08:24:42.673764+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b03-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082958293129Z/b03-stop.log",
+    "timestamp_utc": "2026-11-02T08:30:00.406207+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b02-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082958293129Z/b02-stop.log",
+    "timestamp_utc": "2026-11-02T08:30:03.173512+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082958293129Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T08:30:13.513693+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082958293129Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T08:30:13.732627+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T082958293129Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T08:30:13.950184+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083527758877Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T08:35:27.955033+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083527758877Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T08:35:28.143423+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083527758877Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T08:35:28.381970+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083527758877Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T08:35:30.663870+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083527758877Z/http-start.log",
+    "timestamp_utc": "2026-11-02T08:35:30.724036+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083527758877Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T08:35:36.417797+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083527758877Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T08:35:44.783273+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083934359548Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T08:39:35.248682+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083934359548Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T08:39:39.229600+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T083934359548Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T08:39:40.190223+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 1,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T110030938733Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T11:00:32.413818+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 1,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143016195178Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T14:30:17.202695+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b03-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143120876709Z/b03-stop.log",
+    "timestamp_utc": "2026-11-02T14:31:22.796208+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b02-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143120876709Z/b02-stop.log",
+    "timestamp_utc": "2026-11-02T14:31:25.407108+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143120876709Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T14:31:35.755561+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143120876709Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T14:31:35.976509+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143120876709Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T14:31:36.404966+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143355924497Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T14:33:56.144225+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143355924497Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T14:33:56.339269+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143355924497Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T14:33:56.569838+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143355924497Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T14:34:00.645275+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143355924497Z/http-start.log",
+    "timestamp_utc": "2026-11-02T14:34:00.704057+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143355924497Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T14:34:06.201547+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T143355924497Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T14:34:14.179779+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b03-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144431714673Z/b03-stop.log",
+    "timestamp_utc": "2026-11-02T14:44:33.595115+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b02-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144431714673Z/b02-stop.log",
+    "timestamp_utc": "2026-11-02T14:44:35.951996+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144431714673Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T14:44:46.384552+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144431714673Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T14:44:46.695950+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144431714673Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T14:44:47.159231+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144551062446Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T14:45:51.250051+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144551062446Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T14:45:51.424986+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144551062446Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T14:45:51.645769+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144551062446Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T14:45:54.627670+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144551062446Z/http-start.log",
+    "timestamp_utc": "2026-11-02T14:45:54.685079+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144551062446Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T14:46:00.135367+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T144551062446Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T14:46:07.461943+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T145827692900Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T14:58:28.919245+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T145827692900Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T14:58:33.224330+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T145827692900Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T14:58:34.456386+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 1,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T145834556704Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T14:58:35.629389+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150015709990Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T15:00:16.784595+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150015709990Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T15:00:21.129294+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150015709990Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T15:00:22.321375+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 1,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150022433026Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T15:00:23.484901+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150424509302Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T15:04:25.855805+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150424509302Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T15:04:30.452007+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150424509302Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T15:04:32.060962+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150438003472Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T15:04:39.483926+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150438003472Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T15:04:39.788872+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150438003472Z/services-status.log",
+    "timestamp_utc": "2026-11-02T15:04:39.850514+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150815667961Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T15:08:17.042836+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150815667961Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T15:08:17.350007+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T150815667961Z/services-status.log",
+    "timestamp_utc": "2026-11-02T15:08:17.423979+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T164701508874Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T16:47:02.878506+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T164701508874Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T16:47:07.354765+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T164701508874Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T16:47:08.606636+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T164708708207Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T16:47:09.891010+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T164708708207Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T16:47:10.243062+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T164708708207Z/services-status.log",
+    "timestamp_utc": "2026-11-02T16:47:10.323770+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T164802330182Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T16:48:03.687430+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T164802330182Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T16:48:08.361024+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T164802330182Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T16:48:09.935470+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T171854780941Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T17:18:55.773976+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T171854780941Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T17:18:56.900050+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T171854780941Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T17:18:57.949513+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T171901398212Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T17:19:02.367963+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T171901398212Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T17:19:02.558067+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T171901398212Z/services-status.log",
+    "timestamp_utc": "2026-11-02T17:19:02.591999+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172720945749Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T17:27:22.015263+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172720945749Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T17:27:22.177053+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172720945749Z/services-status.log",
+    "timestamp_utc": "2026-11-02T17:27:22.210449+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b03-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172824867762Z/b03-stop.log",
+    "timestamp_utc": "2026-11-02T17:28:27.125267+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b02-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172824867762Z/b02-stop.log",
+    "timestamp_utc": "2026-11-02T17:28:29.552470+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172824867762Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T17:28:39.850624+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172824867762Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T17:28:40.038708+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172824867762Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T17:28:40.289750+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172858086301Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T17:28:58.264929+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172858086301Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T17:28:58.452919+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172858086301Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T17:28:58.713924+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172858086301Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T17:29:01.737754+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172858086301Z/http-start.log",
+    "timestamp_utc": "2026-11-02T17:29:01.792948+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172858086301Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T17:29:04.353450+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172858086301Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T17:29:11.192364+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172916431884Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T17:29:17.468293+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172916431884Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T17:29:17.624567+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T172916431884Z/services-status.log",
+    "timestamp_utc": "2026-11-02T17:29:17.660274+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173420563731Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T17:34:21.503616+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173420563731Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T17:34:22.700497+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173420563731Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T17:34:23.934544+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173424006344Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T17:34:25.490923+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173424006344Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T17:34:25.762422+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173424006344Z/services-status.log",
+    "timestamp_utc": "2026-11-02T17:34:25.832133+00:00"
+  },
+  {
+    "action": "start",
+    "name": "post-start-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173420563731Z/post-start-status.log",
+    "timestamp_utc": "2026-11-02T17:34:25.870294+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173430562392Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T17:34:32.425436+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173430562392Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T17:34:32.756346+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T173430562392Z/services-status.log",
+    "timestamp_utc": "2026-11-02T17:34:32.827813+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T183912150059Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T18:39:14.105392+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T183912150059Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T18:39:14.465279+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T183912150059Z/services-status.log",
+    "timestamp_utc": "2026-11-02T18:39:14.572357+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b03-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T183920371930Z/b03-stop.log",
+    "timestamp_utc": "2026-11-02T18:39:23.899211+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "b02-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T183920371930Z/b02-stop.log",
+    "timestamp_utc": "2026-11-02T18:39:26.760897+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T183920371930Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T18:39:37.197117+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T183920371930Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T18:39:37.455031+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T183920371930Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T18:39:37.773970+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184034519060Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-02T18:40:34.847039+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184034519060Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-02T18:40:35.118447+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184034519060Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-02T18:40:35.467055+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184034519060Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-02T18:40:39.438398+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184034519060Z/http-start.log",
+    "timestamp_utc": "2026-11-02T18:40:39.565575+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184034519060Z/b02-start.log",
+    "timestamp_utc": "2026-11-02T18:40:44.895522+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184034519060Z/b03-start.log",
+    "timestamp_utc": "2026-11-02T18:41:00.034009+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184100137523Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T18:41:01.525861+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184100137523Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T18:41:01.797948+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184100137523Z/services-status.log",
+    "timestamp_utc": "2026-11-02T18:41:01.880819+00:00"
+  },
+  {
+    "action": "start",
+    "name": "post-start-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184034519060Z/post-start-status.log",
+    "timestamp_utc": "2026-11-02T18:41:01.906906+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184417995079Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T18:44:19.746759+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184417995079Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T18:44:20.179885+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T184417995079Z/services-status.log",
+    "timestamp_utc": "2026-11-02T18:44:20.267175+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T190750313972Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T19:07:52.188380+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T190750313972Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T19:07:52.479295+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T190750313972Z/services-status.log",
+    "timestamp_utc": "2026-11-02T19:07:52.559242+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T191925377081Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T19:19:27.098891+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T191925377081Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T19:19:27.417520+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T191925377081Z/services-status.log",
+    "timestamp_utc": "2026-11-02T19:19:27.473679+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T193239342343Z/b03-status.log",
+    "timestamp_utc": "2026-11-02T19:32:41.290137+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T193239342343Z/b02-status.log",
+    "timestamp_utc": "2026-11-02T19:32:41.671894+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261102T193239342343Z/services-status.log",
+    "timestamp_utc": "2026-11-02T19:32:41.756144+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093850496287Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-11-03T09:38:50.974529+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093850496287Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-11-03T09:38:51.307923+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093850496287Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-11-03T09:38:51.700999+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093850496287Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-03T09:38:54.619892+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093850496287Z/http-start.log",
+    "timestamp_utc": "2026-11-03T09:38:54.737727+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093850496287Z/b02-start.log",
+    "timestamp_utc": "2026-11-03T09:38:58.679118+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093850496287Z/b03-start.log",
+    "timestamp_utc": "2026-11-03T09:39:11.956533+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093912042155Z/b03-status.log",
+    "timestamp_utc": "2026-11-03T09:39:13.784872+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093912042155Z/b02-status.log",
+    "timestamp_utc": "2026-11-03T09:39:14.045243+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093912042155Z/services-status.log",
+    "timestamp_utc": "2026-11-03T09:39:14.131342+00:00"
+  },
+  {
+    "action": "start",
+    "name": "post-start-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T093850496287Z/post-start-status.log",
+    "timestamp_utc": "2026-11-03T09:39:14.150028+00:00"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094125185962Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-11-03T09:41:26.827859+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094125185962Z/b02-start.log",
+    "timestamp_utc": "2026-11-03T09:41:28.624641+00:00"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094125185962Z/b03-start.log",
+    "timestamp_utc": "2026-11-03T09:41:30.464737+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094130593202Z/b03-status.log",
+    "timestamp_utc": "2026-11-03T09:41:32.842099+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094130593202Z/b02-status.log",
+    "timestamp_utc": "2026-11-03T09:41:33.133872+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094130593202Z/services-status.log",
+    "timestamp_utc": "2026-11-03T09:41:33.206538+00:00"
+  },
+  {
+    "action": "start",
+    "name": "post-start-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094125185962Z/post-start-status.log",
+    "timestamp_utc": "2026-11-03T09:41:33.231212+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094133397675Z/b03-status.log",
+    "timestamp_utc": "2026-11-03T09:41:35.198222+00:00"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094133397675Z/b02-status.log",
+    "timestamp_utc": "2026-11-03T09:41:35.539570+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/site-local-runs/logs/20261103T094133397675Z/services-status.log",
+    "timestamp_utc": "2026-11-03T09:41:35.626592+00:00"
+  }
+]

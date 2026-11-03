@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "version_id": 2,
+  "code": "pv900000000000000002",
+  "digest": "6c99ae9709054dcbbe8ea4a84473319c46a4cd4475b5d50ce2c95ef8f29454be",
+  "job_id": 24,
+  "attempt": 2,
+  "probe_id": 1,
+  "admission_id": 1,
+  "checks": {
+    "browser_upload_dedup_same_conversion_publication_probe_receipt": true,
+    "unrelated_author_denied_and_participants_no_probe_package_access": true,
+    "official_native_form_case_verdicts_and_private_sources": true
+  },
+  "runs": [
+    {
+      "name": "p-wrong",
+      "role": "p",
+      "id": 20,
+      "expected": "WA",
+      "verdict": "WA",
+      "cases": 3
+    },
+    {
+      "name": "p-accepted",
+      "role": "p",
+      "id": 21,
+      "expected": "AC",
+      "verdict": "AC",
+      "cases": 3
+    },
+    {
+      "name": "q-accepted",
+      "role": "q",
+      "id": 22,
+      "expected": "AC",
+      "verdict": "AC",
+      "cases": 3
+    }
+  ]
+}

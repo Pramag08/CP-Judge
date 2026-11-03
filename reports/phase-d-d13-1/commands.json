@@ -1,0 +1,447 @@
+[
+  {
+    "name": "private-full-backup",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb-dump --user=root --password=\"$MARIADB_ROOT_PASSWORD\" --single-transaction --routines --events --databases b01"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-d-d13-1/20261030T132814507266Z-private-full-backup.log"
+  },
+  {
+    "name": "private-full-backup",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb-dump --user=root --password=\"$MARIADB_ROOT_PASSWORD\" --single-transaction --routines --events --databases b01"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T132826163766Z-private-full-backup.log"
+  },
+  {
+    "name": "private-all-model-snapshot",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T132826163766Z-private-all-model-snapshot.log"
+  },
+  {
+    "name": "stage-d13-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-d-d13-1/20261030T132903543387Z-stage-d13-app.log"
+  },
+  {
+    "name": "generate-additive-d13-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--noinput"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-d-d13-1/20261030T132903693022Z-generate-additive-d13-migration.log"
+  },
+  {
+    "name": "focused-d13-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.author_test_tests.AuthorTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-d-d13-1/20261030T132903824262Z-focused-d13-tests.log"
+  },
+  {
+    "name": "stage-d13-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T132940334030Z-stage-d13-app.log"
+  },
+  {
+    "name": "generate-additive-d13-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--noinput"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-d-d13-1/20261030T132941621149Z-generate-additive-d13-migration.log"
+  },
+  {
+    "name": "focused-d13-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.author_test_tests.AuthorTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-d-d13-1/20261030T132944443837Z-focused-d13-tests.log"
+  },
+  {
+    "name": "generate-additive-d13-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "0",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--noinput"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-d-d13-1/20261030T133006164387Z-generate-additive-d13-migration.log"
+  },
+  {
+    "name": "generate-additive-d13-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T133045408246Z-generate-additive-d13-migration.log"
+  },
+  {
+    "name": "retain-d13-migration",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/cpjudge/migrations/.",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/migrations"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T133045408246Z-retain-d13-migration.log"
+  },
+  {
+    "name": "apply-additive-d13-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "migrate",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T133045408246Z-apply-additive-d13-migration.log"
+  },
+  {
+    "name": "focused-d13-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.author_test_tests.AuthorTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T133055694105Z-focused-d13-tests.log"
+  },
+  {
+    "name": "relevant-author-and-session-regressions",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.entry_tests.EntryTests",
+      "cpjudge.d01_tests.WorkflowTests.test_server_start_end_inclusive_exclusive_and_receipt",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T133122935064Z-relevant-author-and-session-regressions.log"
+  },
+  {
+    "name": "stage-d13-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T133515100104Z-stage-d13-app.log"
+  },
+  {
+    "name": "reload-http-celery-idle",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T133515902807Z-reload-http-celery-idle.log"
+  },
+  {
+    "name": "author_fixture",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T134828382748Z-author_fixture.log"
+  },
+  {
+    "name": "copy-private-browser-fixture",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/d13-browser.json",
+      "/home/pramag/Documents/CP-Judge/build/phase-d-d13-1/browser/fixture.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T134831552586Z-copy-private-browser-fixture.log"
+  },
+  {
+    "name": "chromium-d13",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "512m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-d-d13-1/browser,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-d/author_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T134913006164Z-chromium-d13.log"
+  },
+  {
+    "name": "author_preserve",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-d-d13-1/20261030T135040281640Z-author_preserve.log"
+  },
+  {
+    "name": "author_preserve",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-d-d13-1/20261030T135057613588Z-author_preserve.log"
+  },
+  {
+    "name": "author_diagnose",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T135118443777Z-author_diagnose.log"
+  },
+  {
+    "name": "author_preserve",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T135133150639Z-author_preserve.log"
+  },
+  {
+    "name": "retain-sanitized-d13-preservation",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/d13-preservation.json",
+      "/home/pramag/Documents/CP-Judge/reports/phase-d-d13-1/preservation.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T135133150639Z-retain-sanitized-d13-preservation.log"
+  },
+  {
+    "name": "inspect-same-isolated-worker",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T135133150639Z-inspect-same-isolated-worker.log"
+  },
+  {
+    "name": "stage-d13-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T135214246560Z-stage-d13-app.log"
+  },
+  {
+    "name": "focused-d13-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.author_test_tests.AuthorTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T135219382498Z-focused-d13-tests.log"
+  },
+  {
+    "name": "migration-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T135240068789Z-migration-consistency.log"
+  },
+  {
+    "name": "whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-d-d13-1/20261030T135240068789Z-whitespace.log"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "phase": "after",
+  "checks": {
+    "cutover_revokes_actual_old_read_write_poll_admin_sessions": true,
+    "four_email_password_logins_existing_passwords": true,
+    "existing_submission_history_access": true,
+    "four_username_logins_rejected": true,
+    "admin_route_username_rejected_email_admin_access": true,
+    "no_forced_change_all_four": true,
+    "wrong_password_rejected": true,
+    "replacement_stale_read_write_poll_logout_rejected": true,
+    "replacement_session_survives_stale_logout": true,
+    "optional_change_available_not_performed": true,
+    "contact_only_recovery": true,
+    "other_email_privacy": true
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "submission_id": 1,
+  "url": "http://127.0.0.1:8000/submission/1",
+  "browser_form_post": {
+    "method": "POST",
+    "path": "/problem/pv000000000000000001/submit",
+    "language_id": "19",
+    "source_sha256": "941da5783b456b47e221955bc1e462ac4496c49ad1131a0048996ae78b7d1fa7",
+    "source_canonical_sha256": "09939d650a08b95aa4500e8b026bbbe9cad1edd3b8dfce2e8fd24587e7cd0042",
+    "source_bytes": 2916,
+    "csrf_field_present": true
+  },
+  "selected_language": "GNU C++23",
+  "reference_source_sha256": "09939d650a08b95aa4500e8b026bbbe9cad1edd3b8dfce2e8fd24587e7cd0042",
+  "displayed_verdict": "AC",
+  "displayed_long_verdict": "Accepted",
+  "displayed_case_count": 103,
+  "displayed_all_cases_AC": true,
+  "displayed_score": "103/103",
+  "actual_native_form_post_count": 1,
+  "page_error_count": 0,
+  "blocked_decoration_hosts": [
+    "www.gravatar.com"
+  ],
+  "source_injected_only_into_native_Ace_form": true,
+  "contest_standings": "NOT TESTED"
+}

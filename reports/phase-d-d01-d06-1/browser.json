@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "checks": {
+    "participant_unrelated_management_denied": true,
+    "draft_direct_problem_api_asset_denied": true,
+    "missing_problems_block_publish": true,
+    "invalid_schedule_crafted_format_denied": true,
+    "browser_create_edit_select_preview_rules_limits_timezone": true,
+    "browser_publish_live_readiness_passed": true,
+    "scheduled_overview_allowed_problems_denied_no_registration": true
+  },
+  "contest": "d01local1",
+  "new_judging": false
+}

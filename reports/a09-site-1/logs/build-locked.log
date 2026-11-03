@@ -1,0 +1,477 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.80kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da
+#2 DONE 1.7s
+
+#3 [internal] load metadata for docker.io/library/python@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337
+#3 DONE 1.7s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 72B done
+#4 DONE 0.0s
+
+#5 [assets 1/6] FROM docker.io/library/node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da
+#5 resolve docker.io/library/node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da 0.1s done
+#5 DONE 0.1s
+
+#6 [assets 2/6] WORKDIR /asset-tools
+#6 CACHED
+
+#7 [stage-1  1/11] FROM docker.io/library/python@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337
+#7 resolve docker.io/library/python@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337 0.1s done
+#7 DONE 0.1s
+
+#8 [stage-1  2/11] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential pkg-config default-libmysqlclient-dev libxml2-dev libxslt1-dev zlib1g-dev libffi-dev libssl-dev gettext git curl &&     rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [stage-1  3/11] WORKDIR /app
+#9 CACHED
+
+#10 [internal] load build context
+#10 transferring context: 81.08kB 0.0s done
+#10 DONE 0.0s
+
+#11 [stage-1  4/11] COPY requirements.in requirements.lock /setup/
+#11 DONE 0.1s
+
+#12 [assets 3/6] COPY package.json package-lock.json ./
+#12 DONE 0.1s
+
+#13 [assets 4/6] RUN npm ci && npm ls --json > /asset-tools/versions.json
+#13 1.944 
+#13 1.944 added 53 packages, and audited 54 packages in 2s
+#13 1.944 
+#13 1.944 25 packages are looking for funding
+#13 1.944   run `npm fund` for details
+#13 1.944 
+#13 1.944 found 0 vulnerabilities
+#13 1.945 npm notice
+#13 1.945 npm notice New major version of npm available! 10.9.9 -> 12.2.1
+#13 1.945 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+#13 1.945 npm notice To update run: npm install -g npm@12.2.1
+#13 1.945 npm notice
+#13 DONE 2.5s
+
+#14 [stage-1  5/11] RUN mkdir -p /metadata && python -m pip install --no-cache-dir -r /setup/requirements.lock --report /metadata/install-report.json &&     python -m pip check && python -m pip freeze --all > /metadata/requirements.lock &&     dpkg-query -W > /metadata/os-packages.tsv
+#14 1.489 Collecting ansi2html@ git+https://github.com/DMOJ/ansi2html.git@485b4ad02cca1c078c35c3982e9c345b23905445 (from -r /setup/requirements.lock (line 2))
+#14 1.489   Cloning https://github.com/DMOJ/ansi2html.git (to revision 485b4ad02cca1c078c35c3982e9c345b23905445) to /tmp/pip-install-nw4xyofw/ansi2html_344bb4e2fd6e4449a538b2771182c2ed
+#14 1.491   Running command git clone --filter=blob:none --quiet https://github.com/DMOJ/ansi2html.git /tmp/pip-install-nw4xyofw/ansi2html_344bb4e2fd6e4449a538b2771182c2ed
+#14 ...
+
+#15 [assets 5/6] COPY site /app
+#15 DONE 0.2s
+
+#16 [assets 6/6] RUN cd /app && ./make_style.sh && mkdir -p /app/resources/a09 &&     cp /asset-tools/node_modules/jquery/dist/jquery.min.js /app/resources/a09/jquery.min.js &&     cp -r /asset-tools/node_modules/ace-builds/src-min-noconflict /app/resources/a09/ace
+#16 0.220 Creating default style...
+#16 1.098 Processing sass_processed/ace-dmoj.css...
+#16 1.136 Processing sass_processed/select2-dmoj.css...
+#16 1.142 Processing sass_processed/featherlight.css...
+#16 1.144 Processing sass_processed/style.css...
+#16 1.215 Processing sass_processed/martor-description.css...
+#16 1.221 Finished sass_processed/ace-dmoj.css in 124 ms
+#16 1.221 Finished sass_processed/featherlight.css in 79 ms
+#16 1.221 Finished sass_processed/select2-dmoj.css in 86 ms
+#16 1.222 Finished sass_processed/style.css in 77 ms
+#16 1.222 Finished sass_processed/martor-description.css in 7.48 ms
+#16 1.234 Creating dark style...
+#16 2.244 Processing sass_processed/martor-description.css...
+#16 2.283 Processing sass_processed/select2-dmoj.css...
+#16 2.289 Processing sass_processed/ace-dmoj.css...
+#16 2.291 Processing sass_processed/style.css...
+#16 2.355 Processing sass_processed/featherlight.css...
+#16 2.358 Finished sass_processed/martor-description.css in 114 ms
+#16 2.358 Finished sass_processed/select2-dmoj.css in 75 ms
+#16 2.358 Finished sass_processed/style.css in 67 ms
+#16 2.358 Finished sass_processed/ace-dmoj.css in 70 ms
+#16 2.359 Finished sass_processed/featherlight.css in 3.77 ms
+#16 DONE 2.4s
+
+#14 [stage-1  5/11] RUN mkdir -p /metadata && python -m pip install --no-cache-dir -r /setup/requirements.lock --report /metadata/install-report.json &&     python -m pip check && python -m pip freeze --all > /metadata/requirements.lock &&     dpkg-query -W > /metadata/os-packages.tsv
+#14 3.581   Running command git rev-parse -q --verify 'sha^485b4ad02cca1c078c35c3982e9c345b23905445'
+#14 3.583   Running command git fetch -q https://github.com/DMOJ/ansi2html.git 485b4ad02cca1c078c35c3982e9c345b23905445
+#14 4.283   Resolved https://github.com/DMOJ/ansi2html.git to commit 485b4ad02cca1c078c35c3982e9c345b23905445
+#14 4.287   Installing build dependencies: started
+#14 6.649   Installing build dependencies: finished with status 'done'
+#14 6.650   Getting requirements to build wheel: started
+#14 6.775   Getting requirements to build wheel: finished with status 'done'
+#14 6.777   Preparing metadata (pyproject.toml): started
+#14 6.971   Preparing metadata (pyproject.toml): finished with status 'done'
+#14 6.973 Collecting django-fernet-fields@ git+https://github.com/DMOJ/django-fernet-fields.git@eaea7e760472106c015f65535f4837a1189c4e7c (from -r /setup/requirements.lock (line 21))
+#14 6.973   Cloning https://github.com/DMOJ/django-fernet-fields.git (to revision eaea7e760472106c015f65535f4837a1189c4e7c) to /tmp/pip-install-nw4xyofw/django-fernet-fields_21c93cd8c6a94655be03ce10c6d1b245
+#14 6.974   Running command git clone --filter=blob:none --quiet https://github.com/DMOJ/django-fernet-fields.git /tmp/pip-install-nw4xyofw/django-fernet-fields_21c93cd8c6a94655be03ce10c6d1b245
+#14 8.954   Running command git rev-parse -q --verify 'sha^eaea7e760472106c015f65535f4837a1189c4e7c'
+#14 8.957   Running command git fetch -q https://github.com/DMOJ/django-fernet-fields.git eaea7e760472106c015f65535f4837a1189c4e7c
+#14 9.699   Resolved https://github.com/DMOJ/django-fernet-fields.git to commit eaea7e760472106c015f65535f4837a1189c4e7c
+#14 9.705   Installing build dependencies: started
+#14 10.58   Installing build dependencies: finished with status 'done'
+#14 10.58   Getting requirements to build wheel: started
+#14 10.70   Getting requirements to build wheel: finished with status 'done'
+#14 10.70   Preparing metadata (pyproject.toml): started
+#14 10.82   Preparing metadata (pyproject.toml): finished with status 'done'
+#14 10.82 Collecting dmoj-wpadmin@ git+https://github.com/DMOJ/dmoj-wpadmin.git@dfafe1b20d69e2e0f8cf625fecbb957414040b80 (from -r /setup/requirements.lock (line 32))
+#14 10.82   Cloning https://github.com/DMOJ/dmoj-wpadmin.git (to revision dfafe1b20d69e2e0f8cf625fecbb957414040b80) to /tmp/pip-install-nw4xyofw/dmoj-wpadmin_483b2d55f94b491eb92cae6388adcbbf
+#14 10.83   Running command git clone --filter=blob:none --quiet https://github.com/DMOJ/dmoj-wpadmin.git /tmp/pip-install-nw4xyofw/dmoj-wpadmin_483b2d55f94b491eb92cae6388adcbbf
+#14 13.19   Running command git rev-parse -q --verify 'sha^dfafe1b20d69e2e0f8cf625fecbb957414040b80'
+#14 13.19   Running command git fetch -q https://github.com/DMOJ/dmoj-wpadmin.git dfafe1b20d69e2e0f8cf625fecbb957414040b80
+#14 14.07   Resolved https://github.com/DMOJ/dmoj-wpadmin.git to commit dfafe1b20d69e2e0f8cf625fecbb957414040b80
+#14 14.08   Installing build dependencies: started
+#14 14.93   Installing build dependencies: finished with status 'done'
+#14 14.93   Getting requirements to build wheel: started
+#14 15.05   Getting requirements to build wheel: finished with status 'done'
+#14 15.05   Preparing metadata (pyproject.toml): started
+#14 15.18   Preparing metadata (pyproject.toml): finished with status 'done'
+#14 15.18 Collecting jsonfield@ git+https://github.com/DMOJ/jsonfield.git@560bdca857a69b4a5b2773a79d7511ebc628f339 (from -r /setup/requirements.lock (line 38))
+#14 15.18   Cloning https://github.com/DMOJ/jsonfield.git (to revision 560bdca857a69b4a5b2773a79d7511ebc628f339) to /tmp/pip-install-nw4xyofw/jsonfield_4d482ac6611149a4a74ac2daf1c40758
+#14 15.18   Running command git clone --filter=blob:none --quiet https://github.com/DMOJ/jsonfield.git /tmp/pip-install-nw4xyofw/jsonfield_4d482ac6611149a4a74ac2daf1c40758
+#14 17.44   Running command git rev-parse -q --verify 'sha^560bdca857a69b4a5b2773a79d7511ebc628f339'
+#14 17.44   Running command git fetch -q https://github.com/DMOJ/jsonfield.git 560bdca857a69b4a5b2773a79d7511ebc628f339
+#14 18.58   Resolved https://github.com/DMOJ/jsonfield.git to commit 560bdca857a69b4a5b2773a79d7511ebc628f339
+#14 18.59   Installing build dependencies: started
+#14 19.47   Installing build dependencies: finished with status 'done'
+#14 19.47   Getting requirements to build wheel: started
+#14 19.59   Getting requirements to build wheel: finished with status 'done'
+#14 19.59   Preparing metadata (pyproject.toml): started
+#14 19.71   Preparing metadata (pyproject.toml): finished with status 'done'
+#14 19.82 Collecting amqp==5.4.1 (from -r /setup/requirements.lock (line 1))
+#14 19.93   Downloading amqp-5.4.1-py3-none-any.whl.metadata (9.4 kB)
+#14 19.95 Collecting asgiref==3.13.0 (from -r /setup/requirements.lock (line 3))
+#14 19.96   Downloading asgiref-3.13.0-py3-none-any.whl.metadata (12 kB)
+#14 19.99 Collecting billiard==4.3.1 (from -r /setup/requirements.lock (line 4))
+#14 20.00   Downloading billiard-4.3.1-py3-none-any.whl.metadata (5.0 kB)
+#14 20.01 Collecting bleach==6.4.0 (from -r /setup/requirements.lock (line 5))
+#14 20.02   Downloading bleach-6.4.0-py3-none-any.whl.metadata (32 kB)
+#14 20.10 Collecting cbor2==6.1.5 (from -r /setup/requirements.lock (line 6))
+#14 20.12   Downloading cbor2-6.1.5-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (5.5 kB)
+#14 20.14 Collecting celery==5.6.3 (from -r /setup/requirements.lock (line 7))
+#14 20.15   Downloading celery-5.6.3-py3-none-any.whl.metadata (23 kB)
+#14 20.19 Collecting certifi==2026.10.23 (from -r /setup/requirements.lock (line 8))
+#14 20.20   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+#14 20.31 Collecting cffi==2.1.1 (from -r /setup/requirements.lock (line 9))
+#14 20.32   Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+#14 20.43 Collecting charset-normalizer==3.5.2 (from -r /setup/requirements.lock (line 10))
+#14 20.44   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+#14 20.46 Collecting click==8.5.0 (from -r /setup/requirements.lock (line 11))
+#14 20.47   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#14 20.48 Collecting click-didyoumean==0.3.1 (from -r /setup/requirements.lock (line 12))
+#14 20.52   Downloading click_didyoumean-0.3.1-py3-none-any.whl.metadata (3.9 kB)
+#14 20.55 Collecting click-plugins==1.1.1.2 (from -r /setup/requirements.lock (line 13))
+#14 20.58   Downloading click_plugins-1.1.1.2-py2.py3-none-any.whl.metadata (6.5 kB)
+#14 20.61 Collecting click-repl==0.4.1 (from -r /setup/requirements.lock (line 14))
+#14 20.64   Downloading click_repl-0.4.1-py3-none-any.whl.metadata (3.7 kB)
+#14 21.42 Collecting coverage==7.17.0 (from -r /setup/requirements.lock (line 15))
+#14 21.45   Downloading coverage-7.17.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.1 kB)
+#14 21.86 Collecting cryptography==50.0.2 (from -r /setup/requirements.lock (line 16))
+#14 21.89   Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.4 kB)
+#14 21.96 Collecting defusedxml==0.7.1 (from -r /setup/requirements.lock (line 17))
+#14 22.02   Downloading defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+#14 22.13 Collecting Django==5.2.18 (from -r /setup/requirements.lock (line 18))
+#14 22.16   Downloading django-5.2.18-py3-none-any.whl.metadata (4.1 kB)
+#14 22.58 Collecting django-admin-sortable2==2.3.1 (from -r /setup/requirements.lock (line 19))
+#14 22.60   Downloading django_admin_sortable2-2.3.1-py3-none-any.whl.metadata (4.2 kB)
+#14 22.68 Collecting django-appconf==1.2.0 (from -r /setup/requirements.lock (line 20))
+#14 22.73   Downloading django_appconf-1.2.0-py3-none-any.whl.metadata (5.5 kB)
+#14 23.09 Collecting django-impersonate==1.9.5 (from -r /setup/requirements.lock (line 22))
+#14 23.12   Downloading django_impersonate-1.9.5.tar.gz (26 kB)
+#14 23.13   Installing build dependencies: started
+#14 24.09   Installing build dependencies: finished with status 'done'
+#14 24.09   Getting requirements to build wheel: started
+#14 24.22   Getting requirements to build wheel: finished with status 'done'
+#14 24.22   Preparing metadata (pyproject.toml): started
+#14 24.34   Preparing metadata (pyproject.toml): finished with status 'done'
+#14 24.82 Collecting django-jinja==2.11.0 (from -r /setup/requirements.lock (line 23))
+#14 24.84   Downloading django_jinja-2.11.0-py3-none-any.whl.metadata (2.0 kB)
+#14 24.87 Collecting django-js-asset==5.0.0 (from -r /setup/requirements.lock (line 24))
+#14 24.89   Downloading django_js_asset-5.0.0-py3-none-any.whl.metadata (19 kB)
+#14 25.32 Collecting django-mptt==0.21.0 (from -r /setup/requirements.lock (line 25))
+#14 25.35   Downloading django_mptt-0.21.0-py3-none-any.whl.metadata (6.6 kB)
+#14 25.66 Collecting django-registration-redux==2.13 (from -r /setup/requirements.lock (line 26))
+#14 25.67   Downloading django_registration_redux-2.13-py2.py3-none-any.whl.metadata (5.1 kB)
+#14 26.02 Collecting django-reversion==6.4.0 (from -r /setup/requirements.lock (line 27))
+#14 26.03   Downloading django_reversion-6.4.0-py3-none-any.whl.metadata (4.0 kB)
+#14 26.38 Collecting django-social-share==2.3.0 (from -r /setup/requirements.lock (line 28))
+#14 26.39   Downloading django_social_share-2.3.0-py2.py3-none-any.whl.metadata (7.0 kB)
+#14 26.41 Collecting django-sortedm2m==4.0.0 (from -r /setup/requirements.lock (line 29))
+#14 26.42   Downloading django_sortedm2m-4.0.0-py2.py3-none-any.whl.metadata (20 kB)
+#14 26.78 Collecting django-statici18n==2.8.0 (from -r /setup/requirements.lock (line 30))
+#14 26.78   Downloading django_statici18n-2.8.0-py2.py3-none-any.whl.metadata (5.5 kB)
+#14 27.09 Collecting django_compressor==4.6.0 (from -r /setup/requirements.lock (line 31))
+#14 27.10   Downloading django_compressor-4.6.0-py3-none-any.whl.metadata (5.2 kB)
+#14 27.11 Collecting future==1.0.0 (from -r /setup/requirements.lock (line 33))
+#14 27.12   Downloading future-1.0.0-py3-none-any.whl.metadata (4.0 kB)
+#14 27.14 Collecting icalendar==7.3.0 (from -r /setup/requirements.lock (line 34))
+#14 27.15   Downloading icalendar-7.3.0-py3-none-any.whl.metadata (7.0 kB)
+#14 27.16 Collecting idna==3.20 (from -r /setup/requirements.lock (line 35))
+#14 27.17   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#14 27.20 Collecting importlib-metadata==4.13.0 (from -r /setup/requirements.lock (line 36))
+#14 27.21   Downloading importlib_metadata-4.13.0-py3-none-any.whl.metadata (4.9 kB)
+#14 27.22 Collecting Jinja2==3.1.6 (from -r /setup/requirements.lock (line 37))
+#14 27.23   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#14 27.26 Collecting kombu==5.6.2 (from -r /setup/requirements.lock (line 39))
+#14 27.27   Downloading kombu-5.6.2-py3-none-any.whl.metadata (3.5 kB)
+#14 28.25 Collecting llist==0.7.1 (from -r /setup/requirements.lock (line 40))
+#14 28.26   Downloading llist-0.7.1.tar.gz (42 kB)
+#14 28.27   Installing build dependencies: started
+#14 29.08   Installing build dependencies: finished with status 'done'
+#14 29.08   Getting requirements to build wheel: started
+#14 29.20   Getting requirements to build wheel: finished with status 'done'
+#14 29.20   Preparing metadata (pyproject.toml): started
+#14 29.35   Preparing metadata (pyproject.toml): finished with status 'done'
+#14 29.40 Collecting lupa==2.8 (from -r /setup/requirements.lock (line 41))
+#14 29.43   Downloading lupa-2.8-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (60 kB)
+#14 29.59 Collecting lxml==6.1.3 (from -r /setup/requirements.lock (line 42))
+#14 29.61   Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+#14 29.65 Collecting lxml_html_clean==0.4.6 (from -r /setup/requirements.lock (line 43))
+#14 29.67   Downloading lxml_html_clean-0.4.6-py3-none-any.whl.metadata (2.4 kB)
+#14 29.76 Collecting MarkupSafe==3.0.4 (from -r /setup/requirements.lock (line 44))
+#14 29.78   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#14 29.83 Collecting mistune==0.8.4 (from -r /setup/requirements.lock (line 45))
+#14 29.86   Downloading mistune-0.8.4-py2.py3-none-any.whl.metadata (8.5 kB)
+#14 29.90 Collecting mysqlclient==2.3.0 (from -r /setup/requirements.lock (line 46))
+#14 29.92   Downloading mysqlclient-2.3.0.tar.gz (102 kB)
+#14 29.96   Installing build dependencies: started
+#14 30.82   Installing build dependencies: finished with status 'done'
+#14 30.82   Getting requirements to build wheel: started
+#14 30.97   Getting requirements to build wheel: finished with status 'done'
+#14 30.97   Preparing metadata (pyproject.toml): started
+#14 31.12   Preparing metadata (pyproject.toml): finished with status 'done'
+#14 31.15 Collecting netaddr==1.3.0 (from -r /setup/requirements.lock (line 47))
+#14 31.18   Downloading netaddr-1.3.0-py3-none-any.whl.metadata (5.0 kB)
+#14 31.21 Collecting oauthlib==4.0.0 (from -r /setup/requirements.lock (line 48))
+#14 31.24   Downloading oauthlib-4.0.0-py3-none-any.whl.metadata (8.6 kB)
+#14 31.28 Collecting packaging==21.3 (from -r /setup/requirements.lock (line 49))
+#14 31.30   Downloading packaging-21.3-py3-none-any.whl.metadata (15 kB)
+#14 31.34 Collecting pika==1.4.4 (from -r /setup/requirements.lock (line 50))
+#14 31.36   Downloading pika-1.4.4-py3-none-any.whl.metadata (13 kB)
+#14 31.59 Collecting pillow==13.0.0 (from -r /setup/requirements.lock (line 51))
+#14 31.62   Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+#14 31.63 Requirement already satisfied: pip==25.0.1 in /usr/local/lib/python3.12/site-packages (from -r /setup/requirements.lock (line 52)) (25.0.1)
+#14 31.67 Collecting prompt_toolkit==3.0.53 (from -r /setup/requirements.lock (line 53))
+#14 31.69   Downloading prompt_toolkit-3.0.53-py3-none-any.whl.metadata (6.4 kB)
+#14 31.73 Collecting pycparser==3.12 (from -r /setup/requirements.lock (line 54))
+#14 31.75   Downloading pycparser-3.12-py3-none-any.whl.metadata (9.7 kB)
+#14 31.79 Collecting Pygments==2.21.0 (from -r /setup/requirements.lock (line 55))
+#14 31.82   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#14 31.85 Collecting PyJWT==2.15.1 (from -r /setup/requirements.lock (line 56))
+#14 31.87   Downloading pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
+#14 31.90 Collecting pymoss==0.2 (from -r /setup/requirements.lock (line 57))
+#14 31.94   Downloading pymoss-0.2-py3-none-any.whl.metadata (989 bytes)
+#14 31.98 Collecting pyOpenSSL==26.4.0 (from -r /setup/requirements.lock (line 58))
+#14 32.01   Downloading pyopenssl-26.4.0-py3-none-any.whl.metadata (22 kB)
+#14 32.05 Collecting PyOTP==2.10.0 (from -r /setup/requirements.lock (line 59))
+#14 32.07   Downloading pyotp-2.10.0-py3-none-any.whl.metadata (10 kB)
+#14 32.11 Collecting pyparsing==3.3.3 (from -r /setup/requirements.lock (line 60))
+#14 32.14   Downloading pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+#14 32.17 Collecting python-dateutil==3.0.0 (from -r /setup/requirements.lock (line 61))
+#14 32.20   Downloading python_dateutil-3.0.0-py2.py3-none-any.whl.metadata (8.2 kB)
+#14 32.23 Collecting python3-openid==3.2.0 (from -r /setup/requirements.lock (line 62))
+#14 32.25   Downloading python3_openid-3.2.0-py3-none-any.whl.metadata (1.6 kB)
+#14 32.31 Collecting PyYAML==6.0.3 (from -r /setup/requirements.lock (line 63))
+#14 32.34   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#14 32.37 Collecting qrcode==8.2 (from -r /setup/requirements.lock (line 64))
+#14 32.39   Downloading qrcode-8.2-py3-none-any.whl.metadata (17 kB)
+#14 32.44 Collecting rcssmin==1.3.0 (from -r /setup/requirements.lock (line 65))
+#14 32.46   Downloading rcssmin-1.3.0-cp312-cp312-manylinux1_x86_64.whl.metadata (4.7 kB)
+#14 32.51 Collecting redis==8.1.0 (from -r /setup/requirements.lock (line 66))
+#14 32.58   Downloading redis-8.1.0-py3-none-any.whl.metadata (16 kB)
+#14 32.63 Collecting requests==2.34.2 (from -r /setup/requirements.lock (line 67))
+#14 32.66   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#14 32.69 Collecting requests-oauthlib==2.0.0 (from -r /setup/requirements.lock (line 68))
+#14 32.72   Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
+#14 32.76 Collecting rjsmin==1.3.0 (from -r /setup/requirements.lock (line 69))
+#14 32.79   Downloading rjsmin-1.3.0-cp312-cp312-manylinux1_x86_64.whl.metadata (4.5 kB)
+#14 32.82 Collecting six==1.17.0 (from -r /setup/requirements.lock (line 70))
+#14 32.85   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#14 32.89 Collecting social-auth-app-django==5.9.0 (from -r /setup/requirements.lock (line 71))
+#14 32.92   Downloading social_auth_app_django-5.9.0-py3-none-any.whl.metadata (3.4 kB)
+#14 32.96 Collecting social-auth-core==4.9.1 (from -r /setup/requirements.lock (line 72))
+#14 32.99   Downloading social_auth_core-4.9.1-py3-none-any.whl.metadata (4.2 kB)
+#14 33.03 Collecting sqlparse==0.6.0 (from -r /setup/requirements.lock (line 73))
+#14 33.06   Downloading sqlparse-0.6.0-py3-none-any.whl.metadata (6.0 kB)
+#14 33.10 Collecting tinycss2==1.5.1 (from -r /setup/requirements.lock (line 74))
+#14 33.12   Downloading tinycss2-1.5.1-py3-none-any.whl.metadata (3.0 kB)
+#14 33.16 Collecting typing_extensions==4.16.0 (from -r /setup/requirements.lock (line 75))
+#14 33.19   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#14 33.23 Collecting tzdata==2026.6 (from -r /setup/requirements.lock (line 76))
+#14 33.25   Downloading tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+#14 33.29 Collecting tzlocal==5.4.5 (from -r /setup/requirements.lock (line 77))
+#14 33.32   Downloading tzlocal-5.4.5-py3-none-any.whl.metadata (7.7 kB)
+#14 33.35 Collecting ua-parser==1.0.2 (from -r /setup/requirements.lock (line 78))
+#14 33.38   Downloading ua_parser-1.0.2-py3-none-any.whl.metadata (5.5 kB)
+#14 33.82 Collecting ua-parser-builtins==202610 (from -r /setup/requirements.lock (line 79))
+#14 33.85   Downloading ua_parser_builtins-202610-py3-none-any.whl.metadata (1.8 kB)
+#14 33.89 Collecting urllib3==2.8.0 (from -r /setup/requirements.lock (line 80))
+#14 33.92   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+#14 33.95 Collecting vine==5.1.0 (from -r /setup/requirements.lock (line 81))
+#14 33.98   Downloading vine-5.1.0-py3-none-any.whl.metadata (2.7 kB)
+#14 34.02 Collecting wcwidth==0.9.4 (from -r /setup/requirements.lock (line 82))
+#14 34.05   Downloading wcwidth-0.9.4-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (23 kB)
+#14 34.09 Collecting webauthn==0.4.7 (from -r /setup/requirements.lock (line 83))
+#14 34.46   Downloading webauthn-0.4.7-py2.py3-none-any.whl.metadata (5.5 kB)
+#14 34.49 Collecting webencodings==0.6.1 (from -r /setup/requirements.lock (line 84))
+#14 34.52   Downloading webencodings-0.6.1-py3-none-any.whl.metadata (3.4 kB)
+#14 34.56 Collecting websocket-client==1.9.2 (from -r /setup/requirements.lock (line 85))
+#14 34.59   Downloading websocket_client-1.9.2-py3-none-any.whl.metadata (8.3 kB)
+#14 34.64 Collecting zipp==4.1.2 (from -r /setup/requirements.lock (line 86))
+#14 34.66   Downloading zipp-4.1.2-py3-none-any.whl.metadata (3.6 kB)
+#14 35.15 Downloading amqp-5.4.1-py3-none-any.whl (51 kB)
+#14 35.18 Downloading asgiref-3.13.0-py3-none-any.whl (27 kB)
+#14 35.23 Downloading billiard-4.3.1-py3-none-any.whl (90 kB)
+#14 35.29 Downloading bleach-6.4.0-py3-none-any.whl (165 kB)
+#14 35.33 Downloading cbor2-6.1.5-cp312-cp312-manylinux_2_28_x86_64.whl (463 kB)
+#14 35.43 Downloading celery-5.6.3-py3-none-any.whl (451 kB)
+#14 35.51 Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+#14 35.55 Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+#14 35.58 Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+#14 35.62 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#14 35.66 Downloading click_didyoumean-0.3.1-py3-none-any.whl (3.6 kB)
+#14 35.67 Downloading click_plugins-1.1.1.2-py2.py3-none-any.whl (11 kB)
+#14 35.69 Downloading click_repl-0.4.1-py3-none-any.whl (14 kB)
+#14 35.71 Downloading coverage-7.17.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (261 kB)
+#14 35.75 Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl (4.8 MB)
+#14 36.30    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 8.8 MB/s eta 0:00:00
+#14 36.31 Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+#14 36.33 Downloading django-5.2.18-py3-none-any.whl (8.3 MB)
+#14 37.85    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 5.4 MB/s eta 0:00:00
+#14 37.86 Downloading django_admin_sortable2-2.3.1-py3-none-any.whl (107 kB)
+#14 37.91 Downloading django_appconf-1.2.0-py3-none-any.whl (6.5 kB)
+#14 37.92 Downloading django_jinja-2.11.0-py3-none-any.whl (23 kB)
+#14 37.94 Downloading django_js_asset-5.0.0-py3-none-any.whl (18 kB)
+#14 37.95 Downloading django_mptt-0.21.0-py3-none-any.whl (121 kB)
+#14 37.99 Downloading django_registration_redux-2.13-py2.py3-none-any.whl (218 kB)
+#14 38.06 Downloading django_reversion-6.4.0-py3-none-any.whl (93 kB)
+#14 38.09 Downloading django_social_share-2.3.0-py2.py3-none-any.whl (14 kB)
+#14 38.10 Downloading django_sortedm2m-4.0.0-py2.py3-none-any.whl (37 kB)
+#14 38.12 Downloading django_statici18n-2.8.0-py2.py3-none-any.whl (9.4 kB)
+#14 38.13 Downloading django_compressor-4.6.0-py3-none-any.whl (96 kB)
+#14 38.16 Downloading future-1.0.0-py3-none-any.whl (491 kB)
+#14 38.32 Downloading icalendar-7.3.0-py3-none-any.whl (542 kB)
+#14 38.45    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 542.5/542.5 kB 4.3 MB/s eta 0:00:00
+#14 38.46 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#14 38.48 Downloading importlib_metadata-4.13.0-py3-none-any.whl (23 kB)
+#14 38.50 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#14 38.54 Downloading kombu-5.6.2-py3-none-any.whl (214 kB)
+#14 38.61 Downloading lupa-2.8-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (2.4 MB)
+#14 39.06    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 5.6 MB/s eta 0:00:00
+#14 39.07 Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+#14 39.76    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 7.7 MB/s eta 0:00:00
+#14 39.77 Downloading lxml_html_clean-0.4.6-py3-none-any.whl (14 kB)
+#14 39.79 Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#14 39.80 Downloading mistune-0.8.4-py2.py3-none-any.whl (16 kB)
+#14 39.81 Downloading netaddr-1.3.0-py3-none-any.whl (2.3 MB)
+#14 40.04    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 9.8 MB/s eta 0:00:00
+#14 40.05 Downloading oauthlib-4.0.0-py3-none-any.whl (159 kB)
+#14 40.08 Downloading packaging-21.3-py3-none-any.whl (40 kB)
+#14 40.09 Downloading pika-1.4.4-py3-none-any.whl (165 kB)
+#14 40.12 Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+#14 40.77    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 11.1 MB/s eta 0:00:00
+#14 40.78 Downloading prompt_toolkit-3.0.53-py3-none-any.whl (392 kB)
+#14 40.83 Downloading pycparser-3.12-py3-none-any.whl (62 kB)
+#14 40.84 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#14 40.95    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 13.1 MB/s eta 0:00:00
+#14 40.96 Downloading pyjwt-2.15.1-py3-none-any.whl (33 kB)
+#14 40.98 Downloading pymoss-0.2-py3-none-any.whl (14 kB)
+#14 40.99 Downloading pyopenssl-26.4.0-py3-none-any.whl (56 kB)
+#14 41.00 Downloading pyotp-2.10.0-py3-none-any.whl (13 kB)
+#14 41.01 Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+#14 41.03 Downloading python_dateutil-3.0.0-py2.py3-none-any.whl (94 kB)
+#14 41.04 Downloading python3_openid-3.2.0-py3-none-any.whl (133 kB)
+#14 41.07 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+#14 41.14    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 10.5 MB/s eta 0:00:00
+#14 41.15 Downloading qrcode-8.2-py3-none-any.whl (45 kB)
+#14 41.17 Downloading rcssmin-1.3.0-cp312-cp312-manylinux1_x86_64.whl (49 kB)
+#14 41.18 Downloading redis-8.1.0-py3-none-any.whl (560 kB)
+#14 41.24    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 560.6/560.6 kB 10.2 MB/s eta 0:00:00
+#14 41.25 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#14 41.27 Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+#14 41.28 Downloading rjsmin-1.3.0-cp312-cp312-manylinux1_x86_64.whl (31 kB)
+#14 41.29 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#14 41.30 Downloading social_auth_app_django-5.9.0-py3-none-any.whl (28 kB)
+#14 41.32 Downloading social_auth_core-4.9.1-py3-none-any.whl (457 kB)
+#14 41.37 Downloading sqlparse-0.6.0-py3-none-any.whl (50 kB)
+#14 41.39 Downloading tinycss2-1.5.1-py3-none-any.whl (28 kB)
+#14 41.40 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#14 41.41 Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+#14 41.45 Downloading tzlocal-5.4.5-py3-none-any.whl (18 kB)
+#14 41.47 Downloading ua_parser-1.0.2-py3-none-any.whl (31 kB)
+#14 41.49 Downloading ua_parser_builtins-202610-py3-none-any.whl (90 kB)
+#14 41.50 Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#14 41.52 Downloading vine-5.1.0-py3-none-any.whl (9.6 kB)
+#14 41.53 Downloading wcwidth-0.9.4-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (785 kB)
+#14 41.68    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 785.9/785.9 kB 3.9 MB/s eta 0:00:00
+#14 41.74 Downloading webauthn-0.4.7-py2.py3-none-any.whl (18 kB)
+#14 41.76 Downloading webencodings-0.6.1-py3-none-any.whl (8.7 kB)
+#14 41.78 Downloading websocket_client-1.9.2-py3-none-any.whl (95 kB)
+#14 41.80 Downloading zipp-4.1.2-py3-none-any.whl (10 kB)
+#14 41.96 Building wheels for collected packages: django-impersonate, llist, mysqlclient, ansi2html, django-fernet-fields, dmoj-wpadmin, jsonfield
+#14 41.96   Building wheel for django-impersonate (pyproject.toml): started
+#14 42.09   Building wheel for django-impersonate (pyproject.toml): finished with status 'done'
+#14 42.09   Created wheel for django-impersonate: filename=django_impersonate-1.9.5-py3-none-any.whl size=28428 sha256=b70bd70e23b5439ac953fcfad0641f9425a328e1b9c931dba877aefff1c4af06
+#14 42.09   Stored in directory: /tmp/pip-ephem-wheel-cache-mxwqn9dc/wheels/6d/a3/50/a84705f12af84c980e83ce0804a42e52893d2abf768ce101c2
+#14 42.09   Building wheel for llist (pyproject.toml): started
+#14 43.13   Building wheel for llist (pyproject.toml): finished with status 'done'
+#14 43.13   Created wheel for llist: filename=llist-0.7.1-cp312-cp312-linux_x86_64.whl size=94121 sha256=8554c381b18c3da3f93b98e5616c072bc004136279bad80ee5c25895f65fa045
+#14 43.13   Stored in directory: /tmp/pip-ephem-wheel-cache-mxwqn9dc/wheels/d1/7f/6f/0c67df1a44d1b857dde96718a03b0844ae317821a3432644d1
+#14 43.13   Building wheel for mysqlclient (pyproject.toml): started
+#14 43.81   Building wheel for mysqlclient (pyproject.toml): finished with status 'done'
+#14 43.81   Created wheel for mysqlclient: filename=mysqlclient-2.3.0-cp312-cp312-linux_x86_64.whl size=158107 sha256=1a8cc5edc74c827e3cb146686f4a12fd447b3d22071ae3dbcfa8bf52475c25f9
+#14 43.81   Stored in directory: /tmp/pip-ephem-wheel-cache-mxwqn9dc/wheels/5e/fc/c5/02ab5a9350076c20c3dac5e376b3dfad1cc673c8cea7d810ba
+#14 43.81   Building wheel for ansi2html (pyproject.toml): started
+#14 44.00   Building wheel for ansi2html (pyproject.toml): finished with status 'done'
+#14 44.00   Created wheel for ansi2html: filename=ansi2html-1.5.3.dev20-py3-none-any.whl size=14733 sha256=f12af96b9a5f3d4d1829b127cc6a36538fbb3fd0920fd381f1e16429891e44d3
+#14 44.00   Stored in directory: /tmp/pip-ephem-wheel-cache-mxwqn9dc/wheels/74/31/df/c3d106dd5ab5f76caacec8f6927cbbb182128de964350a7412
+#14 44.00   Building wheel for django-fernet-fields (pyproject.toml): started
+#14 44.13   Building wheel for django-fernet-fields (pyproject.toml): finished with status 'done'
+#14 44.13   Created wheel for django-fernet-fields: filename=django_fernet_fields-0.6-py3-none-any.whl size=9193 sha256=34e6ec28772dad3cb5101b5ae155d4acd657f3f64f803bcd28deecfb07f0b18f
+#14 44.13   Stored in directory: /tmp/pip-ephem-wheel-cache-mxwqn9dc/wheels/2b/2e/2b/dd812b58334cee7303c6c287fab75d536939c9b9ef6035e5a5
+#14 44.13   Building wheel for dmoj-wpadmin (pyproject.toml): started
+#14 44.33   Building wheel for dmoj-wpadmin (pyproject.toml): finished with status 'done'
+#14 44.33   Created wheel for dmoj-wpadmin: filename=dmoj_wpadmin-1.10.2-py2.py3-none-any.whl size=616732 sha256=6a89ec95795fb140f354dd35178b4095d5eeb7a3007b4c7c7cb113ae2e844848
+#14 44.33   Stored in directory: /tmp/pip-ephem-wheel-cache-mxwqn9dc/wheels/e8/f2/d9/4a6c533e47707df40586ed907210e5ef62a75f1c284ac6ae34
+#14 44.33   Building wheel for jsonfield (pyproject.toml): started
+#14 44.45   Building wheel for jsonfield (pyproject.toml): finished with status 'done'
+#14 44.46   Created wheel for jsonfield: filename=jsonfield-3.1.0-py3-none-any.whl size=8065 sha256=6f1a8983e4d15dff5c51aab6682d6bc2e94468bd1076959c14415d4e2c8c316b
+#14 44.46   Stored in directory: /tmp/pip-ephem-wheel-cache-mxwqn9dc/wheels/3d/8d/6b/19e4fd4edc074eff35ad2c4587421d5f3a8939fca156e4f80b
+#14 44.46 Successfully built django-impersonate llist mysqlclient ansi2html django-fernet-fields dmoj-wpadmin jsonfield
+#14 44.55 Installing collected packages: rjsmin, rcssmin, pymoss, mistune, llist, dmoj-wpadmin, django-sortedm2m, django-social-share, django-registration-redux, django-impersonate, zipp, websocket-client, webencodings, wcwidth, vine, urllib3, ua-parser-builtins, tzlocal, tzdata, typing_extensions, sqlparse, six, redis, qrcode, PyYAML, pyparsing, PyOTP, PyJWT, Pygments, pycparser, pillow, pika, oauthlib, netaddr, mysqlclient, MarkupSafe, lxml, lupa, idna, future, defusedxml, coverage, click, charset-normalizer, certifi, cbor2, billiard, asgiref, ansi2html, ua-parser, tinycss2, requests, python3-openid, python-dateutil, prompt_toolkit, packaging, lxml_html_clean, Jinja2, importlib-metadata, Django, click-plugins, click-didyoumean, cffi, bleach, amqp, requests-oauthlib, kombu, jsonfield, icalendar, django-reversion, django-js-asset, django-jinja, django-appconf, django-admin-sortable2, cryptography, click-repl, pyOpenSSL, django-statici18n, django-mptt, django-fernet-fields, django_compressor, celery, webauthn, social-auth-core, social-auth-app-django
+#14 50.25 Successfully installed Django-5.2.18 Jinja2-3.1.6 MarkupSafe-3.0.4 PyJWT-2.15.1 PyOTP-2.10.0 PyYAML-6.0.3 Pygments-2.21.0 amqp-5.4.1 ansi2html-1.5.3.dev20 asgiref-3.13.0 billiard-4.3.1 bleach-6.4.0 cbor2-6.1.5 celery-5.6.3 certifi-2026.10.23 cffi-2.1.1 charset-normalizer-3.5.2 click-8.5.0 click-didyoumean-0.3.1 click-plugins-1.1.1.2 click-repl-0.4.1 coverage-7.17.0 cryptography-50.0.2 defusedxml-0.7.1 django-admin-sortable2-2.3.1 django-appconf-1.2.0 django-fernet-fields-0.6 django-impersonate-1.9.5 django-jinja-2.11.0 django-js-asset-5.0.0 django-mptt-0.21.0 django-registration-redux-2.13 django-reversion-6.4.0 django-social-share-2.3.0 django-sortedm2m-4.0.0 django-statici18n-2.8.0 django_compressor-4.6.0 dmoj-wpadmin-1.10.2 future-1.0.0 icalendar-7.3.0 idna-3.20 importlib-metadata-4.13.0 jsonfield-3.1.0 kombu-5.6.2 llist-0.7.1 lupa-2.8 lxml-6.1.3 lxml_html_clean-0.4.6 mistune-0.8.4 mysqlclient-2.3.0 netaddr-1.3.0 oauthlib-4.0.0 packaging-21.3 pika-1.4.4 pillow-13.0.0 prompt_toolkit-3.0.53 pyOpenSSL-26.4.0 pycparser-3.12 pymoss-0.2 pyparsing-3.3.3 python-dateutil-3.0.0 python3-openid-3.2.0 qrcode-8.2 rcssmin-1.3.0 redis-8.1.0 requests-2.34.2 requests-oauthlib-2.0.0 rjsmin-1.3.0 six-1.17.0 social-auth-app-django-5.9.0 social-auth-core-4.9.1 sqlparse-0.6.0 tinycss2-1.5.1 typing_extensions-4.16.0 tzdata-2026.6 tzlocal-5.4.5 ua-parser-1.0.2 ua-parser-builtins-202610 urllib3-2.8.0 vine-5.1.0 wcwidth-0.9.4 webauthn-0.4.7 webencodings-0.6.1 websocket-client-1.9.2 zipp-4.1.2
+#14 50.25 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#14 50.43 
+#14 50.43 [notice] A new release of pip is available: 25.0.1 -> 26.2.2
+#14 50.43 [notice] To update, run: pip install --upgrade pip
+#14 50.84 No broken requirements found.
+#14 DONE 51.5s
+
+#17 [stage-1  6/11] COPY --from=assets /app /app
+#17 DONE 0.3s
+
+#18 [stage-1  7/11] COPY --from=assets /asset-tools/package.json /metadata/package.json
+#18 DONE 0.1s
+
+#19 [stage-1  8/11] COPY --from=assets /asset-tools/package-lock.json /metadata/package-lock.json
+#19 DONE 0.1s
+
+#20 [stage-1  9/11] COPY --from=assets /asset-tools/versions.json /metadata/npm-versions.json
+#20 DONE 0.1s
+
+#21 [stage-1 10/11] COPY local_settings.py /app/dmoj/local_settings.py
+#21 DONE 0.1s
+
+#22 [stage-1 11/11] RUN useradd --create-home --uid 10001 site && chown -R site:site /app /metadata
+#22 DONE 9.4s
+
+#23 exporting to image
+#23 exporting layers
+#23 exporting layers 6.6s done
+#23 exporting manifest sha256:4e4802f636b7e9ded3d595a4f1badb9b4cc7d941815477b21657e015107f6ccb 0.0s done
+#23 exporting config sha256:c700098ea15c0a17e42d829be0087900fa724ce28f7267eb424088b26ba751c3 0.0s done
+#23 exporting attestation manifest sha256:afa0fca2035155a4bfab7f5a0d5ae248c56a5b67f4226949028384ea704bd25e 0.0s done
+#23 exporting manifest list sha256:3ea8c0fbeb13e683ad0ba580b612c1c8987260f1617a6aafeca8aec751d9d99a
+#23 exporting manifest list sha256:3ea8c0fbeb13e683ad0ba580b612c1c8987260f1617a6aafeca8aec751d9d99a 0.0s done
+#23 naming to docker.io/library/cpjudge-a09-site:locked done
+#23 unpacking to docker.io/library/cpjudge-a09-site:locked
+#23 unpacking to docker.io/library/cpjudge-a09-site:locked 2.5s done
+#23 DONE 9.3s

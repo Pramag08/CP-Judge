@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="content-description">
+    <h2>Upload a problem package</h2>
+    <p>Contest: {{ contest.name }}</p>
+    <p>Choose one ZIP file. The maximum compressed upload size is <strong>{{ maximum_label }}</strong>.</p>
+    {% if error %}<div class="alert alert-danger" role="alert">{{ error }}</div>{% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="package">Polygon ZIP package</label>
+            <input id="package" name="package" type="file" accept=".zip,application/zip" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Upload ZIP</button>
+    </form>
+    <p>The original is stored privately. Uploading does not convert, publish, or execute package contents.</p>
+</div>
+{% endblock %}

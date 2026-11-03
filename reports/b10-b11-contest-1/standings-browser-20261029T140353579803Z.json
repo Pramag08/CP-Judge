@@ -1,0 +1,22 @@
+{
+  "standings": [
+    {
+      "username": "b10tmpa",
+      "rank": 1,
+      "solved": 0,
+      "penalty_display": "00:00:00",
+      "problem_cell": "0 (1)\n00:09:01"
+    },
+    {
+      "username": "b10tmpb",
+      "rank": 1,
+      "solved": 0,
+      "penalty_display": "00:00:00",
+      "problem_cell": "0 (1)\n00:08:39"
+    }
+  ],
+  "posts": [],
+  "receipts": [],
+  "page_errors": [],
+  "raw_evidence": "build/b10-b11-contest-1/standings-20261029T140353579803Z"
+}

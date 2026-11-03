@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "actual_http_roles_verified": true,
+  "responses": {
+    "anonymous": {
+      "native_data": {
+        "302": 229
+      },
+      "web_static_media": {
+        "404": 105
+      },
+      "private_package_paths": {
+        "404": 10,
+        "302": 4
+      }
+    },
+    "ordinary_participant": {
+      "native_data": {
+        "404": 229
+      },
+      "web_static_media": {
+        "404": 105
+      },
+      "private_package_paths": {
+        "404": 14
+      }
+    }
+  },
+  "source_reference_checker_hidden_routes_denied": true,
+  "public_static_media_downloads_denied": true,
+  "statement_rendering": "NOT TESTED",
+  "judging": "NOT TESTED"
+}

@@ -1,0 +1,30 @@
+--- a/judge/models/choices.py
++++ b/judge/models/choices.py
+@@ -18,7 +18,6 @@
+ 
+ 
+ TIMEZONE = make_timezones()
+-del make_timezones
+ 
+ ACE_THEMES = (
+     ('auto', _('Follow site theme')),
+--- a/judge/models/profile.py
++++ b/judge/models/profile.py
+@@ -23,7 +23,7 @@
+ from pyotp.utils import strings_equal
+ from sortedm2m.fields import SortedManyToManyField
+ 
+-from judge.models.choices import ACE_THEMES, MATH_ENGINES_CHOICES, SITE_THEMES, TIMEZONE
++from judge.models.choices import ACE_THEMES, MATH_ENGINES_CHOICES, SITE_THEMES, make_timezones
+ from judge.models.runtime import Language
+ from judge.ratings import rating_class
+ from judge.utils.two_factor import webauthn_decode
+@@ -147,7 +147,7 @@
+ class Profile(models.Model):
+     user = models.OneToOneField(User, verbose_name=_('user associated'), on_delete=models.CASCADE)
+     about = models.TextField(verbose_name=_('self-description'), null=True, blank=True)
+-    timezone = models.CharField(max_length=50, verbose_name=_('time zone'), choices=TIMEZONE,
++    timezone = models.CharField(max_length=50, verbose_name=_('time zone'), choices=make_timezones,
+                                 default=settings.DEFAULT_USER_TIME_ZONE)
+     language = models.ForeignKey('Language', verbose_name=_('preferred language'), on_delete=models.SET_DEFAULT,
+                                  default=Language.get_default_language_pk)

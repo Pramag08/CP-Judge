@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "baseline_model_sets": 72,
+  "baseline_non_session_rows": 2220,
+  "original_accounts_passwords_submissions_cases_sources_imports_contests_and_audits_preserved": true,
+  "official_scores_penalties_ranks_contestant_counts_and_solve_statistics_unchanged": true,
+  "native_problem_aggregate_statistics_unchanged": true,
+  "native_runtime_advertisement_content_preserved": true,
+  "no_pending_work": true,
+  "actual_author_tests": [
+    {
+      "test_id": 1,
+      "submission_id": 24,
+      "verdict": "AC",
+      "cases": 3,
+      "one_native_dispatch": true,
+      "callback_sql_agree": true,
+      "archived_no_official_contest_or_participation": true,
+      "runtime": "CPP17",
+      "limits": [
+        0.5,
+        65536
+      ]
+    },
+    {
+      "test_id": 2,
+      "submission_id": 25,
+      "verdict": "WA",
+      "cases": 3,
+      "one_native_dispatch": true,
+      "callback_sql_agree": true,
+      "archived_no_official_contest_or_participation": true,
+      "runtime": "CPP17",
+      "limits": [
+        0.5,
+        65536
+      ]
+    }
+  ]
+}

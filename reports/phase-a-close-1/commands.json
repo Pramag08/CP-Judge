@@ -1,0 +1,142 @@
+[
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/phase-a-close-1/verify.py",
+      "--task",
+      "A06"
+    ],
+    "exit_status": 1,
+    "result": "Initial audit wrongly interpreted component DEFERRED text as whole-task status; prefix check corrected."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/phase-a-close-1/verify.py",
+      "--task",
+      "A06"
+    ],
+    "exit_status": 0,
+    "result": "Contract/documentation/source-identity and preservation audit PASS; runtime NOT TESTED."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "/tmp/phase-a-complete.py",
+      "A07"
+    ],
+    "exit_status": 1,
+    "result": "Shared status marker renamed after A06; helper failed before status/report creation; corrected."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/phase-a-close-1/verify.py",
+      "--task",
+      "A07"
+    ],
+    "exit_status": 1,
+    "result": "Expected A07 report absent after helper failure; helper rerun and report created before successful audit."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/phase-a-close-1/verify.py",
+      "--task",
+      "A07"
+    ],
+    "exit_status": 0,
+    "result": "Contract/documentation/source-identity and preservation audit PASS; runtime NOT TESTED."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/phase-a-close-1/verify.py",
+      "--task",
+      "A08"
+    ],
+    "exit_status": 0,
+    "result": "Contract/documentation/source-identity and preservation audit PASS; runtime NOT TESTED."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/phase-a-close-1/verify.py",
+      "--task",
+      "A10"
+    ],
+    "exit_status": 0,
+    "result": "Contract/documentation/source-identity and preservation audit PASS; runtime NOT TESTED."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/phase-a-close-1/verify.py",
+      "--task",
+      "A11"
+    ],
+    "exit_status": 0,
+    "result": "Contract/documentation/source-identity and preservation audit PASS; runtime NOT TESTED."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/phase-a-close-1/verify.py",
+      "--task",
+      "A12"
+    ],
+    "exit_status": 0,
+    "result": "Contract/documentation/source-identity and preservation audit PASS; runtime NOT TESTED."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/a10-native-1/probe.py"
+    ],
+    "exit_status": 0,
+    "evidence": "reports/a10-native-1/evidence.json",
+    "result": "Executed by exclusive subagent; narrow native source checks only; coordinator inspected report/script, did not repeat."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/a11-dispatch-1/inspect.py"
+    ],
+    "exit_status": 0,
+    "evidence": "reports/a11-dispatch-1/evidence.json",
+    "result": "Executed by exclusive subagent; narrow native source checks only; coordinator inspected report/script, did not repeat."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/a12-run-1/inspect.py"
+    ],
+    "exit_status": 0,
+    "evidence": "reports/a12-run-1/evidence.json",
+    "result": "Executed by exclusive subagent; narrow native source checks only; coordinator inspected report/script, did not repeat."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/phase-a-close-1/verify.py",
+      "--task",
+      "final"
+    ],
+    "exit_status": 0,
+    "evidence": "reports/phase-a-close-1/checks-final.json",
+    "result": "Combined final audit PASS; no runtime test."
+  }
+]

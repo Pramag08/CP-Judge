@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": [
+    "local organizer command recovery",
+    "reset revokes existing request and channel sessions",
+    "reset forces a strong password change",
+    "audited college ID correction retires old login and accepts corrected ID with unchanged password"
+  ]
+}

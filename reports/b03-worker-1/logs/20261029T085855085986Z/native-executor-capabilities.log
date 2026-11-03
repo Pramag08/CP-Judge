@@ -1,0 +1,91 @@
+Self-testing executors
+Self-testing CPP11:  Success [0.003s, 3796 KB]   g++11 16
+Self-testing CPP14:  Success [0.004s, 3848 KB]   g++14 16
+Self-testing CPP17:  Success [0.003s, 3912 KB]   g++17 16
+Self-testing CPP20:  Success [0.003s, 3872 KB]   g++20 16
+Self-testing CPP23:  Success [0.003s, 3936 KB]   g++23 16
+
+B03_RESULT={
+  "status": "PASS",
+  "executors": {
+    "CPP11": {
+      "cplusplus": 201103,
+      "compiler_versions": [
+        [
+          "g++11",
+          [
+            16
+          ]
+        ]
+      ],
+      "compiler_full_version": "16.2.0",
+      "sandbox_socket_denials": 6,
+      "private_config_read_denied": true,
+      "CPP23_expected_feature": false
+    },
+    "CPP14": {
+      "cplusplus": 201402,
+      "compiler_versions": [
+        [
+          "g++14",
+          [
+            16
+          ]
+        ]
+      ],
+      "compiler_full_version": "16.2.0",
+      "sandbox_socket_denials": 6,
+      "private_config_read_denied": true,
+      "CPP23_expected_feature": false
+    },
+    "CPP17": {
+      "cplusplus": 201703,
+      "compiler_versions": [
+        [
+          "g++17",
+          [
+            16
+          ]
+        ]
+      ],
+      "compiler_full_version": "16.2.0",
+      "sandbox_socket_denials": 6,
+      "private_config_read_denied": true,
+      "CPP23_expected_feature": false
+    },
+    "CPP20": {
+      "cplusplus": 202002,
+      "compiler_versions": [
+        [
+          "g++20",
+          [
+            16
+          ]
+        ]
+      ],
+      "compiler_full_version": "16.2.0",
+      "sandbox_socket_denials": 6,
+      "private_config_read_denied": true,
+      "CPP23_expected_feature": false
+    },
+    "CPP23": {
+      "cplusplus": 202302,
+      "compiler_versions": [
+        [
+          "g++23",
+          [
+            16
+          ]
+        ]
+      ],
+      "compiler_full_version": "16.2.0",
+      "sandbox_socket_denials": 6,
+      "private_config_read_denied": true,
+      "CPP23_expected_feature": true
+    }
+  },
+  "supervisor_coordinator_tcp": true,
+  "worker_api_disabled": true,
+  "pinned_runtime_mapping_exact": true,
+  "website_judging": "NOT TESTED"
+}

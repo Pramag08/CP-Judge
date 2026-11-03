@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "test": "Deliberately stale-generation export sent through real Celery and denied at execution",
+  "participant_emails_exported": false
+}

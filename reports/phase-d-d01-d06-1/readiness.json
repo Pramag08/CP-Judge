@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "actual_fresh_worker_challenge": true,
+  "actual_stale_challenge_rejected": true,
+  "actual_wrong_auth_rejected": true,
+  "actual_missing_problem_rejected": true,
+  "mutated_data_or_worker_configuration": false
+}

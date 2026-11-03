@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "native_code": "pv000000000000000001",
+  "manifest_digest": "7e7b7ec333912da774b066e821eae4c2cb9cb9426ea3417320352d128b5dcf90",
+  "source_verification": {
+    "status": "PASS",
+    "tests_verified": 103,
+    "statement_assets_verified": 15,
+    "sample_tests_verified": 1,
+    "checker_bytes": "PASS",
+    "limits_and_groups": "PASS (configuration only)",
+    "judging": "NOT TESTED",
+    "source_sha256": "260abce9770f2c88cf8c93271cbfcbd6cea3f028c6eda536ad16256731d8a769"
+  },
+  "site_and_advertisement": {
+    "exists": true,
+    "created": false,
+    "problem_pk": 1,
+    "native_code": "pv000000000000000001",
+    "site_values": {
+      "time_limit": 2.0,
+      "memory_limit": 262144,
+      "short_circuit": false,
+      "points": 103.0,
+      "partial": true,
+      "is_public": false,
+      "is_manually_managed": true,
+      "description": "bc016f161366f5d26a880f43e128599d3eb987b2717043f035066259aa7d1018",
+      "name": "Pramag's Gaming Grid"
+    },
+    "allowed_languages": [
+      "CPP23"
+    ],
+    "language_limit_rows": 0,
+    "worker_online": true,
+    "native_worker_recognizes_problem": true,
+    "submission_count": 0,
+    "judging": "NOT TESTED"
+  },
+  "actual_worker": {
+    "status": "PASS",
+    "input_output_pairs": 103,
+    "archive_entries": 206,
+    "all_installed_file_hashes_match": true,
+    "checker_header_samples_assets_exact": true,
+    "ordered_active_cases": 103,
+    "case_points_total": 103,
+    "checker_language": "CPP23",
+    "source_time_ms": 2000,
+    "source_memory_bytes": 268435456,
+    "time_seconds": 2.0,
+    "memory_KiB": 262144,
+    "native_root_unique": true,
+    "reference_source_installed": false,
+    "judging": "NOT TESTED"
+  },
+  "expected_worker_request": {
+    "problem-id": "pv000000000000000001",
+    "language": "CPP23",
+    "time-limit": 2.0,
+    "memory-limit": 262144,
+    "short-circuit": false
+  },
+  "judging": "NOT TESTED"
+}

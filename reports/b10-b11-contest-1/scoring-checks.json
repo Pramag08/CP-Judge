@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "checks": [
+    "rounded partial is not full AC",
+    "non-AC full points not solved",
+    "pending old AC not solved",
+    "empty case set not solved",
+    "floor separately per solved problem",
+    "exact qualifying failures and CE exclusions",
+    "unsolved zero penalty",
+    "same receipt uses ID; later WA ignored",
+    "later failures ignored",
+    "authoritative original result",
+    "authoritative replacement WA to CE",
+    "authoritative replacement AC to WA",
+    "replacement pending withholds old credit",
+    "native competition ranks",
+    "fixed config rejects alternate settings",
+    "native SQL more solved outranks lower penalty",
+    "native SQL lower penalty outranks entry ID",
+    "native SQL tied pairs share rank and stable entry ID"
+  ],
+  "count": 18,
+  "kind": "constructed scorer inputs/native ranker plus rollback-only SQL ordering fixtures on temporary entries; no new executions or operational rejudge test"
+}

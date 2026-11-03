@@ -1,0 +1,725 @@
+[
+  {
+    "action": "snapshot-submit",
+    "name": "precise-snapshot-submit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114248434418Z",
+    "log": "reports/b07-submission-1/logs/20261029T114248434418Z/precise-snapshot-submit.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114322055960Z",
+    "log": "reports/b07-submission-1/logs/20261029T114322055960Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114322055960Z",
+    "log": "reports/b07-submission-1/logs/20261029T114322055960Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114322055960Z",
+    "log": "reports/b07-submission-1/logs/20261029T114322055960Z/wait-native-offline.log"
+  },
+  {
+    "action": "instrument",
+    "name": "idle-worker-stop",
+    "argv": [
+      "/home/pramag/Documents/CP-Judge/.venv/bin/python",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114322004168Z",
+    "log": "reports/b07-submission-1/logs/20261029T114322004168Z/idle-worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b07-submission-1/logs/20261029T114324003924Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b07-submission-1/logs/20261029T114324003924Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b07-submission-1/logs/20261029T114324003924Z/event-stop.log"
+  },
+  {
+    "action": "instrument",
+    "name": "idle-bridge-stop",
+    "argv": [
+      "/home/pramag/Documents/CP-Judge/.venv/bin/python",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114322004168Z",
+    "log": "reports/b07-submission-1/logs/20261029T114322004168Z/idle-bridge-stop.log"
+  },
+  {
+    "action": "instrument",
+    "name": "passive-native-request-observation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114322004168Z",
+    "log": "reports/b07-submission-1/logs/20261029T114322004168Z/passive-native-request-observation.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b07-submission-1/logs/20261029T114338236635Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b07-submission-1/logs/20261029T114338236635Z/event-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b07-submission-1/logs/20261029T114338236635Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b07-submission-1/logs/20261029T114338236635Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/home/pramag/Documents/CP-Judge/.venv/bin/python",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b07-submission-1/logs/20261029T114338048783Z/b02-start.log",
+    "timestamp_utc": "2026-10-29T11:43:42.376703+00:00"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114342423574Z",
+    "log": "reports/b07-submission-1/logs/20261029T114342423574Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114342423574Z",
+    "log": "reports/b07-submission-1/logs/20261029T114342423574Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114342423574Z",
+    "log": "reports/b07-submission-1/logs/20261029T114342423574Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114342423574Z",
+    "log": "reports/b07-submission-1/logs/20261029T114342423574Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/home/pramag/Documents/CP-Judge/.venv/bin/python",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b07-submission-1/logs/20261029T114338048783Z/b03-start.log",
+    "timestamp_utc": "2026-10-29T11:43:46.902294+00:00"
+  },
+  {
+    "action": "instrument",
+    "name": "managed-observed-start",
+    "argv": [
+      "/home/pramag/Documents/CP-Judge/.venv/bin/python",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114322004168Z",
+    "log": "reports/b07-submission-1/logs/20261029T114322004168Z/managed-observed-start.log"
+  },
+  {
+    "action": "submit",
+    "name": "browser-submit-preflight",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114552438223Z",
+    "log": "reports/b07-submission-1/logs/20261029T114552438223Z/browser-submit-preflight.log"
+  },
+  {
+    "action": "submit",
+    "name": "real-native-browser-submission",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/submission_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b07-submission-1/browser/20261029T114552438223Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T114552438223Z",
+    "log": "build/b07-submission-1/logs/20261029T114552438223Z/real-native-browser-submission.log"
+  },
+  {
+    "action": "submit",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114552438223Z",
+    "log": "reports/b07-submission-1/logs/20261029T114552438223Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "submit",
+    "name": "browser-submit-preflight",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114728123027Z",
+    "log": "reports/b07-submission-1/logs/20261029T114728123027Z/browser-submit-preflight.log"
+  },
+  {
+    "action": "submit",
+    "name": "real-native-browser-submission",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/submission_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b07-submission-1/browser/20261029T114728123027Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T114728123027Z",
+    "log": "build/b07-submission-1/logs/20261029T114728123027Z/real-native-browser-submission.log"
+  },
+  {
+    "action": "submit",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T114728123027Z",
+    "log": "reports/b07-submission-1/logs/20261029T114728123027Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "inspect-submit",
+    "name": "native-ace-source-sync",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T115536761094Z",
+    "log": "reports/b07-submission-1/logs/20261029T115536761094Z/native-ace-source-sync.log"
+  },
+  {
+    "action": "submit",
+    "name": "browser-submit-preflight",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T115745767981Z",
+    "log": "reports/b07-submission-1/logs/20261029T115745767981Z/browser-submit-preflight.log"
+  },
+  {
+    "action": "submit",
+    "name": "real-native-browser-submission",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/submission_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/local-packages/gaming-grid.zip,dst=/run/package.zip,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b07-submission-1/browser/20261029T115745767981Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T115745767981Z",
+    "log": "build/b07-submission-1/logs/20261029T115745767981Z/real-native-browser-submission.log"
+  },
+  {
+    "action": "submit",
+    "name": "cleanup-owned-browser-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T115745767981Z",
+    "log": "reports/b07-submission-1/logs/20261029T115745767981Z/cleanup-owned-browser-sessions.log"
+  },
+  {
+    "action": "results",
+    "name": "native-stored-submission-and-cases",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120055898753Z",
+    "log": "reports/b07-submission-1/logs/20261029T120055898753Z/native-stored-submission-and-cases.log"
+  },
+  {
+    "action": "results",
+    "name": "passive-actual-native-packet-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120055898753Z",
+    "log": "reports/b07-submission-1/logs/20261029T120055898753Z/passive-actual-native-packet-trace.log"
+  },
+  {
+    "action": "results",
+    "name": "actual-worker-raw-log",
+    "argv": [
+      "docker",
+      "logs",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120055898753Z",
+    "log": "build/b07-submission-1/logs/20261029T120055898753Z/actual-worker-raw-log.log"
+  },
+  {
+    "action": "preserve-submit",
+    "name": "precise-preserve-submit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120126496292Z",
+    "log": "reports/b07-submission-1/logs/20261029T120126496292Z/precise-preserve-submit.log"
+  },
+  {
+    "action": "results",
+    "name": "native-stored-submission-and-cases",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120318319549Z",
+    "log": "reports/b07-submission-1/logs/20261029T120318319549Z/native-stored-submission-and-cases.log"
+  },
+  {
+    "action": "results",
+    "name": "passive-actual-native-packet-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120318319549Z",
+    "log": "reports/b07-submission-1/logs/20261029T120318319549Z/passive-actual-native-packet-trace.log"
+  },
+  {
+    "action": "results",
+    "name": "actual-worker-raw-log",
+    "argv": [
+      "docker",
+      "logs",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120318319549Z",
+    "log": "build/b07-submission-1/logs/20261029T120318319549Z/actual-worker-raw-log.log"
+  },
+  {
+    "action": "results",
+    "name": "retained-native-compiler-messages",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-compiler-message.txt"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120318319549Z",
+    "log": "build/b07-submission-1/logs/20261029T120318319549Z/retained-native-compiler-messages.log"
+  },
+  {
+    "action": "results",
+    "name": "native-stored-submission-and-cases",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120527466959Z",
+    "log": "reports/b07-submission-1/logs/20261029T120527466959Z/native-stored-submission-and-cases.log"
+  },
+  {
+    "action": "results",
+    "name": "passive-actual-native-packet-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120527466959Z",
+    "log": "reports/b07-submission-1/logs/20261029T120527466959Z/passive-actual-native-packet-trace.log"
+  },
+  {
+    "action": "results",
+    "name": "actual-worker-raw-log",
+    "argv": [
+      "docker",
+      "logs",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120527466959Z",
+    "log": "build/b07-submission-1/logs/20261029T120527466959Z/actual-worker-raw-log.log"
+  },
+  {
+    "action": "results",
+    "name": "retained-native-compiler-messages",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-compiler-message.txt"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120527466959Z",
+    "log": "build/b07-submission-1/logs/20261029T120527466959Z/retained-native-compiler-messages.log"
+  },
+  {
+    "action": "privacy",
+    "name": "temporary-privacy-session",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120900933345Z",
+    "log": "build/b05-problem-1/logs/20261029T120900933345Z/temporary-privacy-session.log"
+  },
+  {
+    "action": "privacy",
+    "name": "remove-only-temporary-privacy-session",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T120900933345Z",
+    "log": "reports/b07-submission-1/logs/20261029T120900933345Z/remove-only-temporary-privacy-session.log"
+  },
+  {
+    "action": "preserve-submit",
+    "name": "precise-preserve-submit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T121007061544Z",
+    "log": "reports/b07-submission-1/logs/20261029T121007061544Z/precise-preserve-submit.log"
+  }
+]

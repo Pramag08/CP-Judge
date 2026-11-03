@@ -1,0 +1,6 @@
+safe-bridge-stop: running
+safe-bridge-stop: exit 0
+native-processes-stop: running
+native-processes-stop: exit 0
+event-stop: running
+event-stop: exit 0

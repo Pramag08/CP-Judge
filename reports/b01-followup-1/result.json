@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "task": "bounded B01 follow-up and approved UI direction",
+  "local_url": "http://127.0.0.1:8000/",
+  "services_running": true,
+  "fixes": {
+    "admin_real_dependency_and_action_integration": "PASS",
+    "local_pinned_mathjax_3_2_2": "PASS",
+    "both_static_collisions_resolved": "PASS",
+    "ordinary_verify_preserves_passwords": "PASS",
+    "explicit_password_only_reset": "PASS on temporary identities",
+    "approved_dmoj_template_ui_direction": "RECORDED; no UI rebuild or invented Foobar asset"
+  },
+  "evidence": {
+    "change": "browser-change-20261028T201020662889Z.json",
+    "after-verify": "browser-after-verify-20261028T201223955631Z.json",
+    "after-reset": "browser-after-reset-20261028T201433448684Z.json",
+    "math-final": "browser-math-final-20261028T202053138170Z.json"
+  },
+  "runtime": "runtime-final.json",
+  "commands": "commands.json",
+  "invocations": "invocations.json",
+  "warnings_retained": [
+    "development DEBUG",
+    "missing SecurityMiddleware",
+    "insecure session/CSRF cookies",
+    "MariaDB conditional-unique and upstream system warnings"
+  ],
+  "remaining": [
+    "actual approved Foobar logo asset",
+    "later product UI/backend work",
+    "full-site offline/production hardening not established"
+  ],
+  "blocked_optional_decoration": "Gravatar attempts blocked before network; external math requests zero",
+  "original_b01_reports": "preserved unchanged",
+  "migration_0153": "preserved unchanged; 202 consistent migrations",
+  "existing_accounts_and_b02_work": "preserved; temporary fixtures removed; no B02 work performed",
+  "actual_problem_import": "NOT TESTED",
+  "actual_judging": "NOT RUN",
+  "standings": "NOT TESTED",
+  "commit_or_push": false
+}

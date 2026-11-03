@@ -1,0 +1,1264 @@
+[
+  {
+    "name": "submission-request",
+    "submission-id": 12,
+    "problem-id": "pv000000000000000001",
+    "language": "CPP23",
+    "time-limit": 2.0,
+    "memory-limit": 262144,
+    "short-circuit": false,
+    "direction": "sent",
+    "observed_utc": "2026-10-29T14:46:48.354343+00:00",
+    "source_sha256": "941da5783b456b47e221955bc1e462ac4496c49ad1131a0048996ae78b7d1fa7"
+  },
+  {
+    "name": "submission-acknowledged",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:48.365947+00:00"
+  },
+  {
+    "name": "grading-begin",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:49.493673+00:00"
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:56.628922+00:00",
+    "cases": [
+      {
+        "position": 1,
+        "status": 0,
+        "time": 0.003868467,
+        "memory": 3880,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 2,
+        "status": 0,
+        "time": 0.014302255,
+        "memory": 4288,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 3,
+        "status": 0,
+        "time": 0.017046652,
+        "memory": 4228,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:56.868410+00:00",
+    "cases": [
+      {
+        "position": 4,
+        "status": 0,
+        "time": 0.015354607,
+        "memory": 4668,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 5,
+        "status": 0,
+        "time": 0.015036673,
+        "memory": 4236,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 6,
+        "status": 0,
+        "time": 0.015800335,
+        "memory": 4388,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:57.119080+00:00",
+    "cases": [
+      {
+        "position": 7,
+        "status": 0,
+        "time": 0.013220634,
+        "memory": 4112,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 8,
+        "status": 0,
+        "time": 0.018284963,
+        "memory": 4404,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 9,
+        "status": 0,
+        "time": 0.01661772,
+        "memory": 4508,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:57.370625+00:00",
+    "cases": [
+      {
+        "position": 10,
+        "status": 0,
+        "time": 0.019909872,
+        "memory": 4472,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 11,
+        "status": 0,
+        "time": 0.022571592,
+        "memory": 4044,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:57.621078+00:00",
+    "cases": [
+      {
+        "position": 12,
+        "status": 0,
+        "time": 0.014174595,
+        "memory": 4368,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 13,
+        "status": 0,
+        "time": 0.017826071,
+        "memory": 4152,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 14,
+        "status": 0,
+        "time": 0.015670153,
+        "memory": 4116,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:57.871551+00:00",
+    "cases": [
+      {
+        "position": 15,
+        "status": 0,
+        "time": 0.015223531,
+        "memory": 4304,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 16,
+        "status": 0,
+        "time": 0.016237883,
+        "memory": 4040,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 17,
+        "status": 0,
+        "time": 0.018337751,
+        "memory": 4292,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:58.123277+00:00",
+    "cases": [
+      {
+        "position": 18,
+        "status": 0,
+        "time": 0.015179755,
+        "memory": 4436,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 19,
+        "status": 0,
+        "time": 0.016073106,
+        "memory": 4120,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 20,
+        "status": 0,
+        "time": 0.013161684,
+        "memory": 4248,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:58.363825+00:00",
+    "cases": [
+      {
+        "position": 21,
+        "status": 0,
+        "time": 0.017456754,
+        "memory": 4044,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 22,
+        "status": 0,
+        "time": 0.018453997,
+        "memory": 4084,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:58.621610+00:00",
+    "cases": [
+      {
+        "position": 23,
+        "status": 0,
+        "time": 0.021546047,
+        "memory": 4004,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 24,
+        "status": 0,
+        "time": 0.016378831,
+        "memory": 4260,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:58.864227+00:00",
+    "cases": [
+      {
+        "position": 25,
+        "status": 0,
+        "time": 0.015120732,
+        "memory": 4084,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 26,
+        "status": 0,
+        "time": 0.015900217,
+        "memory": 4548,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:59.125115+00:00",
+    "cases": [
+      {
+        "position": 27,
+        "status": 0,
+        "time": 0.018061374,
+        "memory": 4564,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 28,
+        "status": 0,
+        "time": 0.017720361,
+        "memory": 4216,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:59.365569+00:00",
+    "cases": [
+      {
+        "position": 29,
+        "status": 0,
+        "time": 0.014756768,
+        "memory": 3976,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 30,
+        "status": 0,
+        "time": 0.019571957,
+        "memory": 4236,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 31,
+        "status": 0,
+        "time": 0.015242067,
+        "memory": 3968,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:59.623267+00:00",
+    "cases": [
+      {
+        "position": 32,
+        "status": 0,
+        "time": 0.016190744,
+        "memory": 4216,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:46:59.875021+00:00",
+    "cases": [
+      {
+        "position": 33,
+        "status": 0,
+        "time": 0.016954833,
+        "memory": 4108,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 34,
+        "status": 0,
+        "time": 0.01820181,
+        "memory": 4104,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:00.122644+00:00",
+    "cases": [
+      {
+        "position": 35,
+        "status": 0,
+        "time": 0.018079755,
+        "memory": 4196,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 36,
+        "status": 0,
+        "time": 0.014932326,
+        "memory": 3976,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:00.373341+00:00",
+    "cases": [
+      {
+        "position": 37,
+        "status": 0,
+        "time": 0.016038759,
+        "memory": 4088,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 38,
+        "status": 0,
+        "time": 0.01478652,
+        "memory": 4040,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:00.623324+00:00",
+    "cases": [
+      {
+        "position": 39,
+        "status": 0,
+        "time": 0.015686416,
+        "memory": 4204,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 40,
+        "status": 0,
+        "time": 0.016123598,
+        "memory": 4156,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 41,
+        "status": 0,
+        "time": 0.015578403,
+        "memory": 3920,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:00.876639+00:00",
+    "cases": [
+      {
+        "position": 42,
+        "status": 0,
+        "time": 0.018030476,
+        "memory": 3940,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 43,
+        "status": 0,
+        "time": 0.017108885,
+        "memory": 4052,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:01.124412+00:00",
+    "cases": [
+      {
+        "position": 44,
+        "status": 0,
+        "time": 0.014835689,
+        "memory": 3844,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 45,
+        "status": 0,
+        "time": 0.016191473,
+        "memory": 4012,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 46,
+        "status": 0,
+        "time": 0.013729933,
+        "memory": 3804,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:01.374575+00:00",
+    "cases": [
+      {
+        "position": 47,
+        "status": 0,
+        "time": 0.015328757,
+        "memory": 4016,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 48,
+        "status": 0,
+        "time": 0.01636521,
+        "memory": 4052,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 49,
+        "status": 0,
+        "time": 0.013581213,
+        "memory": 4008,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:01.622667+00:00",
+    "cases": [
+      {
+        "position": 50,
+        "status": 0,
+        "time": 0.012418095,
+        "memory": 3904,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 51,
+        "status": 0,
+        "time": 0.012014796,
+        "memory": 3896,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 52,
+        "status": 0,
+        "time": 0.015929123,
+        "memory": 3952,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:01.880120+00:00",
+    "cases": [
+      {
+        "position": 53,
+        "status": 0,
+        "time": 0.015479643,
+        "memory": 3844,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 54,
+        "status": 0,
+        "time": 0.014623437,
+        "memory": 3940,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 55,
+        "status": 0,
+        "time": 0.013246511,
+        "memory": 3872,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:02.118007+00:00",
+    "cases": [
+      {
+        "position": 56,
+        "status": 0,
+        "time": 0.012859899,
+        "memory": 3860,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 57,
+        "status": 0,
+        "time": 0.012819735,
+        "memory": 3872,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 58,
+        "status": 0,
+        "time": 0.012662732,
+        "memory": 3872,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:02.378335+00:00",
+    "cases": [
+      {
+        "position": 59,
+        "status": 0,
+        "time": 0.015599869,
+        "memory": 3916,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 60,
+        "status": 0,
+        "time": 0.011806589,
+        "memory": 3808,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:02.617673+00:00",
+    "cases": [
+      {
+        "position": 61,
+        "status": 0,
+        "time": 0.017992902,
+        "memory": 4032,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:02.876394+00:00",
+    "cases": [
+      {
+        "position": 62,
+        "status": 0,
+        "time": 0.023523792,
+        "memory": 4064,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:03.126453+00:00",
+    "cases": [
+      {
+        "position": 63,
+        "status": 0,
+        "time": 0.023117684,
+        "memory": 4132,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:03.379695+00:00",
+    "cases": [
+      {
+        "position": 64,
+        "status": 0,
+        "time": 0.018682153,
+        "memory": 4076,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 65,
+        "status": 0,
+        "time": 0.027392141,
+        "memory": 4048,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:03.622691+00:00",
+    "cases": [
+      {
+        "position": 66,
+        "status": 0,
+        "time": 0.020457911,
+        "memory": 4008,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:03.876372+00:00",
+    "cases": [
+      {
+        "position": 67,
+        "status": 0,
+        "time": 0.02098252,
+        "memory": 4064,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:04.126438+00:00",
+    "cases": [
+      {
+        "position": 68,
+        "status": 0,
+        "time": 0.020665492,
+        "memory": 4188,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:04.379928+00:00",
+    "cases": [
+      {
+        "position": 69,
+        "status": 0,
+        "time": 0.030882579,
+        "memory": 4248,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:04.626941+00:00",
+    "cases": [
+      {
+        "position": 70,
+        "status": 0,
+        "time": 0.021183585,
+        "memory": 4048,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:04.870273+00:00",
+    "cases": [
+      {
+        "position": 71,
+        "status": 0,
+        "time": 0.021733714,
+        "memory": 4100,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 72,
+        "status": 0,
+        "time": 0.019703523,
+        "memory": 4056,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:05.127674+00:00",
+    "cases": [
+      {
+        "position": 73,
+        "status": 0,
+        "time": 0.02049608,
+        "memory": 4100,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:05.372736+00:00",
+    "cases": [
+      {
+        "position": 74,
+        "status": 0,
+        "time": 0.021223354,
+        "memory": 3984,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:05.628871+00:00",
+    "cases": [
+      {
+        "position": 75,
+        "status": 0,
+        "time": 0.019406849,
+        "memory": 4188,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:05.871513+00:00",
+    "cases": [
+      {
+        "position": 76,
+        "status": 0,
+        "time": 0.020568655,
+        "memory": 4020,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:06.129906+00:00",
+    "cases": [
+      {
+        "position": 77,
+        "status": 0,
+        "time": 0.022745297,
+        "memory": 4028,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 78,
+        "status": 0,
+        "time": 0.023683266,
+        "memory": 4068,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:06.380279+00:00",
+    "cases": [
+      {
+        "position": 79,
+        "status": 0,
+        "time": 0.021300334,
+        "memory": 4052,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:06.633654+00:00",
+    "cases": [
+      {
+        "position": 80,
+        "status": 0,
+        "time": 0.024294265,
+        "memory": 3944,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 81,
+        "status": 0,
+        "time": 0.018352695,
+        "memory": 4116,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:06.880970+00:00",
+    "cases": [
+      {
+        "position": 82,
+        "status": 0,
+        "time": 0.016693823,
+        "memory": 4748,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 83,
+        "status": 0,
+        "time": 0.019289982,
+        "memory": 4564,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:07.131293+00:00",
+    "cases": [
+      {
+        "position": 84,
+        "status": 0,
+        "time": 0.015973077,
+        "memory": 4468,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 85,
+        "status": 0,
+        "time": 0.014922106,
+        "memory": 4664,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:07.382481+00:00",
+    "cases": [
+      {
+        "position": 86,
+        "status": 0,
+        "time": 0.01772717,
+        "memory": 4704,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 87,
+        "status": 0,
+        "time": 0.019346446,
+        "memory": 4476,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:07.622736+00:00",
+    "cases": [
+      {
+        "position": 88,
+        "status": 0,
+        "time": 0.017611394,
+        "memory": 4464,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 89,
+        "status": 0,
+        "time": 0.017497899,
+        "memory": 4484,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:07.882478+00:00",
+    "cases": [
+      {
+        "position": 90,
+        "status": 0,
+        "time": 0.018830949,
+        "memory": 4120,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 91,
+        "status": 0,
+        "time": 0.01576032,
+        "memory": 6664,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 92,
+        "status": 0,
+        "time": 0.019718194,
+        "memory": 6668,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:08.124709+00:00",
+    "cases": [
+      {
+        "position": 93,
+        "status": 0,
+        "time": 0.016432951,
+        "memory": 7860,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:08.386126+00:00",
+    "cases": [
+      {
+        "position": 94,
+        "status": 0,
+        "time": 0.017522754,
+        "memory": 9652,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 95,
+        "status": 0,
+        "time": 0.014772487,
+        "memory": 5588,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 96,
+        "status": 0,
+        "time": 0.015191032,
+        "memory": 6644,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:08.632198+00:00",
+    "cases": [
+      {
+        "position": 97,
+        "status": 0,
+        "time": 0.020003802,
+        "memory": 9644,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 98,
+        "status": 0,
+        "time": 0.015909549,
+        "memory": 9576,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:08.882526+00:00",
+    "cases": [
+      {
+        "position": 99,
+        "status": 0,
+        "time": 0.021305325,
+        "memory": 5728,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 100,
+        "status": 0,
+        "time": 0.017111213,
+        "memory": 6552,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "test-case-status",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:09.126553+00:00",
+    "cases": [
+      {
+        "position": 101,
+        "status": 0,
+        "time": 0.015587429,
+        "memory": 4168,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 102,
+        "status": 0,
+        "time": 0.021360879,
+        "memory": 10232,
+        "points": 1,
+        "total-points": 1
+      },
+      {
+        "position": 103,
+        "status": 0,
+        "time": 0.004425949,
+        "memory": 3876,
+        "points": 1,
+        "total-points": 1
+      }
+    ]
+  },
+  {
+    "name": "grading-end",
+    "submission-id": 12,
+    "direction": "received-and-handled",
+    "observed_utc": "2026-10-29T14:47:09.156978+00:00"
+  }
+]

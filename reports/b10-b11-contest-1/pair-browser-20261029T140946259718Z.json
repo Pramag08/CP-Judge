@@ -1,0 +1,48 @@
+{
+  "standings": [
+    {
+      "username": "b10tmpb",
+      "rank": 1,
+      "solved": 1,
+      "penalty_display": "00:36:01",
+      "problem_cell": "1 (1)\n00:16:01"
+    },
+    {
+      "username": "b10tmpa",
+      "rank": 2,
+      "solved": 1,
+      "penalty_display": "00:36:01",
+      "problem_cell": "1 (1)\n00:16:01"
+    }
+  ],
+  "posts": [
+    {
+      "username": "b10tmpa",
+      "language": "19",
+      "source_sha256": "941da5783b456b47e221955bc1e462ac4496c49ad1131a0048996ae78b7d1fa7",
+      "canonical_sha256": "09939d650a08b95aa4500e8b026bbbe9cad1edd3b8dfce2e8fd24587e7cd0042",
+      "csrf": true
+    },
+    {
+      "username": "b10tmpb",
+      "language": "19",
+      "source_sha256": "941da5783b456b47e221955bc1e462ac4496c49ad1131a0048996ae78b7d1fa7",
+      "canonical_sha256": "09939d650a08b95aa4500e8b026bbbe9cad1edd3b8dfce2e8fd24587e7cd0042",
+      "csrf": true
+    }
+  ],
+  "receipts": [
+    {
+      "id": 10,
+      "label": "accepted",
+      "username": "b10tmpa"
+    },
+    {
+      "id": 9,
+      "label": "accepted",
+      "username": "b10tmpb"
+    }
+  ],
+  "page_errors": [],
+  "raw_evidence": "build/b10-b11-contest-1/pair-20261029T140946259718Z"
+}

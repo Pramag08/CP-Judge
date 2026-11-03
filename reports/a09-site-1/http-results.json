@@ -1,0 +1,120 @@
+{
+  "login_get": 200,
+  "invalid_password": 200,
+  "csrf_required": 403,
+  "valid_login": 302,
+  "authenticated_profile": 200,
+  "already_authenticated_redirect": 302,
+  "home": 200,
+  "offline_cpp23_hidden": true,
+  "local_assets": [
+    {
+      "path": "/static/a09/ace/ace.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 479380,
+      "sha256": "6430923a29a3d30f94eb321700a56ec12cb8060270831632087d166bbac7aca9"
+    },
+    {
+      "path": "/static/a09/ace/mode-c_cpp.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 12202,
+      "sha256": "2188b8cc10231cc2fcfcf7f0fdde7a9391fbb5ed69ebba0a1e7b818945cdd6ea"
+    },
+    {
+      "path": "/static/a09/jquery.min.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 87533,
+      "sha256": "fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a"
+    },
+    {
+      "path": "/static/common.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 11320,
+      "sha256": "e5e5dadc715d939d1ab1d9defeefdae2971f42ccf231074dd1855292e09849c6"
+    },
+    {
+      "path": "/static/dark/style.css",
+      "status": 200,
+      "type": "text/css",
+      "bytes": 131224,
+      "sha256": "20c53741bfa55cdcbafb837576539dd137af96a67cefa592a3891bd2634a7f3f"
+    },
+    {
+      "path": "/static/libs/clipboard/tooltip.css",
+      "status": 200,
+      "type": "text/css",
+      "bytes": 3570,
+      "sha256": "e922dd6a69da8d66306a15806b691237d282a13622c94a3f48e8c647fcb9bf5c"
+    },
+    {
+      "path": "/static/libs/fontawesome/font-awesome.css",
+      "status": 200,
+      "type": "text/css",
+      "bytes": 28645,
+      "sha256": "2ed87f0183fa36b0f490c8d9b38e9479d89b87516074c05ba8f4a3864e5f4465"
+    },
+    {
+      "path": "/static/libs/fontawesome/fontawesome-webfont.woff2",
+      "status": 200,
+      "type": "application/octet-stream",
+      "bytes": 56780,
+      "sha256": "aadc3580d2b64ff5a7e6f1425587db4e8b033efcbf8f5c332ca52a5ed580c87c"
+    },
+    {
+      "path": "/static/libs/jquery-cookie.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 3121,
+      "sha256": "d5f4fea10d14f68a2c2227936666226ca1a0b914c84d99cdf9034a80d09e415c"
+    },
+    {
+      "path": "/static/libs/jquery-taphold.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 4665,
+      "sha256": "28c5c2879c31049f10edaeba8adabca88e72d241533d64861b5bcee26c3c306b"
+    },
+    {
+      "path": "/static/libs/jquery.unveil.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 1325,
+      "sha256": "89a13956be67527dd669a271539cd5a0aaf6ebe90e81dc25156fe002f18cd0f3"
+    },
+    {
+      "path": "/static/libs/moment.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 189672,
+      "sha256": "2ce4c6887c902d1c36c03600b8aa881d3065319c47f19e03064082450dd84236"
+    },
+    {
+      "path": "/static/libs/select2/select2.css",
+      "status": 200,
+      "type": "text/css",
+      "bytes": 17839,
+      "sha256": "2de24926fbdb031853645d19afe832a4865351231d4e66805d90c6c075e8ff37"
+    },
+    {
+      "path": "/static/libs/select2/select2.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 70851,
+      "sha256": "00501810e93307a8882a74d864e7547fd1458deea539361dc1124ac133799a4b"
+    },
+    {
+      "path": "/static/style.css",
+      "status": 200,
+      "type": "text/css",
+      "bytes": 128015,
+      "sha256": "65977747eb8352a1a710a7c8f605d0c77c5ebe1ef9366597c607e7a56ebb574c"
+    }
+  ],
+  "external_asset_urls": [],
+  "javascript_execution": "NOT TESTED",
+  "judge_dispatch": "NOT TESTED"
+}

@@ -1,0 +1,1129 @@
+[
+  {
+    "action": "up",
+    "name": "patch-check",
+    "argv": [
+      "git",
+      "-C",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/patched-source",
+      "apply",
+      "--check",
+      "/home/pramag/Documents/CP-Judge/patches/site/0001-stable-timezone-choices.patch"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/patch-check.log",
+    "timestamp_utc": "2026-10-28T18:38:57.519593+00:00"
+  },
+  {
+    "action": "up",
+    "name": "patch-apply",
+    "argv": [
+      "git",
+      "-C",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/patched-source",
+      "apply",
+      "/home/pramag/Documents/CP-Judge/patches/site/0001-stable-timezone-choices.patch"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/patch-apply.log",
+    "timestamp_utc": "2026-10-28T18:38:57.524617+00:00"
+  },
+  {
+    "action": "up",
+    "name": "network-create",
+    "argv": [
+      "docker",
+      "network",
+      "create",
+      "--internal",
+      "--label",
+      "cpjudge.task=B01",
+      "cpjudge-b01-net"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/network-create.log",
+    "timestamp_utc": "2026-10-28T18:38:57.611513+00:00"
+  },
+  {
+    "action": "up",
+    "name": "database-volume-create",
+    "argv": [
+      "docker",
+      "volume",
+      "create",
+      "--label",
+      "cpjudge.task=B01",
+      "cpjudge-b01-data"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/database-volume-create.log",
+    "timestamp_utc": "2026-10-28T18:38:57.647750+00:00"
+  },
+  {
+    "action": "up",
+    "name": "database-start",
+    "argv": [
+      "docker",
+      "run",
+      "-d",
+      "--name",
+      "cpjudge-b01-db",
+      "--label",
+      "cpjudge.task=B01",
+      "--network",
+      "cpjudge-b01-net",
+      "--network-alias",
+      "db",
+      "--memory",
+      "1536m",
+      "--cpus",
+      "2",
+      "--mount",
+      "type=volume,src=cpjudge-b01-data,dst=/var/lib/mysql",
+      "--env-file",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/private/db.env",
+      "mariadb@sha256:d1891ede5a559f1086f55053bb8cc1569b0298338c4d72d71725a7f74f6ba620"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/database-start.log",
+    "timestamp_utc": "2026-10-28T18:38:58.096861+00:00"
+  },
+  {
+    "action": "up",
+    "name": "redis-start",
+    "argv": [
+      "docker",
+      "run",
+      "-d",
+      "--name",
+      "cpjudge-b01-redis",
+      "--label",
+      "cpjudge.task=B01",
+      "--network",
+      "cpjudge-b01-net",
+      "--network-alias",
+      "redis",
+      "--memory",
+      "256m",
+      "--tmpfs",
+      "/data:rw,size=67108864",
+      "redis@sha256:6ba19c50b56777f5c11c58eff8ddb69d0d5f27ba131cffb63f180ccfd43c66af",
+      "redis-server",
+      "--save",
+      "",
+      "--appendonly",
+      "no"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/redis-start.log",
+    "timestamp_utc": "2026-10-28T18:38:58.526449+00:00"
+  },
+  {
+    "action": "up",
+    "name": "bootstrap-start",
+    "argv": [
+      "docker",
+      "run",
+      "-d",
+      "--name",
+      "cpjudge-b01-bootstrap",
+      "--label",
+      "cpjudge.task=B01",
+      "--network",
+      "cpjudge-b01-net",
+      "--memory",
+      "1536m",
+      "--env-file",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/private/site.env",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/local_settings.py,dst=/app/dmoj/local_settings.py,readonly",
+      "cpjudge-a09-site:locked",
+      "sleep",
+      "infinity"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/bootstrap-start.log",
+    "timestamp_utc": "2026-10-28T18:39:08.012539+00:00"
+  },
+  {
+    "action": "up",
+    "name": "original-drift-confirmed",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-bootstrap",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 1,
+    "expected_exit_status": 1,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/original-drift-confirmed.log",
+    "timestamp_utc": "2026-10-28T18:39:09.640530+00:00"
+  },
+  {
+    "action": "up",
+    "name": "bootstrap-patch-choices.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/patched-source/judge/models/choices.py",
+      "cpjudge-b01-bootstrap:/app/judge/models/choices.py"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/bootstrap-patch-choices.py.log",
+    "timestamp_utc": "2026-10-28T18:39:09.672466+00:00"
+  },
+  {
+    "action": "up",
+    "name": "bootstrap-patch-profile.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/patched-source/judge/models/profile.py",
+      "cpjudge-b01-bootstrap:/app/judge/models/profile.py"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/bootstrap-patch-profile.py.log",
+    "timestamp_utc": "2026-10-28T18:39:09.721312+00:00"
+  },
+  {
+    "action": "up",
+    "name": "generate-forward-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-bootstrap",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "judge",
+      "--name",
+      "reconcile_model_metadata",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/generate-forward-migration.log",
+    "timestamp_utc": "2026-10-28T18:39:11.037265+00:00"
+  },
+  {
+    "action": "up",
+    "name": "save-forward-migration",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-bootstrap:/app/judge/migrations/0153_reconcile_model_metadata.py",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/migrations/0153_reconcile_model_metadata.py"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/save-forward-migration.log",
+    "timestamp_utc": "2026-10-28T18:39:11.064809+00:00"
+  },
+  {
+    "action": "up",
+    "name": "fixed-drift-bootstrap",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-bootstrap",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/fixed-drift-bootstrap.log",
+    "timestamp_utc": "2026-10-28T18:39:12.360119+00:00"
+  },
+  {
+    "action": "up",
+    "name": "forward-migration-sql",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-bootstrap",
+      "python",
+      "manage.py",
+      "sqlmigrate",
+      "judge",
+      "0153"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/forward-migration-sql.log",
+    "timestamp_utc": "2026-10-28T18:39:14.081807+00:00"
+  },
+  {
+    "action": "up",
+    "name": "website-image-build",
+    "argv": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "-t",
+      "cpjudge-b01-site:local1",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/context"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/website-image-build.log",
+    "timestamp_utc": "2026-10-28T18:39:15.983009+00:00"
+  },
+  {
+    "action": "up",
+    "name": "bootstrap-cleanup",
+    "argv": [
+      "docker",
+      "rm",
+      "-f",
+      "cpjudge-b01-bootstrap"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/bootstrap-cleanup.log",
+    "timestamp_utc": "2026-10-28T18:39:16.227577+00:00"
+  },
+  {
+    "action": "up",
+    "name": "website-start",
+    "argv": [
+      "docker",
+      "run",
+      "-d",
+      "--name",
+      "cpjudge-b01-site",
+      "--label",
+      "cpjudge.task=B01",
+      "--network",
+      "cpjudge-b01-net",
+      "--network-alias",
+      "site",
+      "--memory",
+      "1536m",
+      "--cpus",
+      "2",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--publish",
+      "127.0.0.1:8000:8000",
+      "--env-file",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/private/site.env",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/b01-accounts.json,readonly",
+      "cpjudge-b01-site:local1",
+      "sleep",
+      "infinity"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/website-start.log",
+    "timestamp_utc": "2026-10-28T18:39:16.610338+00:00"
+  },
+  {
+    "action": "up",
+    "name": "accounts-readable",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "root",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "cp /run/b01-accounts.json /tmp/b01-accounts.json && chown site:site /tmp/b01-accounts.json && chmod 600 /tmp/b01-accounts.json"
+    ],
+    "exit_status": 1,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T183856962590Z/accounts-readable.log",
+    "timestamp_utc": "2026-10-28T18:39:16.682216+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "accounts-private-copy",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys; fd=os.open('/tmp/b01-accounts.json',os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600); os.write(fd,sys.stdin.buffer.read()); os.close(fd)"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/accounts-private-copy.log",
+    "timestamp_utc": "2026-10-28T18:40:06.668269+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "dependency-check",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/dependency-check.log",
+    "timestamp_utc": "2026-10-28T18:40:07.179985+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "dependency-freeze",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-m",
+      "pip",
+      "freeze",
+      "--all"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/dependency-freeze.log",
+    "timestamp_utc": "2026-10-28T18:40:07.566505+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "system-check",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "check",
+      "--database",
+      "default"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/system-check.log",
+    "timestamp_utc": "2026-10-28T18:40:08.872929+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "fixed-migration-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/fixed-migration-consistency.log",
+    "timestamp_utc": "2026-10-28T18:40:10.224769+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "fresh-database-migrate",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "migrate",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/fresh-database-migrate.log",
+    "timestamp_utc": "2026-10-28T18:40:54.786411+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "migrate-reapply",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "migrate",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/migrate-reapply.log",
+    "timestamp_utc": "2026-10-28T18:40:56.737917+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "no-unapplied-migrations",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "migrate",
+      "--check"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/no-unapplied-migrations.log",
+    "timestamp_utc": "2026-10-28T18:40:58.400219+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "fixed-consistency-new-process",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/fixed-consistency-new-process.log",
+    "timestamp_utc": "2026-10-28T18:41:00.112956+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "fixtures",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "loaddata",
+      "navbar",
+      "language_small"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/fixtures.log",
+    "timestamp_utc": "2026-10-28T18:41:01.838270+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "development-accounts",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/development-accounts.log",
+    "timestamp_utc": "2026-10-28T18:41:04.768781+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "database-versions-history",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/database-versions-history.log",
+    "timestamp_utc": "2026-10-28T18:41:06.325539+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "compilemessages",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "compilemessages"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/compilemessages.log",
+    "timestamp_utc": "2026-10-28T18:41:08.104223+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "compilejsi18n",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "compilejsi18n"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/compilejsi18n.log",
+    "timestamp_utc": "2026-10-28T18:41:09.519876+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "collectstatic",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "collectstatic",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/collectstatic.log",
+    "timestamp_utc": "2026-10-28T18:41:11.075331+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "deployment-check-warnings",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "check",
+      "--deploy"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/deployment-check-warnings.log",
+    "timestamp_utc": "2026-10-28T18:41:12.624358+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "unsilenced-system-checks",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/unsilenced-system-checks.log",
+    "timestamp_utc": "2026-10-28T18:41:14.292926+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "runtime-isolation",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-db",
+      "cpjudge-b01-redis",
+      "cpjudge-b01-site",
+      "--format",
+      "{{json .Name}} {{json .HostConfig.PortBindings}} {{json .Config.User}} {{json .HostConfig.CapDrop}} {{json .HostConfig.SecurityOpt}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/runtime-isolation.log",
+    "timestamp_utc": "2026-10-28T18:41:14.323539+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T184006377614Z/http-start.log",
+    "timestamp_utc": "2026-10-28T18:41:14.436561+00:00"
+  },
+  {
+    "action": "diagnose",
+    "name": "server-log",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b01-http.log"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": null,
+    "log": "build/b01-site-1/logs/20261028T185444548585Z/server-log.log",
+    "timestamp_utc": "2026-10-28T18:54:44.665327+00:00"
+  },
+  {
+    "action": "diagnose",
+    "name": "website-inside-http",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import urllib.request; print(urllib.request.urlopen('http://127.0.0.1:8000/accounts/login/').status)"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": null,
+    "log": "reports/b01-site-1/logs/20261028T185444548585Z/website-inside-http.log",
+    "timestamp_utc": "2026-10-28T18:54:45.652136+00:00"
+  },
+  {
+    "action": "diagnose",
+    "name": "website-port",
+    "argv": [
+      "docker",
+      "port",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": null,
+    "log": "reports/b01-site-1/logs/20261028T185444548585Z/website-port.log",
+    "timestamp_utc": "2026-10-28T18:54:45.687615+00:00"
+  },
+  {
+    "action": "network",
+    "name": "network-details",
+    "argv": [
+      "docker",
+      "network",
+      "inspect",
+      "cpjudge-b01-net",
+      "--format",
+      "{{json .Internal}} {{json .Containers}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T185613504685Z/network-details.log",
+    "timestamp_utc": "2026-10-28T18:56:13.531100+00:00"
+  },
+  {
+    "action": "network",
+    "name": "local-port",
+    "argv": [
+      "docker",
+      "port",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": null,
+    "log": "reports/b01-site-1/logs/20261028T185613504685Z/local-port.log",
+    "timestamp_utc": "2026-10-28T18:56:13.576180+00:00"
+  },
+  {
+    "action": "network",
+    "name": "cache-connect",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import socket; print('dns',socket.gethostbyname('redis')); s=socket.create_connection(('redis',6379),3); s.sendall(b'*1\\r\\n$4\\r\\nPING\\r\\n'); print(s.recv(100)); s.close()"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": null,
+    "log": "reports/b01-site-1/logs/20261028T185613504685Z/cache-connect.log",
+    "timestamp_utc": "2026-10-28T18:56:13.745833+00:00"
+  },
+  {
+    "action": "network",
+    "name": "internal-login",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import urllib.request; print(urllib.request.urlopen('http://127.0.0.1:8000/accounts/login/',timeout=5).status)"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": null,
+    "log": "reports/b01-site-1/logs/20261028T185613504685Z/internal-login.log",
+    "timestamp_utc": "2026-10-28T18:56:14.004719+00:00"
+  },
+  {
+    "action": "repair-port",
+    "name": "web-network-create",
+    "argv": [
+      "docker",
+      "network",
+      "create",
+      "--label",
+      "cpjudge.task=B01",
+      "cpjudge-b01-web"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T185717086088Z/web-network-create.log",
+    "timestamp_utc": "2026-10-28T18:57:17.216839+00:00"
+  },
+  {
+    "action": "repair-port",
+    "name": "web-network-connect",
+    "argv": [
+      "docker",
+      "network",
+      "connect",
+      "cpjudge-b01-web",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T185717086088Z/web-network-connect.log",
+    "timestamp_utc": "2026-10-28T18:57:17.373031+00:00"
+  },
+  {
+    "action": "repair-port",
+    "name": "published-local-port",
+    "argv": [
+      "docker",
+      "port",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T185717086088Z/published-local-port.log",
+    "timestamp_utc": "2026-10-28T18:57:17.411102+00:00"
+  },
+  {
+    "action": "finish",
+    "name": "post-http-runtime-audit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T185820040202Z/post-http-runtime-audit.log",
+    "timestamp_utc": "2026-10-28T18:58:21.304619+00:00"
+  },
+  {
+    "action": "browser-status",
+    "name": "browser-image-presence",
+    "argv": [
+      "docker",
+      "image",
+      "ls",
+      "--filter",
+      "reference=mcr.microsoft.com/playwright/python",
+      "--format",
+      "{{.Repository}}:{{.Tag}} {{.ID}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190223586529Z/browser-image-presence.log",
+    "timestamp_utc": "2026-10-28T19:02:23.645632+00:00"
+  },
+  {
+    "action": "browser",
+    "name": "browser-image-pull",
+    "argv": [
+      "docker",
+      "pull",
+      "mcr.microsoft.com/playwright/python:v1.64.1-noble"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T185846525863Z/browser-image-pull.log",
+    "timestamp_utc": "2026-10-28T19:03:24.480716+00:00"
+  },
+  {
+    "action": "browser",
+    "name": "browser-image-build",
+    "argv": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "-t",
+      "cpjudge-b01-browser:local1",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/browser-context"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T185846525863Z/browser-image-build.log",
+    "timestamp_utc": "2026-10-28T19:04:07.181683+00:00"
+  },
+  {
+    "action": "browser",
+    "name": "real-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "cpjudge-b01-net",
+      "--memory",
+      "1g",
+      "--cpus",
+      "2",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/browser/20261028T185846525863Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "build/b01-site-1/logs/20261028T185846525863Z/real-browser.log",
+    "timestamp_utc": "2026-10-28T19:04:16.505057+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190633670876Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-10-28T19:06:44.130549+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190633670876Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-10-28T19:06:44.467602+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190633670876Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-10-28T19:06:44.846036+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190645039545Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-10-28T19:06:45.353053+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190645039545Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-10-28T19:06:45.665306+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190645039545Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-10-28T19:06:46.001161+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190645039545Z/http-start.log",
+    "timestamp_utc": "2026-10-28T19:06:47.386603+00:00"
+  },
+  {
+    "action": "browser",
+    "name": "browser-image-build",
+    "argv": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "-t",
+      "cpjudge-b01-browser:local1",
+      "/home/pramag/Documents/CP-Judge/build/b01-site-1/browser-context"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190727231770Z/browser-image-build.log",
+    "timestamp_utc": "2026-10-28T19:07:28.140904+00:00"
+  },
+  {
+    "action": "browser",
+    "name": "real-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--env",
+      "B01_URL=http://127.0.0.1:8000",
+      "--memory",
+      "1g",
+      "--cpus",
+      "2",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/browser/20261028T190727231770Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "build/b01-site-1/logs/20261028T190727231770Z/real-browser.log",
+    "timestamp_utc": "2026-10-28T19:07:37.088811+00:00"
+  },
+  {
+    "action": "finish",
+    "name": "post-http-runtime-audit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190737393362Z/post-http-runtime-audit.log",
+    "timestamp_utc": "2026-10-28T19:07:38.645222+00:00"
+  },
+  {
+    "action": "snapshot",
+    "name": "redis-version",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-redis",
+      "redis-server",
+      "--version"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190855070941Z/redis-version.log",
+    "timestamp_utc": "2026-10-28T19:08:55.223957+00:00"
+  },
+  {
+    "action": "snapshot",
+    "name": "final-services",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-db",
+      "cpjudge-b01-redis",
+      "cpjudge-b01-site",
+      "--format",
+      "{{.Name}} {{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-site-1/logs/20261028T190855070941Z/final-services.log",
+    "timestamp_utc": "2026-10-28T19:08:55.270435+00:00"
+  }
+]

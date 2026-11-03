@@ -1,0 +1,14 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+Performing system checks...
+
+System check identified no issues (51 silenced).
+October 28, 2026 - 16:37:50
+Django version 5.2.18, using settings 'dmoj.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Not Found: /login/
+[28/Oct/2026 16:37:52] "GET /login/ HTTP/1.1" 404 12280

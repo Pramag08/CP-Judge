@@ -1,0 +1,19 @@
+--- a/wpadmin/templates/admin/change_list.html
++++ b/wpadmin/templates/admin/change_list.html
+@@ -23,15 +23,7 @@
+ {% block extrahead %}
+ {{ block.super }}
+ {{ media.js }}
+-{% if action_form %}{% if actions_on_top or actions_on_bottom %}
+-<script type="text/javascript">
+-(function($) {
+-    $(document).ready(function($) {
+-        $("tr input.action-select").actions({'allToggle': 'th.action-checkbox-column input'});
+-    });
+-})(django.jQuery);
+-</script>
+-{% endif %}{% endif %}
++{# Django 5.2 actions.js in media.js initializes the real Actions API itself. #}
+ {% endblock %}
+ 
+ {% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-list{% endblock %}

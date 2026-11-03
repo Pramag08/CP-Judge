@@ -1,0 +1,3 @@
+cpjudge-b01-site	Up 29 minutes	127.0.0.1:8000->8000/tcp
+cpjudge-b01-redis	Up 29 minutes	6379/tcp
+cpjudge-b01-db	Up 29 minutes	3306/tcp

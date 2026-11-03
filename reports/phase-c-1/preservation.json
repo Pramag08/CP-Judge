@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "baseline_insert_rows_identical": [
+    "auth_user",
+    "judge_profile",
+    "judge_contest",
+    "judge_contestparticipation",
+    "judge_contestproblem",
+    "judge_contestsubmission",
+    "judge_submission",
+    "judge_submissionsource",
+    "judge_submissiontestcase",
+    "django_migrations"
+  ],
+  "live_phase_c_enabled": false,
+  "existing_submissions": 12,
+  "existing_cases": 1030,
+  "worker_online": true,
+  "isolated_test_database": "test_cpj_phase_c"
+}

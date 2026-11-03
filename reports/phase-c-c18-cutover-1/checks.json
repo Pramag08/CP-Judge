@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "focused_tests": 15,
+  "skips": 0,
+  "deployed_identity_source_sha256": {
+    "email_identity.py": "3868303a1d8c78eb75219fc652776d63544e6ba487baf374cb2f6b3cfe2db10e",
+    "identity.py": "0fb99689666daea250e2b26256d4fcb6f7e1155b2669f9d96f845e58f182c8ba",
+    "views.py": "63480da55dd45f5095bda0eaafbccf19ca7669dbcb057cc94113ab8e05195960",
+    "sessions.py": "e7a4528b1427478091e4d16bccee669efd35b0bd4e6606ba53aedf1d4f6b0ffb",
+    "native.py": "ba6ec5e8be5b62d0f4746117b0c8fe300056241b24e055e4ed5a766067aa444b"
+  },
+  "schema_consistency": true,
+  "no_live_schema_migration": true,
+  "existing_mapping_workflow_check_apply_exit_zero": true,
+  "actual_browser_before_and_after_cutover_passed": true,
+  "local_admin_recovery_rehearsed_isolated": true,
+  "password_changes_or_resets": 0
+}

@@ -1,0 +1,2957 @@
+[
+  {
+    "name": "stage-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163328349077Z-stage-app.log"
+  },
+  {
+    "name": "stage-native_settings.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/native_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_native_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163328349077Z-stage-native_settings.py.log"
+  },
+  {
+    "name": "stage-integration_settings.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/integration_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_integration_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163328349077Z-stage-integration_settings.py.log"
+  },
+  {
+    "name": "test-database-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb --user=root --password=\"$MARIADB_ROOT_PASSWORD\" -e \"GRANT ALL ON test_cpj_phase_c.* TO b01;\""
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163328349077Z-test-database-grant.log"
+  },
+  {
+    "name": "generate-additive-policy-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--settings=dmoj.cpj_integration_settings"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163328349077Z-generate-additive-policy-migration.log"
+  },
+  {
+    "name": "retain-migrations",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/cpjudge/migrations/.",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/migrations"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163328349077Z-retain-migrations.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163630615666Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163630615666Z-native-integration-tests.log"
+  },
+  {
+    "name": "stage-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163757694134Z-stage-app.log"
+  },
+  {
+    "name": "stage-native_settings.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/native_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_native_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163757694134Z-stage-native_settings.py.log"
+  },
+  {
+    "name": "stage-integration_settings.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/integration_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_integration_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163757694134Z-stage-integration_settings.py.log"
+  },
+  {
+    "name": "test-database-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb --user=root --password=\"$MARIADB_ROOT_PASSWORD\" -e \"GRANT ALL ON test_cpj_phase_c.* TO b01;\""
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163757694134Z-test-database-grant.log"
+  },
+  {
+    "name": "generate-additive-policy-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--settings=dmoj.cpj_integration_settings"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163757694134Z-generate-additive-policy-migration.log"
+  },
+  {
+    "name": "retain-migrations",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/cpjudge/migrations/.",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/migrations"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163757694134Z-retain-migrations.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163800279272Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163800279272Z-native-integration-tests.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163856947277Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T163856947277Z-native-integration-tests.log"
+  },
+  {
+    "name": "stage-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164009844592Z-stage-app.log"
+  },
+  {
+    "name": "stage-native_settings.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/native_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_native_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164009844592Z-stage-native_settings.py.log"
+  },
+  {
+    "name": "stage-integration_settings.py",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/integration_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_integration_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164009844592Z-stage-integration_settings.py.log"
+  },
+  {
+    "name": "test-database-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb --user=root --password=\"$MARIADB_ROOT_PASSWORD\" -e \"GRANT ALL ON test_cpj_phase_c.* TO b01;\""
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164009844592Z-test-database-grant.log"
+  },
+  {
+    "name": "generate-additive-policy-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--settings=dmoj.cpj_integration_settings"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164009844592Z-generate-additive-policy-migration.log"
+  },
+  {
+    "name": "retain-migrations",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/cpjudge/migrations/.",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/migrations"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164009844592Z-retain-migrations.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164012039505Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164012039505Z-native-integration-tests.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164143378002Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164143378002Z-native-integration-tests.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164245351298Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164245351298Z-native-integration-tests.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164353721322Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164353721322Z-native-integration-tests.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164513884778Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164513884778Z-native-integration-tests.log"
+  },
+  {
+    "name": "private-backup",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb-dump --user=root --password=\"$MARIADB_ROOT_PASSWORD\" --single-transaction --routines --events --databases b01"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164525916648Z-private-backup.log"
+  },
+  {
+    "name": "private-row-snapshot",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164525916648Z-private-row-snapshot.log"
+  },
+  {
+    "name": "copy-private-snapshot",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/c1-before-rows.json",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1/before-rows.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164525916648Z-copy-private-snapshot.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T164527910811Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164527910811Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T164527910811Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164527910811Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T164527910811Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164527910811Z/wait-native-offline.log"
+  },
+  {
+    "name": "idle-worker-stop",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164527823388Z-idle-worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164530848688Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164530848688Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164530848688Z/event-stop.log"
+  },
+  {
+    "name": "idle-background-stop",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164527823388Z-idle-background-stop.log"
+  },
+  {
+    "name": "save-prior-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/dmoj/local_settings.py",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1/local_settings.before.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164527823388Z-save-prior-settings.log"
+  },
+  {
+    "name": "install-polling-resources",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/resources/event.js",
+      "cpjudge-b01-site:/app/resources/event.js"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164527823388Z-install-polling-resources.log"
+  },
+  {
+    "name": "install-polling-static",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/resources/event.js",
+      "cpjudge-b01-site:/app/static/event.js"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164527823388Z-install-polling-static.log"
+  },
+  {
+    "name": "enable-native-settings",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164527823388Z-enable-native-settings.log"
+  },
+  {
+    "name": "reload-http",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-reload-http.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T164644447036Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164644447036Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T164644447036Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164644447036Z/wait-native-offline.log"
+  },
+  {
+    "name": "idle-worker-stop",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-idle-worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164647003432Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164647003432Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164647003432Z/event-stop.log"
+  },
+  {
+    "name": "idle-background-stop",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-idle-background-stop.log"
+  },
+  {
+    "name": "save-prior-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/dmoj/local_settings.py",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1/local_settings.before.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-save-prior-settings.log"
+  },
+  {
+    "name": "install-polling-resources",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/resources/event.js",
+      "cpjudge-b01-site:/app/resources/event.js"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-install-polling-resources.log"
+  },
+  {
+    "name": "install-polling-static",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/resources/event.js",
+      "cpjudge-b01-site:/app/static/event.js"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-install-polling-static.log"
+  },
+  {
+    "name": "enable-native-settings",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-enable-native-settings.log"
+  },
+  {
+    "name": "apply-real-additive-migrations",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "migrate",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-apply-real-additive-migrations.log"
+  },
+  {
+    "name": "migration-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-migration-consistency.log"
+  },
+  {
+    "name": "strong-hash-and-native-configuration",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-strong-hash-and-native-configuration.log"
+  },
+  {
+    "name": "start-http",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/c1-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-start-http.log"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164656662798Z/http-start.log",
+    "timestamp_utc": "2026-10-29T16:46:56.962026+00:00"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164659791483Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164659791483Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164659791483Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164656662798Z/b02-start.log",
+    "timestamp_utc": "2026-10-29T16:47:04.412130+00:00"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T164704555944Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164704555944Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T164704555944Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164704555944Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T164704555944Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164704555944Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T164704555944Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164704555944Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T164656662798Z/b03-start.log",
+    "timestamp_utc": "2026-10-29T16:47:11.153815+00:00"
+  },
+  {
+    "name": "managed-restart-native-services",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164644134346Z-managed-restart-native-services.log"
+  },
+  {
+    "name": "create-live-scope-fixture",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164812653312Z-create-live-scope-fixture.log"
+  },
+  {
+    "name": "copy-private-live-accounts",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/c1-live-accounts.json",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1/accounts.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164812653312Z-copy-private-live-accounts.log"
+  },
+  {
+    "name": "live-native-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/live_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T164817810348Z-live-native-browser.log"
+  },
+  {
+    "name": "local-organizer-reset-test-account",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "college_account",
+      "reset",
+      "C1LIVEP",
+      "--actor",
+      "C1LIVEADMIN",
+      "--credential-file",
+      "/tmp/c1-recovery.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165012473993Z-local-organizer-reset-test-account.log"
+  },
+  {
+    "name": "copy-test-only-recovery",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/c1-recovery.json",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1/recovery.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165012473993Z-copy-test-only-recovery.log"
+  },
+  {
+    "name": "audited-test-id-correction",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "correct_college_id",
+      "12",
+      "C1LIVECORRECTED",
+      "--actor",
+      "C1LIVEADMIN",
+      "--reason",
+      "Task-owned registrar correction acceptance fixture"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165012473993Z-audited-test-id-correction.log"
+  },
+  {
+    "name": "live-recovery-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/live_recovery_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165012473993Z-live-recovery-browser.log"
+  },
+  {
+    "name": "idle-online-before-smoke",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165058590781Z-idle-online-before-smoke.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165703037556Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165703037556Z-native-integration-tests.log"
+  },
+  {
+    "name": "refresh-isolated-integration-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/integration_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_integration_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165732609568Z-refresh-isolated-integration-settings.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165732609568Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165732609568Z-native-integration-tests.log"
+  },
+  {
+    "name": "refresh-isolated-integration-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/integration_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_integration_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165822446609Z-refresh-isolated-integration-settings.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165822446609Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165822446609Z-native-integration-tests.log"
+  },
+  {
+    "name": "confirm-only-failed-test-admission",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-confirm-only-failed-test-admission.log"
+  },
+  {
+    "name": "find-task-browser",
+    "argv": [
+      "docker",
+      "ps",
+      "-q",
+      "--filter",
+      "ancestor=cpjudge-b01-browser:local1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-find-task-browser.log"
+  },
+  {
+    "name": "inspect-task-browser",
+    "argv": [
+      "docker",
+      "inspect",
+      "e454aa3751f8"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-inspect-task-browser.log"
+  },
+  {
+    "name": "stop-failed-test-browser",
+    "argv": [
+      "docker",
+      "stop",
+      "e454aa3751f8"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-stop-failed-test-browser.log"
+  },
+  {
+    "name": "native-browser-judging-smoke",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/a03-judge-1/pipeline/problems/gaming-grid/solutions/reference.cpp,dst=/run/reference.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/live_submission.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 137,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165058590781Z-native-browser-judging-smoke.log"
+  },
+  {
+    "name": "native-worker-disconnect-after-pre-dispatch-error",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-native-worker-disconnect-after-pre-dispatch-error.log"
+  },
+  {
+    "name": "observe-native-failure",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-observe-native-failure.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165847128967Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165847128967Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165847128967Z/event-stop.log"
+  },
+  {
+    "name": "stop-idle-native-services-after-failure",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-stop-idle-native-services-after-failure.log"
+  },
+  {
+    "name": "install-commit-dispatch-fix",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-install-commit-dispatch-fix.log"
+  },
+  {
+    "name": "reload-http-after-dispatch-fix",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-reload-http-after-dispatch-fix.log"
+  },
+  {
+    "name": "start-http-after-dispatch-fix",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/c1-http-after-fix.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-start-http-after-dispatch-fix.log"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165851315957Z/http-start.log",
+    "timestamp_utc": "2026-10-29T16:58:51.697485+00:00"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165854576534Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165854576534Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165854576534Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165851315957Z/b02-start.log",
+    "timestamp_utc": "2026-10-29T16:58:59.380765+00:00"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T165859499902Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165859499902Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T165859499902Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165859499902Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T165859499902Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165859499902Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T165859499902Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165859499902Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T165851315957Z/b03-start.log",
+    "timestamp_utc": "2026-10-29T16:59:07.189764+00:00"
+  },
+  {
+    "name": "managed-reconnect-after-dispatch-fix",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165833583767Z-managed-reconnect-after-dispatch-fix.log"
+  },
+  {
+    "name": "fresh-native-browser-smoke-after-fix",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1/smoke-after-fix,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/a03-judge-1/pipeline/problems/gaming-grid/solutions/reference.cpp,dst=/run/reference.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/live_submission.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T165907275523Z-fresh-native-browser-smoke-after-fix.log"
+  },
+  {
+    "name": "refresh-isolated-integration-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/integration_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_integration_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170328390619Z-refresh-isolated-integration-settings.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170328390619Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170328390619Z-native-integration-tests.log"
+  },
+  {
+    "name": "refresh-isolated-integration-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/integration_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_integration_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170616645151Z-refresh-isolated-integration-settings.log"
+  },
+  {
+    "name": "stage-integration-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170616645151Z-stage-integration-tests.log"
+  },
+  {
+    "name": "native-integration-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170616645151Z-native-integration-tests.log"
+  },
+  {
+    "name": "idle-before-final-web-refresh",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170629861945Z-idle-before-final-web-refresh.log"
+  },
+  {
+    "name": "copy-final-native-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170629861945Z-copy-final-native-app.log"
+  },
+  {
+    "name": "stop-http-for-final-app",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170629861945Z-stop-http-for-final-app.log"
+  },
+  {
+    "name": "start-http-final-app",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/c1-http-final.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170629861945Z-start-http-final-app.log"
+  },
+  {
+    "name": "fresh-smoke-admission-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170631522732Z-fresh-smoke-admission-guard.log"
+  },
+  {
+    "name": "fresh-native-browser-smoke-after-fix",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1/smoke-after-fix,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/a03-judge-1/pipeline/problems/gaming-grid/solutions/reference.cpp,dst=/run/reference.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/live_submission.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170631522732Z-fresh-native-browser-smoke-after-fix.log"
+  },
+  {
+    "name": "legacy-credential-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/legacy.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/legacy_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170848003319Z-legacy-credential-browser.log"
+  },
+  {
+    "name": "queue-deliberately-stale-export",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170851813564Z-queue-deliberately-stale-export.log"
+  },
+  {
+    "name": "check-worker-stale-export-denial",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170851813564Z-check-worker-stale-export-denial.log"
+  },
+  {
+    "name": "native-results-and-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170854704352Z-native-results-and-preservation.log"
+  },
+  {
+    "name": "event-disabled-state",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170854704352Z-event-disabled-state.log"
+  },
+  {
+    "name": "worker-preserved-configuration",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170854704352Z-worker-preserved-configuration.log"
+  },
+  {
+    "name": "private-native-smoke-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T170854704352Z-private-native-smoke-trace.log"
+  },
+  {
+    "name": "stage-final-targeted-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/integration_tests.py",
+      "cpjudge-b01-site:/app/cpjudge/integration_tests.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171104663131Z-stage-final-targeted-tests.log"
+  },
+  {
+    "name": "correction-and-native-conflict-races",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests.NativeRaceTests.test_concurrent_correction_reserves_one_owner_without_merging",
+      "cpjudge.integration_tests.NativeIntegrationTests.test_conflict_flag_survives_revocation_and_native_join_is_unranked",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171104663131Z-correction-and-native-conflict-races.log"
+  },
+  {
+    "name": "private-smoke-channel-fixture",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171427599001Z-private-smoke-channel-fixture.log"
+  },
+  {
+    "name": "final-live-access-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/final_access_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171427599001Z-final-live-access-browser.log"
+  },
+  {
+    "action": "start",
+    "name": "checkpoint1-fail-closed-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T171512104702Z/checkpoint1-fail-closed-start.log",
+    "timestamp_utc": "2026-10-29T17:15:13.570048+00:00"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T171513760860Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T171513760860Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T171513760860Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T171512104702Z/b02-start.log",
+    "timestamp_utc": "2026-10-29T17:15:18.319322+00:00"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T171518429357Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T171518429357Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T171512104702Z/b03-start.log",
+    "timestamp_utc": "2026-10-29T17:15:19.718270+00:00"
+  },
+  {
+    "name": "supported-start-retains-secure-configuration",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171512011473Z-supported-start-retains-secure-configuration.log"
+  },
+  {
+    "name": "native-results-and-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171519807585Z-native-results-and-preservation.log"
+  },
+  {
+    "name": "event-disabled-state",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171519807585Z-event-disabled-state.log"
+  },
+  {
+    "name": "worker-preserved-configuration",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171519807585Z-worker-preserved-configuration.log"
+  },
+  {
+    "name": "private-native-smoke-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171519807585Z-private-native-smoke-trace.log"
+  },
+  {
+    "name": "stage-final-targeted-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171648001278Z-stage-final-targeted-tests.log"
+  },
+  {
+    "name": "correction-and-native-conflict-races",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests.NativeRaceTests.test_concurrent_correction_reserves_one_owner_without_merging",
+      "cpjudge.integration_tests.NativeIntegrationTests.test_conflict_flag_survives_revocation_and_native_join_is_unranked",
+      "cpjudge.integration_tests.NativeIntegrationTests.test_scoped_delegate_admin_and_roster_only_conflict_policy",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171648001278Z-correction-and-native-conflict-races.log"
+  },
+  {
+    "name": "idle-before-final-web-refresh",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171651417816Z-idle-before-final-web-refresh.log"
+  },
+  {
+    "name": "copy-final-native-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171651417816Z-copy-final-native-app.log"
+  },
+  {
+    "name": "stop-http-for-final-app",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171651417816Z-stop-http-for-final-app.log"
+  },
+  {
+    "name": "start-http-final-app",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/c1-http-final.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171651417816Z-start-http-final-app.log"
+  },
+  {
+    "name": "private-smoke-channel-fixture",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171653026958Z-private-smoke-channel-fixture.log"
+  },
+  {
+    "name": "final-live-access-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/final_access_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171653026958Z-final-live-access-browser.log"
+  },
+  {
+    "name": "native-results-and-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171706619042Z-native-results-and-preservation.log"
+  },
+  {
+    "name": "event-disabled-state",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171706619042Z-event-disabled-state.log"
+  },
+  {
+    "name": "worker-preserved-configuration",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171706619042Z-worker-preserved-configuration.log"
+  },
+  {
+    "name": "private-native-smoke-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171706619042Z-private-native-smoke-trace.log"
+  },
+  {
+    "name": "disable-only-task-owned-elevated-account",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171920485698Z-disable-only-task-owned-elevated-account.log"
+  },
+  {
+    "name": "native-results-and-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171921804763Z-native-results-and-preservation.log"
+  },
+  {
+    "name": "event-disabled-state",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171921804763Z-event-disabled-state.log"
+  },
+  {
+    "name": "worker-preserved-configuration",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171921804763Z-worker-preserved-configuration.log"
+  },
+  {
+    "name": "private-native-smoke-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T171921804763Z-private-native-smoke-trace.log"
+  },
+  {
+    "name": "rotation-private-db-backup",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb-dump --user=root --password=\"$MARIADB_ROOT_PASSWORD\" --single-transaction --routines --events --databases b01"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-rotation-private-db-backup.log"
+  },
+  {
+    "name": "capture-pre-revocation-browser-session",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "MODE=capture",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/legacy.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/exposure_session_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py",
+      "capture"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-capture-pre-revocation-browser-session.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T174723576854Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T174723576854Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T174723576854Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T174723576854Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T174723576854Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T174723576854Z/wait-native-offline.log"
+  },
+  {
+    "name": "stop-owned-worker-for-key-rotation",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-stop-owned-worker-for-key-rotation.log"
+  },
+  {
+    "name": "assert-worker-offline-before-rotation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-assert-worker-offline-before-rotation.log"
+  },
+  {
+    "name": "install-new-private-bridge-registration",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path('/tmp/b03-registration.json');data=sys.stdin.buffer.read();fd=os.open(str(p)+'.rotate',os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600);os.write(fd,data);os.fsync(fd);os.close(fd);os.replace(str(p)+'.rotate',p)"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-install-new-private-bridge-registration.log"
+  },
+  {
+    "name": "rotate-native-key-and-revoke-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-rotate-native-key-and-revoke-sessions.log"
+  },
+  {
+    "name": "verify-new-registration-without-reading-key",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-verify-new-registration-without-reading-key.log"
+  },
+  {
+    "name": "snapshot-bridge-auth-log",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b02-bridge.log"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-snapshot-bridge-auth-log.log"
+  },
+  {
+    "name": "observe-old-key-rejection",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b02-bridge.log"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-observe-old-key-rejection.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T174733169593Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T174733169593Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T174733169593Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T174733169593Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T174733169593Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T174733169593Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T174733169593Z",
+    "log": "reports/phase-c-checkpoint1-1/logs/20261029T174733169593Z/wait-native-online.log"
+  },
+  {
+    "name": "start-worker-with-new-key",
+    "argv": [
+      "python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-start-worker-with-new-key.log"
+  },
+  {
+    "name": "verify-worker-reconnected-with-new-key",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-verify-worker-reconnected-with-new-key.log"
+  },
+  {
+    "name": "verify-revoked-session-and-existing-password-browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "MODE=verify",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/legacy.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/exposure_session_browser.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py",
+      "verify"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174721363889Z-verify-revoked-session-and-existing-password-browser.log"
+  },
+  {
+    "name": "post-rotation-real-browser-submission",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:1000",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-checkpoint1-1/post-rotation-submit,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/a03-judge-1/pipeline/problems/gaming-grid/solutions/reference.cpp,dst=/run/reference.cpp,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/live_submission.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174758509723Z-post-rotation-real-browser-submission.log"
+  },
+  {
+    "name": "native-results-and-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174838282386Z-native-results-and-preservation.log"
+  },
+  {
+    "name": "native-results-and-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174900921156Z-native-results-and-preservation.log"
+  },
+  {
+    "name": "event-disabled-state",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174900921156Z-event-disabled-state.log"
+  },
+  {
+    "name": "worker-preserved-configuration",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174900921156Z-worker-preserved-configuration.log"
+  },
+  {
+    "name": "private-native-smoke-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174900921156Z-private-native-smoke-trace.log"
+  },
+  {
+    "name": "verify-bridge-database-worker-key-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T174948936633Z-verify-bridge-database-worker-key-consistency.log"
+  },
+  {
+    "name": "native-results-and-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T180950592659Z-native-results-and-preservation.log"
+  },
+  {
+    "name": "event-disabled-state",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T180950592659Z-event-disabled-state.log"
+  },
+  {
+    "name": "worker-preserved-configuration",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T180950592659Z-worker-preserved-configuration.log"
+  },
+  {
+    "name": "private-native-smoke-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T180950592659Z-private-native-smoke-trace.log"
+  },
+  {
+    "name": "native-results-and-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T181440077829Z-native-results-and-preservation.log"
+  },
+  {
+    "name": "event-disabled-state",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T181440077829Z-event-disabled-state.log"
+  },
+  {
+    "name": "worker-preserved-configuration",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T181440077829Z-worker-preserved-configuration.log"
+  },
+  {
+    "name": "private-native-smoke-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T181440077829Z-private-native-smoke-trace.log"
+  },
+  {
+    "name": "native-results-and-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T182018877472Z-native-results-and-preservation.log"
+  },
+  {
+    "name": "event-disabled-state",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T182018877472Z-event-disabled-state.log"
+  },
+  {
+    "name": "worker-preserved-configuration",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T182018877472Z-worker-preserved-configuration.log"
+  },
+  {
+    "name": "private-native-smoke-trace",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b07-native-trace.jsonl"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-checkpoint1-1/20261029T182018877472Z-private-native-smoke-trace.log"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "cause": "Native ContestMiddleware/Profile.update_contest clears an ended current contest on authenticated requests",
+  "restored": [
+    {
+      "profile_id": 11,
+      "expired_participation_id": 3,
+      "baseline_pointer_restored": true
+    }
+  ],
+  "other_fields_written": false
+}

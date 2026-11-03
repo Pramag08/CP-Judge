@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "scope": "Saved B02 acceptance and documentation reconciliation; no runtime test",
+  "command": "python3 -B reports/b02-status-1/verify.py",
+  "exit_status": 0,
+  "reviewed_hashes_checked": [
+    "deploy/site-local/b02.py",
+    "deploy/site-local/b02_config.py",
+    "deploy/site-local/b02_process.py",
+    "deploy/site-local/b02_probe.py",
+    "deploy/site-local/events/package.json",
+    "deploy/site-local/events/package-lock.json",
+    "deploy/site-local/manage.py",
+    "patches/site/0004-event-set-iteration.patch",
+    "reports/b02-services-1/runtime-preservation.json",
+    "reports/b02-services-1/logs/20261028T205850597669Z/npm-security-audit.log",
+    "reports/b02-services-1/result-20261028T205851761900Z.json",
+    "reports/b02-services-1/browser-20261028T205858690494Z.json",
+    "reports/b02-services-1/commands.json"
+  ],
+  "original_command_count": 62,
+  "appended_status_entries": 1,
+  "current_services": "STOPPED",
+  "B02": "COMPLETE \u2014 PASS",
+  "B03": "NOT STARTED",
+  "judging": "NOT TESTED"
+}

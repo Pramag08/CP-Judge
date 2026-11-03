@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "models": 88,
+  "native_fixture_additions": {
+    "judge.profile": 2,
+    "judge.submission": 6,
+    "judge.submissionsource": 6,
+    "judge.submissiontestcase": 515,
+    "judge.contest_private_contestants": 2,
+    "judge.contest": 1,
+    "judge.contestparticipation": 2,
+    "judge.contestproblem": 1,
+    "judge.contestsubmission": 6,
+    "auth.user": 2
+  },
+  "existing_accounts_passwords_submissions_problem_data_preserved": true,
+  "allowed_existing_activity": "native login/access and problem statistics only",
+  "immutable_problem_and_container_configuration_checked_by_coordinator": true
+}

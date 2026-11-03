@@ -1,6 +1,170 @@
 # Compatibility report
 
-Current judging milestone (2026-10-28): **BLOCKED before image build**.
+A03 isolated judge reproduction (2026-10-28): **PASS**, independently reviewed.
+The existing runner exited **0** in fresh `build/a03-judge-1/pipeline/` using the
+same pinned image, source commits, compiler standards, limits and sandbox settings.
+[Latest A03 evidence/commands](a03-judge-1/README.md),
+[independent review](a03-judge-1/review.json), [score assertions](a03-judge-1/scores.json),
+[live sandbox inspection](a03-judge-1/sandbox.json).
+
+| Actual real-package probe (CPP23) | Exact observed verdicts | Sum of asserted case points |
+| --- | --- | --- |
+| Reference | 103 AC | 103 |
+| Well-formed all-NO | 55 WA / 48 AC | 48 |
+| Runtime | 103 RTE | 0 |
+| Timeout | 103 TLE | 0 |
+
+All **18 probes / 454 ordered case records and score assertions** passed. This is
+**452 executed cases plus 2 intentional dependency skips**, recorded SC/zero points
+rather than AC; no missing/skipped executor, skipped probe or failed assertion
+counts as PASS. Synthetic tokens/multiple probes cover AC/WA/RTE/TLE, alternative
+valid outputs and presentation feedback; grouped probes verify 30/50/20,
+30/0/0, 0/0/20, 0/0/0 and expected dependencies. Totals above are asserted judge
+case points, not website standings.
+
+Independent preflight found that ungrouped probes lacked score assertions. The
+focused probe-installer change adds numbered `score_cases` using configured points
+for AC and zero for failures; explicit group arrays stay unchanged. Six targeted
+regression tests passed. The official pinned DMOJ TestManager asserts every
+`result.points`; ordinary CLI case lines do not emit a separate numeric score trace.
+The reviewer independently checked expectations, original bytes/standards/limits,
+all logs and score assertions, runtime locks and raw live-container restrictions.
+
+Executed image: `sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8`.
+DMOJ commit: `1245dc4158dbb9e906c4c103e1ea939e012ee79b`.
+Full base digest, compiler/package versions and commands/exits are in
+[A03 evidence](a03-judge-1/evidence.json). No image rebuild or pin/sandbox changes.
+Raw logs, imported files and solutions remain ignored; previous evidence is retained.
+
+Coverage is still one real export plus synthetic fixtures with one case per group.
+Multi-case group semantics, jury internal errors, exact Polygon toolchain/timing
+parity, website/bridge/standings and multi-worker recovery/capacity remain untested.
+A04 has not started. Earlier measured results and blocked attempts follow for
+historical context; A02 remains a conversion-only result, separate from judging.
+
+Judging milestone resumed 2026-10-28: **PASS for the supplied gaming-grid package
+and all three synthetic packages**. This is actual execution by the pinned DMOJ
+engine and its supported `dmoj-cli test` command, including bridged testlib checkers.
+Docker client/server **29.9.2** passed `docker info` and `hello-world` after refreshing
+the session group with `sg docker`; no daemon/socket permissions were changed.
+
+| Actual DMOJ check | Observed result |
+| --- | --- |
+| Real reference, CPP23 | **103 AC** |
+| Real well-formed all-NO probe, CPP23 | **55 WA / 48 AC**, matching every expected case; empty feedback assertion excludes presentation errors |
+| Real runtime probe, CPP23 | **103 RTE** |
+| Real timeout probe, CPP23 | **103 TLE** |
+| Synthetic groups | All four probes pass, including point assertions 30/50/20, 30/0/0, 0/0/20, 0/0/0 and dependency skips |
+| Synthetic multiple-answer checker | Accepted and alternative solutions AC; wrong and presentation outputs WA; RTE/TLE probes pass |
+| Synthetic token checker | AC/WA/RTE/TLE probes pass |
+| Conversion / independent preservation | Four conversions pass; real 103 test pairs, 15 statement assets, sample pair, checker/header bytes and limits verified |
+| Unit tests | **11 passed** |
+
+All **18 probes / 454 case records** completed with exact expected verdicts and
+successful official tester assertions. No skipped executors, compilation failures,
+judge exceptions, missing cases or mismatched source metadata were accepted.
+The real checker and reference retain CPP23, **2 seconds / 262144 KiB**. Python in
+the runtime is **3.14.7**; compiler **GCC 16.2.0**, C++23 `__cplusplus=202302L`.
+This validates Linux execution, not replication of Polygon's MSYS2 GCC14 toolchain.
+The 2-second limit is passed unchanged to DMOJ; its periodic enforcement terminates
+the busy-loop probe at about 4 seconds on this worker. These tests verify the TLE
+verdict, not precise timing parity with Polygon.
+
+Runtime base: `dmoj/runtimes-tier1@sha256:dc5cba4a00fdaca99a7b597d2451fb8b4e731574949593cc52f4291d3e5189f1`.
+Executed image: `sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8`.
+Judge commit: `1245dc4158dbb9e906c4c103e1ea939e012ee79b`.
+The base digest is the Dockerfile default; build/runtime Python packages are pinned
+in `requirements-judge.txt`, and isolated metadata records the installed versions.
+
+The first execution exposed a concrete CLI integration issue: `ProblemConfig`
+wraps YAML lists in `ConfigNode`, so the tester's list check misses per-case verdict
+and score lists. Numbered mappings fix both fields. A regression test and the actual
+group/real judging run verify the correction. The entrypoint loads only supported
+C++ executors, retaining their self-tests; unrelated Objective-C initialization had
+raised a TypeError during the initial attempt. That failed attempt was stopped
+before its remaining timeout probes and remains private under ignored `build/`.
+
+Repeat the validated run (choose a new output directory each time):
+
+```sh
+sg docker -c 'docker info'
+sg docker -c 'docker run --rm hello-world'
+sg docker -c 'docker build -f Dockerfile.judge -t cp-judge-compat .'
+sg docker -c 'PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -m tools.pipeline --output build/judging-milestone-docker-resume-3 --real local-packages/gaming-grid.zip --judge'
+.venv/bin/python -m tools.verify_install local-packages/gaming-grid.zip build/judging-milestone-docker-resume-3/converted-3
+PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -m unittest discover -s tests -v
+```
+
+The pipeline exited **0**. [Sanitized evidence](judging-docker-resume.json) includes
+image/source pins, versions and every probe's observed counts. Raw logs and package
+contents remain in ignored `build/` and `local-packages/`; nothing was committed or
+pushed. The existing network isolation, read-only mounts/root, unprivileged user,
+capability restrictions and resource caps are preserved.
+
+Coverage is limited to this real package and the synthetic fixtures. Multi-test
+all-or-nothing groups, jury internal-error behavior, website import/rendering and
+standings remain **NOT TESTED**. Generators/validators are not executed; previously
+rejected formats and partial checker point protocols remain unsupported. Website
+implementation has not started. Earlier attempts and the source audit below are
+historical evidence, superseded by the current measured results above.
+
+Historical attempt after Docker installation (2026-10-28):
+**BLOCKED by Docker socket permissions before image build**.
+
+Docker is now installed: client **29.9.2**, buildx **v0.38.1**, Compose **v5.6.1**.
+The server version cannot be queried. Both commands below exit **1**, including
+when retried outside the workspace sandbox:
+
+```text
+docker info
+docker run --rm hello-world
+permission denied while trying to connect to the docker API at unix:///var/run/docker.sock
+```
+
+`docker pull dmoj/runtimes-tier1:latest` also exits **1** with that exact error.
+`sudo -n docker info`, outside the workspace sandbox, exits **1** with
+`sudo: interactive authentication is required`. No daemon, socket or group
+permissions were changed. The runtime digest could not be resolved; no image was
+built, and the base digest, image ID, executed judge version and compiler/runtime
+versions remain **null / NOT TESTED**. No build/runtime failure can yet be diagnosed
+beyond the Docker access failure.
+
+Fresh pipeline command:
+
+```sh
+PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -m tools.pipeline --output build/judging-milestone-docker-resume-1 --real local-packages/gaming-grid.zip --judge
+```
+
+It exits **2** after all four conversions pass, at
+`docker image inspect cp-judge-compat`, which returns the same socket permission
+error. Its report and error log are retained privately under that ignored output
+directory. Independent `tools.verify_install` verification passes for all **103**
+input/output pairs, **15** statement assets, the sample pair, checker/header bytes,
+limits and configuration. The generated real-problem probe configuration confirms
+the expected **55 WA / 48 AC** split and preserves CPP23. All **10** existing unit
+tests pass with Python **3.14.4** and the clean pinned converter
+`41ce3afcedf6c02793b308ba2e6ddb2ea5f82134`; these are conversion and result-validation
+checks, not DMOJ execution. [Historical socket-permission evidence](judging-milestone/docker-permission-evidence.json)
+records the commands, versions, expectations and null runtime observations.
+
+The existing converter, Dockerfile, CPP23 declarations, sandbox restrictions and
+strict result validation are unchanged. No AGENTS.md was present in the workspace
+or its parent directories. Fixture expectations still require reference **103 AC**,
+all-NO known-wrong **55 WA / 48 AC**, runtime **103 RTE**, and timeout **103 TLE**.
+These counts are expectations, not actual DMOJ results; synthetic checker,
+alternative-answer, presentation, scoring and dependency probes likewise remain
+**NOT TESTED** in DMOJ. Skips, compilation failures and judge errors cannot pass.
+
+Smallest next action: an administrator must make `docker info` and
+`docker run --rm hello-world` succeed **in this session** (or supply an accessible
+Linux Docker worker). Then resolve and pin the runtime digest, build the existing
+image, and run the pipeline in another fresh output directory. **Website work has
+not started; the judging milestone remains incomplete.** Private packages and raw
+logs remain under ignored `local-packages/` and `build/`.
+
+The previous attempt, before Docker installation, follows for traceability.
+
+Previous judging milestone attempt (2026-10-28): **BLOCKED before image build**.
 The converter/adapter and supported input formats are unchanged. A fresh pipeline
 run converted all four existing packages, but no DMOJ submissions have executed.
 

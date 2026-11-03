@@ -1,0 +1,5 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+56 objects imported automatically (use -v 2 for details).
+
+JOURNEY_RESULT={"status": "PASS", "native_original_sha256": "3dbcf88bf7fe99c6b175b04517dd697641716f1968214ecd8e32e7db27a2f631", "observed_overlay_sha256": "8f8f9a0abc93b991014a9edc035e856a9a83fd5f21e35a28ef47040fe217f109", "packet_fields_handlers_scheduler_limits_unchanged": true}

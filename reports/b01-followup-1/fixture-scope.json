@@ -1,0 +1,11 @@
+{
+  "fixture_ids": {
+    "staff": 5,
+    "participant": 6
+  },
+  "temporary_accounts": 2,
+  "existing_users_saved_privately": 2,
+  "statement_fixture": "native problem/raw.html with synthetic context; no Problem row/import",
+  "preview_fixture": "native user/preview.html plus actual martor loader",
+  "domain_counts_unchanged": true
+}

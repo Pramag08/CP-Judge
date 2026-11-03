@@ -1,0 +1,4 @@
+{% extends "base.html" %}
+{% block body %}
+<p><a href="{{ url('password_change') }}">Change password (optional)</a>. For recovery, contact the organizers outside this application.</p>
+<p>Personal email: {{ email }}. Contact an authorized account administrator to correct it.</p><p>College ID: {{ college_id or "Not assigned" }}</p><div class="centered-form"><form method="post" class="form-area">{% csrf_token %}<table>{{ form.as_table() }}</table><button type="submit">Save profile</button></form></div>{% endblock %}

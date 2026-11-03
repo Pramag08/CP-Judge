@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "host_worker_credential_matches_mounted_config": true,
+  "bridge_registration_matches_database": true,
+  "worker_online": true
+}

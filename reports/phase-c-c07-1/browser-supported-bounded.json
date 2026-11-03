@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "job_id": 13,
+  "terminal_status": "succeeded",
+  "attempt": 1,
+  "refresh_preserved_terminal_status": true,
+  "unauthorized_inspection_and_queue_denied": true,
+  "csrf_denied": true,
+  "safe_error": null,
+  "observed_states": [
+    "queued",
+    "running",
+    "succeeded"
+  ]
+}

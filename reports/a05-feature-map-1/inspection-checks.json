@@ -1,0 +1,62 @@
+{
+  "task": "A05",
+  "status": "PASS \u2014 source evidence consistency only",
+  "checked_utc": "2026-10-28T14:09:40.205829+00:00",
+  "command": ".venv/bin/python -B build/a05-feature-map-1/verify_inspection.py",
+  "exit": 0,
+  "source_files_verified": 31,
+  "feature_rows": 20,
+  "source_claim_checks": {
+    "registration_route_rejects_prestart": true,
+    "leave_clears_current_contest": true,
+    "common_clock_when_no_personal_time_limit": true,
+    "google_backend_configured": true,
+    "local_oauth_email_check_only_presence": true,
+    "form_duplicate_email_query": true,
+    "manual_language_only_draft_key": true,
+    "stock_editor_is_ace": true,
+    "icpc_last_time_tiebreak": true,
+    "icpc_excludes_ie_ce": true,
+    "native_batch_dependencies_supported": true,
+    "participation_identity_is_profile": true,
+    "native_multiple_worker_set": true,
+    "bridge_dispatches_database_limits": true,
+    "stock_language_fixtures_omit_cpp23": true,
+    "stock_checker_choices_omit_bridged": true
+  },
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "build/a04-site-foundation-1/site",
+        "status",
+        "--short"
+      ],
+      "exit": 0,
+      "matched_paths": [],
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "rg",
+        "-l",
+        "--glob",
+        "*.py",
+        "--glob",
+        "*.html",
+        "monaco\\.editor|custom_run|custom_input|Polygon",
+        "build/a04-site-foundation-1/site/dmoj/urls.py",
+        "build/a04-site-foundation-1/site/judge/views",
+        "build/a04-site-foundation-1/site/judge/models",
+        "build/a04-site-foundation-1/site/templates/problem"
+      ],
+      "exit": 1,
+      "matched_paths": [],
+      "stderr": ""
+    }
+  ],
+  "negative_search_scope": "Only named URL/view/model/problem-template paths and patterns; not a proof of absence from plugins or third-party packages.",
+  "website_runtime_tests_run": false,
+  "website_judge_compatibility": "NOT TESTED"
+}

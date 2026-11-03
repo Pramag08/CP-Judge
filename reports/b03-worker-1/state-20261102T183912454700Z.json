@@ -1,0 +1,44 @@
+{
+  "name": "cpjudge-local-worker",
+  "online": true,
+  "executors": [
+    "CPP11",
+    "CPP14",
+    "CPP17",
+    "CPP20",
+    "CPP23"
+  ],
+  "runtime_versions": [
+    {
+      "language__key": "CPP11",
+      "name": "g++11",
+      "version": "16"
+    },
+    {
+      "language__key": "CPP14",
+      "name": "g++14",
+      "version": "16"
+    },
+    {
+      "language__key": "CPP17",
+      "name": "g++17",
+      "version": "16"
+    },
+    {
+      "language__key": "CPP20",
+      "name": "g++20",
+      "version": "16"
+    },
+    {
+      "language__key": "CPP23",
+      "name": "g++23",
+      "version": "16"
+    }
+  ],
+  "problems": 3,
+  "start_time": "2026-11-02 17:29:07.575226+00:00",
+  "worker_container_exit_code": 0,
+  "worker_oom_killed": false,
+  "website_login_http": 200,
+  "anonymous_status_http": 401
+}

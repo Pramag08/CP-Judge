@@ -1,0 +1,64 @@
+[
+  {
+    "action": "plan",
+    "name": "selected-site-models",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T094434985351Z",
+    "log": "reports/b04-installation-1/logs/20261029T094434985351Z/selected-site-models.log"
+  },
+  {
+    "action": "plan",
+    "name": "native-worker-source",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T094434985351Z",
+    "log": "reports/b04-installation-1/logs/20261029T094434985351Z/native-worker-source.log"
+  },
+  {
+    "action": "plan",
+    "name": "selected-site-models",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T101809489240Z",
+    "log": "reports/b04-installation-1/logs/20261029T101809489240Z/selected-site-models.log"
+  },
+  {
+    "action": "plan",
+    "name": "native-worker-source",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/env/bin/python3",
+      "-"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T101809489240Z",
+    "log": "reports/b04-installation-1/logs/20261029T101809489240Z/native-worker-source.log"
+  }
+]

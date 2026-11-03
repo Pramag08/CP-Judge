@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "final_focused_tests": 9,
+  "skips": 0,
+  "earlier_4_admission_plus_27_C11_regressions_passed": true,
+  "both_browser_standings_equal_manual_and_SQL": true,
+  "deployed_source_sha256": {
+    "models.py": "56c6de1c3e5d3eaae30045e0ddc54a4574b92421be048749fe5d52aabfd6694f",
+    "admission.py": "d21ee72f8d1e016d328a164a756e55f5808c58f81c272a5d3902cf9bc486a22b",
+    "native.py": "ba6ec5e8be5b62d0f4746117b0c8fe300056241b24e055e4ed5a766067aa444b",
+    "publication.py": "6ec3aa987eb1f06b671657f8b3652c8b9caf71a3e06b7b424fadcb51f5732591",
+    "bridge_readiness.py": "5e1153dd199d11553d727718a30aab701a249653df8f84a1c2dc884effa27c85"
+  },
+  "migration_consistency": true,
+  "phase_c_complete": false,
+  "email_only_cutover": "BLOCKED; four original blank addresses"
+}

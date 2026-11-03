@@ -1,0 +1,14 @@
+{
+  "contest_id": 1,
+  "key": "b10b11local1",
+  "start": "2026-10-29T13:53:53.494549+00:00",
+  "end": "2026-10-29T15:55:53.494549+00:00",
+  "temporary_accounts": [
+    "b10tmpa",
+    "b10tmpb"
+  ],
+  "native_contest_problem": 1,
+  "private_allowlist_only": true,
+  "per_participant_duration": null,
+  "fixture_start_two_minutes_before_creation": true
+}

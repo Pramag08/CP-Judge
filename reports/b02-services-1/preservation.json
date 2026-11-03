@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "command": "python3 -B reports/b02-services-1/check_preservation.py",
+  "exit_status": 0,
+  "baseline_files": 434,
+  "changed_existing_files": [
+    "AGENTS.md",
+    "SecureExam-Implementation-Plan.md",
+    "PROJECT_STATUS.md",
+    "deploy/site-local/manage.py"
+  ],
+  "all_other_existing_files_and_prior_reports_byte_identical": true,
+  "credentials_found": false,
+  "judging": "NOT TESTED"
+}

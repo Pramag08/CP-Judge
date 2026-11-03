@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "reviewer": "/root/b04_b05_review",
+  "scope": "Independent B04 design/native source and saved inspection review; no service or judging rerun",
+  "checks": {
+    "site_source_hashes_match_exact_pinned_Git_objects": true,
+    "clean_selected_site_checkout": true,
+    "native_code_max20_unique_lowercase_alphanumeric": true,
+    "opaque_revision_with_separate_full_digest_no_truncated_hash_identity": true,
+    "native_Problem_fields_and_CPP23_only_mapping": true,
+    "seconds_KiB_source_site_expected_request_match": true,
+    "bridge_reads_ORM_LanguageLimit_not_init_limits": true,
+    "native_submission_fields_and_worker_packet_limit_semantics_inspected": true,
+    "103_ordered_one_point_cases_sample1_active": true,
+    "checker_CPP23_bridged_testlib_source_header_preservation_required": true,
+    "all15_statement_assets_and_sample_pair_private": true,
+    "standalone103_partial_scoring_distinguished_from_future_ICPC_contest_preset": true,
+    "private_manually_managed_problem_and_no_web_data_mount": true,
+    "atomic_immutable_install_repeat_conflict_checks_specified": true,
+    "read_only_plan_commands_exit0_saved": true
+  },
+  "blockers": [],
+  "limitations": [
+    "B04 is definition/source inspection only, not installation or emitted submission packet proof.",
+    "A11 boot-bound checksum/probe readiness, publication, dispatch-time frozen receipt enforcement and pool predicates remain unimplemented.",
+    "B05 must independently verify installed bytes and native worker advertisement; B06 rendering and B07 judging are not authorized here."
+  ],
+  "judging": "NOT RUN",
+  "inspected_sha256": {
+    "reports/b04-installation-1/README.md": "8ced2abba730f0c60075dc52a6e2a806ea1cad1a11c84243c286038fa3f875af",
+    "reports/b04-installation-1/mapping.json": "7b22b0f0069ba776fc3577433cb9c8e645ae3ae3ea92789235b6c6abeeeef09d",
+    "deploy/site-local/problem_inspect.py": "efe4eb72ce0fefaa37dbc40b1e9d521654940f3082791d8b3a3003dbb0b8774c",
+    "deploy/site-local/problem_worker_inspect.py": "5bcd3a97d893e0c59ecd1b560fba2e48dd96168aa1d278ff0ed2f52abda863f4"
+  },
+  "implementation_boundary": "problem_install.py contains plan only at review; B05 implementation intentionally follows this completed review"
+}

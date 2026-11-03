@@ -1,0 +1,19 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+56 objects imported automatically (use -v 2 for details).
+
+JOURNEY_RESULT={
+  "status": "PASS",
+  "code": "pv000000000000000001",
+  "package_sha256": "260abce9770f2c88cf8c93271cbfcbd6cea3f028c6eda536ad16256731d8a769",
+  "judge_manifest_digest": "7e7b7ec333912da774b066e821eae4c2cb9cb9426ea3417320352d128b5dcf90",
+  "description_sha256": "bc016f161366f5d26a880f43e128599d3eb987b2717043f035066259aa7d1018",
+  "css_sha256": "67292565bce883dc4ea4cb6e5129897150bce619826b3a47cd208564f55e5595",
+  "source_html_sha256": "ae582b33bad9ce9792e8184300447e6b70b9311c047d4aa628fe1d476dfaf967",
+  "source_css_sha256": "e482d2272ecaf92ecbcdb67bebb19000f07d01d93ce1d9288e6e631d063b63e1",
+  "math_expressions": 30,
+  "adversarial_html_css_tex_checks": "PASS",
+  "imported_executable_tags_urls_removed": true,
+  "selected_statement_images": 0,
+  "judging": "NOT TESTED"
+}

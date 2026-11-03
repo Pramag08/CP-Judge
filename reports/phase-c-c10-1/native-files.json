@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "version_id": 2,
+  "job_id": 24,
+  "code": "pv900000000000000002",
+  "state": "published",
+  "time_seconds": 0.5,
+  "memory_kib": 65536,
+  "points": 3.0,
+  "checker_executor": "CPP17",
+  "test_groups_or_cases": 3,
+  "samples": 1,
+  "all_installed_file_hashes_and_native_fields_agree": true,
+  "is_public": false,
+  "contest_assigned": false,
+  "submission_languages": [],
+  "submissions": 0,
+  "coordinator_private_only": true,
+  "worker_readiness": "NOT TESTED",
+  "judging": "NOT RUN"
+}

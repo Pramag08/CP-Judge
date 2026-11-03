@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "old_account_passwords_sources_results_contests_preserved": true,
+  "old_models_checked": 56,
+  "allowed_native_activity": {
+    "judge.judge": [
+      "auth_key",
+      "load",
+      "ping",
+      "start_time"
+    ],
+    "judge.profile": [
+      "last_access"
+    ],
+    "judge.problem": [
+      "ac_rate",
+      "user_count"
+    ],
+    "auth.user": [
+      "last_login"
+    ]
+  },
+  "new_submission_id": 14,
+  "verdict": "AC",
+  "actual_AC_cases": 103,
+  "native_contest_attached": true,
+  "new_accounts_strong_PBKDF2": true,
+  "worker_online": true,
+  "unprotected_ports_closed": {
+    "9995": true,
+    "9996": true
+  },
+  "old_event_daemon_stopped": true,
+  "worker_container_image_sandbox_and_problem_files_preserved": true,
+  "native_request_callback_SQL_and_browser_agree": true
+}

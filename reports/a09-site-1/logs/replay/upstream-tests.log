@@ -1,0 +1,220 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+Creating test database for alias 'default' ('test_a09')...
+Found 79 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: adminsortable2, compressor, django_ace, django_jinja, django_social_share, martor, messages, mptt, sitemaps, sortedm2m, staticfiles, statici18n, wpadmin
+  Apply all migrations: admin, auth, contenttypes, flatpages, impersonate, judge, redirects, registration, reversion, sessions, sites, social_django
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sites.0001_initial... OK
+  Applying flatpages.0001_initial... OK
+  Applying impersonate.0001_initial... OK
+  Applying judge.0001_squashed_0084_contest_formats... OK
+  Applying judge.0085_submission_source... OK
+  Applying judge.0086_rating_ceiling... OK
+  Applying judge.0087_problem_resource_limits... OK
+  Applying judge.0088_private_contests... OK
+  Applying judge.0089_submission_to_contest... OK
+  Applying judge.0090_fix_contest_visibility... OK
+  Applying judge.0091_compiler_message_ansi2html... OK
+  Applying judge.0092_contest_clone... OK
+  Applying judge.0093_contest_moss... OK
+  Applying judge.0094_submissiontestcase_unique_together... OK
+  Applying judge.0095_organization_logo_override... OK
+  Applying judge.0096_profile_language_set_default... OK
+  Applying judge.0097_participation_is_disqualified... OK
+  Applying judge.0098_view_contest_scoreboard... OK
+  Applying judge.0099_contest_problem_label... OK
+  Applying judge.0100_contest_visiblity_permission... OK
+  Applying judge.0101_submission_judged_date... OK
+  Applying judge.0102_api_token... OK
+  Applying judge.0103_contest_participation_tiebreak_field... OK
+  Applying judge.0104_contestproblem_maxsubs... OK
+  Applying judge.0105_webauthn... OK
+  Applying judge.0106_user_data_download... OK
+  Applying judge.0107_submission_lock... OK
+  Applying judge.0108_bleach_problems... OK
+  Applying judge.0109_scratch_codes... OK
+  Applying judge.0110_default_output_prefix_override... OK
+  Applying judge.0111_blank_assignees_ticket... OK
+  Applying judge.0112_language_extensions... OK
+  Applying judge.0113_contest_decimal_points... OK
+  Applying judge.0114_remove_org_registrant... OK
+  Applying judge.0115_contest_scoreboard_visibility... OK
+  Applying judge.0116_contest_curator_and_tester... OK
+  Applying judge.0117_remove_private_messages... OK
+  Applying judge.0118_convert_to_dates... OK
+  Applying judge.0119_hide_problem_authors... OK
+  Applying judge.0120_totp_no_reuse... OK
+  Applying judge.0121_per_problem_sub_access_control... OK
+  Applying judge.0122_username_display_override... OK
+  Applying judge.0123_contest_rating_elo_mmr... OK
+  Applying judge.0124_contest_show_short_display... OK
+  Applying judge.0125_organization_classes... OK
+  Applying judge.0126_infer_private_bools... OK
+  Applying judge.0127_tester_see_scoreboard... OK
+  Applying judge.0128_limit_join_organizations... OK
+  Applying judge.0129_see_scoreboard_subs... OK
+  Applying judge.0130_blogpost_change_visibility... OK
+  Applying judge.0131_spectate_contests... OK
+  Applying judge.0132_no_self_vote... OK
+  Applying judge.0133_add_problem_data_hints... OK
+  Applying judge.0134_add_voting_functionality... OK
+  Applying judge.0135_disable_judge... OK
+  Applying judge.0136_remove_zombie_editorials... OK
+  Applying judge.0137_profile_site_theme... OK
+  Applying judge.0138_dark_ace_theme... OK
+  Applying judge.0139_user_index_refactor... OK
+  Applying judge.0140_submission_index_refactor... OK
+  Applying judge.0141_submission_extra_index... OK
+  Applying judge.0142_comment_revision_count... OK
+  Applying judge.0143_contest_problem_rank_index... OK
+  Applying judge.0144_submission_index_cleanup... OK
+  Applying judge.0145_site_data_batch_prerequisites... OK
+  Applying judge.0146_comment_revision_count_v2... OK
+  Applying judge.0147_judge_add_tiers... OK
+  Applying judge.0148_clarify_rate_all_desc... OK
+  Applying judge.0149_add_organization_private_problems_permission... OK
+  Applying judge.0150_add_performance_ceiling... OK
+  Applying judge.0151_submission_is_archived... OK
+  Applying judge.0152_deactivate_user_permission... OK
+  Applying redirects.0001_initial... OK
+  Applying redirects.0002_alter_redirect_new_path_help_text... OK
+  Applying registration.0001_initial... OK
+  Applying registration.0002_registrationprofile_activated... OK
+  Applying registration.0003_migrate_activatedstatus... OK
+  Applying registration.0004_supervisedregistrationprofile... OK
+  Applying registration.0005_activation_key_sha256... OK
+  Applying reversion.0001_squashed_0004_auto_20160611_1202... OK
+  Applying reversion.0002_add_index_on_version_for_content_type_and_db... OK
+  Applying sessions.0001_initial... OK
+  Applying sites.0002_alter_domain_unique... OK
+  Applying social_django.0001_initial... OK
+  Applying social_django.0002_add_related_name... OK
+  Applying social_django.0003_alter_email_max_length... OK
+  Applying social_django.0004_auto_20160423_0400... OK
+  Applying social_django.0005_auto_20160727_2333... OK
+  Applying social_django.0006_partial... OK
+  Applying social_django.0007_code_timestamp... OK
+  Applying social_django.0008_partial_timestamp... OK
+  Applying social_django.0009_auto_20191118_0520... OK
+  Applying social_django.0010_uid_db_index... OK
+  Applying social_django.0011_alter_id_fields... OK
+  Applying social_django.0012_usersocialauth_extra_data_new... OK
+  Applying social_django.0013_migrate_extra_data... OK
+  Applying social_django.0014_remove_usersocialauth_extra_data... OK
+  Applying social_django.0015_rename_extra_data_new_usersocialauth_extra_data... OK
+  Applying social_django.0016_alter_usersocialauth_extra_data... OK
+  Applying social_django.0017_usersocialauth_user_social_auth_uid_required... OK
+System check identified some issues:
+
+WARNINGS:
+judge.Class: (models.W036) MariaDB does not support unique constraints with conditions.
+	HINT: A constraint won't be created. Silence this warning if you don't care about it.
+
+System check identified 1 issue (51 silenced).
+test_basic_blogpost (judge.models.tests.test_blogpost.BlogPostTestCase.test_basic_blogpost) ... ok
+test_basic_blogpost_methods (judge.models.tests.test_blogpost.BlogPostTestCase.test_basic_blogpost_methods) ... ok
+test_visible_blogpost_methods (judge.models.tests.test_blogpost.BlogPostTestCase.test_visible_blogpost_methods) ... ok
+test_basic_tag (judge.models.tests.test_contest.ContestTagTestCase.test_basic_tag) ... ok
+test_dark_tag (judge.models.tests.test_contest.ContestTagTestCase.test_dark_tag) ... ok
+test_basic_contest (judge.models.tests.test_contest.ContestTestCase.test_basic_contest) ... ok
+test_basic_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_basic_contest_methods) ... ok
+test_contest_clean (judge.models.tests.test_contest.ContestTestCase.test_contest_clean) ... ok
+test_contest_hidden_scoreboard_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_contest_hidden_scoreboard_contest_methods) ... ok
+test_contest_hidden_scoreboard_non_staff_author_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_contest_hidden_scoreboard_non_staff_author_contest_methods) ... ok
+test_contests_list (judge.models.tests.test_contest.ContestTestCase.test_contests_list) ... ok
+test_full_hidden_scoreboard_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_full_hidden_scoreboard_contest_methods) ... ok
+test_future_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_future_contest_methods) ... ok
+test_future_organization_private_contest (judge.models.tests.test_contest.ContestTestCase.test_future_organization_private_contest) ... ok
+test_future_organization_private_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_future_organization_private_contest_methods) ... ok
+test_hidden_scoreboard_contest (judge.models.tests.test_contest.ContestTestCase.test_hidden_scoreboard_contest) ... ok
+test_hidden_scoreboard_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_hidden_scoreboard_contest_methods) ... ok
+test_live_participation (judge.models.tests.test_contest.ContestTestCase.test_live_participation) ... ok
+test_non_visible_contest_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_non_visible_contest_contest_methods) ... ok
+test_non_visible_contest_with_tester_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_non_visible_contest_with_tester_contest_methods) ... ok
+test_normal_user_current_contest (judge.models.tests.test_contest.ContestTestCase.test_normal_user_current_contest) ... ok
+test_organization_private_contest (judge.models.tests.test_contest.ContestTestCase.test_organization_private_contest) ... ok
+test_organization_private_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_organization_private_contest_methods) ... ok
+test_particip_hidden_scoreboard_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_particip_hidden_scoreboard_contest_methods) ... ok
+test_private_contest (judge.models.tests.test_contest.ContestTestCase.test_private_contest) ... ok
+test_private_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_private_contest_methods) ... ok
+test_private_user_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_private_user_contest_methods) ... ok
+test_public_limit_organization_join_contest (judge.models.tests.test_contest.ContestTestCase.test_public_limit_organization_join_contest) ... ok
+test_spectating_participation (judge.models.tests.test_contest.ContestTestCase.test_spectating_participation) ... ok
+test_tester_see_scoreboard_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_tester_see_scoreboard_contest_methods) ... ok
+test_virtual_participation (judge.models.tests.test_contest.ContestTestCase.test_virtual_participation) ... ok
+test_visible_scoreboard_contest_methods (judge.models.tests.test_contest.ContestTestCase.test_visible_scoreboard_contest_methods) ... ok
+test_basic_problem (judge.models.tests.test_problem.ProblemTestCase.test_basic_problem) ... ok
+test_basic_problem_language_limits (judge.models.tests.test_problem.ProblemTestCase.test_basic_problem_language_limits) ... ok
+test_basic_problem_methods (judge.models.tests.test_problem.ProblemTestCase.test_basic_problem_methods) ... ok
+test_organization_admin_private_problem_methods (judge.models.tests.test_problem.ProblemTestCase.test_organization_admin_private_problem_methods) ... ok
+test_organization_admin_problem_methods (judge.models.tests.test_problem.ProblemTestCase.test_organization_admin_problem_methods) ... ok
+test_organization_private_problem_methods (judge.models.tests.test_problem.ProblemTestCase.test_organization_private_problem_methods) ... ok
+test_problem_voting_permissions (judge.models.tests.test_problem.ProblemTestCase.test_problem_voting_permissions) ... ok
+test_problems_list (judge.models.tests.test_problem.ProblemTestCase.test_problems_list) ... ok
+test_basic_solution_methods (judge.models.tests.test_problem.SolutionTestCase.test_basic_solution_methods) ... ok
+test_private_solution_methods (judge.models.tests.test_problem.SolutionTestCase.test_private_solution_methods) ... ok
+test_unpublished_solution (judge.models.tests.test_problem.SolutionTestCase.test_unpublished_solution) ... ok
+test_unpublished_solution_methods (judge.models.tests.test_problem.SolutionTestCase.test_unpublished_solution_methods) ... ok
+test_contains (judge.models.tests.test_profile.OrganizationTestCase.test_contains) ... ok
+test_str (judge.models.tests.test_profile.OrganizationTestCase.test_str) ... ok
+test_calculate_points (judge.models.tests.test_profile.ProfileTestCase.test_calculate_points) ... ok
+test_css_class (judge.models.tests.test_profile.ProfileTestCase.test_css_class) ... ok
+test_generate_api_token (judge.models.tests.test_profile.ProfileTestCase.test_generate_api_token) ... ok
+test_get_user_css_class (judge.models.tests.test_profile.ProfileTestCase.test_get_user_css_class) ... ok
+test_organization (judge.models.tests.test_profile.ProfileTestCase.test_organization) ... ok
+test_update_contest (judge.models.tests.test_profile.ProfileTestCase.test_update_contest) ... ok
+test_username (judge.models.tests.test_profile.ProfileTestCase.test_username) ... ok
+test_basic_submission (judge.models.tests.test_submission.SubmissionTestCase.test_basic_submission) ... ok
+test_basic_submission_methods (judge.models.tests.test_submission.SubmissionTestCase.test_basic_submission_methods) ... ok
+test_full_ac_submission (judge.models.tests.test_submission.SubmissionTestCase.test_full_ac_submission) ... ok
+test_ie_submission (judge.models.tests.test_submission.SubmissionTestCase.test_ie_submission) ... ok
+test_ie_submission_methods (judge.models.tests.test_submission.SubmissionTestCase.test_ie_submission_methods) ... ok
+test_queued_submission (judge.models.tests.test_submission.SubmissionTestCase.test_queued_submission) ... ok
+test_submission_lock (judge.models.tests.test_submission.SubmissionTestCase.test_submission_lock) ... ok
+test_simple (judge.jinja2.markdown.test_markdown.TestFragmentUtils.test_simple) ... ok
+test_text_prefix (judge.jinja2.markdown.test_markdown.TestFragmentUtils.test_text_prefix) ... ok
+test_bleach (judge.jinja2.markdown.test_markdown.TestMarkdown.test_bleach) ... ok
+test_bleach_mathml (judge.jinja2.markdown.test_markdown.TestMarkdown.test_bleach_mathml) ... ok
+test_no_bleach (judge.jinja2.markdown.test_markdown.TestMarkdown.test_no_bleach) ... ok
+test_post_process (judge.jinja2.markdown.test_markdown.TestMarkdown.test_post_process) ... ok
+test_both_integers (judge.models.tests.test_contest.MinValueOrNoneValidatorTestCase.test_both_integers) ... ok
+test_both_none (judge.models.tests.test_contest.MinValueOrNoneValidatorTestCase.test_both_none) ... ok
+test_fail (judge.models.tests.test_contest.MinValueOrNoneValidatorTestCase.test_fail) ... ok
+test_integer_bound_none_value (judge.models.tests.test_contest.MinValueOrNoneValidatorTestCase.test_integer_bound_none_value) ... ok
+test_none_bound_integer_value (judge.models.tests.test_contest.MinValueOrNoneValidatorTestCase.test_none_bound_integer_value) ... ok
+test_invalid (judge.models.tests.test_problem.DisallowedCharactersValidatorTestCase.test_invalid) ... ok
+test_valid (judge.models.tests.test_problem.DisallowedCharactersValidatorTestCase.test_valid) ... ok
+test_end (judge.utils.tests.test_infinite_paginator.InfinitePaginatorTestCase.test_end) ... ok
+test_first_page (judge.utils.tests.test_infinite_paginator.InfinitePaginatorTestCase.test_first_page) ... ok
+test_gaps (judge.utils.tests.test_infinite_paginator.InfinitePaginatorTestCase.test_gaps) ... ok
+test_empty (judge.utils.tests.test_iterator.ChunkTestCase.test_empty) ... ok
+test_normal (judge.utils.tests.test_iterator.ChunkTestCase.test_normal) ... ok
+test_works (judge.utils.tests.test_lazy.MemoLazyTestCase.test_works) ... ok
+
+----------------------------------------------------------------------
+Ran 79 tests in 2.992s
+
+OK
+Destroying test database for alias 'default' ('test_a09')...

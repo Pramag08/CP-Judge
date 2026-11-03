@@ -1,0 +1,418 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+56 objects imported automatically (use -v 2 for details).
+
+SOURCE wpadmin 
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_list wpadmin_tags static %}
+
+{% block title %}{{ cl.opts.verbose_name_plural|capfirst }} | {% wpadmin_render_custom_title %}{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}" />
+  {% if cl.formset %}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+  {% endif %}
+  {% if cl.formset or action_form %}
+    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+  {% endif %}
+  {{ media.css }}
+  {% if not actions_on_top and not actions_on_bottom %}
+    <style>
+      #changelist table thead th:first-child {width: inherit}
+    </style>
+  {% endif %}
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+{% if action_form %}{% if actions_on_top or actions_on_bottom %}
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions({'allToggle': 'th.action-checkbox-column input'});
+    });
+})(django.jQuery);
+</script>
+{% endif %}{% endif %}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-list{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>
+&rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
+</div>
+{% endblock %}
+{% endif %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content_title %}
+  <h1>
+    {{ cl.opts.verbose_name_plural|capfirst }}
+  </h1>
+{% endblock %}
+
+{% block content %}
+  {% block object-tools %}
+    <ul class="list-tools">
+      {% if has_add_permission %}
+        <li>
+          {% url cl.opts|admin_urlname:'add' as add_url %}
+          <a href="{% add_preserved_filters add_url is_popup to_field %}" class="add-new">{% trans 'Add' %}</a>
+        </li>
+      {% endif %}
+      {% block object-tools-items %}{% endblock %}
+    </ul>
+  {% endblock %}
+  <div id="content-main">
+    {% if cl.formset.errors %}
+        <p class="errornote">
+        {% if cl.formset.total_error_count == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+        </p>
+        {{ cl.formset.non_form_errors }}
+    {% endif %}
+    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+      {% block search %}{% search_form cl %}{% endblock %}
+
+      {% block filters %}
+        {% if cl.has_filters %}
+          <div id="changelist-filter">
+            <h2>{% trans 'Filter' %}</h2>
+            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
+
+      <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate>{% csrf_token %}
+      {% if cl.formset %}
+        <div>{{ cl.formset.management_form }}</div>
+      {% endif %}
+
+      {% block result_list %}
+        <div class="actions-and-paginator actions-and-paginator-top {% if not cl.full_result_count %}no-objects{% endif %}">
+          {% if action_form and cl.full_result_count %}{% admin_actions %}{% endif %}
+          {% pagination cl %}
+        </div>
+        {% result_list cl %}
+        <div class="actions-and-paginator actions-and-paginator-bottom {% if not cl.full_result_count %}no-objects{% endif %}">
+          {% if action_form and cl.full_result_count %}{% admin_actions %}{% endif %}
+          {% if cl.full_result_count %}{% pagination cl %}{% endif %}
+        </div>
+      {% endblock %}
+      {% if cl.formset and cl.result_count %}<div id="bottombar"><button type="submit" name="_save" class="default"><i class="fa fa-lg fa-floppy-o"></i> <span class="text">{% trans 'Save' %}</span></button></div>{% endif %}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+SOURCE django 
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block title %}{% if cl.formset and cl.formset.errors %}{% translate "Error:" %} {% endif %}{{ block.super }}{% endblock %}
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static "admin/css/changelists.css" %}">
+  {% if cl.formset %}
+    <link rel="stylesheet" href="{% static "admin/css/forms.css" %}">
+  {% endif %}
+  {% if cl.formset or action_form %}
+    <script src="{% url 'admin:jsi18n' %}"></script>
+  {% endif %}
+  {{ media.css }}
+  {% if not actions_on_top and not actions_on_bottom %}
+    <style>
+      #changelist table thead th:first-child {width: inherit}
+    </style>
+  {% endif %}
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+<script src="{% static 'admin/js/filters.js' %}" defer></script>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-list{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>
+&rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
+</div>
+{% endblock %}
+{% endif %}
+
+{% block coltype %}{% endblock %}
+
+{% block content %}
+  <div id="content-main">
+    {% block object-tools %}
+        <ul class="object-tools">
+          {% block object-tools-items %}
+            {% change_list_object_tools %}
+          {% endblock %}
+        </ul>
+    {% endblock %}
+    {% if cl.formset and cl.formset.errors %}
+        <p class="errornote">
+        {% blocktranslate count counter=cl.formset.total_error_count %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktranslate %}
+        </p>
+        {{ cl.formset.non_form_errors }}
+    {% endif %}
+    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+      <div class="changelist-form-container">
+        {% block search %}{% search_form cl %}{% endblock %}
+        {% block date_hierarchy %}{% if cl.date_hierarchy %}{% date_hierarchy cl %}{% endif %}{% endblock %}
+
+        <form id="changelist-form" method="post"{% if cl.formset and cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate>{% csrf_token %}
+        {% if cl.formset %}
+          <div>{{ cl.formset.management_form }}</div>
+        {% endif %}
+
+        {% block result_list %}
+          {% if action_form and actions_on_top and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+          {% result_list cl %}
+          {% if action_form and actions_on_bottom and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+        {% endblock %}
+        {% block pagination %}{% pagination cl %}{% endblock %}
+        </form>
+      </div>
+      {% block filters %}
+        {% if cl.has_filters %}
+          <nav id="changelist-filter" aria-labelledby="changelist-filter-header">
+            <h2 id="changelist-filter-header">{% translate 'Filter' %}</h2>
+            {% if cl.is_facets_optional or cl.has_active_filters %}<div id="changelist-filter-extra-actions">
+              {% if cl.is_facets_optional %}<h3>
+                {% if cl.add_facets %}<a href="{{ cl.remove_facet_link }}" class="hidelink">{% translate "Hide counts" %}</a>
+                {% else %}<a href="{{ cl.add_facet_link }}" class="viewlink">{% translate "Show counts" %}</a>{% endif %}
+              </h3>{% endif %}
+              {% if cl.has_active_filters %}<h3>
+                <a href="{{ cl.clear_all_filters_qs }}">&#10006; {% translate "Clear all filters" %}</a>
+              </h3>{% endif %}
+            </div>{% endif %}
+            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+          </nav>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}
+
+SOURCE actions 
+/*global gettext, interpolate, ngettext, Actions*/
+'use strict';
+{
+    function show(selector) {
+        document.querySelectorAll(selector).forEach(function(el) {
+            el.classList.remove('hidden');
+        });
+    }
+
+    function hide(selector) {
+        document.querySelectorAll(selector).forEach(function(el) {
+            el.classList.add('hidden');
+        });
+    }
+
+    function showQuestion(options) {
+        hide(options.acrossClears);
+        show(options.acrossQuestions);
+        hide(options.allContainer);
+    }
+
+    function showClear(options) {
+        show(options.acrossClears);
+        hide(options.acrossQuestions);
+        document.querySelector(options.actionContainer).classList.remove(options.selectedClass);
+        show(options.allContainer);
+        hide(options.counterContainer);
+    }
+
+    function reset(options) {
+        hide(options.acrossClears);
+        hide(options.acrossQuestions);
+        hide(options.allContainer);
+        show(options.counterContainer);
+    }
+
+    function clearAcross(options) {
+        reset(options);
+        const acrossInputs = document.querySelectorAll(options.acrossInput);
+        acrossInputs.forEach(function(acrossInput) {
+            acrossInput.value = 0;
+        });
+        document.querySelector(options.actionContainer).classList.remove(options.selectedClass);
+    }
+
+    function checker(actionCheckboxes, options, checked) {
+        if (checked) {
+            showQuestion(options);
+        } else {
+            reset(options);
+        }
+        actionCheckboxes.forEach(function(el) {
+            el.checked = checked;
+            el.closest('tr').classList.toggle(options.selectedClass, checked);
+        });
+    }
+
+    function updateCounter(actionCheckboxes, options) {
+        const sel = Array.from(actionCheckboxes).filter(function(el) {
+            return el.checked;
+        }).length;
+        const counter = document.querySelector(options.counterContainer);
+        // data-actions-icnt is defined in the generated HTML
+        // and contains the total amount of objects in the queryset
+        const actions_icnt = Number(counter.dataset.actionsIcnt);
+        counter.textContent = interpolate(
+            ngettext('%(sel)s of %(cnt)s selected', '%(sel)s of %(cnt)s selected', sel), {
+                sel: sel,
+                cnt: actions_icnt
+            }, true);
+        const allToggle = document.getElementById(options.allToggleId);
+        allToggle.checked = sel === actionCheckboxes.length;
+        if (allToggle.checked) {
+            showQuestion(options);
+        } else {
+            clearAcross(options);
+        }
+    }
+
+    const defaults = {
+        actionContainer: "div.actions",
+        counterContainer: "span.action-counter",
+        allContainer: "div.actions span.all",
+        acrossInput: "div.actions input.select-across",
+        acrossQuestions: "div.actions span.question",
+        acrossClears: "div.actions span.clear",
+        allToggleId: "action-toggle",
+        selectedClass: "selected"
+    };
+
+    window.Actions = function(actionCheckboxes, options) {
+        options = Object.assign({}, defaults, options);
+        let list_editable_changed = false;
+        let lastChecked = null;
+        let shiftPressed = false;
+
+        document.addEventListener('keydown', (event) => {
+            shiftPressed = event.shiftKey;
+        });
+
+        document.addEventListener('keyup', (event) => {
+            shiftPressed = event.shiftKey;
+        });
+
+        document.getElementById(options.allToggleId).addEventListener('click', function(event) {
+            checker(actionCheckboxes, options, this.checked);
+            updateCounter(actionCheckboxes, options);
+        });
+
+        document.querySelectorAll(options.acrossQuestions + " a").forEach(function(el) {
+            el.addEventListener('click', function(event) {
+                event.preventDefault();
+                const acrossInputs = document.querySelectorAll(options.acrossInput);
+                acrossInputs.forEach(function(acrossInput) {
+                    acrossInput.value = 1;
+                });
+                showClear(options);
+            });
+        });
+
+        document.querySelectorAll(options.acrossClears + " a").forEach(function(el) {
+            el.addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById(options.allToggleId).checked = false;
+                clearAcross(options);
+                checker(actionCheckboxes, options, false);
+                updateCounter(actionCheckboxes, options);
+            });
+        });
+
+        function affectedCheckboxes(target, withModifier) {
+            const multiSelect = (lastChecked && withModifier && lastChecked !== target);
+            if (!multiSelect) {
+                return [target];
+            }
+            const checkboxes = Array.from(actionCheckboxes);
+            const targetIndex = checkboxes.findIndex(el => el === target);
+            const lastCheckedIndex = checkboxes.findIndex(el => el === lastChecked);
+            const startIndex = Math.min(targetIndex, lastCheckedIndex);
+            const endIndex = Math.max(targetIndex, lastCheckedIndex);
+            const filtered = checkboxes.filter((el, index) => (startIndex <= index) && (index <= endIndex));
+            return filtered;
+        };
+
+        Array.from(document.getElementById('result_list').tBodies).forEach(function(el) {
+            el.addEventListener('change', function(event) {
+                const target = event.target;
+                if (target.classList.contains('action-select')) {
+                    const checkboxes = affectedCheckboxes(target, shiftPressed);
+                    checker(checkboxes, options, target.checked);
+                    updateCounter(actionCheckboxes, options);
+                    lastChecked = target;
+                } else {
+                    list_editable_changed = true;
+                }
+            });
+        });
+
+        document.querySelector('#changelist-form button[name=index]').addEventListener('click', function(event) {
+            if (list_editable_changed) {
+                const confirmed = confirm(gettext("You have unsaved changes on individual editable fields. If you run an action, your unsaved changes will be lost."));
+                if (!confirmed) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+        const el = document.querySelector('#changelist-form input[name=_save]');
+        // The button does not exist if no fields are editable.
+        if (el) {
+            el.addEventListener('click', function(event) {
+                if (document.querySelector('[name=action]').value) {
+                    const text = list_editable_changed
+                        ? gettext("You have selected an action, but you haven’t saved your changes to individual fields yet. Please click OK to save. You’ll need to re-run the action.")
+                        : gettext("You have selected an action, and you haven’t made any changes on individual fields. You’re probably looking for the Go button rather than the Save button.");
+                    if (!confirm(text)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+        }
+        // Sync counter when navigating to the page, such as through the back
+        // button.
+        window.addEventListener('pageshow', (event) => updateCounter(actionCheckboxes, options));
+    };
+
+    // Call function fn when the DOM is loaded and ready. If it is already
+    // loaded, call the function now.
+    // http://youmightnotneedjquery.com/#ready
+    function ready(fn) {
+        if (document.readyState !== 'loading') {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    ready(function() {
+        const actionsEls = document.querySelectorAll('tr input.action-select');
+        if (actionsEls.length > 0) {
+            Actions(actionsEls);
+        }
+    });
+}
+

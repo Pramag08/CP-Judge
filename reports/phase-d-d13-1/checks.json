@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "worker_image_command_and_sandbox_match_retained_c11_baseline": true,
+  "worker_configuration_bytes_match_retained_c11_baseline": true,
+  "security_fields": [
+    "CapAdd",
+    "CapDrop",
+    "SecurityOpt",
+    "ReadonlyRootfs",
+    "NetworkMode",
+    "Memory",
+    "NanoCpus",
+    "PidsLimit",
+    "Tmpfs"
+  ],
+  "focused_tests": 6,
+  "relevant_regressions": 11,
+  "skips": 0,
+  "migration_consistency_exit": 0,
+  "whitespace_exit": 0
+}

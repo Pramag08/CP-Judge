@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "published_job": 24,
+  "checks": {
+    "published_browser_reupload_refresh_existing_version": true,
+    "six_simultaneous_http_uploads_one_redirect": true,
+    "same_bytes_other_owner_independent_job_and_mutual_404": true
+  },
+  "native_code": "pv900000000000000002",
+  "attempt": 2,
+  "race_job": 37,
+  "other_owner_job": 50
+}

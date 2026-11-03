@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "focused_tests": 8,
+  "skips": 0,
+  "final_test_log": "build/phase-d-d01-d06-1/20261030T112737383328Z-focused-d01-d06-tests.log",
+  "actual_browser": "browser.json",
+  "actual_readiness": "readiness.json",
+  "preservation": "preservation.json",
+  "migration_consistency_exit": 0,
+  "whitespace_exit": 0,
+  "private_backup_gzip_readback": true,
+  "backup_restore_rerun": false,
+  "new_conversions": 0,
+  "new_judging": 0,
+  "registration_implemented": false
+}

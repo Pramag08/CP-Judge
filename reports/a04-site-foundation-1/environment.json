@@ -1,0 +1,108 @@
+{
+  "captured_utc": "2026-10-28T13:45:00.625457+00:00",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+  "project_python": "3.14.4",
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "Python 3.14.4",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "Python 3.14.4",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "node",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "v22.22.1",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "npm",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "9.2.0",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "git version 2.53.0",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dpkg-query",
+        "-W",
+        "-f=${Package}\t${db:Status-Abbrev}\t${Version}\n",
+        "python3-dev",
+        "libxml2-dev",
+        "libxslt1-dev",
+        "zlib1g-dev",
+        "default-libmysqlclient-dev",
+        "libmysqlclient-dev",
+        "libmariadb-dev",
+        "gettext"
+      ],
+      "exit": 1,
+      "stdout": "libmysqlclient-dev\tun \t\npython3-dev\tun \t\n",
+      "stderr": "dpkg-query: no packages found matching libxml2-dev\ndpkg-query: no packages found matching libxslt1-dev\ndpkg-query: no packages found matching zlib1g-dev\ndpkg-query: no packages found matching default-libmysqlclient-dev\ndpkg-query: no packages found matching libmariadb-dev\ndpkg-query: no packages found matching gettext\n"
+    }
+  ],
+  "on_path": {
+    "python3.11": null,
+    "python3.12": null,
+    "python3.13": null,
+    "python3.14": "/usr/bin/python3.14",
+    "python3.15": null,
+    "node": "/usr/bin/node",
+    "npm": "/usr/bin/npm",
+    "sass": null,
+    "postcss": null,
+    "autoprefixer": null,
+    "redis-server": null,
+    "mariadb": null,
+    "mysql": null,
+    "nginx": null,
+    "uwsgi": null,
+    "supervisord": null,
+    "msgfmt": null,
+    "make": "/usr/bin/make",
+    "gcc": "/usr/bin/gcc",
+    "g++": "/usr/bin/g++",
+    "mysql_config": null,
+    "mariadb_config": null,
+    "pkg-config": null
+  },
+  "project_venv_distributions": {
+    "Django": null,
+    "mysqlclient": null,
+    "celery": null,
+    "redis": null,
+    "lxml": null,
+    "PyYAML": "6.0.3",
+    "defusedxml": "0.7.1",
+    "dmoj": null
+  },
+  "services_started": false,
+  "website_dependencies_installed": false,
+  "limitations": "PATH and existing project-venv inventory only; absence does not rule out services in other containers/hosts/venvs. No service health or app startup checked."
+}

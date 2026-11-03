@@ -1,0 +1,105 @@
+{
+  "task": "A04",
+  "status": "COMPLETE \u2014 candidate inspection only",
+  "selected_utc": "2026-10-28T13:48:06.695965+00:00",
+  "repository": "https://github.com/DMOJ/online-judge.git",
+  "commit": "6aaddea6aaeabf4927b83787714509ff9fff8897",
+  "observed_branch": "master",
+  "checkout_state": "detached and clean",
+  "commit_date": "2026-06-05T21:34:50Z",
+  "license": "GNU Affero General Public License, version 3; upstream LICENSE file",
+  "license_url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/LICENSE",
+  "license_sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+  "asset_submodule": {
+    "path": "resources/libs",
+    "repository": "https://github.com/DMOJ/site-assets.git",
+    "commit": "cba2efbf86e6e933704d8130fe256f2eab18621a",
+    "initialized": false
+  },
+  "documentation": {
+    "repository": "https://github.com/DMOJ/docs.git",
+    "commit": "bfae0464438a1bb2570cde523837ed575c54197e",
+    "installation_path": "docs/site/installation.md",
+    "installation_sha256": "cd7a14e60e9fd4ee30fb2f33a714737dc8c404c4e683c181debba5523f922c17"
+  },
+  "inspected_source_files": {
+    "LICENSE": {
+      "sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/LICENSE"
+    },
+    "requirements.txt": {
+      "sha256": "1a369a0928729f46d822705cae572640738fef1a0566cfbafa0b47101d1755e3",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/requirements.txt"
+    },
+    ".gitmodules": {
+      "sha256": "70af54b67774dcf2863eef8870ad5d1c1daa3408e292d53a759b4dd1c1222fad",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/.gitmodules"
+    },
+    ".github/workflows/build.yml": {
+      "sha256": "363609b527dbfaf28d3bc54187923cd0ada672d2109bb4401519fe43d961f0b2",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/.github/workflows/build.yml"
+    },
+    "make_style.sh": {
+      "sha256": "fb529b683edd25394e1c325c0e9ec064245902783f00a39443683d5ac8ed2b15",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/make_style.sh"
+    },
+    "dmoj/settings.py": {
+      "sha256": "10195552cff26bb3e4bfa4e8a887e1f541a90898b6508fbb6472339b84d36855",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/dmoj/settings.py"
+    },
+    "dmoj/celery.py": {
+      "sha256": "8b4903e006dd94a90bdd83ac3760bb0b8f15eebf5a38f1b68023dfeaea91300d",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/dmoj/celery.py"
+    },
+    "judge/management/commands/runbridged.py": {
+      "sha256": "284d401686a4d516ae3d08e3f007e9ce5356f390c13c2d0be105ee548fb4d58f",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/management/commands/runbridged.py"
+    },
+    "judge/bridge/daemon.py": {
+      "sha256": "b98c2559c7abfef56d010a25c5d607b87b8bd8955bc0bc7e021b29bfa3b808d8",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/daemon.py"
+    },
+    "judge/bridge/judge_list.py": {
+      "sha256": "aa58b3ae34c1878928e9504e8a6f0fe74c16d7ad327918266cb6923a4c22784d",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_list.py"
+    },
+    "judge/bridge/judge_handler.py": {
+      "sha256": "3dbcf88bf7fe99c6b175b04517dd697641716f1968214ecd8e32e7db27a2f631",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/bridge/judge_handler.py"
+    },
+    "judge/event_poster.py": {
+      "sha256": "5a95e34e3040c53602d19bdb61e5638eef7c9cecbbeb3d0bc92a4d0fddb2f773",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/event_poster.py"
+    },
+    "websocket/daemon.js": {
+      "sha256": "6675a5d3fe569eee74db2b54cff94a0ae12559b4c815df40c5b57f4b0a8d9646",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/websocket/daemon.js"
+    },
+    "judge/fixtures/language_small.json": {
+      "sha256": "fa84e0409446eb30954cdbfb719708781cf07daea7ac3be51bb5a45924663b32",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/fixtures/language_small.json"
+    },
+    "judge/fixtures/language_all.json": {
+      "sha256": "e0ce5ee94dadbf2a4e6872f7724eb76e7ceac416d68dbd74f8c2544e2bd68292",
+      "url": "https://github.com/DMOJ/online-judge/blob/6aaddea6aaeabf4927b83787714509ff9fff8897/judge/fixtures/language_all.json"
+    }
+  },
+  "website_setup": "NOT TESTED",
+  "website_judge_compatibility": "NOT TESTED",
+  "adopted_deployable_stack": false,
+  "note": "Candidate pinned for review, not installed or added to converter/judge dependencies.json; no dependency changes.",
+  "a05_followup_language_fixture_observations": {
+    "judge/fixtures/language_small.json": {
+      "language_count": 18,
+      "CPP17": true,
+      "CPP20": true,
+      "CPP23": false
+    },
+    "judge/fixtures/language_all.json": {
+      "language_count": 59,
+      "CPP17": true,
+      "CPP20": true,
+      "CPP23": false
+    }
+  }
+}

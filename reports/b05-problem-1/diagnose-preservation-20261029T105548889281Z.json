@@ -1,0 +1,7 @@
+{
+  "changed_fields_only": {
+    "judge.profile": [
+      "last_access"
+    ]
+  }
+}

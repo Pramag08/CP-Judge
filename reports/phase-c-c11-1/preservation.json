@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "model_sets": 64,
+  "prior_rows": 1849,
+  "existing_rows_preserved_except_expected_native_activity": {
+    "judge.judge": [
+      {
+        "pk": 1,
+        "fields": [
+          "load",
+          "ping",
+          "start_time"
+        ]
+      }
+    ],
+    "judge.profile": [
+      {
+        "pk": 11,
+        "fields": [
+          "last_access"
+        ]
+      }
+    ],
+    "judge.problem": [
+      {
+        "pk": 1,
+        "fields": [
+          "ac_rate"
+        ]
+      }
+    ],
+    "auth.user": [
+      {
+        "pk": 11,
+        "fields": [
+          "last_login"
+        ]
+      }
+    ],
+    "cpjudge.identity": [
+      {
+        "pk": 3,
+        "fields": [
+          "generation"
+        ]
+      }
+    ]
+  },
+  "added_rows": {
+    "judge.submission": 1,
+    "judge.submissionsource": 1,
+    "judge.submissiontestcase": 103,
+    "judge.contestparticipation": 1,
+    "judge.contestsubmission": 1
+  },
+  "passwords_ids_emails_audits_versions_prior_source_results_contests_unchanged": true,
+  "published_versions_verified": 2,
+  "worker_online_original_problem_and_runtime_memberships": true,
+  "no_pending_jobs": true,
+  "browser_created_one_native_unranked_spectator_context": true,
+  "original_profile_contest_pointer_restored": true,
+  "worker_files_registry_credentials_unchanged": true,
+  "container_ids_images_config_mounts_sandbox_unchanged": true,
+  "only_worker_container_restarted_for_C11": true,
+  "schema_changed": false
+}

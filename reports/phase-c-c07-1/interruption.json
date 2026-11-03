@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "job_id": 10,
+  "actual_running_celery_interrupted": true,
+  "accelerated_fixture_lease_for_reconciliation": true,
+  "browser_retry_terminal_status": "succeeded",
+  "attempt": 2,
+  "judge_process_untouched": true
+}

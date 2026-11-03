@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "source_changes": {
+    "/app/judge/contest_format/__init__.py": {
+      "before": "ab86fa46e4f8988bbf62ee7700c4e144483cea09343333685a8e1750f5d57da1",
+      "after": "408ad52b362e289e83e1f1d376a1eb10a173a928da1929d93ba2a07998a07a63"
+    },
+    "/app/judge/views/contests.py": {
+      "before": "fa04e2c1f6120767e67ffd9f5a715ab18ef83dd0f508c055ad9e8e65614b34dd",
+      "after": "77f4752c970cd46828c21f2c29d6cf24cbbb78baf16dfa13a006e6ac520050bd"
+    },
+    "/app/judge/models/submission.py": {
+      "before": "e2ef0da41cf37483a97644e7a65272a8f33f4e527b8956568ccd437b00b24cb7",
+      "after": "e2cec910670b018ac79292d6826b46fd1372ff7917b032501b155c1066601111"
+    }
+  },
+  "migration": "0154_cpjudge_icpc_choice",
+  "recompute": {
+    "contest": "b10b11local1",
+    "recomputed": 2,
+    "no_rejudge": true
+  }
+}

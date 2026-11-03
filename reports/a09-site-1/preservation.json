@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "preexisting_files_checked": 77,
+  "preexisting_files_changed": [
+    "PROJECT_STATUS.md",
+    "SecureExam-Implementation-Plan.md"
+  ],
+  "missing_files": [],
+  "all_other_preexisting_bytes_unchanged": true,
+  "converter_venv_packages_unchanged": true,
+  "converter_venv_probe_exit_status": 0,
+  "judge_image_unchanged": true,
+  "previous_evidence_unchanged": true,
+  "git_diff_check_exit_status": 0,
+  "final_replay_exit_status": 0,
+  "final_replay_commands": 40,
+  "failed_supplemental_diagnostic": "migration-drift-KNOWN-FAIL exit 1 (explicitly retained)",
+  "a06_started": false,
+  "phase_b_started": false,
+  "commit_or_push": false
+}

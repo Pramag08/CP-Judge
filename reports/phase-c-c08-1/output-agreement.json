@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "actual_browser_equals_stored_conversion_report_and_init": true,
+  "jobs": [
+    {
+      "job_id": 13,
+      "tests": 3,
+      "samples": 1,
+      "time": "500 ms \u2192 0.5 seconds",
+      "memory": "67108864 bytes \u2192 65536 KiB (1 KiB = 1024 bytes; rounded up)",
+      "standard": "CPP17 (cpp.g++17)",
+      "sha256": "579c8d691dbc5d117d2f83f454bd5ae81162ea61dc649596a2faaad09eb349b0"
+    },
+    {
+      "job_id": 17,
+      "tests": 3,
+      "samples": 1,
+      "time": "500 ms \u2192 0.5 seconds",
+      "memory": "67108864 bytes \u2192 65536 KiB (1 KiB = 1024 bytes; rounded up)",
+      "standard": "CPP17 (cpp.g++17)",
+      "sha256": "0726f5919e73b963aac7e98094a16f9f24fd0b92d03cbbb9cafe04782dbb5ce1"
+    },
+    {
+      "job_id": 21,
+      "tests": 3,
+      "samples": 1,
+      "time": "500 ms \u2192 0.5 seconds",
+      "memory": "67108864 bytes \u2192 65536 KiB (1 KiB = 1024 bytes; rounded up)",
+      "standard": "CPP17 (cpp.g++17)",
+      "sha256": "7776b0d747bed718df7752ab169172fe30c3705f7d062b94a8346efd0779ee59"
+    }
+  ]
+}

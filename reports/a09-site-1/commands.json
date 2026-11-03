@@ -1,0 +1,1798 @@
+{
+  "setup_commands": [
+    {
+      "argv": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "--tags",
+        "https://github.com/DMOJ/online-judge.git"
+      ],
+      "exit_status": 0,
+      "evidence": "upstream-refs.txt"
+    },
+    {
+      "argv": [
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "--branch",
+        "django-52-upgrade",
+        "https://github.com/DMOJ/online-judge.git",
+        "build/a09-site-1/site"
+      ],
+      "exit_status": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "build/a09-site-1/site",
+        "fetch",
+        "--depth",
+        "1",
+        "origin",
+        "6aaddea6aaeabf4927b83787714509ff9fff8897"
+      ],
+      "exit_status": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "build/a09-site-1/site",
+        "submodule",
+        "update",
+        "--init",
+        "--recursive"
+      ],
+      "exit_status": 0
+    },
+    {
+      "shell": "sg docker -c 'docker build --progress=plain -t cpjudge-a09-site:attempt1 build/a09-site-1/context' > build/a09-site-1/build-attempt1.log 2>&1",
+      "exit_status": null,
+      "note": "Initial process exit not retained in resumed terminal context; successful image export recorded. Not the final installation gate.",
+      "log": "logs/build-attempt1.log"
+    },
+    {
+      "shell": "sg docker -c 'docker build --progress=plain -t cpjudge-a09-site:locked build/a09-site-1/context' > build/a09-site-1/build-locked.log 2>&1",
+      "exit_status": 0,
+      "log": "logs/build-locked.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "reports/a09-site-1/prepare_context.py",
+        "--source",
+        "build/a09-site-1/site",
+        "--output",
+        "build/a09-site-1/reproduced-context"
+      ],
+      "exit_status": 0,
+      "note": "669 files byte-identical to tested locked build context."
+    },
+    {
+      "shell": "sg docker -c 'python3 -B reports/a09-site-1/verify.py --work-dir build/a09-site-1/replay --prefix cpjudge-a09-replay1 --image cpjudge-a09-site:locked'",
+      "exit_status": 0,
+      "note": "Complete public recipe executed, including cleanup."
+    }
+  ],
+  "investigation": [
+    {
+      "name": "network-create",
+      "argv": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "--label",
+        "secureexam.task=A09",
+        "cpjudge-a09-1"
+      ],
+      "started": "2026-10-28T16:35:02.412903+00:00",
+      "exit_status": 0,
+      "log": "logs/network-create.log"
+    },
+    {
+      "name": "db-start",
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "cpjudge-a09-db",
+        "--label",
+        "secureexam.task=A09",
+        "--network",
+        "cpjudge-a09-1",
+        "--network-alias",
+        "db",
+        "--memory",
+        "1536m",
+        "--cpus",
+        "2",
+        "--tmpfs",
+        "/var/lib/mysql:rw,size=1073741824",
+        "--env-file",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/private/db.env",
+        "mariadb@sha256:d1891ede5a559f1086f55053bb8cc1569b0298338c4d72d71725a7f74f6ba620"
+      ],
+      "started": "2026-10-28T16:35:02.456618+00:00",
+      "exit_status": 0,
+      "log": "logs/db-start.log"
+    },
+    {
+      "name": "redis-start",
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "cpjudge-a09-redis",
+        "--label",
+        "secureexam.task=A09",
+        "--network",
+        "cpjudge-a09-1",
+        "--network-alias",
+        "redis",
+        "--memory",
+        "256m",
+        "redis@sha256:6ba19c50b56777f5c11c58eff8ddb69d0d5f27ba131cffb63f180ccfd43c66af",
+        "redis-server",
+        "--save",
+        "",
+        "--appendonly",
+        "no"
+      ],
+      "started": "2026-10-28T16:35:02.766964+00:00",
+      "exit_status": 0,
+      "log": "logs/redis-start.log"
+    },
+    {
+      "name": "site-start",
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "cpjudge-a09-site",
+        "--label",
+        "secureexam.task=A09",
+        "--network",
+        "cpjudge-a09-1",
+        "--network-alias",
+        "site",
+        "--memory",
+        "1536m",
+        "--cpus",
+        "2",
+        "--env-file",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/private/site.env",
+        "cpjudge-a09-site:attempt1",
+        "sleep",
+        "infinity"
+      ],
+      "started": "2026-10-28T16:35:03.037484+00:00",
+      "exit_status": 0,
+      "log": "logs/site-start.log"
+    },
+    {
+      "name": "db-ready",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-db",
+        "healthcheck.sh",
+        "--connect",
+        "--innodb_initialized"
+      ],
+      "started": "2026-10-28T16:35:08.662415+00:00",
+      "exit_status": 0,
+      "log": "logs/db-ready.log"
+    },
+    {
+      "name": "system-check-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "check"
+      ],
+      "started": "2026-10-28T16:35:08.722793+00:00",
+      "exit_status": 0,
+      "log": "logs/system-check-attempt1.log"
+    },
+    {
+      "name": "migrate-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "migrate",
+        "--noinput"
+      ],
+      "started": "2026-10-28T16:35:25.690081+00:00",
+      "exit_status": 0,
+      "log": "logs/migrate-attempt1.log"
+    },
+    {
+      "name": "migration-reapply-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "migrate",
+        "--noinput"
+      ],
+      "started": "2026-10-28T16:35:35.852733+00:00",
+      "exit_status": 0,
+      "log": "logs/migration-reapply-attempt1.log"
+    },
+    {
+      "name": "fixtures-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "loaddata",
+        "navbar",
+        "language_small"
+      ],
+      "started": "2026-10-28T16:35:36.909557+00:00",
+      "exit_status": 0,
+      "log": "logs/fixtures-attempt1.log"
+    },
+    {
+      "name": "grant-test-db",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-db",
+        "sh",
+        "-c",
+        "MYSQL_PWD=\"$MARIADB_ROOT_PASSWORD\" mariadb -u root"
+      ],
+      "started": "2026-10-28T16:35:37.915742+00:00",
+      "exit_status": 0,
+      "log": "logs/grant-test-db.log"
+    },
+    {
+      "name": "upstream-tests-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "test",
+        "judge",
+        "--noinput",
+        "-v",
+        "2"
+      ],
+      "started": "2026-10-28T16:35:37.993260+00:00",
+      "exit_status": 0,
+      "log": "logs/upstream-tests-attempt1.log"
+    },
+    {
+      "name": "compilemessages-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "compilemessages"
+      ],
+      "started": "2026-10-28T16:35:51.104130+00:00",
+      "exit_status": 0,
+      "log": "logs/compilemessages-attempt1.log"
+    },
+    {
+      "name": "compilejsi18n-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "compilejsi18n"
+      ],
+      "started": "2026-10-28T16:35:52.034939+00:00",
+      "exit_status": 0,
+      "log": "logs/compilejsi18n-attempt1.log"
+    },
+    {
+      "name": "collectstatic-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "collectstatic",
+        "--noinput"
+      ],
+      "started": "2026-10-28T16:35:52.817814+00:00",
+      "exit_status": 0,
+      "log": "logs/collectstatic-attempt1.log"
+    },
+    {
+      "name": "copy-seed",
+      "argv": [
+        "docker",
+        "cp",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/seed.py",
+        "cpjudge-a09-site:/tmp/seed.py"
+      ],
+      "started": "2026-10-28T16:37:48.695007+00:00",
+      "exit_status": 0,
+      "log": "logs/copy-seed.log"
+    },
+    {
+      "name": "copy-http_smoke",
+      "argv": [
+        "docker",
+        "cp",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/http_smoke.py",
+        "cpjudge-a09-site:/tmp/http_smoke.py"
+      ],
+      "started": "2026-10-28T16:37:48.711309+00:00",
+      "exit_status": 0,
+      "log": "logs/copy-http_smoke.log"
+    },
+    {
+      "name": "seed-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T16:37:48.732636+00:00",
+      "exit_status": 0,
+      "log": "logs/seed-attempt1.log"
+    },
+    {
+      "name": "http-start-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "-d",
+        "cpjudge-a09-site",
+        "sh",
+        "-c",
+        "python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/http.log 2>&1"
+      ],
+      "started": "2026-10-28T16:37:49.725358+00:00",
+      "exit_status": 0,
+      "log": "logs/http-start-attempt1.log"
+    },
+    {
+      "name": "http-smoke-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "/tmp/http_smoke.py"
+      ],
+      "started": "2026-10-28T16:37:52.772871+00:00",
+      "exit_status": 1,
+      "log": "logs/http-smoke-attempt1.log"
+    },
+    {
+      "name": "http-log-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "cat",
+        "/tmp/http.log"
+      ],
+      "started": "2026-10-28T16:37:52.960660+00:00",
+      "exit_status": 0,
+      "log": "logs/http-log-attempt1.log"
+    },
+    {
+      "name": "celery-start-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "-d",
+        "cpjudge-a09-site",
+        "sh",
+        "-c",
+        "celery -A dmoj_celery worker --pool=solo --concurrency=1 --loglevel=INFO --hostname=a09@site > /tmp/celery.log 2>&1"
+      ],
+      "started": "2026-10-28T16:37:53.011211+00:00",
+      "exit_status": 0,
+      "log": "logs/celery-start-attempt1.log"
+    },
+    {
+      "name": "celery-ping-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "celery",
+        "-A",
+        "dmoj_celery",
+        "inspect",
+        "ping",
+        "--timeout",
+        "10"
+      ],
+      "started": "2026-10-28T16:37:56.058848+00:00",
+      "exit_status": 0,
+      "log": "logs/celery-ping-attempt1.log"
+    },
+    {
+      "name": "celery-log-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "cat",
+        "/tmp/celery.log"
+      ],
+      "started": "2026-10-28T16:38:06.691482+00:00",
+      "exit_status": 0,
+      "log": "logs/celery-log-attempt1.log"
+    },
+    {
+      "name": "copy-http-smoke-retry",
+      "argv": [
+        "docker",
+        "cp",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/http_smoke.py",
+        "cpjudge-a09-site:/tmp/http_smoke.py"
+      ],
+      "started": "2026-10-28T16:40:18.155669+00:00",
+      "exit_status": 0,
+      "log": "logs/copy-http-smoke-retry.log"
+    },
+    {
+      "name": "http-smoke-attempt1-retry",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "/tmp/http_smoke.py"
+      ],
+      "started": "2026-10-28T16:40:18.173989+00:00",
+      "exit_status": 1,
+      "log": "logs/http-smoke-attempt1-retry.log"
+    },
+    {
+      "name": "http-log-attempt1-retry",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "cat",
+        "/tmp/http.log"
+      ],
+      "started": "2026-10-28T16:40:20.398776+00:00",
+      "exit_status": 0,
+      "log": "logs/http-log-attempt1-retry.log"
+    },
+    {
+      "name": "migration-drift-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "makemigrations",
+        "--check",
+        "--dry-run"
+      ],
+      "started": "2026-10-28T17:14:06.201161+00:00",
+      "exit_status": 1,
+      "log": "logs/migration-drift-attempt1.log"
+    },
+    {
+      "name": "deploy-check-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "check",
+        "--deploy"
+      ],
+      "started": "2026-10-28T17:14:07.283839+00:00",
+      "exit_status": 0,
+      "log": "logs/deploy-check-attempt1.log"
+    },
+    {
+      "name": "check-unsilenced-attempt1",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:14:08.208698+00:00",
+      "exit_status": 0,
+      "log": "logs/check-unsilenced-attempt1.log"
+    },
+    {
+      "name": "db-log-attempt1",
+      "argv": [
+        "docker",
+        "logs",
+        "cpjudge-a09-db"
+      ],
+      "started": "2026-10-28T17:16:34.157533+00:00",
+      "exit_status": 0,
+      "log": "logs/db-log-attempt1.log"
+    },
+    {
+      "name": "redis-log-attempt1",
+      "argv": [
+        "docker",
+        "logs",
+        "cpjudge-a09-redis"
+      ],
+      "started": "2026-10-28T17:16:34.175926+00:00",
+      "exit_status": 0,
+      "log": "logs/redis-log-attempt1.log"
+    },
+    {
+      "name": "stop-attempt1",
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "cpjudge-a09-site",
+        "cpjudge-a09-db"
+      ],
+      "started": "2026-10-28T17:16:34.190775+00:00",
+      "exit_status": 0,
+      "log": "logs/stop-attempt1.log"
+    },
+    {
+      "name": "db-start-locked",
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "cpjudge-a09-db",
+        "--label",
+        "secureexam.task=A09",
+        "--network",
+        "cpjudge-a09-1",
+        "--network-alias",
+        "db",
+        "--memory",
+        "1536m",
+        "--cpus",
+        "2",
+        "--tmpfs",
+        "/var/lib/mysql:rw,size=1073741824",
+        "--env-file",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/private/db.env",
+        "mariadb@sha256:d1891ede5a559f1086f55053bb8cc1569b0298338c4d72d71725a7f74f6ba620"
+      ],
+      "started": "2026-10-28T17:16:34.490820+00:00",
+      "exit_status": 0,
+      "log": "logs/db-start-locked.log"
+    },
+    {
+      "name": "site-start-locked",
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "cpjudge-a09-site",
+        "--label",
+        "secureexam.task=A09",
+        "--network",
+        "cpjudge-a09-1",
+        "--network-alias",
+        "site",
+        "--memory",
+        "1536m",
+        "--cpus",
+        "2",
+        "--env-file",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/private/site.env",
+        "cpjudge-a09-site:locked",
+        "sleep",
+        "infinity"
+      ],
+      "started": "2026-10-28T17:16:34.735014+00:00",
+      "exit_status": 0,
+      "log": "logs/site-start-locked.log"
+    },
+    {
+      "name": "db-ready-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-db",
+        "healthcheck.sh",
+        "--connect",
+        "--innodb_initialized"
+      ],
+      "started": "2026-10-28T17:16:40.351367+00:00",
+      "exit_status": 0,
+      "log": "logs/db-ready-locked.log"
+    },
+    {
+      "name": "metadata-copy-locked",
+      "argv": [
+        "docker",
+        "cp",
+        "cpjudge-a09-site:/metadata",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/metadata-locked"
+      ],
+      "started": "2026-10-28T17:16:40.414277+00:00",
+      "exit_status": 0,
+      "log": "logs/metadata-copy-locked.log"
+    },
+    {
+      "name": "pip-check-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "started": "2026-10-28T17:16:40.434574+00:00",
+      "exit_status": 0,
+      "log": "logs/pip-check-locked.log"
+    },
+    {
+      "name": "system-check-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "check",
+        "--database",
+        "default"
+      ],
+      "started": "2026-10-28T17:16:40.735004+00:00",
+      "exit_status": 0,
+      "log": "logs/system-check-locked.log"
+    },
+    {
+      "name": "migrate-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "migrate",
+        "--noinput"
+      ],
+      "started": "2026-10-28T17:16:41.659136+00:00",
+      "exit_status": 0,
+      "log": "logs/migrate-locked.log"
+    },
+    {
+      "name": "migration-reapply-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "migrate",
+        "--noinput"
+      ],
+      "started": "2026-10-28T17:16:51.763644+00:00",
+      "exit_status": 0,
+      "log": "logs/migration-reapply-locked.log"
+    },
+    {
+      "name": "fixtures-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "loaddata",
+        "navbar",
+        "language_small"
+      ],
+      "started": "2026-10-28T17:16:52.870050+00:00",
+      "exit_status": 0,
+      "log": "logs/fixtures-locked.log"
+    },
+    {
+      "name": "migration-drift-detail-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "makemigrations",
+        "--check",
+        "--dry-run",
+        "--verbosity",
+        "3"
+      ],
+      "started": "2026-10-28T17:16:53.885218+00:00",
+      "exit_status": 1,
+      "log": "logs/migration-drift-detail-locked.log"
+    },
+    {
+      "name": "seed-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:16:54.876074+00:00",
+      "exit_status": 0,
+      "log": "logs/seed-locked.log"
+    },
+    {
+      "name": "compilemessages-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "compilemessages"
+      ],
+      "started": "2026-10-28T17:16:55.829153+00:00",
+      "exit_status": 0,
+      "log": "logs/compilemessages-locked.log"
+    },
+    {
+      "name": "compilejsi18n-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "compilejsi18n"
+      ],
+      "started": "2026-10-28T17:16:56.746521+00:00",
+      "exit_status": 0,
+      "log": "logs/compilejsi18n-locked.log"
+    },
+    {
+      "name": "collectstatic-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "collectstatic",
+        "--noinput"
+      ],
+      "started": "2026-10-28T17:16:57.563347+00:00",
+      "exit_status": 0,
+      "log": "logs/collectstatic-locked.log"
+    },
+    {
+      "name": "copy-http-smoke-locked",
+      "argv": [
+        "docker",
+        "cp",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/http_smoke.py",
+        "cpjudge-a09-site:/tmp/http_smoke.py"
+      ],
+      "started": "2026-10-28T17:16:58.367813+00:00",
+      "exit_status": 0,
+      "log": "logs/copy-http-smoke-locked.log"
+    },
+    {
+      "name": "http-start-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "-d",
+        "cpjudge-a09-site",
+        "sh",
+        "-c",
+        "python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/http.log 2>&1"
+      ],
+      "started": "2026-10-28T17:16:58.387827+00:00",
+      "exit_status": 0,
+      "log": "logs/http-start-locked.log"
+    },
+    {
+      "name": "http-smoke-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "/tmp/http_smoke.py"
+      ],
+      "started": "2026-10-28T17:17:01.435496+00:00",
+      "exit_status": 0,
+      "log": "logs/http-smoke-locked.log"
+    },
+    {
+      "name": "http-log-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "cat",
+        "/tmp/http.log"
+      ],
+      "started": "2026-10-28T17:17:03.795110+00:00",
+      "exit_status": 0,
+      "log": "logs/http-log-locked.log"
+    },
+    {
+      "name": "migration-state-audit",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:19:08.441885+00:00",
+      "exit_status": 0,
+      "log": "logs/migration-state-audit.log"
+    },
+    {
+      "name": "locked-image-identity",
+      "argv": [
+        "docker",
+        "image",
+        "inspect",
+        "cpjudge-a09-site:locked",
+        "--format",
+        "{{json .Id}} {{json .RepoDigests}}"
+      ],
+      "started": "2026-10-28T17:19:09.637600+00:00",
+      "exit_status": 0,
+      "log": "logs/locked-image-identity.log"
+    },
+    {
+      "name": "judge-image-preserved",
+      "argv": [
+        "docker",
+        "image",
+        "inspect",
+        "cp-judge-compat",
+        "--format",
+        "{{json .Id}}"
+      ],
+      "started": "2026-10-28T17:19:09.684805+00:00",
+      "exit_status": 0,
+      "log": "logs/judge-image-preserved.log"
+    },
+    {
+      "name": "redis-version",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-redis",
+        "redis-server",
+        "--version"
+      ],
+      "started": "2026-10-28T17:19:09.718477+00:00",
+      "exit_status": 0,
+      "log": "logs/redis-version.log"
+    },
+    {
+      "name": "runtime-versions",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "sh",
+        "-c",
+        "python --version; python -m django --version; python -m pip --version; git --version"
+      ],
+      "started": "2026-10-28T17:19:09.776894+00:00",
+      "exit_status": 0,
+      "log": "logs/runtime-versions.log"
+    },
+    {
+      "name": "node-version",
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+        "sh",
+        "-c",
+        "node --version; npm --version"
+      ],
+      "started": "2026-10-28T17:19:10.106031+00:00",
+      "exit_status": 0,
+      "log": "logs/node-version.log"
+    },
+    {
+      "name": "live-isolation",
+      "argv": [
+        "docker",
+        "inspect",
+        "cpjudge-a09-site",
+        "cpjudge-a09-db",
+        "cpjudge-a09-redis",
+        "--format",
+        "{{json .Name}} {{json .HostConfig.NetworkMode}} {{json .HostConfig.PortBindings}} {{json .HostConfig.Memory}} {{json .Config.User}} {{json .Mounts}}"
+      ],
+      "started": "2026-10-28T17:19:10.663398+00:00",
+      "exit_status": 0,
+      "log": "logs/live-isolation.log"
+    },
+    {
+      "name": "network-isolation",
+      "argv": [
+        "docker",
+        "network",
+        "inspect",
+        "cpjudge-a09-1",
+        "--format",
+        "{{json .Internal}}"
+      ],
+      "started": "2026-10-28T17:19:10.683119+00:00",
+      "exit_status": 0,
+      "log": "logs/network-isolation.log"
+    },
+    {
+      "name": "grant-test-db-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-db",
+        "sh",
+        "-c",
+        "MYSQL_PWD=\"$MARIADB_ROOT_PASSWORD\" mariadb -u root"
+      ],
+      "started": "2026-10-28T17:19:10.698312+00:00",
+      "exit_status": 0,
+      "log": "logs/grant-test-db-locked.log"
+    },
+    {
+      "name": "upstream-tests-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "test",
+        "judge",
+        "--noinput",
+        "-v",
+        "2"
+      ],
+      "started": "2026-10-28T17:19:10.772277+00:00",
+      "exit_status": 0,
+      "log": "logs/upstream-tests-locked.log"
+    },
+    {
+      "name": "celery-start-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "-d",
+        "cpjudge-a09-site",
+        "sh",
+        "-c",
+        "celery -A dmoj_celery worker --pool=solo --concurrency=1 --loglevel=INFO --hostname=a09@site > /tmp/celery.log 2>&1"
+      ],
+      "started": "2026-10-28T17:19:24.746862+00:00",
+      "exit_status": 0,
+      "log": "logs/celery-start-locked.log"
+    },
+    {
+      "name": "celery-ping-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "celery",
+        "-A",
+        "dmoj_celery",
+        "inspect",
+        "ping",
+        "--timeout",
+        "10"
+      ],
+      "started": "2026-10-28T17:19:27.797518+00:00",
+      "exit_status": 0,
+      "log": "logs/celery-ping-locked.log"
+    },
+    {
+      "name": "celery-demo-task-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:19:38.429177+00:00",
+      "exit_status": 0,
+      "log": "logs/celery-demo-task-locked.log"
+    },
+    {
+      "name": "celery-log-locked",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-site",
+        "cat",
+        "/tmp/celery.log"
+      ],
+      "started": "2026-10-28T17:19:39.203778+00:00",
+      "exit_status": 0,
+      "log": "logs/celery-log-locked.log"
+    },
+    {
+      "name": "db-log-locked",
+      "argv": [
+        "docker",
+        "logs",
+        "cpjudge-a09-db"
+      ],
+      "started": "2026-10-28T17:22:59.567480+00:00",
+      "exit_status": 0,
+      "log": "logs/db-log-locked.log"
+    },
+    {
+      "name": "redis-log-locked",
+      "argv": [
+        "docker",
+        "logs",
+        "cpjudge-a09-redis"
+      ],
+      "started": "2026-10-28T17:22:59.586122+00:00",
+      "exit_status": 0,
+      "log": "logs/redis-log-locked.log"
+    },
+    {
+      "name": "cleanup-containers",
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "cpjudge-a09-site",
+        "cpjudge-a09-db",
+        "cpjudge-a09-redis",
+        "cpjudge-a09-export"
+      ],
+      "started": "2026-10-28T17:22:59.601377+00:00",
+      "exit_status": 0,
+      "log": "logs/cleanup-containers.log"
+    },
+    {
+      "name": "cleanup-network",
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "cpjudge-a09-1"
+      ],
+      "started": "2026-10-28T17:22:59.914222+00:00",
+      "exit_status": 0,
+      "log": "logs/cleanup-network.log"
+    }
+  ],
+  "final_replay": [
+    {
+      "name": "network-create",
+      "argv": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "--label",
+        "secureexam.task=A09",
+        "cpjudge-a09-replay1-net"
+      ],
+      "started": "2026-10-28T17:23:00.952157+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/network-create.log"
+    },
+    {
+      "name": "db-start",
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "cpjudge-a09-replay1-db",
+        "--label",
+        "secureexam.task=A09",
+        "--network",
+        "cpjudge-a09-replay1-net",
+        "--network-alias",
+        "db",
+        "--memory",
+        "1536m",
+        "--cpus",
+        "2",
+        "--tmpfs",
+        "/var/lib/mysql:rw,size=1073741824",
+        "--env-file",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/replay/private/db.env",
+        "mariadb@sha256:d1891ede5a559f1086f55053bb8cc1569b0298338c4d72d71725a7f74f6ba620"
+      ],
+      "started": "2026-10-28T17:23:01.013181+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/db-start.log"
+    },
+    {
+      "name": "redis-start",
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "cpjudge-a09-replay1-redis",
+        "--label",
+        "secureexam.task=A09",
+        "--network",
+        "cpjudge-a09-replay1-net",
+        "--network-alias",
+        "redis",
+        "--memory",
+        "256m",
+        "--tmpfs",
+        "/data:rw,size=67108864",
+        "redis@sha256:6ba19c50b56777f5c11c58eff8ddb69d0d5f27ba131cffb63f180ccfd43c66af",
+        "redis-server",
+        "--save",
+        "",
+        "--appendonly",
+        "no"
+      ],
+      "started": "2026-10-28T17:23:01.282103+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/redis-start.log"
+    },
+    {
+      "name": "site-start",
+      "argv": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "cpjudge-a09-replay1-site",
+        "--label",
+        "secureexam.task=A09",
+        "--network",
+        "cpjudge-a09-replay1-net",
+        "--network-alias",
+        "site",
+        "--memory",
+        "1536m",
+        "--cpus",
+        "2",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--env-file",
+        "/home/pramag/Documents/CP-Judge/build/a09-site-1/replay/private/site.env",
+        "cpjudge-a09-site:locked",
+        "sleep",
+        "infinity"
+      ],
+      "started": "2026-10-28T17:23:01.548191+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/site-start.log"
+    },
+    {
+      "name": "db-ready",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-db",
+        "healthcheck.sh",
+        "--connect",
+        "--innodb_initialized"
+      ],
+      "started": "2026-10-28T17:23:05.074598+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/db-ready.log"
+    },
+    {
+      "name": "pip-check",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "started": "2026-10-28T17:23:05.137364+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/pip-check.log"
+    },
+    {
+      "name": "system-check",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "check",
+        "--database",
+        "default"
+      ],
+      "started": "2026-10-28T17:23:05.455535+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/system-check.log"
+    },
+    {
+      "name": "migrate",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "migrate",
+        "--noinput"
+      ],
+      "started": "2026-10-28T17:23:06.457457+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/migrate.log"
+    },
+    {
+      "name": "migration-reapply",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "migrate",
+        "--noinput"
+      ],
+      "started": "2026-10-28T17:23:17.347731+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/migration-reapply.log"
+    },
+    {
+      "name": "no-pending-migrations",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "migrate",
+        "--check"
+      ],
+      "started": "2026-10-28T17:23:18.425035+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/no-pending-migrations.log"
+    },
+    {
+      "name": "fixtures",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "loaddata",
+        "navbar",
+        "language_small"
+      ],
+      "started": "2026-10-28T17:23:19.405096+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/fixtures.log"
+    },
+    {
+      "name": "seed-and-versions",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:23:20.421054+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/seed-and-versions.log"
+    },
+    {
+      "name": "migration-drift-KNOWN-FAIL",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "makemigrations",
+        "--check",
+        "--dry-run"
+      ],
+      "started": "2026-10-28T17:23:21.433332+00:00",
+      "exit_status": 1,
+      "expected_exit": 1,
+      "log": "logs/replay/migration-drift-KNOWN-FAIL.log"
+    },
+    {
+      "name": "migration-state-audit",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:23:22.423873+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/migration-state-audit.log"
+    },
+    {
+      "name": "class-constraint-audit",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:23:23.684430+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/class-constraint-audit.log"
+    },
+    {
+      "name": "deployment-warnings",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "check",
+        "--deploy"
+      ],
+      "started": "2026-10-28T17:23:24.448092+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/deployment-warnings.log"
+    },
+    {
+      "name": "unsilenced-checks",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:23:25.383258+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/unsilenced-checks.log"
+    },
+    {
+      "name": "test-db-permission",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-replay1-db",
+        "sh",
+        "-c",
+        "MYSQL_PWD=\"$MARIADB_ROOT_PASSWORD\" mariadb -u root"
+      ],
+      "started": "2026-10-28T17:23:26.388976+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/test-db-permission.log"
+    },
+    {
+      "name": "upstream-tests",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "test",
+        "judge",
+        "--noinput",
+        "-v",
+        "2"
+      ],
+      "started": "2026-10-28T17:23:26.472777+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/upstream-tests.log"
+    },
+    {
+      "name": "compilemessages",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "compilemessages"
+      ],
+      "started": "2026-10-28T17:23:40.441507+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/compilemessages.log"
+    },
+    {
+      "name": "compilejsi18n",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "compilejsi18n"
+      ],
+      "started": "2026-10-28T17:23:41.421865+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/compilejsi18n.log"
+    },
+    {
+      "name": "collectstatic",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "collectstatic",
+        "--noinput"
+      ],
+      "started": "2026-10-28T17:23:42.354011+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/collectstatic.log"
+    },
+    {
+      "name": "copy-http-probe",
+      "argv": [
+        "docker",
+        "cp",
+        "/home/pramag/Documents/CP-Judge/reports/a09-site-1/http_smoke.py",
+        "cpjudge-a09-replay1-site:/tmp/http_smoke.py"
+      ],
+      "started": "2026-10-28T17:23:43.198939+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/copy-http-probe.log"
+    },
+    {
+      "name": "http-start",
+      "argv": [
+        "docker",
+        "exec",
+        "-d",
+        "cpjudge-a09-replay1-site",
+        "sh",
+        "-c",
+        "python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/http.log 2>&1"
+      ],
+      "started": "2026-10-28T17:23:43.216894+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/http-start.log"
+    },
+    {
+      "name": "http-smoke",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "/tmp/http_smoke.py"
+      ],
+      "started": "2026-10-28T17:23:46.265317+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/http-smoke.log"
+    },
+    {
+      "name": "celery-start",
+      "argv": [
+        "docker",
+        "exec",
+        "-d",
+        "cpjudge-a09-replay1-site",
+        "sh",
+        "-c",
+        "celery -A dmoj_celery worker --pool=solo --concurrency=1 --loglevel=INFO --hostname=a09@site > /tmp/celery.log 2>&1"
+      ],
+      "started": "2026-10-28T17:23:48.565611+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/celery-start.log"
+    },
+    {
+      "name": "celery-ping",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "celery",
+        "-A",
+        "dmoj_celery",
+        "inspect",
+        "ping",
+        "--timeout",
+        "10"
+      ],
+      "started": "2026-10-28T17:23:51.615181+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/celery-ping.log"
+    },
+    {
+      "name": "celery-demo-task",
+      "argv": [
+        "docker",
+        "exec",
+        "-i",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:24:02.213167+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/celery-demo-task.log"
+    },
+    {
+      "name": "backup-restore",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-db",
+        "sh",
+        "-ec",
+        "export MYSQL_PWD=\"$MARIADB_ROOT_PASSWORD\"\nmariadb-dump -u root --single-transaction a09 > /tmp/a09.sql\nmariadb -u root -e \"CREATE DATABASE a09_restore CHARACTER SET utf8mb4; GRANT ALL PRIVILEGES ON a09_restore.* TO 'a09'@'%';\"\nmariadb -u root a09_restore < /tmp/a09.sql"
+      ],
+      "started": "2026-10-28T17:24:02.975806+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/backup-restore.log"
+    },
+    {
+      "name": "restored-migrations",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "DB_NAME=a09_restore",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "migrate",
+        "--check"
+      ],
+      "started": "2026-10-28T17:24:03.225334+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/restored-migrations.log"
+    },
+    {
+      "name": "restored-seed",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "DB_NAME=a09_restore",
+        "-i",
+        "cpjudge-a09-replay1-site",
+        "python",
+        "manage.py",
+        "shell"
+      ],
+      "started": "2026-10-28T17:24:04.174318+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/restored-seed.log"
+    },
+    {
+      "name": "live-isolation",
+      "argv": [
+        "docker",
+        "inspect",
+        "cpjudge-a09-replay1-db",
+        "cpjudge-a09-replay1-redis",
+        "cpjudge-a09-replay1-site",
+        "--format",
+        "{{json .Name}} {{json .HostConfig.NetworkMode}} {{json .HostConfig.PortBindings}} {{json .Config.User}} {{json .HostConfig.Tmpfs}} {{json .HostConfig.CapDrop}} {{json .HostConfig.SecurityOpt}}"
+      ],
+      "started": "2026-10-28T17:24:05.101965+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/live-isolation.log"
+    },
+    {
+      "name": "network-isolation",
+      "argv": [
+        "docker",
+        "network",
+        "inspect",
+        "cpjudge-a09-replay1-net",
+        "--format",
+        "{{json .Internal}}"
+      ],
+      "started": "2026-10-28T17:24:05.120200+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/network-isolation.log"
+    },
+    {
+      "name": "image-identity",
+      "argv": [
+        "docker",
+        "image",
+        "inspect",
+        "cpjudge-a09-site:locked",
+        "--format",
+        "{{json .Id}} {{json .RepoDigests}}"
+      ],
+      "started": "2026-10-28T17:24:05.134580+00:00",
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "logs/replay/image-identity.log"
+    },
+    {
+      "name": "db-log",
+      "argv": [
+        "docker",
+        "logs",
+        "cpjudge-a09-replay1-db"
+      ],
+      "started": "2026-10-28T17:24:05.169851+00:00",
+      "exit_status": 0,
+      "expected_exit": null,
+      "log": "logs/replay/db-log.log"
+    },
+    {
+      "name": "redis-log",
+      "argv": [
+        "docker",
+        "logs",
+        "cpjudge-a09-replay1-redis"
+      ],
+      "started": "2026-10-28T17:24:05.191075+00:00",
+      "exit_status": 0,
+      "expected_exit": null,
+      "log": "logs/replay/redis-log.log"
+    },
+    {
+      "name": "http-log",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "cat",
+        "/tmp/http.log"
+      ],
+      "started": "2026-10-28T17:24:05.207520+00:00",
+      "exit_status": 0,
+      "expected_exit": null,
+      "log": "logs/replay/http-log.log"
+    },
+    {
+      "name": "celery-log",
+      "argv": [
+        "docker",
+        "exec",
+        "cpjudge-a09-replay1-site",
+        "cat",
+        "/tmp/celery.log"
+      ],
+      "started": "2026-10-28T17:24:05.260826+00:00",
+      "exit_status": 0,
+      "expected_exit": null,
+      "log": "logs/replay/celery-log.log"
+    },
+    {
+      "name": "cleanup-containers",
+      "argv": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "cpjudge-a09-replay1-db",
+        "cpjudge-a09-replay1-redis",
+        "cpjudge-a09-replay1-site"
+      ],
+      "started": "2026-10-28T17:24:05.316463+00:00",
+      "exit_status": 0,
+      "expected_exit": null,
+      "log": "logs/replay/cleanup-containers.log"
+    },
+    {
+      "name": "cleanup-network",
+      "argv": [
+        "docker",
+        "network",
+        "rm",
+        "cpjudge-a09-replay1-net"
+      ],
+      "started": "2026-10-28T17:24:05.661538+00:00",
+      "exit_status": 0,
+      "expected_exit": null,
+      "log": "logs/replay/cleanup-network.log"
+    }
+  ]
+}

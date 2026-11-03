@@ -1,0 +1,745 @@
+[
+  {
+    "name": "backup",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb-dump --user=root --password=\"$MARIADB_ROOT_PASSWORD\" --single-transaction --routines --events --databases b01"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T145920287143Z-backup.log"
+  },
+  {
+    "name": "stage-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150142051773Z-stage-app.log"
+  },
+  {
+    "name": "stage-test-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/test_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_test_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150142051773Z-stage-test-settings.log"
+  },
+  {
+    "name": "test-database-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb --user=root --password=\"$MARIADB_ROOT_PASSWORD\" -e \"GRANT ALL ON test_cpj_phase_c.* TO b01;\""
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150142051773Z-test-database-grant.log"
+  },
+  {
+    "name": "generate-additive-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--settings=dmoj.cpj_test_settings"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-1/20261029T150142051773Z-generate-additive-migration.log"
+  },
+  {
+    "name": "stage-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150159488370Z-stage-app.log"
+  },
+  {
+    "name": "stage-test-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/test_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_test_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150159488370Z-stage-test-settings.log"
+  },
+  {
+    "name": "test-database-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb --user=root --password=\"$MARIADB_ROOT_PASSWORD\" -e \"GRANT ALL ON test_cpj_phase_c.* TO b01;\""
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150159488370Z-test-database-grant.log"
+  },
+  {
+    "name": "generate-additive-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "root",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--settings=dmoj.cpj_test_settings"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-1/20261029T150159488370Z-generate-additive-migration.log"
+  },
+  {
+    "name": "stage-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150233802801Z-stage-app.log"
+  },
+  {
+    "name": "stage-test-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/test_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_test_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150233802801Z-stage-test-settings.log"
+  },
+  {
+    "name": "test-database-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb --user=root --password=\"$MARIADB_ROOT_PASSWORD\" -e \"GRANT ALL ON test_cpj_phase_c.* TO b01;\""
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150233802801Z-test-database-grant.log"
+  },
+  {
+    "name": "generate-additive-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--settings=dmoj.cpj_test_settings"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150233802801Z-generate-additive-migration.log"
+  },
+  {
+    "name": "retain-migration",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/cpjudge/migrations/.",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/migrations"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150233802801Z-retain-migration.log"
+  },
+  {
+    "name": "stage-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150346932942Z-stage-tests.log"
+  },
+  {
+    "name": "identity-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.tests",
+      "--settings=dmoj.cpj_test_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-1/20261029T150346932942Z-identity-tests.log"
+  },
+  {
+    "name": "stage-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150402962425Z-stage-tests.log"
+  },
+  {
+    "name": "identity-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.tests",
+      "--settings=dmoj.cpj_test_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150402962425Z-identity-tests.log"
+  },
+  {
+    "name": "stage-browser-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/browser_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_browser_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150605550489Z-stage-browser-settings.log"
+  },
+  {
+    "name": "browser-fixture",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell",
+      "--settings=dmoj.cpj_browser_settings"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150605550489Z-browser-fixture.log"
+  },
+  {
+    "name": "browser-private-credential",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/cpj-c1-fixture.json",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-1/browser-20261029T150605550489Z/account.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150605550489Z-browser-private-credential.log"
+  },
+  {
+    "name": "isolated-browser-server",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8001 --noreload --settings=dmoj.cpj_browser_settings > /tmp/cpj-c1-browser.log 2>&1"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150605550489Z-isolated-browser-server.log"
+  },
+  {
+    "name": "chromium-identity",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "container:cpjudge-b01-site",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-1/browser-20261029T150605550489Z,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/browser_identity.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-1/20261029T150605550489Z-chromium-identity.log"
+  },
+  {
+    "name": "chromium-identity",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "container:cpjudge-b01-site",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-1/browser-20261029T150605550489Z,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/browser_identity.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-1/20261029T150737545729Z-chromium-identity.log"
+  },
+  {
+    "name": "chromium-identity",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "container:cpjudge-b01-site",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-1/browser-20261029T150605550489Z,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/browser_identity.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T150829231175Z-chromium-identity.log"
+  },
+  {
+    "name": "offline-organizer-recovery",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "college_account",
+      "reset",
+      "CPJC1BROWSER",
+      "--actor",
+      "c1browseroperator",
+      "--credential-file",
+      "/tmp/cpj-recovery-20261029T151028080352Z.json",
+      "--settings=dmoj.cpj_browser_settings"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151028080352Z-offline-organizer-recovery.log"
+  },
+  {
+    "name": "recovery-private-credential",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/tmp/cpj-recovery-20261029T151028080352Z.json",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-1/browser-20261029T150605550489Z/recovery-account.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151028080352Z-recovery-private-credential.log"
+  },
+  {
+    "name": "chromium-recovery",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "container:cpjudge-b01-site",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/phase-c-1/browser-20261029T150605550489Z,dst=/results",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/phase-c/browser_identity.py,dst=/tests/browser.py,readonly",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py",
+      "recovery"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151028080352Z-chromium-recovery.log"
+  },
+  {
+    "name": "stop-isolated-server",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151045235649Z-stop-isolated-server.log"
+  },
+  {
+    "name": "stage-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151045428469Z-stage-app.log"
+  },
+  {
+    "name": "stage-test-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/test_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_test_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151045428469Z-stage-test-settings.log"
+  },
+  {
+    "name": "test-database-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb --user=root --password=\"$MARIADB_ROOT_PASSWORD\" -e \"GRANT ALL ON test_cpj_phase_c.* TO b01;\""
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151045428469Z-test-database-grant.log"
+  },
+  {
+    "name": "stage-converter",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/compat/.",
+      "cpjudge-b01-site:/app/compat"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151045428469Z-stage-converter.log"
+  },
+  {
+    "name": "generate-additive-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--settings=dmoj.cpj_test_settings"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151045428469Z-generate-additive-migration.log"
+  },
+  {
+    "name": "retain-migration",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/cpjudge/migrations/.",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/migrations"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151045428469Z-retain-migration.log"
+  },
+  {
+    "name": "stage-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151047275185Z-stage-tests.log"
+  },
+  {
+    "name": "identity-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.tests",
+      "--settings=dmoj.cpj_test_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-1/20261029T151047275185Z-identity-tests.log"
+  },
+  {
+    "name": "stage-app",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151145246659Z-stage-app.log"
+  },
+  {
+    "name": "stage-test-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/test_settings.py",
+      "cpjudge-b01-site:/app/dmoj/cpj_test_settings.py"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151145246659Z-stage-test-settings.log"
+  },
+  {
+    "name": "test-database-grant",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb --user=root --password=\"$MARIADB_ROOT_PASSWORD\" -e \"GRANT ALL ON test_cpj_phase_c.* TO b01;\""
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151145246659Z-test-database-grant.log"
+  },
+  {
+    "name": "stage-converter",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/compat/.",
+      "cpjudge-b01-site:/app/compat"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151145246659Z-stage-converter.log"
+  },
+  {
+    "name": "stage-converter-pin",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/dependencies.json",
+      "cpjudge-b01-site:/app/dependencies.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151145246659Z-stage-converter-pin.log"
+  },
+  {
+    "name": "stage-pinned-pcc",
+    "argv": [
+      "docker",
+      "cp",
+      "/tmp/cp-judge-pcc/.",
+      "cpjudge-b01-site:/tmp/cpj-pcc"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151145246659Z-stage-pinned-pcc.log"
+  },
+  {
+    "name": "stage-synthetic-package",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/build/phase-c-1/synthetic/tokens.zip",
+      "cpjudge-b01-site:/tmp/cpj-tokens.zip"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151145246659Z-stage-synthetic-package.log"
+  },
+  {
+    "name": "generate-additive-migration",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "cpjudge",
+      "--settings=dmoj.cpj_test_settings"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151145246659Z-generate-additive-migration.log"
+  },
+  {
+    "name": "retain-migration",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/cpjudge/migrations/.",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/migrations"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151145246659Z-retain-migration.log"
+  },
+  {
+    "name": "stage-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151147344293Z-stage-tests.log"
+  },
+  {
+    "name": "identity-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.tests",
+      "--settings=dmoj.cpj_test_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151147344293Z-identity-tests.log"
+  },
+  {
+    "name": "stage-tests",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151318242714Z-stage-tests.log"
+  },
+  {
+    "name": "identity-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.tests",
+      "--settings=dmoj.cpj_test_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151318242714Z-identity-tests.log"
+  },
+  {
+    "name": "preservation-private-dump",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-db",
+      "sh",
+      "-c",
+      "exec mariadb-dump --user=root --password=\"$MARIADB_ROOT_PASSWORD\" --single-transaction --routines --events --databases b01"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151400587952Z-preservation-private-dump.log"
+  },
+  {
+    "name": "live-settings-and-counts",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-1/20261029T151400587952Z-live-settings-and-counts.log"
+  }
+]

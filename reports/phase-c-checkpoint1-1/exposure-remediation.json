@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "old_worker_key_rejected": true,
+  "new_worker_key_authenticated": true,
+  "worker_reconnected": true,
+  "session_rows_removed": 23,
+  "identity_generations_revoked": 6,
+  "legacy_password_browser": "PASS",
+  "fresh_backup": "build/phase-c-checkpoint1-1/20261029T174721363889Z-pre-exposure-remediation.sql.gz",
+  "sandbox_configuration_changed": false
+}

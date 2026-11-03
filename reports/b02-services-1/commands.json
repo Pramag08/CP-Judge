@@ -1,0 +1,2538 @@
+[
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204652727888Z/initial-state.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b02-services-1/events,dst=/work",
+      "--workdir",
+      "/work",
+      "--env",
+      "npm_config_cache=/tmp/npm",
+      "node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+      "sh",
+      "-c",
+      "npm install --package-lock-only --ignore-scripts && npm ci --ignore-scripts"
+    ],
+    "exit_status": 1,
+    "log": "reports/b02-services-1/logs/20261028T204652727888Z/event-dependencies.log"
+  },
+  {
+    "action": "resolve",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+      "npm",
+      "view",
+      "qu",
+      "versions",
+      "--json"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204803967472Z/qu-published-versions.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/initial-state.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b02-services-1/events,dst=/work",
+      "--workdir",
+      "/work",
+      "--env",
+      "npm_config_cache=/tmp/npm",
+      "node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+      "sh",
+      "-c",
+      "npm install --package-lock-only --ignore-scripts && npm ci --ignore-scripts"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/event-dependencies.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "run",
+      "-d",
+      "--name",
+      "cpjudge-b02-events",
+      "--label",
+      "cpjudge.task=B02",
+      "--network",
+      "cpjudge-b01-web",
+      "--user",
+      "1000:973",
+      "--memory",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "-p",
+      "127.0.0.1:9996:9996",
+      "-p",
+      "127.0.0.1:9995:9995",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b02-services-1/events,dst=/work,readonly",
+      "--workdir",
+      "/work",
+      "node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+      "node",
+      "daemon.js"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/event-create.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "network",
+      "connect",
+      "--alias",
+      "events",
+      "cpjudge-b01-net",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/event-private-network.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02_config.py",
+      "cpjudge-b01-site:/app/dmoj/b02_config.py"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/install-b02_config.py.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02_process.py",
+      "cpjudge-b01-site:/tmp/b02_process.py"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/install-b02_process.py.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/enable-native-config.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/reload-web.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b02-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/web-start.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/safe-bridge-start.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/event-start.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/native-processes-start.log"
+  },
+  {
+    "action": "setup",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T204814160178Z/native-processes-status.log"
+  },
+  {
+    "action": "verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "log": "reports/b02-services-1/logs/20261028T204857734001Z/actual-service-probes.log"
+  },
+  {
+    "action": "logs",
+    "argv": [
+      "docker",
+      "logs",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205012210387Z/event-log.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205042203600Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205042203600Z/event-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205042203600Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205042203600Z/native-processes-status.log"
+  },
+  {
+    "action": "verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205046397150Z/actual-service-probes.log"
+  },
+  {
+    "action": "verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205046397150Z/passwords-preserved.log"
+  },
+  {
+    "action": "browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "B01_URL=http://127.0.0.1:8000",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b02-services-1/browser/20261028T205053269562Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "log": "build/b02-services-1/20261028T205053269562Z/website-login-browser.log"
+  },
+  {
+    "action": "restart",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02_process.py",
+      "cpjudge-b01-site:/tmp/b02_process.py"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205337723142Z/refresh-process-controller.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205337827855Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205337827855Z/event-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "b02-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205337794821Z/b02-stop.log",
+    "timestamp_utc": "2026-10-28T20:53:49.815473+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205337794821Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-10-28T20:54:00.135785+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205337794821Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-10-28T20:54:00.375403+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205337794821Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-10-28T20:54:00.599620+00:00"
+  },
+  {
+    "action": "restart",
+    "argv": [
+      "env",
+      "CPJ_SITE_REPORT_DIR=/home/pramag/Documents/CP-Judge/reports/b02-services-1",
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205337723142Z/full-lifecycle-stop.log"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205400666086Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-10-28T20:54:00.848234+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205400666086Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-10-28T20:54:01.024038+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205400666086Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-10-28T20:54:01.237649+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205400666086Z/http-start.log",
+    "timestamp_utc": "2026-10-28T20:54:03.479022+00:00"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205404977863Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205404977863Z/event-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205404977863Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205404977863Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205400666086Z/b02-start.log",
+    "timestamp_utc": "2026-10-28T20:54:09.087199+00:00"
+  },
+  {
+    "action": "restart",
+    "argv": [
+      "env",
+      "CPJ_SITE_REPORT_DIR=/home/pramag/Documents/CP-Judge/reports/b02-services-1",
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205337723142Z/full-lifecycle-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205409188856Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205409188856Z/event-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205409188856Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205409188856Z/native-processes-status.log"
+  },
+  {
+    "action": "verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205413137053Z/actual-service-probes.log"
+  },
+  {
+    "action": "verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205413137053Z/passwords-preserved.log"
+  },
+  {
+    "action": "browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "B01_URL=http://127.0.0.1:8000",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b02-services-1/browser/20261028T205420047163Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "log": "build/b02-services-1/20261028T205420047163Z/website-login-browser.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205425840942Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205425840942Z/event-status.log"
+  },
+  {
+    "action": "audit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205619356031Z/preserved-b01-runtime.log"
+  },
+  {
+    "action": "audit",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "check",
+      "--deploy",
+      "--database",
+      "default"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205619356031Z/deployment-warnings.log"
+  },
+  {
+    "action": "npm-audit",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b02-services-1/events,dst=/work,readonly",
+      "--workdir",
+      "/work",
+      "node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+      "npm",
+      "audit",
+      "--json"
+    ],
+    "exit_status": 1,
+    "log": "reports/b02-services-1/logs/20261028T205752300521Z/npm-security-audit.log"
+  },
+  {
+    "action": "upgrade-event-deps",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205836242851Z/event-stop-for-security-update.log"
+  },
+  {
+    "action": "upgrade-event-deps",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b02-services-1/events,dst=/work",
+      "--workdir",
+      "/work",
+      "--env",
+      "npm_config_cache=/tmp/npm",
+      "node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+      "sh",
+      "-c",
+      "npm install --package-lock-only --ignore-scripts && npm ci --ignore-scripts"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205836242851Z/fixed-event-lock-install.log"
+  },
+  {
+    "action": "upgrade-event-deps",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205836242851Z/fixed-event-restart.log"
+  },
+  {
+    "action": "npm-audit",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b02-services-1/events,dst=/work,readonly",
+      "--workdir",
+      "/work",
+      "node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+      "npm",
+      "audit",
+      "--json"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205850597669Z/npm-security-audit.log"
+  },
+  {
+    "action": "verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205851761900Z/actual-service-probes.log"
+  },
+  {
+    "action": "verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261028T205851761900Z/passwords-preserved.log"
+  },
+  {
+    "action": "browser",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "B01_URL=http://127.0.0.1:8000",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-site-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b02-services-1/browser/20261028T205858690494Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "log": "build/b02-services-1/20261028T205858690494Z/website-login-browser.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261029T080703164760Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261029T123324219142Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261029T123324219142Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261029T135145941801Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261029T135145941801Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261029T143845751583Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261029T143845751583Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261030T075841153352Z/event-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261030T075939028674Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261030T075939028674Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261030T075939028674Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261030T103734742205Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261030T103734742205Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261030T103734742205Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T080843974927Z/event-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T080905870712Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T080905870712Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T080905870712Z/native-processes-status.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T081115791482Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T081115791482Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T081115791482Z/event-stop.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T082023185001Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T082023185001Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T082023185001Z/native-processes-status.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T082405724638Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T082405724638Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T082405724638Z/event-stop.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T082430296419Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T082430296419Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T082430296419Z/native-processes-status.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T083000455927Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T083000455927Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T083000455927Z/event-stop.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T083532348832Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T083532348832Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T083532348832Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T083935318687Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T083935318687Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T083935318687Z/native-processes-status.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T143122835559Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T143122835559Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T143122835559Z/event-stop.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T143402211314Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T143402211314Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T143402211314Z/native-processes-status.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T144433630505Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T144433630505Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T144433630505Z/event-stop.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T144556179297Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T144556179297Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T144556179297Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T145829045894Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T145829045894Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T145829045894Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150016923330Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150016923330Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150016923330Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150425973749Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150425973749Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150425973749Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150439551187Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150439551187Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150817115387Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T150817115387Z/event-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164702998275Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164702998275Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164702998275Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164709988748Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164709988748Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164748706173Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164748706173Z/event-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164803834941Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164803834941Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T164803834941Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T171855853877Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T171855853877Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T171855853877Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T171902425119Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T171902425119Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172722054317Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172722054317Z/event-status.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172827164220Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172827164220Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172827164220Z/event-stop.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172903321557Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172903321557Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172903321557Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172917505148Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T172917505148Z/event-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T173421575597Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T173421575597Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T173421575597Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T173425577959Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T173425577959Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T173432526442Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T173432526442Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T183914198383Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T183914198383Z/event-status.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T183923972132Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T183923972132Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T183923972132Z/event-stop.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T184042581160Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T184042581160Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T184042581160Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T184101587487Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T184101587487Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T184419867224Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T184419867224Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T190752261368Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T190752261368Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T191927207024Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T191927207024Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T193241396833Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261102T193241396833Z/event-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T093857388080Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T093857388080Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T093857388080Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T093913847972Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T093913847972Z/event-status.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T094126971449Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T094126971449Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T094126971449Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T094132909120Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T094132909120Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T094135288108Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b02-services-1/logs/20261103T094135288108Z/event-status.log"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "submission_id": 14,
+  "url": "http://127.0.0.1:8000/submission/14",
+  "selected_language": "GNU C++23",
+  "displayed_verdict": "AC",
+  "displayed_long_verdict": "Accepted",
+  "displayed_case_count": 103,
+  "displayed_score": "103/103",
+  "actual_native_form_post_count": 1,
+  "page_error_count": 0,
+  "source_injected_only_into_native_Ace_form": true,
+  "all_cases_AC": true,
+  "contiguous_case_numbers_verified": true,
+  "authenticated_poll_count": 36,
+  "all_polls_authorized": true
+}

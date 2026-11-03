@@ -1,0 +1,39 @@
+{
+  "task": "A04",
+  "status": "COMPLETE \u2014 source inspection only",
+  "finished_before_a05": true,
+  "candidate_commit": "6aaddea6aaeabf4927b83787714509ff9fff8897",
+  "license": "GNU Affero General Public License, version 3; upstream LICENSE file",
+  "documentation_commit": "bfae0464438a1bb2570cde523837ed575c54197e",
+  "support_checked_on": "2026-10-28",
+  "environment": "environment.json",
+  "commands": "commands.json",
+  "support_sources": "support-sources.json",
+  "website_setup": "NOT TESTED",
+  "migrations": "NOT TESTED",
+  "asset_build": "NOT TESTED",
+  "site_judge_compatibility": "NOT TESTED",
+  "dependencies_installed": false,
+  "judging_repeated": false,
+  "important_blockers": [
+    "Candidate Django>=4.2,<5 selects an unsupported framework; official supported Python stops at 3.12, host is 3.14.4.",
+    "A09 must establish and actually test a maintained framework/dependency/service stack; candidate is not deployable approval.",
+    "Website database, runtime dependencies, assets and services were not installed/started; VCS/transitive locks remain to establish.",
+    "Stock small/all language fixtures omit CPP23; database/worker language mapping must be explicitly provisioned and verified."
+  ],
+  "next_phase_completed": "A05 source mapping only; A06 NOT STARTED",
+  "a05_followup_language_fixture_observations": {
+    "judge/fixtures/language_small.json": {
+      "language_count": 18,
+      "CPP17": true,
+      "CPP20": true,
+      "CPP23": false
+    },
+    "judge/fixtures/language_all.json": {
+      "language_count": 59,
+      "CPP17": true,
+      "CPP20": true,
+      "CPP23": false
+    }
+  }
+}

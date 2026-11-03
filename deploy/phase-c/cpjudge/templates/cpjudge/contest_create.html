@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block body %}
+<p>Create a private draft for a supervised, in-person individual competition.</p>
+<form method="post">{% csrf_token %}{{ form.as_p() }}<button type="submit">Create draft</button></form>
+{% endblock %}

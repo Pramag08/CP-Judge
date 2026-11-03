@@ -1,0 +1,6 @@
+{
+  "readable_private_backup": true,
+  "restore_tested": false,
+  "worker_image": "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+  "idle_before_changes": true
+}

@@ -1,0 +1,48 @@
+Self-testing executors
+Self-testing CPP11:  Success [0.006s, 3748 KB]   g++11 16
+Self-testing CPP14:  Success [0.004s, 3672 KB]   g++14 16
+Self-testing CPP17:  Success [0.004s, 3780 KB]   g++17 16
+Self-testing CPP20:  Success [0.004s, 3800 KB]   g++20 16
+Self-testing CPP23:  Success [0.004s, 3796 KB]   g++23 16
+
+Running live judge...
+INFO 2026-10-29 08:56:06,003 1 packet Preparing to connect to [127.0.0.1]:9999 as: cpjudge-local-worker
+INFO 2026-10-29 08:56:06,003 1 packet TLS not enabled.
+INFO 2026-10-29 08:56:06,003 1 packet Opening connection to: [127.0.0.1]:9999
+INFO 2026-10-29 08:56:06,013 1 packet Starting handshake with: [127.0.0.1]:9999
+INFO 2026-10-29 08:56:06,013 1 packet Awaiting handshake response: [127.0.0.1]:9999
+INFO 2026-10-29 08:56:06,017 1 packet Judge "cpjudge-local-worker" online: [127.0.0.1]:9999
+
+INFO 2026-10-29 08:56:06,017 1 monitor Scheduled for monitoring: /problems
+Self-testing executors
+Self-testing CPP11:  Success [0.003s, 3876 KB]   g++11 16
+Self-testing CPP14:  Success [0.004s, 3932 KB]   g++14 16
+Self-testing CPP17:  Success [0.003s, 3800 KB]   g++17 16
+Self-testing CPP20:  Success [0.004s, 3688 KB]   g++20 16
+Self-testing CPP23:  Success [0.004s, 3888 KB]   g++23 16
+
+Running live judge...
+INFO 2026-10-29 09:01:40,647 1 packet Preparing to connect to [127.0.0.1]:9999 as: cpjudge-local-worker
+INFO 2026-10-29 09:01:40,647 1 packet TLS not enabled.
+INFO 2026-10-29 09:01:40,647 1 packet Opening connection to: [127.0.0.1]:9999
+INFO 2026-10-29 09:01:40,648 1 packet Starting handshake with: [127.0.0.1]:9999
+INFO 2026-10-29 09:01:40,649 1 packet Awaiting handshake response: [127.0.0.1]:9999
+INFO 2026-10-29 09:01:40,651 1 packet Judge "cpjudge-local-worker" online: [127.0.0.1]:9999
+
+INFO 2026-10-29 09:01:40,651 1 monitor Scheduled for monitoring: /problems
+Self-testing executors
+Self-testing CPP11:  Success [0.003s, 3800 KB]   g++11 16
+Self-testing CPP14:  Success [0.004s, 3900 KB]   g++14 16
+Self-testing CPP17:  Success [0.004s, 3852 KB]   g++17 16
+Self-testing CPP20:  Success [0.004s, 3636 KB]   g++20 16
+Self-testing CPP23:  Success [0.003s, 3812 KB]   g++23 16
+
+Running live judge...
+INFO 2026-10-29 09:02:39,095 1 packet Preparing to connect to [127.0.0.1]:9999 as: cpjudge-local-worker
+INFO 2026-10-29 09:02:39,095 1 packet TLS not enabled.
+INFO 2026-10-29 09:02:39,095 1 packet Opening connection to: [127.0.0.1]:9999
+INFO 2026-10-29 09:02:39,097 1 packet Starting handshake with: [127.0.0.1]:9999
+INFO 2026-10-29 09:02:39,097 1 packet Awaiting handshake response: [127.0.0.1]:9999
+INFO 2026-10-29 09:02:39,100 1 packet Judge "cpjudge-local-worker" online: [127.0.0.1]:9999
+INFO 2026-10-29 09:02:39,101 1 monitor Scheduled for monitoring: /problems
+

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "phase": "admin-route",
+  "checks": {
+    "direct_native_admin_username_post_cannot_authenticate": true,
+    "native_admin_redirects_to_email_form": true
+  }
+}

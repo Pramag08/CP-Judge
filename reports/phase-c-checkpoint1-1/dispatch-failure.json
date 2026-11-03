@@ -1,0 +1,7 @@
+{
+  "submission_id": 13,
+  "status": "Native IE after worker disconnect; zero cases executed",
+  "cause": "Session generation transaction delayed visibility of new native row until after early dispatch",
+  "fix": "Dispatch on outer transaction commit; rolled-back admissions never dispatch",
+  "fresh_smoke": "pending"
+}

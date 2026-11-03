@@ -1,0 +1,508 @@
+[
+  {
+    "action": "snapshot",
+    "name": "database-snapshot",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T102806999561Z",
+    "log": "reports/b05-problem-1/logs/20261029T102806999561Z/database-snapshot.log"
+  },
+  {
+    "action": "install",
+    "name": "native-models-preflight",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T102856962860Z",
+    "log": "reports/b05-problem-1/logs/20261029T102856962860Z/native-models-preflight.log"
+  },
+  {
+    "action": "install",
+    "name": "native-models-install",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T102856962860Z",
+    "log": "reports/b05-problem-1/logs/20261029T102856962860Z/native-models-install.log"
+  },
+  {
+    "action": "install",
+    "name": "native-problem-refresh",
+    "argv": [
+      "docker",
+      "kill",
+      "--signal",
+      "SIGUSR2",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T102856962860Z",
+    "log": "reports/b05-problem-1/logs/20261029T102856962860Z/native-problem-refresh.log"
+  },
+  {
+    "action": "install",
+    "name": "native-models-verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T102856962860Z",
+    "log": "reports/b05-problem-1/logs/20261029T102856962860Z/native-models-verify.log"
+  },
+  {
+    "action": "install",
+    "name": "native-models-preflight",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103226484001Z",
+    "log": "reports/b05-problem-1/logs/20261029T103226484001Z/native-models-preflight.log"
+  },
+  {
+    "action": "install",
+    "name": "native-models-install",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103226484001Z",
+    "log": "reports/b05-problem-1/logs/20261029T103226484001Z/native-models-install.log"
+  },
+  {
+    "action": "install",
+    "name": "native-problem-refresh",
+    "argv": [
+      "docker",
+      "kill",
+      "--signal",
+      "SIGUSR2",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103226484001Z",
+    "log": "reports/b05-problem-1/logs/20261029T103226484001Z/native-problem-refresh.log"
+  },
+  {
+    "action": "install",
+    "name": "native-models-verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103226484001Z",
+    "log": "reports/b05-problem-1/logs/20261029T103226484001Z/native-models-verify.log"
+  },
+  {
+    "action": "verify",
+    "name": "native-models-verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103416942818Z",
+    "log": "reports/b05-problem-1/logs/20261029T103416942818Z/native-models-verify.log"
+  },
+  {
+    "action": "verify",
+    "name": "actual-worker-installed-bytes",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T103416942818Z",
+    "log": "reports/b05-problem-1/logs/20261029T103416942818Z/actual-worker-installed-bytes.log"
+  },
+  {
+    "action": "verify",
+    "name": "native-models-verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103612342857Z",
+    "log": "reports/b05-problem-1/logs/20261029T103612342857Z/native-models-verify.log"
+  },
+  {
+    "action": "verify",
+    "name": "actual-worker-installed-bytes",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103612342857Z",
+    "log": "reports/b05-problem-1/logs/20261029T103612342857Z/actual-worker-installed-bytes.log"
+  },
+  {
+    "action": "privacy",
+    "name": "temporary-privacy-session",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103739382977Z",
+    "log": "build/b05-problem-1/logs/20261029T103739382977Z/temporary-privacy-session.log"
+  },
+  {
+    "action": "privacy",
+    "name": "remove-only-temporary-privacy-session",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103739382977Z",
+    "log": "reports/b05-problem-1/logs/20261029T103739382977Z/remove-only-temporary-privacy-session.log"
+  },
+  {
+    "action": "privacy",
+    "name": "temporary-privacy-session",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103925017187Z",
+    "log": "build/b05-problem-1/logs/20261029T103925017187Z/temporary-privacy-session.log"
+  },
+  {
+    "action": "privacy",
+    "name": "remove-only-temporary-privacy-session",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T103925017187Z",
+    "log": "reports/b05-problem-1/logs/20261029T103925017187Z/remove-only-temporary-privacy-session.log"
+  },
+  {
+    "action": "cleanup-sessions",
+    "name": "delete-all-owned-diagnostic-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T104059843236Z",
+    "log": "reports/b05-problem-1/logs/20261029T104059843236Z/delete-all-owned-diagnostic-sessions.log"
+  },
+  {
+    "action": "privacy",
+    "name": "temporary-privacy-session",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T104102186519Z",
+    "log": "build/b05-problem-1/logs/20261029T104102186519Z/temporary-privacy-session.log"
+  },
+  {
+    "action": "privacy",
+    "name": "remove-only-temporary-privacy-session",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T104102186519Z",
+    "log": "reports/b05-problem-1/logs/20261029T104102186519Z/remove-only-temporary-privacy-session.log"
+  },
+  {
+    "action": "cleanup-sessions",
+    "name": "delete-all-owned-diagnostic-sessions",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T105241883398Z",
+    "log": "reports/b05-problem-1/logs/20261029T105241883398Z/delete-all-owned-diagnostic-sessions.log"
+  },
+  {
+    "action": "preserve",
+    "name": "database-preserve",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T105252890748Z",
+    "log": "reports/b05-problem-1/logs/20261029T105252890748Z/database-preserve.log"
+  },
+  {
+    "action": "diagnose-preservation",
+    "name": "database-diagnose-preservation",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T105548889281Z",
+    "log": "reports/b05-problem-1/logs/20261029T105548889281Z/database-diagnose-preservation.log"
+  },
+  {
+    "action": "restore-diagnostic-access",
+    "name": "database-restore-diagnostic-access",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T105720895345Z",
+    "log": "reports/b05-problem-1/logs/20261029T105720895345Z/database-restore-diagnostic-access.log"
+  },
+  {
+    "action": "preserve",
+    "name": "database-preserve",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T105849649328Z",
+    "log": "reports/b05-problem-1/logs/20261029T105849649328Z/database-preserve.log"
+  },
+  {
+    "action": "preserve",
+    "name": "database-preserve",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T110019066179Z",
+    "log": "reports/b05-problem-1/logs/20261029T110019066179Z/database-preserve.log"
+  },
+  {
+    "action": "install",
+    "name": "native-models-preflight",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T110435531540Z",
+    "log": "reports/b05-problem-1/logs/20261029T110435531540Z/native-models-preflight.log"
+  },
+  {
+    "action": "install",
+    "name": "native-models-install",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T110435531540Z",
+    "log": "reports/b05-problem-1/logs/20261029T110435531540Z/native-models-install.log"
+  },
+  {
+    "action": "install",
+    "name": "native-problem-refresh",
+    "argv": [
+      "docker",
+      "kill",
+      "--signal",
+      "SIGUSR2",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T110435531540Z",
+    "log": "reports/b05-problem-1/logs/20261029T110435531540Z/native-problem-refresh.log"
+  },
+  {
+    "action": "install",
+    "name": "native-models-verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T110435531540Z",
+    "log": "reports/b05-problem-1/logs/20261029T110435531540Z/native-models-verify.log"
+  },
+  {
+    "action": "verify",
+    "name": "native-models-verify",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T110456256582Z",
+    "log": "reports/b05-problem-1/logs/20261029T110456256582Z/native-models-verify.log"
+  },
+  {
+    "action": "verify",
+    "name": "actual-worker-installed-bytes",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T110456256582Z",
+    "log": "reports/b05-problem-1/logs/20261029T110456256582Z/actual-worker-installed-bytes.log"
+  }
+]

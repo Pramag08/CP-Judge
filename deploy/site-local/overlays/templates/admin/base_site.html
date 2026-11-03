@@ -1,0 +1,21 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block wpadmin_extrastyle %}{{ block.super }}
+    <link rel="stylesheet" href="{% static 'cpjudge/wpadmin-site.css' %}">
+{% endblock %}
+
+{% block pretitle %}{{ block.super }}
+    <form style="display: none" id="empty-action-form" method="post">
+        {% csrf_token %}
+    </form>
+    <script>
+        // WPadmin guarantees global jQuery in its head; Django media is page-specific.
+        jQuery(function ($) {
+            $('.action-link').on('click', function () {
+                $('#empty-action-form').attr('action', this.href).trigger('submit');
+                return false;
+            });
+        });
+    </script>
+{% endblock %}

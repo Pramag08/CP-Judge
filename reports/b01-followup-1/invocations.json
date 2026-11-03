@@ -1,0 +1,301 @@
+[
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "inspect"
+    ],
+    "exit_status": 0,
+    "observed": "Installed source/finder inspection; existing services and accounts untouched."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "bundle"
+    ],
+    "exit_status": 0,
+    "observed": "Pinned MathJax install and thin overlay build; no Python/Sass rebuild."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "apply"
+    ],
+    "exit_status": 1,
+    "observed": "Assets installed and collision-free collection completed; new STATIC_ROOT lacked generated JS catalogue."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "diagnose"
+    ],
+    "exit_status": 0,
+    "observed": "Read private web log to identify missing generated catalogue."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "finish-assets"
+    ],
+    "exit_status": 0,
+    "observed": "Generated JS catalogue; HTTP200 and one candidate per static destination."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "fixtures"
+    ],
+    "exit_status": 1,
+    "observed": "Temporary accounts created; RequestFactory lacked middleware metadata during synthetic rendering."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "render-fixtures"
+    ],
+    "exit_status": 0,
+    "observed": "Resumed rendering with a real Client-populated request, without recreating users."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "browser"
+    ],
+    "exit_status": 1,
+    "observed": "Preview timed out before startup; incomplete browser attempt retained privately."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "refresh-preview"
+    ],
+    "exit_status": 0,
+    "observed": "Preview waits for actual MathJax startup before targeted typesetting."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "browser"
+    ],
+    "exit_status": 1,
+    "observed": "Exposed legacy admin actions initializer; test password selector also targeted hidden header form."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "inspect-actions"
+    ],
+    "exit_status": 0,
+    "observed": "Inspected actual WPadmin and Django action APIs."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "refresh-admin"
+    ],
+    "exit_status": 0,
+    "observed": "Retained visual template and used native auto-initialized Actions API."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "browser"
+    ],
+    "exit_status": 1,
+    "observed": "Ambiguous duplicate header/footer toggle selector in test; targeted master header control next."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "browser"
+    ],
+    "exit_status": 0,
+    "observed": "11 required admin/auth/initial math/password-change checks; zero JS errors. Later stricter math checks supersede initial node-count assertions."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "check-changed"
+    ],
+    "exit_status": 0,
+    "observed": "Actual changed temporary password and existing original account/profile preservation checked."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "verify"
+    ],
+    "exit_status": 0,
+    "observed": "Read-only dependencies/migration/account checks; every password hash unchanged."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "check-changed"
+    ],
+    "exit_status": 0,
+    "observed": "Changed password still authoritative after verification."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "browser"
+    ],
+    "exit_status": 0,
+    "observed": "Changed password accepted, replaced password rejected after ordinary verification."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "reset-fixtures"
+    ],
+    "exit_status": 0,
+    "observed": "Explicit password-only reset action targeted private temporary identities only."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "check-reset"
+    ],
+    "exit_status": 0,
+    "observed": "Reset values authoritative; original users/profiles unchanged."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "browser"
+    ],
+    "exit_status": 0,
+    "observed": "Explicit reset acceptance/rejection checked through real native login."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "cleanup"
+    ],
+    "exit_status": 0,
+    "observed": "Removed first temporary identities/pages; original users/profiles/domain counts exact."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "final-audit"
+    ],
+    "exit_status": 2,
+    "observed": "CLI choice initially unregistered; no runtime mutation."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "final-audit"
+    ],
+    "exit_status": 0,
+    "observed": "Read-only runtime/static/202-migration check; all production warnings retained."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "refresh-math"
+    ],
+    "exit_status": 0,
+    "observed": "Visual review caught raw double typesetting; both shared loaders await automatic startup completion."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "fixtures-again"
+    ],
+    "exit_status": 0,
+    "observed": "Fresh temporary math fixtures; original accounts unchanged."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "math-browser"
+    ],
+    "exit_status": 0,
+    "observed": "Strict final 3-equation profile/statement/preview checks, correct color, local fonts/extensions and zero JS errors."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "cleanup"
+    ],
+    "exit_status": 0,
+    "observed": "Second temporary fixture set removed; original account/profile/domain state exact."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/followup.py",
+      "final-audit"
+    ],
+    "exit_status": 0,
+    "observed": "Final deployed assets/source/migration preservation and running services confirmed."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/b01-followup-1/verify_evidence.py"
+    ],
+    "exit_status": 0,
+    "observed": "Saved evidence, exact original reports/work preservation, credential exclusion and documentation links PASS; no runtime replay."
+  }
+]

@@ -1,0 +1,5 @@
+{% extends "problem/submit.html" %}
+{% block body %}{% set contest = managed_contest %}{% include "cpjudge/contest_tabs.html" %}{{ super() }}
+<input form="problem_submit" type="hidden" name="request_key" value="{{ request_key }}">
+<p>Official entry in {{ managed_contest.name }}. One common server deadline applies.</p>
+{% endblock %}

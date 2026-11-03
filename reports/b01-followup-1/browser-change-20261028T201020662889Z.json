@@ -1,0 +1,52 @@
+{
+  "phase": "change",
+  "url": "http://127.0.0.1:8000",
+  "checks": {
+    "admin_login_without_js_error": "PASS",
+    "invalid_credentials_rejected": "PASS",
+    "participant_admin_denied": "PASS",
+    "staff_admin_and_login_logout": "PASS",
+    "native_django_and_wpadmin_dependency_integration": {
+      "django": true,
+      "global": true,
+      "version": "3.7.1"
+    },
+    "native_bulk_selection": "PASS; real Django Actions API, no backend action submitted",
+    "real_action_link_posts_csrf": "PASS; request intercepted before backend; no contest action executed",
+    "native_profile_math": {
+      "status": "PASS",
+      "rendered_math_nodes": 3
+    },
+    "synthetic_native_statement_math": {
+      "status": "PASS",
+      "rendered_math_nodes": 6
+    },
+    "native_preview_loader_math": {
+      "status": "PASS",
+      "rendered_math_nodes": 3
+    },
+    "native_password_change": "PASS"
+  },
+  "scope": "native auth/admin/profile and synthetic statement/preview rendering only",
+  "chromium_version": "156.0.8078.4",
+  "status": "PASS",
+  "page_error_count": 0,
+  "static_errors": [],
+  "math_assets": {
+    "/static/vendor/mathjax-3.2.2/es5/tex-chtml.js": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff": 200,
+    "/static/vendor/mathjax-3.2.2/es5/input/tex/extensions/color.js": 200
+  },
+  "external_math_request_attempts": 0,
+  "all_external_requests_blocked_before_network": true,
+  "blocked_decoration_hosts": [
+    "www.gravatar.com"
+  ],
+  "no_backend_admin_action_executed": true,
+  "actual_import_judging_standings": "NOT TESTED",
+  "private_artifacts": "build/b01-followup-1/browser/20261028T201020662889Z"
+}

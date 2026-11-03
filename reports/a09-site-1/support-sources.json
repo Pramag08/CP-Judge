@@ -1,0 +1,60 @@
+{
+  "checked": "2026-10-28",
+  "sources": [
+    {
+      "title": "Django support",
+      "url": "https://www.djangoproject.com/download/",
+      "observation": "5.2.18 is current 5.2 LTS patch; extended support through April 2028. Django 4.2 EOL April 7 2026."
+    },
+    {
+      "title": "Django Python matrix",
+      "url": "https://docs.djangoproject.com/en/5.2/faq/install/",
+      "observation": "5.2 supports Python 3.10\u20133.14; latest maintained micro releases required; third-party libraries have their own compatibility."
+    },
+    {
+      "title": "Python lifecycle",
+      "url": "https://devguide.python.org/versions/",
+      "observation": "3.12 security maintenance through October 2028; host 3.14 need not be shared with the website."
+    },
+    {
+      "title": "Django MariaDB support",
+      "url": "https://docs.djangoproject.com/en/5.2/ref/databases/#mariadb-notes",
+      "observation": "MariaDB 10.5+ through shared MySQL backend; use maintained vendor series, strict mode and utf8mb4."
+    },
+    {
+      "title": "MariaDB maintenance",
+      "url": "https://mariadb.org/about/#maintenance-policy",
+      "observation": "11.4 community maintenance ends May 29 2029."
+    },
+    {
+      "title": "Node releases",
+      "url": "https://nodejs.org/en/about/previous-releases",
+      "observation": "Node 22 is supported LTS; do not reuse obsolete Node18/20 installation examples."
+    },
+    {
+      "title": "Redis OSS lifecycle",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/install/version-mgmt/",
+      "observation": "Redis 7.4 Extended release is listed GA, EOL December 1 2029; not Redis Software enterprise lifecycle."
+    },
+    {
+      "title": "Celery 5.6",
+      "url": "https://docs.celeryq.dev/en/stable/history/whatsnew-5.6.html",
+      "observation": "Python 3.12 appears in 5.6 supported versions; upstream site pins celery<6 due legacy settings removal."
+    },
+    {
+      "title": "Official installation source",
+      "url": "https://github.com/DMOJ/docs/blob/bfae0464438a1bb2570cde523837ed575c54197e/docs/site/installation.md",
+      "observation": "Operational topology and build steps inspected; dependency versions superseded by tested A09 locks."
+    },
+    {
+      "title": "Official website upgrade",
+      "url": "https://github.com/DMOJ/online-judge/tree/604d60cfd764bc708b04ffd75b715a5398b91f8b",
+      "observation": "Official django-52-upgrade feature branch; exact Git retrieval verified, unmerged into observed master."
+    },
+    {
+      "title": "Fork considered",
+      "url": "https://raw.githubusercontent.com/VNOI-Admin/OJ/master/requirements.txt",
+      "observation": "Still Django>=4.2,<5 when inspected; no reason to select this fork over official 5.2 work."
+    }
+  ]
+}

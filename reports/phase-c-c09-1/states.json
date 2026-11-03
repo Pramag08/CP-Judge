@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "retry_job": 24,
+  "correct_current_successful_attempt": 2,
+  "observed_actual_retry_states": [
+    "running",
+    "succeeded"
+  ],
+  "old_asset_denied": true,
+  "constructed_stale_states_denied_on_refresh": [
+    "queued",
+    "running",
+    "failed"
+  ]
+}

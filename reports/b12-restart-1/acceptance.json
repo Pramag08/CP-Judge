@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "new_submission_id": 12,
+  "executed_AC_cases": 103,
+  "worker_stored_browser_agree": true,
+  "standings_recomputed_correctly": "post-AC attempt adds no new solve or penalty; both 1 solved/2161 seconds/shared rank1",
+  "old_results_persisted": true,
+  "credentials_work": true,
+  "worker_reconnected": true,
+  "data_config_and_sandbox_preserved": true,
+  "interrupted_submission_recovery": "NOT TESTED: graceful stop with no in-progress work"
+}

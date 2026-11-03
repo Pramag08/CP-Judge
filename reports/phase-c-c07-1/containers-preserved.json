@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "container_id_image_configuration_and_start_times_unchanged": true,
+  "names": [
+    "cpjudge-b01-site",
+    "cpjudge-b03-worker",
+    "cpjudge-b01-db",
+    "cpjudge-b01-redis"
+  ]
+}

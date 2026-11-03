@@ -1,0 +1,29 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+56 objects imported automatically (use -v 2 for details).
+
+OPERATOR_RESULT={
+  "exists": true,
+  "created": true,
+  "problem_pk": 1,
+  "native_code": "pv000000000000000001",
+  "site_values": {
+    "time_limit": 2.0,
+    "memory_limit": 262144,
+    "short_circuit": false,
+    "points": 103.0,
+    "partial": true,
+    "is_public": false,
+    "is_manually_managed": true,
+    "description": "",
+    "name": "Pramag's Gaming Grid"
+  },
+  "allowed_languages": [
+    "CPP23"
+  ],
+  "language_limit_rows": 0,
+  "worker_online": true,
+  "native_worker_recognizes_problem": false,
+  "submission_count": 0,
+  "judging": "NOT TESTED"
+}

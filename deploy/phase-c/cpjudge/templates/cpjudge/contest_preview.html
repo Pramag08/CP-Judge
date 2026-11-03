@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block body %}
+{% if not preview or preview is undefined %}{% include "cpjudge/contest_tabs.html" %}{% endif %}
+{% if preview %}<p>Author preview / test mode — private, unranked. Test attempts are excluded from official standings and statistics.</p>{% endif %}
+<p>{{ contest.description }}</p><p>{{ state }} · Timezone: {{ zone }}</p>
+<p>Start: <time>{{ start }}</time> · End: <time>{{ end }}</time></p>
+<p>Server countdown: <span id="countdown">{{ seconds }}</span> seconds. Refresh to resynchronize; server time controls admission.</p>
+<h3>Rules</h3><ul>{% for rule in rules %}<li>{{ rule }}</li>{% endfor %}</ul>
+{% if not preview %}<p>Active official registrations: {{ registration_count }}. Your status: {{ entry.status if entry else 'not registered' }}.</p>
+{% if can_register %}<form method="post" action="{{ url('cpj_register',contest=contest.key) }}">{% csrf_token %}<button>{{ 'Enter contest' if entry and entry.status=='active' else 'Register' }}</button></form>{% endif %}
+{% if can_deregister %}<form method="post" action="{{ url('cpj_deregister',contest=contest.key) }}">{% csrf_token %}<button>Deregister</button></form>{% endif %}
+<p><a href="{{ url('contest_ranking',contest=contest.key) }}">Standings</a></p>{% endif %}
+{% if visible_problems %}<table class="table"><tr><th>Label</th><th>Problem</th><th>Limits / languages</th></tr>{% for cp in problems %}<tr><td>{{ cp.workflow_label.label }}</td><td><a href="{{ url('problem_detail',problem=cp.problem.code) }}">{{ cp.problem.name }}</a>{% if can_submit and not preview %} · <a href="{{ url('cpj_contest_submit',contest=contest.key,problem=cp.problem.code) }}">Submit</a>{% endif %}</td><td>{{ cp.problem.time_limit }}s / {{ cp.problem.memory_limit }} KiB · {% for lang in cp.problem.allowed_languages.all() %}{{ lang.key }} {% endfor %}{% if preview %} · <a href="{{ url('cpj_author_test',contest_key=contest.key,problem=cp.problem.code) }}">Private author test</a>{% endif %}</td></tr>{% endfor %}</table>{% else %}<p>Problems remain hidden before start; while running, register to access them.</p>{% endif %}
+<script>const loaded=performance.now(),remaining={{ seconds }};setInterval(()=>{document.getElementById('countdown').textContent=Math.max(0,remaining-Math.floor((performance.now()-loaded)/1000));},1000);</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "scope": "documentation revision only",
+  "command": "python3 -B reports/cpjudge-scope-1/verify_docs.py",
+  "exit_status": 0,
+  "backlog_task_ids": 112,
+  "selected_mvp_tasks": 91,
+  "dependency_graph_acyclic": true,
+  "mvp_dependency_closure_equals_h05_release_gate": true,
+  "mvp_has_no_deferred_or_optional_prerequisites": true,
+  "completed_task_rows_unchanged": [
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "A09"
+  ],
+  "deferred_task_rows": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F09",
+    "F12"
+  ],
+  "component_deferrals": [
+    "participant groups",
+    "general announcements",
+    "ratings",
+    "matchmaking",
+    "participant-format selector"
+  ],
+  "new_feature_tasks_not_started": [
+    "C15",
+    "C16",
+    "C17",
+    "E17"
+  ],
+  "document_local_links_resolve": true,
+  "git_diff_check_exit_status": 0,
+  "preexisting_files_checked": 218,
+  "preexisting_files_changed": [
+    "PROJECT_STATUS.md",
+    "SecureExam-Implementation-Plan.md"
+  ],
+  "all_other_preexisting_files_byte_identical": true,
+  "dependency_pins_and_previous_reports_unchanged": true,
+  "application_tests_run": false,
+  "dependency_installation_or_judging_run": false,
+  "commit_or_push": false,
+  "open_inputs": [
+    "official IIITD logo asset",
+    "exact account/device-session binding semantics"
+  ],
+  "documents_sha256": {
+    "SecureExam-Implementation-Plan.md": "2a5d3abd7de8f40f258277dc0c8c0404f4f0e7806dd86d1b567246ce6c3cb6d8",
+    "MVP_DEPENDENCIES.md": "0facf7455ea5f33a883da98ff4f979bf574c05ac360a16f305c2d9f04e3f6812",
+    "PROJECT_STATUS.md": "9aab660e9db9b0b1e23f52bcaa78684c568b605072c3254272d61830b0a4016f"
+  },
+  "baseline_snapshot": "build/cpjudge-scope-1"
+}

@@ -1,0 +1,1341 @@
+[
+  {
+    "action": "inspect",
+    "name": "existing-services",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--format",
+      "{{.Names}} {{.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:30:49.504285+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T193049396581Z/existing-services.log"
+  },
+  {
+    "action": "inspect",
+    "name": "current-site-image",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-site",
+      "--format",
+      "{{.Image}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:30:49.543892+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T193049396581Z/current-site-image.log"
+  },
+  {
+    "action": "inspect",
+    "name": "static-template-inspection",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:30:50.541152+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T193049396581Z/static-template-inspection.log"
+  },
+  {
+    "action": "bundle",
+    "name": "mathjax-locked-install",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/npm,dst=/work",
+      "--workdir",
+      "/work",
+      "--env",
+      "npm_config_cache=/tmp/npm-cache",
+      "node@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da",
+      "sh",
+      "-c",
+      "npm install --package-lock-only --ignore-scripts && npm ci --ignore-scripts"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:38:54.766505+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T193851776284Z/mathjax-locked-install.log"
+  },
+  {
+    "action": "bundle",
+    "name": "thin-overlay-image",
+    "argv": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "-t",
+      "cpjudge-b01-site:followup1",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/context"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:38:58.945239+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T193851776284Z/thin-overlay-image.log"
+  },
+  {
+    "action": "apply",
+    "name": "save-martor-mathjax.js",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/resources/martor-mathjax.js",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/runtime-before/resources/martor-mathjax.js"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:06.664377+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/save-martor-mathjax.js.log"
+  },
+  {
+    "action": "apply",
+    "name": "save-mathjax-load.html",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/templates/mathjax-load.html",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/runtime-before/templates/mathjax-load.html"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:06.709664+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/save-mathjax-load.html.log"
+  },
+  {
+    "action": "apply",
+    "name": "save-base_site.html",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/templates/admin/base_site.html",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/runtime-before/templates/admin/base_site.html"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:06.754525+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/save-base_site.html.log"
+  },
+  {
+    "action": "apply",
+    "name": "save-raw.html",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/templates/problem/raw.html",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/runtime-before/templates/problem/raw.html"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:06.793745+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/save-raw.html.log"
+  },
+  {
+    "action": "apply",
+    "name": "save-current-settings",
+    "argv": [
+      "docker",
+      "cp",
+      "cpjudge-b01-site:/app/dmoj/local_settings.py",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/runtime-before/local_settings.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:06.844546+00:00",
+    "log": "build/b01-followup-1/logs/20261028T194806614132Z/save-current-settings.log"
+  },
+  {
+    "action": "apply",
+    "name": "source-parent",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "from pathlib import Path; Path('/app/resources/vendor').mkdir(exist_ok=True)"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:07.020092+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/source-parent.log"
+  },
+  {
+    "action": "apply",
+    "name": "install-martor-mathjax.js",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/overlays/resources/martor-mathjax.js",
+      "cpjudge-b01-site:/app/resources/martor-mathjax.js"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:07.065841+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/install-martor-mathjax.js.log"
+  },
+  {
+    "action": "apply",
+    "name": "install-mathjax-load.html",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/overlays/templates/mathjax-load.html",
+      "cpjudge-b01-site:/app/templates/mathjax-load.html"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:07.114195+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/install-mathjax-load.html.log"
+  },
+  {
+    "action": "apply",
+    "name": "install-base_site.html",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/overlays/templates/admin/base_site.html",
+      "cpjudge-b01-site:/app/templates/admin/base_site.html"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:07.163448+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/install-base_site.html.log"
+  },
+  {
+    "action": "apply",
+    "name": "install-raw.html",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/overlays/templates/problem/raw.html",
+      "cpjudge-b01-site:/app/templates/problem/raw.html"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:07.210621+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/install-raw.html.log"
+  },
+  {
+    "action": "apply",
+    "name": "install-mathjax",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/context/mathjax",
+      "cpjudge-b01-site:/app/resources/vendor/mathjax-3.2.2"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:07.397162+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/install-mathjax.log"
+  },
+  {
+    "action": "apply",
+    "name": "copy-installer",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/install_followup.py",
+      "cpjudge-b01-site:/tmp/install_followup.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:07.440106+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/copy-installer.log"
+  },
+  {
+    "action": "apply",
+    "name": "source-layout",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/install_followup.py",
+      "source"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:07.626995+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/source-layout.log"
+  },
+  {
+    "action": "apply",
+    "name": "canonical-admin-bootstrap",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "root",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/install_followup.py",
+      "library"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:07.795648+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/canonical-admin-bootstrap.log"
+  },
+  {
+    "action": "apply",
+    "name": "collect-static-no-conflicts",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "collectstatic",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:09.210293+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/collect-static-no-conflicts.log"
+  },
+  {
+    "action": "apply",
+    "name": "stop-web-process-only",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:09.395960+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/stop-web-process-only.log"
+  },
+  {
+    "action": "apply",
+    "name": "restart-web-process",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-followup-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:48:09.497541+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T194806614132Z/restart-web-process.log"
+  },
+  {
+    "action": "diagnose",
+    "name": "followup-web-log",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b01-followup-http.log"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:50:11.769560+00:00",
+    "log": "build/b01-followup-1/logs/20261028T195011654726Z/followup-web-log.log"
+  },
+  {
+    "action": "finish-assets",
+    "name": "compile-local-js-catalogue",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "compilejsi18n"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:50:39.958206+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T195038802958Z/compile-local-js-catalogue.log"
+  },
+  {
+    "action": "finish-assets",
+    "name": "single-static-destinations",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:50:40.980814+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T195038802958Z/single-static-destinations.log"
+  },
+  {
+    "action": "fixtures",
+    "name": "private-fixture-credentials",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys; fd=os.open('/tmp/cpjudge-followup-fixtures.json',os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600); os.write(fd,sys.stdin.buffer.read()); os.close(fd)"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:55:06.941133+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T195506813983Z/private-fixture-credentials.log"
+  },
+  {
+    "action": "fixtures",
+    "name": "temporary-math-auth-fixtures",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "2026-10-28T19:55:09.109398+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T195506813983Z/temporary-math-auth-fixtures.log"
+  },
+  {
+    "action": "render-fixtures",
+    "name": "render-native-fixtures",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T19:59:02.152285+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T195900344880Z/render-native-fixtures.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-browser-change",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--memory",
+      "1g",
+      "--cpus",
+      "2",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "B01_FU_PHASE=change",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/followup_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/browser/20261028T200027214472Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "2026-10-28T20:01:14.905226+00:00",
+    "log": "build/b01-followup-1/logs/20261028T200027214472Z/real-browser-change.log"
+  },
+  {
+    "action": "refresh-preview",
+    "name": "preview-startup-promise",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/overlays/resources/martor-mathjax.js",
+      "cpjudge-b01-site:/app/resources/martor-mathjax.js"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:02:56.293837+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T200256239952Z/preview-startup-promise.log"
+  },
+  {
+    "action": "refresh-preview",
+    "name": "refresh-thin-overlay-image",
+    "argv": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "-t",
+      "cpjudge-b01-site:followup1",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/context"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:03:00.142202+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T200256239952Z/refresh-thin-overlay-image.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-browser-change",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--memory",
+      "1g",
+      "--cpus",
+      "2",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "B01_FU_PHASE=change",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/followup_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/browser/20261028T200403972260Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "2026-10-28T20:04:55.898800+00:00",
+    "log": "build/b01-followup-1/logs/20261028T200403972260Z/real-browser-change.log"
+  },
+  {
+    "action": "inspect-actions",
+    "name": "native-admin-action-initializers",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:05:29.339053+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T200528408485Z/native-admin-action-initializers.log"
+  },
+  {
+    "action": "refresh-admin",
+    "name": "admin-modern-api-installer",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/install_followup.py",
+      "cpjudge-b01-site:/tmp/install_followup.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:07:16.786262+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T200716754413Z/admin-modern-api-installer.log"
+  },
+  {
+    "action": "refresh-admin",
+    "name": "native-actions-initialization",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "root",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/install_followup.py",
+      "library"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:07:16.984000+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T200716754413Z/native-actions-initialization.log"
+  },
+  {
+    "action": "refresh-admin",
+    "name": "stop-web-process-only",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:07:17.135276+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T200716754413Z/stop-web-process-only.log"
+  },
+  {
+    "action": "refresh-admin",
+    "name": "restart-web-process",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-followup-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:07:17.253058+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T200716754413Z/restart-web-process.log"
+  },
+  {
+    "action": "refresh-admin",
+    "name": "refresh-admin-thin-image",
+    "argv": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "-t",
+      "cpjudge-b01-site:followup1",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/context"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:07:21.738554+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T200716754413Z/refresh-admin-thin-image.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-browser-change",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--memory",
+      "1g",
+      "--cpus",
+      "2",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "B01_FU_PHASE=change",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/followup_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/browser/20261028T200807248986Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "2026-10-28T20:08:21.155529+00:00",
+    "log": "build/b01-followup-1/logs/20261028T200807248986Z/real-browser-change.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-browser-change",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--memory",
+      "1g",
+      "--cpus",
+      "2",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "B01_FU_PHASE=change",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/followup_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/browser/20261028T201020662889Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:10:47.122008+00:00",
+    "log": "build/b01-followup-1/logs/20261028T201020662889Z/real-browser-change.log"
+  },
+  {
+    "action": "check-changed",
+    "name": "existing-accounts-and-changed",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:12:12.720630+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201211112629Z/existing-accounts-and-changed.log"
+  },
+  {
+    "action": "verify",
+    "name": "password-state-before",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201213029640Z/password-state-before.log",
+    "timestamp_utc": "2026-10-28T20:12:14.053245+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "dependency-check",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201213029640Z/dependency-check.log",
+    "timestamp_utc": "2026-10-28T20:12:14.561230+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "dependency-freeze",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-m",
+      "pip",
+      "freeze",
+      "--all"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201213029640Z/dependency-freeze.log",
+    "timestamp_utc": "2026-10-28T20:12:14.935604+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "system-check",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "check",
+      "--database",
+      "default"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201213029640Z/system-check.log",
+    "timestamp_utc": "2026-10-28T20:12:16.137998+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "migration-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201213029640Z/migration-consistency.log",
+    "timestamp_utc": "2026-10-28T20:12:17.413092+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "no-unapplied-migrations",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "migrate",
+      "--check"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201213029640Z/no-unapplied-migrations.log",
+    "timestamp_utc": "2026-10-28T20:12:18.669454+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "deployment-warnings",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "check",
+      "--deploy"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201213029640Z/deployment-warnings.log",
+    "timestamp_utc": "2026-10-28T20:12:19.824470+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "read-only-runtime-audit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201213029640Z/read-only-runtime-audit.log",
+    "timestamp_utc": "2026-10-28T20:12:20.999453+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "password-state-unchanged",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201213029640Z/password-state-unchanged.log",
+    "timestamp_utc": "2026-10-28T20:12:21.891099+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "ordinary-verification",
+    "argv": [
+      "env",
+      "CPJ_SITE_REPORT_DIR=/home/pramag/Documents/CP-Judge/reports/b01-followup-1",
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "verify"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:12:21.918919+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201212931748Z/ordinary-verification.log"
+  },
+  {
+    "action": "check-changed",
+    "name": "existing-accounts-and-changed",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:12:23.730670+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201222130658Z/existing-accounts-and-changed.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-browser-after-verify",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--memory",
+      "1g",
+      "--cpus",
+      "2",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "B01_FU_PHASE=after-verify",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/followup_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/browser/20261028T201223955631Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:12:31.179422+00:00",
+    "log": "build/b01-followup-1/logs/20261028T201223955631Z/real-browser-after-verify.log"
+  },
+  {
+    "action": "reset-accounts",
+    "name": "accounts-private-copy",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys; fd=os.open('/tmp/cpjudge-dev-accounts.json',os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600); os.write(fd,sys.stdin.buffer.read()); os.close(fd)"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201429257757Z/accounts-private-copy.log",
+    "timestamp_utc": "2026-10-28T20:14:29.367193+00:00"
+  },
+  {
+    "action": "reset-accounts",
+    "name": "explicit-development-account-reset",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201429257757Z/explicit-development-account-reset.log",
+    "timestamp_utc": "2026-10-28T20:14:31.386464+00:00"
+  },
+  {
+    "action": "reset-accounts",
+    "name": "clear-transient-account-file",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "from pathlib import Path; Path('/tmp/cpjudge-dev-accounts.json').unlink()"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b01-followup-1/logs/20261028T201429257757Z/clear-transient-account-file.log",
+    "timestamp_utc": "2026-10-28T20:14:31.541361+00:00"
+  },
+  {
+    "action": "reset-fixtures",
+    "name": "explicit-fixture-password-reset",
+    "argv": [
+      "env",
+      "CPJ_SITE_REPORT_DIR=/home/pramag/Documents/CP-Judge/reports/b01-followup-1",
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "reset-accounts",
+      "--account-file",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/private/accounts.json"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:14:31.569556+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201429178854Z/explicit-fixture-password-reset.log"
+  },
+  {
+    "action": "check-reset",
+    "name": "existing-accounts-and-reset",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:14:33.207591+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201431756816Z/existing-accounts-and-reset.log"
+  },
+  {
+    "action": "browser",
+    "name": "real-browser-after-reset",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--memory",
+      "1g",
+      "--cpus",
+      "2",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--env",
+      "B01_FU_PHASE=after-reset",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/followup_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/browser/20261028T201433448684Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:14:40.773833+00:00",
+    "log": "build/b01-followup-1/logs/20261028T201433448684Z/real-browser-after-reset.log"
+  },
+  {
+    "action": "cleanup",
+    "name": "existing-accounts-and-cleanup",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:14:42.046327+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201440988517Z/existing-accounts-and-cleanup.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "final-static-collection",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "collectstatic",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:17:12.558234+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201711522352Z/final-static-collection.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "unsilenced-system-warnings",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:17:13.949424+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201711522352Z/unsilenced-system-warnings.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "production-hardening-warnings",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "check",
+      "--deploy"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:17:15.178736+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201711522352Z/production-hardening-warnings.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "final-read-only-runtime-audit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:17:16.314387+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201711522352Z/final-read-only-runtime-audit.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "running-services",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-site",
+      "cpjudge-b01-db",
+      "cpjudge-b01-redis",
+      "--format",
+      "{{.Name}} {{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:17:16.363457+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T201711522352Z/running-services.log"
+  },
+  {
+    "action": "refresh-math",
+    "name": "math-startup-mathjax-load.html",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/overlays/templates/mathjax-load.html",
+      "cpjudge-b01-site:/app/templates/mathjax-load.html"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:20:45.385453+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202045342594Z/math-startup-mathjax-load.html.log"
+  },
+  {
+    "action": "refresh-math",
+    "name": "math-startup-raw.html",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/overlays/templates/problem/raw.html",
+      "cpjudge-b01-site:/app/templates/problem/raw.html"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:20:45.437531+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202045342594Z/math-startup-raw.html.log"
+  },
+  {
+    "action": "refresh-math",
+    "name": "refresh-math-thin-image",
+    "argv": [
+      "docker",
+      "build",
+      "--progress=plain",
+      "-t",
+      "cpjudge-b01-site:followup1",
+      "/home/pramag/Documents/CP-Judge/build/b01-followup-1/context"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:20:49.640650+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202045342594Z/refresh-math-thin-image.log"
+  },
+  {
+    "action": "fixtures-again",
+    "name": "private-fixture-credentials",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys; fd=os.open('/tmp/cpjudge-followup-fixtures.json',os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600); os.write(fd,sys.stdin.buffer.read()); os.close(fd)"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:20:50.062574+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202049912693Z/private-fixture-credentials.log"
+  },
+  {
+    "action": "fixtures-again",
+    "name": "temporary-math-auth-fixtures",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:20:52.853948+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202049912693Z/temporary-math-auth-fixtures.log"
+  },
+  {
+    "action": "math-browser",
+    "name": "real-browser-math-final",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--user",
+      "1000:973",
+      "--network",
+      "host",
+      "--memory",
+      "1g",
+      "--cpus",
+      "2",
+      "--shm-size",
+      "256m",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/private/accounts.json,dst=/run/accounts.json,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/deploy/site-local/followup_math_browser.py,dst=/tests/browser.py,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b01-followup-1/browser/20261028T202053138170Z,dst=/results",
+      "cpjudge-b01-browser:local1",
+      "python",
+      "/tests/browser.py"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:20:58.172028+00:00",
+    "log": "build/b01-followup-1/logs/20261028T202053138170Z/real-browser-math-final.log"
+  },
+  {
+    "action": "cleanup",
+    "name": "existing-accounts-and-cleanup",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:21:32.608211+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202131225014Z/existing-accounts-and-cleanup.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "final-static-collection",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "collectstatic",
+      "--noinput"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:21:33.962500+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202132852183Z/final-static-collection.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "unsilenced-system-warnings",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:21:35.364482+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202132852183Z/unsilenced-system-warnings.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "production-hardening-warnings",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "check",
+      "--deploy"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:21:36.636087+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202132852183Z/production-hardening-warnings.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "final-read-only-runtime-audit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:21:37.986402+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202132852183Z/final-read-only-runtime-audit.log"
+  },
+  {
+    "action": "final-audit",
+    "name": "running-services",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b01-site",
+      "cpjudge-b01-db",
+      "cpjudge-b01-redis",
+      "--format",
+      "{{.Name}} {{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "2026-10-28T20:21:38.017579+00:00",
+    "log": "reports/b01-followup-1/logs/20261028T202132852183Z/running-services.log"
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "command": "PCC_ROOT=/tmp/cp-judge-pcc PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m unittest discover -s tests -p test_conversion.py -v",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_conversion.py",
+      "-v"
+    ],
+    "exit": 0,
+    "log": "build/a02-converter-1/converter-tests.log",
+    "seconds": 0.419
+  },
+  {
+    "command": "PCC_ROOT=/tmp/cp-judge-pcc PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m tools.pipeline --output build/a02-converter-1/pipeline --real local-packages/gaming-grid.zip",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "-m",
+      "tools.pipeline",
+      "--output",
+      "build/a02-converter-1/pipeline",
+      "--real",
+      "local-packages/gaming-grid.zip"
+    ],
+    "exit": 0,
+    "log": "build/a02-converter-1/pipeline.log",
+    "seconds": 20.377
+  },
+  {
+    "command": "PCC_ROOT=/tmp/cp-judge-pcc PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m tools.verify_install build/a02-converter-1/pipeline/fixtures/groups.zip build/a02-converter-1/pipeline/converted-0",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "-m",
+      "tools.verify_install",
+      "build/a02-converter-1/pipeline/fixtures/groups.zip",
+      "build/a02-converter-1/pipeline/converted-0"
+    ],
+    "exit": 0,
+    "log": "build/a02-converter-1/preservation-groups.json",
+    "seconds": 0.056
+  },
+  {
+    "command": "PCC_ROOT=/tmp/cp-judge-pcc PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m tools.verify_install build/a02-converter-1/pipeline/fixtures/multiple.zip build/a02-converter-1/pipeline/converted-1",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "-m",
+      "tools.verify_install",
+      "build/a02-converter-1/pipeline/fixtures/multiple.zip",
+      "build/a02-converter-1/pipeline/converted-1"
+    ],
+    "exit": 0,
+    "log": "build/a02-converter-1/preservation-multiple.json",
+    "seconds": 0.055
+  },
+  {
+    "command": "PCC_ROOT=/tmp/cp-judge-pcc PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m tools.verify_install build/a02-converter-1/pipeline/fixtures/tokens.zip build/a02-converter-1/pipeline/converted-2",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "-m",
+      "tools.verify_install",
+      "build/a02-converter-1/pipeline/fixtures/tokens.zip",
+      "build/a02-converter-1/pipeline/converted-2"
+    ],
+    "exit": 0,
+    "log": "build/a02-converter-1/preservation-tokens.json",
+    "seconds": 0.057
+  },
+  {
+    "command": "PCC_ROOT=/tmp/cp-judge-pcc PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m tools.verify_install local-packages/gaming-grid.zip build/a02-converter-1/pipeline/converted-3",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "-m",
+      "tools.verify_install",
+      "local-packages/gaming-grid.zip",
+      "build/a02-converter-1/pipeline/converted-3"
+    ],
+    "exit": 0,
+    "log": "build/a02-converter-1/preservation-gaming-grid.json",
+    "seconds": 2.109
+  },
+  {
+    "command": "PCC_ROOT=/tmp/cp-judge-pcc .venv/bin/python -B build/a02-converter-1/verify_metadata.py > build/a02-converter-1/metadata-checks.json",
+    "argv": [
+      ".venv/bin/python",
+      "-B",
+      "build/a02-converter-1/verify_metadata.py"
+    ],
+    "exit": 0,
+    "log": "build/a02-converter-1/metadata-checks.json"
+  }
+]

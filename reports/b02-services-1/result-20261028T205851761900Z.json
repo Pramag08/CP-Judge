@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "celery_ping": true,
+  "native_noop_task_completed": true,
+  "websocket_event_exact_delivery": true,
+  "http_poll_exact_delivery": true,
+  "bridge_native_missing_abort_response": {
+    "name": "submission-received",
+    "judge-aborted": false
+  },
+  "judge_listener_tcp": true,
+  "judges": 0,
+  "judging": "NOT TESTED",
+  "browser_poll_cors": "NOT TESTED; native daemon has no cross-origin CORS headers"
+}

@@ -1,0 +1,10 @@
+# Thin overlay on the tested B01 website image: no Python/Sass rebuild or secrets.
+ARG SITE_BASE=cpjudge-b01-site:local1
+FROM ${SITE_BASE}
+COPY --chown=site:site overlays/ /app/
+COPY --chown=site:site mathjax/ /app/resources/vendor/mathjax-3.2.2/
+COPY install_followup.py /tmp/install_followup.py
+USER root
+RUN python /tmp/install_followup.py library && python /tmp/install_followup.py source
+USER site
+LABEL cpjudge.task=B01-followup cpjudge.mathjax.version=3.2.2

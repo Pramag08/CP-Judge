@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "final_focused_checks": 16,
+  "skips": 0,
+  "reused_c11_regressions_also_ran": 27,
+  "deployed_source_sha256": {
+    "identity.py": "0fb99689666daea250e2b26256d4fcb6f7e1155b2669f9d96f845e58f182c8ba",
+    "email_identity.py": "87c874b2c41f5382d3fc5ae4bb4c40ebce0fd022ea7f4403d7cf4305471c3aa4",
+    "views.py": "63480da55dd45f5095bda0eaafbccf19ca7669dbcb057cc94113ab8e05195960",
+    "models.py": "f7e601b9ca22bf339bd54568ccf9072e0e526353cd82ebe034e2c5e9fbedf431",
+    "sessions.py": "e7a4528b1427478091e4d16bccee669efd35b0bd4e6606ba53aedf1d4f6b0ffb",
+    "native.py": "83f831397899098f5be1f9de4bbd67be8ef19a8b0bcfdebae9228d3e3d364022",
+    "probes.py": "beeb0d1538fa196e78191de022096a25d4dcd59037fdbaa884e97337691be16a",
+    "bridge_readiness.py": "401c37db4bc57fdc0a69545e26aa045f2419af256e1ac57074e2256723fd903c",
+    "tasks.py": "00389d5078ccab7a8f125b199cdf4ec43f45008d6d18baccd0d9c27a4ec15841",
+    "imports.py": "0d97681f8a35d6b833b0c5f29cfda33ac8d6b7ab67e1460fc63dbd579047dfd4",
+    "admin.py": "3b65beb3be00951353928c8e4887a49b0e2c8f4105f18ce627f6c7585d58d2fa",
+    "urls.py": "89e01bdf497e773dd9eb97c5f679b4582060a6a1570e70e27145f5a6e049f9b1"
+  },
+  "migration_consistency": true,
+  "original_worker_problem_bytes_preserved": true,
+  "container_ids_images_configuration_mounts_sandbox_match_c12_baseline": true,
+  "worker_empty_dns_null_list_normalized_only": true,
+  "site_pin": "604d60cfd764bc708b04ffd75b715a5398b91f8b",
+  "worker_pin": "1245dc4158dbb9e906c4c103e1ea939e012ee79b",
+  "old_accounts_reset": false,
+  "email_only_cutover": "BLOCKED",
+  "phase_c_complete": false
+}

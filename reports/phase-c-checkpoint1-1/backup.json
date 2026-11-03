@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "private_backup": "build/phase-c-checkpoint1-1/20261029T164525916648Z-database.sql.gz",
+  "readback": "gzip full-byte round trip",
+  "database_restore": "NOT RUN"
+}

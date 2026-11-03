@@ -1,0 +1,3 @@
+"/cpjudge-a09-replay1-db" "cpjudge-a09-replay1-net" {} "" {"/var/lib/mysql":"rw,size=1073741824"} null null
+"/cpjudge-a09-replay1-redis" "cpjudge-a09-replay1-net" {} "" {"/data":"rw,size=67108864"} null null
+"/cpjudge-a09-replay1-site" "cpjudge-a09-replay1-net" {} "site" null ["ALL"] ["no-new-privileges"]

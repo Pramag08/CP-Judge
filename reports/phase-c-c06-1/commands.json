@@ -1,0 +1,295 @@
+[
+  {
+    "name": "stage-extraction-service",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182518154685Z-stage-extraction-service.log"
+  },
+  {
+    "name": "stage-existing-strict-adapter",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/compat/.",
+      "cpjudge-b01-site:/app/compat"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182518154685Z-stage-existing-strict-adapter.log"
+  },
+  {
+    "name": "stage-source-pins",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/dependencies.json",
+      "cpjudge-b01-site:/app/dependencies.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182518154685Z-stage-source-pins.log"
+  },
+  {
+    "name": "verify-existing-pcc-pin",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "git",
+      "-C",
+      "/tmp/cpj-pcc",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit_status": 128,
+    "private_log": "build/phase-c-c06-1/20261029T182518154685Z-verify-existing-pcc-pin.log"
+  },
+  {
+    "name": "stage-extraction-service",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182548207841Z-stage-extraction-service.log"
+  },
+  {
+    "name": "stage-existing-strict-adapter",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/compat/.",
+      "cpjudge-b01-site:/app/compat"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182548207841Z-stage-existing-strict-adapter.log"
+  },
+  {
+    "name": "stage-source-pins",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/dependencies.json",
+      "cpjudge-b01-site:/app/dependencies.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182548207841Z-stage-source-pins.log"
+  },
+  {
+    "name": "verify-existing-pcc-pin",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "git",
+      "-C",
+      "/tmp/cpj-pcc",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182548207841Z-verify-existing-pcc-pin.log"
+  },
+  {
+    "name": "extraction-service-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests.NativeExtractionTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 1,
+    "private_log": "build/phase-c-c06-1/20261029T182548386443Z-extraction-service-tests.log"
+  },
+  {
+    "name": "stage-extraction-service",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182613323336Z-stage-extraction-service.log"
+  },
+  {
+    "name": "stage-existing-strict-adapter",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/compat/.",
+      "cpjudge-b01-site:/app/compat"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182613323336Z-stage-existing-strict-adapter.log"
+  },
+  {
+    "name": "stage-source-pins",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/dependencies.json",
+      "cpjudge-b01-site:/app/dependencies.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182613323336Z-stage-source-pins.log"
+  },
+  {
+    "name": "verify-existing-pcc-pin",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "git",
+      "-C",
+      "/tmp/cpj-pcc",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182613323336Z-verify-existing-pcc-pin.log"
+  },
+  {
+    "name": "extraction-service-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests.NativeExtractionTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182613523224Z-extraction-service-tests.log"
+  },
+  {
+    "name": "actual-stored-http-upload-extraction",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182615312921Z-actual-stored-http-upload-extraction.log"
+  },
+  {
+    "name": "stage-extraction-service",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/deploy/phase-c/cpjudge/.",
+      "cpjudge-b01-site:/app/cpjudge"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182749201008Z-stage-extraction-service.log"
+  },
+  {
+    "name": "stage-existing-strict-adapter",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/compat/.",
+      "cpjudge-b01-site:/app/compat"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182749201008Z-stage-existing-strict-adapter.log"
+  },
+  {
+    "name": "stage-source-pins",
+    "argv": [
+      "docker",
+      "cp",
+      "/home/pramag/Documents/CP-Judge/dependencies.json",
+      "cpjudge-b01-site:/app/dependencies.json"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182749201008Z-stage-source-pins.log"
+  },
+  {
+    "name": "verify-existing-pcc-pin",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "cpjudge-b01-site",
+      "git",
+      "-C",
+      "/tmp/cpj-pcc",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182749201008Z-verify-existing-pcc-pin.log"
+  },
+  {
+    "name": "extraction-service-tests",
+    "argv": [
+      "docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "-e",
+      "PCC_ROOT=/tmp/cpj-pcc",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "test",
+      "cpjudge.integration_tests.NativeExtractionTests",
+      "cpjudge.integration_tests.NativeUploadHTTPTests",
+      "cpjudge.tests.UploadCoreTests",
+      "--settings=dmoj.cpj_integration_settings",
+      "--keepdb",
+      "--noinput",
+      "-v",
+      "2"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182749391310Z-extraction-service-tests.log"
+  },
+  {
+    "name": "actual-stored-http-upload-extraction",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "private_log": "build/phase-c-c06-1/20261029T182752335116Z-actual-stored-http-upload-extraction.log"
+  }
+]

@@ -1,0 +1,141 @@
+[
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "up"
+    ],
+    "exit_status": 1,
+    "observed": "Setup reached source patch/new migration/image; private host-file copy failed under dropped capabilities."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "verify"
+    ],
+    "exit_status": 1,
+    "observed": "Dependencies, 202 real migrations, consistency, accounts and static collection passed; host HTTP readiness failed on internal-only bridge."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "diagnose"
+    ],
+    "exit_status": 0,
+    "observed": "Django internal HTTP 200; published runtime port absent."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "network"
+    ],
+    "exit_status": 0,
+    "observed": "Internal Redis PONG and login HTTP 200; isolated Docker publishing cause."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "repair-port"
+    ],
+    "exit_status": 0,
+    "observed": "Added separate web bridge; actual 127.0.0.1:8000 publishing and host HTTP 200 verified."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "finish"
+    ],
+    "exit_status": 0,
+    "observed": "Saved baseline after successful host routing; no migration replay."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "browser"
+    ],
+    "exit_status": 0,
+    "observed": "First actual Chromium run against private site alias; all 9 required checks passed; known errors retained."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "browser-status"
+    ],
+    "exit_status": 0,
+    "observed": "Observed browser image pull while downloading; no service restart."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "observed": "Stopped only B01 services; retained development DB volume."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "observed": "Restarted B01 services/server with existing DB/accounts."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "browser"
+    ],
+    "exit_status": 0,
+    "observed": "Actual Chromium run against exact localhost URL after stop/start; all 9 required checks passed."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "finish"
+    ],
+    "exit_status": 0,
+    "observed": "Post-restart audit confirms all 202 migrations and stable callable choices under alternate zoneinfo inventory; no migration replay."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "deploy/site-local/manage.py",
+      "snapshot"
+    ],
+    "exit_status": 0,
+    "observed": "All 3 services running; local binding and Redis version observed."
+  },
+  {
+    "argv": [
+      "python3",
+      "-B",
+      "reports/b01-site-1/verify_evidence.py"
+    ],
+    "exit_status": 0,
+    "observed": "Final saved-evidence, credential-exclusion, 249-file preservation and unchanged independent-review hash audit; no stack rerun."
+  }
+]

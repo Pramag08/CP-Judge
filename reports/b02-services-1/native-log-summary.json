@@ -1,0 +1,7 @@
+{
+  "celery_native_task_received_and_succeeded": true,
+  "private_celery_log": "build/b02-services-1/native-celery.log",
+  "private_bridge_log": "build/b02-services-1/native-bridge.log",
+  "copy_commands_exit_status": 0,
+  "credentials_in_public_log": false
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "source_job": 24,
+  "checks": {
+    "native_statement_local_math_approved_image_notices_layout": true,
+    "duplicate_post_refresh_same_native_code": true,
+    "earlier_c10_version_remains_usable": true,
+    "submission_admission_and_hidden_data_denied": true,
+    "logged_out_participant_unrelated_author_denied": true
+  },
+  "native_code": "pv900000000000000002"
+}

@@ -1,0 +1,11 @@
+{
+  "acceptance": "PASS",
+  "job_id": 1,
+  "directory_mode": "0700",
+  "file_mode": "0600",
+  "owner_scoped": true,
+  "single_record_no_failed_request_artifacts": true,
+  "under_public_roots": false,
+  "import_status": "uploaded",
+  "attempt": 0
+}

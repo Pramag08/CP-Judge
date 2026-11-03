@@ -1,0 +1,5296 @@
+[
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T083836295899Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-10-29T08:38:36.541203+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T083836295899Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-10-29T08:38:36.748444+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T083836295899Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-10-29T08:38:37.004602+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T083836295899Z/http-start.log",
+    "timestamp_utc": "2026-10-29T08:38:38.214008+00:00"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T083840780450Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T083840780450Z/event-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T083840780450Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T083840780450Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T083836295899Z/b02-start.log",
+    "timestamp_utc": "2026-10-29T08:38:44.989959+00:00"
+  },
+  {
+    "action": "inspect",
+    "name": "image-identity",
+    "argv": [
+      "docker",
+      "image",
+      "inspect",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "--format",
+      "{{.Id}} {{json .Config.Labels}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T083849951478Z",
+    "log": "reports/b03-worker-1/logs/20261029T083849951478Z/image-identity.log"
+  },
+  {
+    "action": "inspect",
+    "name": "pinned-worker-source",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--entrypoint",
+      "/env/bin/python3",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "-c",
+      "from pathlib import Path\nfor n in ['main.py','judgeenv.py','executors/CPP23.py','executors/CPP20.py','executors/gcc_executor.py','cptbox/handlers.py','cptbox/isolate.py']:\n p=Path('/judge/dmoj')/n\n print('SOURCE',n);print(p.read_text() if p.exists() else 'ABSENT')\n"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T083849951478Z",
+    "log": "reports/b03-worker-1/logs/20261029T083849951478Z/pinned-worker-source.log"
+  },
+  {
+    "action": "inspect",
+    "name": "image-identity",
+    "argv": [
+      "docker",
+      "image",
+      "inspect",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "--format",
+      "{{.Id}} {{json .Config.Labels}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T084709735394Z",
+    "log": "reports/b03-worker-1/logs/20261029T084709735394Z/image-identity.log"
+  },
+  {
+    "action": "inspect",
+    "name": "pinned-worker-source",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--entrypoint",
+      "/env/bin/python3",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "-c",
+      "from pathlib import Path\nfor n in ['main.py','judgeenv.py','judge.py','executors/CPP23.py','executors/CPP20.py','executors/gcc_executor.py','executors/base_executor.py','executors/compiled_executor.py','executors/mixins.py','cptbox/handlers.py','cptbox/isolate.py']:\n p=Path('/judge/dmoj')/n\n print('SOURCE',n);print(p.read_text() if p.exists() else 'ABSENT')\nprint('DOCKER FLAG REFERENCES')\nfor p in Path('/judge/dmoj').rglob('*.py'):\n for i,l in enumerate(p.read_text().splitlines(),1):\n  if 'DMOJ_IN_DOCKER' in l:print(str(p),i,l)\n"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T084709735394Z",
+    "log": "reports/b03-worker-1/logs/20261029T084709735394Z/pinned-worker-source.log"
+  },
+  {
+    "action": "snapshot",
+    "name": "database-snapshot",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T084712809975Z",
+    "log": "reports/b03-worker-1/logs/20261029T084712809975Z/database-snapshot.log"
+  },
+  {
+    "action": "setup",
+    "name": "pinned-runtime-config",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--entrypoint",
+      "cat",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "/judge-runtime-paths.yml"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085326096427Z",
+    "log": "reports/b03-worker-1/logs/20261029T085326096427Z/pinned-runtime-config.log"
+  },
+  {
+    "action": "setup",
+    "name": "worker-uid",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--entrypoint",
+      "id",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "-u"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085326096427Z",
+    "log": "reports/b03-worker-1/logs/20261029T085326096427Z/worker-uid.log"
+  },
+  {
+    "action": "setup",
+    "name": "private-registration-copy",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys;fd=os.open('/tmp/b03-registration.json',os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600);os.write(fd,sys.stdin.buffer.read());os.close(fd)"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085326096427Z",
+    "log": "reports/b03-worker-1/logs/20261029T085326096427Z/private-registration-copy.log"
+  },
+  {
+    "action": "setup",
+    "name": "native-registration",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 1,
+    "timestamp_utc": "20261029T085326096427Z",
+    "log": "reports/b03-worker-1/logs/20261029T085326096427Z/native-registration.log"
+  },
+  {
+    "action": "inspect",
+    "name": "existing-cpp-language-mapping",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085446883056Z",
+    "log": "reports/b03-worker-1/logs/20261029T085446883056Z/existing-cpp-language-mapping.log"
+  },
+  {
+    "action": "inspect",
+    "name": "image-identity",
+    "argv": [
+      "docker",
+      "image",
+      "inspect",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "--format",
+      "{{.Id}} {{json .Config.Labels}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085446883056Z",
+    "log": "reports/b03-worker-1/logs/20261029T085446883056Z/image-identity.log"
+  },
+  {
+    "action": "inspect",
+    "name": "pinned-worker-source",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--entrypoint",
+      "/env/bin/python3",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "-c",
+      "from pathlib import Path\nfor n in ['main.py','judgeenv.py','judge.py','executors/CPP23.py','executors/CPP20.py','executors/gcc_executor.py','executors/base_executor.py','executors/compiled_executor.py','executors/mixins.py','cptbox/handlers.py','cptbox/isolate.py']:\n p=Path('/judge/dmoj')/n\n print('SOURCE',n);print(p.read_text() if p.exists() else 'ABSENT')\nprint('DOCKER FLAG REFERENCES')\nfor p in Path('/judge/dmoj').rglob('*.py'):\n for i,l in enumerate(p.read_text().splitlines(),1):\n  if 'DMOJ_IN_DOCKER' in l:print(str(p),i,l)\n"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085446883056Z",
+    "log": "reports/b03-worker-1/logs/20261029T085446883056Z/pinned-worker-source.log"
+  },
+  {
+    "action": "setup",
+    "name": "pinned-runtime-config",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--entrypoint",
+      "cat",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "/judge-runtime-paths.yml"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085535937902Z",
+    "log": "reports/b03-worker-1/logs/20261029T085535937902Z/pinned-runtime-config.log"
+  },
+  {
+    "action": "setup",
+    "name": "worker-uid",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--entrypoint",
+      "id",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "-u"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085535937902Z",
+    "log": "reports/b03-worker-1/logs/20261029T085535937902Z/worker-uid.log"
+  },
+  {
+    "action": "setup",
+    "name": "private-registration-copy",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "-c",
+      "import os,sys;from pathlib import Path;p=Path('/tmp/b03-registration.json');data=sys.stdin.buffer.read();assert not p.exists() or p.read_bytes()==data;fd=os.open(p,os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600);os.write(fd,data);os.close(fd)"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085535937902Z",
+    "log": "reports/b03-worker-1/logs/20261029T085535937902Z/private-registration-copy.log"
+  },
+  {
+    "action": "setup",
+    "name": "native-registration",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085535937902Z",
+    "log": "reports/b03-worker-1/logs/20261029T085535937902Z/native-registration.log"
+  },
+  {
+    "action": "setup",
+    "name": "worker-create",
+    "argv": [
+      "docker",
+      "create",
+      "--name",
+      "cpjudge-b03-worker",
+      "--label",
+      "cpjudge.task=B03",
+      "--network",
+      "container:cpjudge-b01-site",
+      "--read-only",
+      "--cap-drop",
+      "ALL",
+      "--cap-add",
+      "SYS_PTRACE",
+      "--security-opt",
+      "no-new-privileges",
+      "--pids-limit",
+      "128",
+      "--memory",
+      "2g",
+      "--cpus",
+      "2",
+      "--tmpfs",
+      "/tmp:rw,exec,nosuid,size=1g,mode=1777",
+      "--env",
+      "DMOJ_IN_DOCKER=",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b03-worker-1/private/config.yml,dst=/config.yml,readonly",
+      "--mount",
+      "type=bind,src=/home/pramag/Documents/CP-Judge/build/b03-worker-1/problems,dst=/problems,readonly",
+      "--entrypoint",
+      "/bin/bash",
+      "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/dmoj -c /config.yml --no-ansi --only-executors CPP11,CPP14,CPP17,CPP20,CPP23 127.0.0.1"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085535937902Z",
+    "log": "reports/b03-worker-1/logs/20261029T085535937902Z/worker-create.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085602738181Z",
+    "log": "reports/b03-worker-1/logs/20261029T085602738181Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085602738181Z",
+    "log": "reports/b03-worker-1/logs/20261029T085602738181Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085602738181Z",
+    "log": "reports/b03-worker-1/logs/20261029T085602738181Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085602738181Z",
+    "log": "reports/b03-worker-1/logs/20261029T085602738181Z/wait-native-online.log"
+  },
+  {
+    "action": "capabilities",
+    "name": "native-executor-capabilities",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085616957779Z",
+    "log": "reports/b03-worker-1/logs/20261029T085616957779Z/native-executor-capabilities.log"
+  },
+  {
+    "action": "verify",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085649243626Z",
+    "log": "reports/b03-worker-1/logs/20261029T085649243626Z/worker-container-status.log"
+  },
+  {
+    "action": "verify",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085649243626Z",
+    "log": "reports/b03-worker-1/logs/20261029T085649243626Z/native-worker-state.log"
+  },
+  {
+    "action": "capabilities",
+    "name": "native-executor-capabilities",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b03-worker",
+      "/bin/bash",
+      "-c",
+      ". ~judge/.profile; export HOME=/tmp; exec /env/bin/python3 -"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T085855085986Z",
+    "log": "reports/b03-worker-1/logs/20261029T085855085986Z/native-executor-capabilities.log"
+  },
+  {
+    "action": "verify",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108888708Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108888708Z/worker-container-status.log"
+  },
+  {
+    "action": "verify",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108888708Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108888708Z/native-worker-state.log"
+  },
+  {
+    "action": "acceptance",
+    "name": "acceptance-verify",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "verify"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/acceptance-verify.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090110004990Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090110004990Z/event-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090110004990Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090110004990Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090109802849Z/b02-start.log",
+    "timestamp_utc": "2026-10-29T09:01:14.002717+00:00"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090114059323Z",
+    "log": "reports/b03-worker-1/logs/20261029T090114059323Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090109802849Z/b03-start.log",
+    "timestamp_utc": "2026-10-29T09:01:14.807041+00:00"
+  },
+  {
+    "action": "acceptance",
+    "name": "idempotent-full-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/idempotent-full-start.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090114889814Z",
+    "log": "reports/b03-worker-1/logs/20261029T090114889814Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090114889814Z",
+    "log": "reports/b03-worker-1/logs/20261029T090114889814Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090114889814Z",
+    "log": "reports/b03-worker-1/logs/20261029T090114889814Z/wait-native-offline.log"
+  },
+  {
+    "action": "acceptance",
+    "name": "acceptance-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/acceptance-stop.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090136736121Z",
+    "log": "reports/b03-worker-1/logs/20261029T090136736121Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090136736121Z",
+    "log": "reports/b03-worker-1/logs/20261029T090136736121Z/native-worker-state.log"
+  },
+  {
+    "action": "acceptance",
+    "name": "acceptance-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/acceptance-status.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090137627290Z",
+    "log": "reports/b03-worker-1/logs/20261029T090137627290Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090137627290Z",
+    "log": "reports/b03-worker-1/logs/20261029T090137627290Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090137627290Z",
+    "log": "reports/b03-worker-1/logs/20261029T090137627290Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090137627290Z",
+    "log": "reports/b03-worker-1/logs/20261029T090137627290Z/wait-native-online.log"
+  },
+  {
+    "action": "acceptance",
+    "name": "acceptance-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/acceptance-start.log"
+  },
+  {
+    "action": "verify",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090142179817Z",
+    "log": "reports/b03-worker-1/logs/20261029T090142179817Z/worker-container-status.log"
+  },
+  {
+    "action": "verify",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090142179817Z",
+    "log": "reports/b03-worker-1/logs/20261029T090142179817Z/native-worker-state.log"
+  },
+  {
+    "action": "acceptance",
+    "name": "acceptance-verify",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "verify"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/acceptance-verify.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090143077534Z",
+    "log": "reports/b03-worker-1/logs/20261029T090143077534Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090143077534Z",
+    "log": "reports/b03-worker-1/logs/20261029T090143077534Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090143077534Z",
+    "log": "reports/b03-worker-1/logs/20261029T090143077534Z/wait-native-offline.log"
+  },
+  {
+    "action": "stop",
+    "name": "b03-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090143030356Z/b03-stop.log",
+    "timestamp_utc": "2026-10-29T09:02:04.784103+00:00"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090204822886Z/safe-bridge-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090204822886Z/native-processes-stop.log"
+  },
+  {
+    "action": "stop",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090204822886Z/event-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "b02-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090143030356Z/b02-stop.log",
+    "timestamp_utc": "2026-10-29T09:02:17.539834+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090143030356Z/stop-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-10-29T09:02:27.853723+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090143030356Z/stop-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-10-29T09:02:28.105253+00:00"
+  },
+  {
+    "action": "stop",
+    "name": "stop-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "stop",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090143030356Z/stop-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-10-29T09:02:28.320255+00:00"
+  },
+  {
+    "action": "acceptance",
+    "name": "full-lifecycle-stop",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "stop"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/full-lifecycle-stop.log"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-db",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-db"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090228481790Z/restart-cpjudge-b01-db.log",
+    "timestamp_utc": "2026-10-29T09:02:28.689734+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-redis",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-redis"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090228481790Z/restart-cpjudge-b01-redis.log",
+    "timestamp_utc": "2026-10-29T09:02:28.884343+00:00"
+  },
+  {
+    "action": "start",
+    "name": "restart-cpjudge-b01-site",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b01-site"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090228481790Z/restart-cpjudge-b01-site.log",
+    "timestamp_utc": "2026-10-29T09:02:29.130195+00:00"
+  },
+  {
+    "action": "start",
+    "name": "http-start",
+    "argv": [
+      "docker",
+      "exec",
+      "-d",
+      "cpjudge-b01-site",
+      "sh",
+      "-c",
+      "exec python manage.py runserver 0.0.0.0:8000 --noreload > /tmp/b01-http.log 2>&1"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090228481790Z/http-start.log",
+    "timestamp_utc": "2026-10-29T09:02:30.326711+00:00"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090231892694Z/safe-bridge-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b02-events"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090231892694Z/event-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090231892694Z/native-processes-start.log"
+  },
+  {
+    "action": "start",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090231892694Z/native-processes-status.log"
+  },
+  {
+    "action": "start",
+    "name": "b02-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090228481790Z/b02-start.log",
+    "timestamp_utc": "2026-10-29T09:02:36.068110+00:00"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090236116238Z",
+    "log": "reports/b03-worker-1/logs/20261029T090236116238Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090236116238Z",
+    "log": "reports/b03-worker-1/logs/20261029T090236116238Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090236116238Z",
+    "log": "reports/b03-worker-1/logs/20261029T090236116238Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090236116238Z",
+    "log": "reports/b03-worker-1/logs/20261029T090236116238Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "b03-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T090228481790Z/b03-start.log",
+    "timestamp_utc": "2026-10-29T09:02:40.859058+00:00"
+  },
+  {
+    "action": "acceptance",
+    "name": "full-lifecycle-start",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/manage.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/full-lifecycle-start.log"
+  },
+  {
+    "action": "verify",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090240927144Z",
+    "log": "reports/b03-worker-1/logs/20261029T090240927144Z/worker-container-status.log"
+  },
+  {
+    "action": "verify",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090240927144Z",
+    "log": "reports/b03-worker-1/logs/20261029T090240927144Z/native-worker-state.log"
+  },
+  {
+    "action": "acceptance",
+    "name": "acceptance-verify",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "verify"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/acceptance-verify.log"
+  },
+  {
+    "action": "preserve",
+    "name": "database-preserve",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090241890259Z",
+    "log": "reports/b03-worker-1/logs/20261029T090241890259Z/database-preserve.log"
+  },
+  {
+    "action": "acceptance",
+    "name": "acceptance-preserve",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "preserve"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090108823971Z",
+    "log": "reports/b03-worker-1/logs/20261029T090108823971Z/acceptance-preserve.log"
+  },
+  {
+    "action": "logs",
+    "name": "worker-log",
+    "argv": [
+      "docker",
+      "logs",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090606651312Z",
+    "log": "reports/b03-worker-1/logs/20261029T090606651312Z/worker-log.log"
+  },
+  {
+    "action": "logs",
+    "name": "bridge-log",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "cat",
+      "/tmp/b02-bridge.log"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090606651312Z",
+    "log": "reports/b03-worker-1/logs/20261029T090606651312Z/bridge-log.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090608865651Z",
+    "log": "reports/b03-worker-1/logs/20261029T090608865651Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090608865651Z",
+    "log": "reports/b03-worker-1/logs/20261029T090608865651Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T090608865651Z",
+    "log": "reports/b03-worker-1/logs/20261029T090608865651Z/wait-native-offline.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T091100548193Z",
+    "log": "reports/b03-worker-1/logs/20261029T091100548193Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T091100548193Z",
+    "log": "reports/b03-worker-1/logs/20261029T091100548193Z/native-worker-state.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T091103511043Z",
+    "log": "reports/b03-worker-1/logs/20261029T091103511043Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T091103511043Z",
+    "log": "reports/b03-worker-1/logs/20261029T091103511043Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T091103511043Z",
+    "log": "reports/b03-worker-1/logs/20261029T091103511043Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T091103511043Z",
+    "log": "reports/b03-worker-1/logs/20261029T091103511043Z/wait-native-online.log"
+  },
+  {
+    "action": "verify",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T091854428436Z",
+    "log": "reports/b03-worker-1/logs/20261029T091854428436Z/worker-container-status.log"
+  },
+  {
+    "action": "verify",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T091854428436Z",
+    "log": "reports/b03-worker-1/logs/20261029T091854428436Z/native-worker-state.log"
+  },
+  {
+    "action": "verify",
+    "name": "password-state-before",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T092256603118Z/password-state-before.log",
+    "timestamp_utc": "2026-10-29T09:22:57.378330+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "dependency-check",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T092256603118Z/dependency-check.log",
+    "timestamp_utc": "2026-10-29T09:22:57.805598+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "dependency-freeze",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "-m",
+      "pip",
+      "freeze",
+      "--all"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T092256603118Z/dependency-freeze.log",
+    "timestamp_utc": "2026-10-29T09:22:58.066528+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "system-check",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "check",
+      "--database",
+      "default"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T092256603118Z/system-check.log",
+    "timestamp_utc": "2026-10-29T09:22:58.997797+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "migration-consistency",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "makemigrations",
+      "--check",
+      "--dry-run"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T092256603118Z/migration-consistency.log",
+    "timestamp_utc": "2026-10-29T09:23:00.011925+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "no-unapplied-migrations",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "migrate",
+      "--check"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T092256603118Z/no-unapplied-migrations.log",
+    "timestamp_utc": "2026-10-29T09:23:00.985201+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "deployment-warnings",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "check",
+      "--deploy"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T092256603118Z/deployment-warnings.log",
+    "timestamp_utc": "2026-10-29T09:23:01.909993+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "read-only-runtime-audit",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T092256603118Z/read-only-runtime-audit.log",
+    "timestamp_utc": "2026-10-29T09:23:02.861277+00:00"
+  },
+  {
+    "action": "verify",
+    "name": "password-state-unchanged",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T092256603118Z/password-state-unchanged.log",
+    "timestamp_utc": "2026-10-29T09:23:03.553875+00:00"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T093155484142Z",
+    "log": "reports/b03-worker-1/logs/20261029T093155484142Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T093155484142Z",
+    "log": "reports/b03-worker-1/logs/20261029T093155484142Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "b03-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b03.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T093155425518Z/b03-status.log",
+    "timestamp_utc": "2026-10-29T09:31:56.582305+00:00"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "exec",
+      "cpjudge-b01-site",
+      "python",
+      "/tmp/b02_process.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T093156629295Z/native-processes-status.log"
+  },
+  {
+    "action": "status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b02-events",
+      "--format",
+      "{{.State.Running}} {{json .NetworkSettings.Ports}}"
+    ],
+    "exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T093156629295Z/event-status.log"
+  },
+  {
+    "action": "status",
+    "name": "b02-status",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/b02.py",
+      "status"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T093155425518Z/b02-status.log",
+    "timestamp_utc": "2026-10-29T09:31:56.781979+00:00"
+  },
+  {
+    "action": "status",
+    "name": "services-status",
+    "argv": [
+      "docker",
+      "ps",
+      "-a",
+      "--filter",
+      "label=cpjudge.task=B01",
+      "--format",
+      "{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ],
+    "exit_status": 0,
+    "expected_exit_status": 0,
+    "log": "reports/b03-worker-1/logs/20261029T093155425518Z/services-status.log",
+    "timestamp_utc": "2026-10-29T09:31:56.830247+00:00"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T123323352196Z",
+    "log": "reports/b03-worker-1/logs/20261029T123323352196Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T123323352196Z",
+    "log": "reports/b03-worker-1/logs/20261029T123323352196Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T135145107341Z",
+    "log": "reports/b03-worker-1/logs/20261029T135145107341Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T135145107341Z",
+    "log": "reports/b03-worker-1/logs/20261029T135145107341Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T143844872058Z",
+    "log": "reports/b03-worker-1/logs/20261029T143844872058Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T143844872058Z",
+    "log": "reports/b03-worker-1/logs/20261029T143844872058Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T174518810820Z",
+    "log": "reports/b03-worker-1/logs/20261029T174518810820Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261029T174518810820Z",
+    "log": "reports/b03-worker-1/logs/20261029T174518810820Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T075840854925Z",
+    "log": "reports/b03-worker-1/logs/20261030T075840854925Z/worker-container-status.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T075943691074Z",
+    "log": "reports/b03-worker-1/logs/20261030T075943691074Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T075943691074Z",
+    "log": "reports/b03-worker-1/logs/20261030T075943691074Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T075943691074Z",
+    "log": "reports/b03-worker-1/logs/20261030T075943691074Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T075943691074Z",
+    "log": "reports/b03-worker-1/logs/20261030T075943691074Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T075943691074Z",
+    "log": "reports/b03-worker-1/logs/20261030T075943691074Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T080635100957Z",
+    "log": "reports/b03-worker-1/logs/20261030T080635100957Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T080635100957Z",
+    "log": "reports/b03-worker-1/logs/20261030T080635100957Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T080635100957Z",
+    "log": "reports/b03-worker-1/logs/20261030T080635100957Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T080640563108Z",
+    "log": "reports/b03-worker-1/logs/20261030T080640563108Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T080640563108Z",
+    "log": "reports/b03-worker-1/logs/20261030T080640563108Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T080640563108Z",
+    "log": "reports/b03-worker-1/logs/20261030T080640563108Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T080640563108Z",
+    "log": "reports/b03-worker-1/logs/20261030T080640563108Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T080640563108Z",
+    "log": "reports/b03-worker-1/logs/20261030T080640563108Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T081431114357Z",
+    "log": "reports/b03-worker-1/logs/20261030T081431114357Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T081431114357Z",
+    "log": "reports/b03-worker-1/logs/20261030T081431114357Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T081431114357Z",
+    "log": "reports/b03-worker-1/logs/20261030T081431114357Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T081436385618Z",
+    "log": "reports/b03-worker-1/logs/20261030T081436385618Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T081436385618Z",
+    "log": "reports/b03-worker-1/logs/20261030T081436385618Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T081436385618Z",
+    "log": "reports/b03-worker-1/logs/20261030T081436385618Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T081436385618Z",
+    "log": "reports/b03-worker-1/logs/20261030T081436385618Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T081436385618Z",
+    "log": "reports/b03-worker-1/logs/20261030T081436385618Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T091135864168Z",
+    "log": "reports/b03-worker-1/logs/20261030T091135864168Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T091135864168Z",
+    "log": "reports/b03-worker-1/logs/20261030T091135864168Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T091135864168Z",
+    "log": "reports/b03-worker-1/logs/20261030T091135864168Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T091141208422Z",
+    "log": "reports/b03-worker-1/logs/20261030T091141208422Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T091141208422Z",
+    "log": "reports/b03-worker-1/logs/20261030T091141208422Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T091141208422Z",
+    "log": "reports/b03-worker-1/logs/20261030T091141208422Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T091141208422Z",
+    "log": "reports/b03-worker-1/logs/20261030T091141208422Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T091141208422Z",
+    "log": "reports/b03-worker-1/logs/20261030T091141208422Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T092706957726Z",
+    "log": "reports/b03-worker-1/logs/20261030T092706957726Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T092706957726Z",
+    "log": "reports/b03-worker-1/logs/20261030T092706957726Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T092706957726Z",
+    "log": "reports/b03-worker-1/logs/20261030T092706957726Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T092712494062Z",
+    "log": "reports/b03-worker-1/logs/20261030T092712494062Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T092712494062Z",
+    "log": "reports/b03-worker-1/logs/20261030T092712494062Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T092712494062Z",
+    "log": "reports/b03-worker-1/logs/20261030T092712494062Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T092712494062Z",
+    "log": "reports/b03-worker-1/logs/20261030T092712494062Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T092712494062Z",
+    "log": "reports/b03-worker-1/logs/20261030T092712494062Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T094418819086Z",
+    "log": "reports/b03-worker-1/logs/20261030T094418819086Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T094418819086Z",
+    "log": "reports/b03-worker-1/logs/20261030T094418819086Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T094418819086Z",
+    "log": "reports/b03-worker-1/logs/20261030T094418819086Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T094424485123Z",
+    "log": "reports/b03-worker-1/logs/20261030T094424485123Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T094424485123Z",
+    "log": "reports/b03-worker-1/logs/20261030T094424485123Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T094424485123Z",
+    "log": "reports/b03-worker-1/logs/20261030T094424485123Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T094424485123Z",
+    "log": "reports/b03-worker-1/logs/20261030T094424485123Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T094424485123Z",
+    "log": "reports/b03-worker-1/logs/20261030T094424485123Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T103721272577Z",
+    "log": "reports/b03-worker-1/logs/20261030T103721272577Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T103721272577Z",
+    "log": "reports/b03-worker-1/logs/20261030T103721272577Z/native-worker-state.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T103738629270Z",
+    "log": "reports/b03-worker-1/logs/20261030T103738629270Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T103738629270Z",
+    "log": "reports/b03-worker-1/logs/20261030T103738629270Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T110654017436Z",
+    "log": "reports/b03-worker-1/logs/20261030T110654017436Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T110654017436Z",
+    "log": "reports/b03-worker-1/logs/20261030T110654017436Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T110654017436Z",
+    "log": "reports/b03-worker-1/logs/20261030T110654017436Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T110658618734Z",
+    "log": "reports/b03-worker-1/logs/20261030T110658618734Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T110658618734Z",
+    "log": "reports/b03-worker-1/logs/20261030T110658618734Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T110658618734Z",
+    "log": "reports/b03-worker-1/logs/20261030T110658618734Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T110658618734Z",
+    "log": "reports/b03-worker-1/logs/20261030T110658618734Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T110658618734Z",
+    "log": "reports/b03-worker-1/logs/20261030T110658618734Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111533591146Z",
+    "log": "reports/b03-worker-1/logs/20261030T111533591146Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111533591146Z",
+    "log": "reports/b03-worker-1/logs/20261030T111533591146Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111533591146Z",
+    "log": "reports/b03-worker-1/logs/20261030T111533591146Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111540087081Z",
+    "log": "reports/b03-worker-1/logs/20261030T111540087081Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111540087081Z",
+    "log": "reports/b03-worker-1/logs/20261030T111540087081Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111540087081Z",
+    "log": "reports/b03-worker-1/logs/20261030T111540087081Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111540087081Z",
+    "log": "reports/b03-worker-1/logs/20261030T111540087081Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111540087081Z",
+    "log": "reports/b03-worker-1/logs/20261030T111540087081Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111823679108Z",
+    "log": "reports/b03-worker-1/logs/20261030T111823679108Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111823679108Z",
+    "log": "reports/b03-worker-1/logs/20261030T111823679108Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111823679108Z",
+    "log": "reports/b03-worker-1/logs/20261030T111823679108Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111829722119Z",
+    "log": "reports/b03-worker-1/logs/20261030T111829722119Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111829722119Z",
+    "log": "reports/b03-worker-1/logs/20261030T111829722119Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111829722119Z",
+    "log": "reports/b03-worker-1/logs/20261030T111829722119Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111829722119Z",
+    "log": "reports/b03-worker-1/logs/20261030T111829722119Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111829722119Z",
+    "log": "reports/b03-worker-1/logs/20261030T111829722119Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111953495655Z",
+    "log": "reports/b03-worker-1/logs/20261030T111953495655Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111953495655Z",
+    "log": "reports/b03-worker-1/logs/20261030T111953495655Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111953495655Z",
+    "log": "reports/b03-worker-1/logs/20261030T111953495655Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111959548510Z",
+    "log": "reports/b03-worker-1/logs/20261030T111959548510Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111959548510Z",
+    "log": "reports/b03-worker-1/logs/20261030T111959548510Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111959548510Z",
+    "log": "reports/b03-worker-1/logs/20261030T111959548510Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111959548510Z",
+    "log": "reports/b03-worker-1/logs/20261030T111959548510Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T111959548510Z",
+    "log": "reports/b03-worker-1/logs/20261030T111959548510Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T120830948720Z",
+    "log": "reports/b03-worker-1/logs/20261030T120830948720Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T120830948720Z",
+    "log": "reports/b03-worker-1/logs/20261030T120830948720Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T120830948720Z",
+    "log": "reports/b03-worker-1/logs/20261030T120830948720Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T120837440498Z",
+    "log": "reports/b03-worker-1/logs/20261030T120837440498Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T120837440498Z",
+    "log": "reports/b03-worker-1/logs/20261030T120837440498Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T120837440498Z",
+    "log": "reports/b03-worker-1/logs/20261030T120837440498Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T120837440498Z",
+    "log": "reports/b03-worker-1/logs/20261030T120837440498Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T120837440498Z",
+    "log": "reports/b03-worker-1/logs/20261030T120837440498Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T133549557638Z",
+    "log": "reports/b03-worker-1/logs/20261030T133549557638Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T133549557638Z",
+    "log": "reports/b03-worker-1/logs/20261030T133549557638Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T133549557638Z",
+    "log": "reports/b03-worker-1/logs/20261030T133549557638Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T133555455050Z",
+    "log": "reports/b03-worker-1/logs/20261030T133555455050Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T133555455050Z",
+    "log": "reports/b03-worker-1/logs/20261030T133555455050Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T133555455050Z",
+    "log": "reports/b03-worker-1/logs/20261030T133555455050Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T133555455050Z",
+    "log": "reports/b03-worker-1/logs/20261030T133555455050Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261030T133555455050Z",
+    "log": "reports/b03-worker-1/logs/20261030T133555455050Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T080843732393Z",
+    "log": "reports/b03-worker-1/logs/20261102T080843732393Z/worker-container-status.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T080909972791Z",
+    "log": "reports/b03-worker-1/logs/20261102T080909972791Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T080909972791Z",
+    "log": "reports/b03-worker-1/logs/20261102T080909972791Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T080909972791Z",
+    "log": "reports/b03-worker-1/logs/20261102T080909972791Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T080909972791Z",
+    "log": "reports/b03-worker-1/logs/20261102T080909972791Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T080909972791Z",
+    "log": "reports/b03-worker-1/logs/20261102T080909972791Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T081113922689Z",
+    "log": "reports/b03-worker-1/logs/20261102T081113922689Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T081113922689Z",
+    "log": "reports/b03-worker-1/logs/20261102T081113922689Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T081113922689Z",
+    "log": "reports/b03-worker-1/logs/20261102T081113922689Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082027237924Z",
+    "log": "reports/b03-worker-1/logs/20261102T082027237924Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082027237924Z",
+    "log": "reports/b03-worker-1/logs/20261102T082027237924Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082027237924Z",
+    "log": "reports/b03-worker-1/logs/20261102T082027237924Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082027237924Z",
+    "log": "reports/b03-worker-1/logs/20261102T082027237924Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082027237924Z",
+    "log": "reports/b03-worker-1/logs/20261102T082027237924Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082403804646Z",
+    "log": "reports/b03-worker-1/logs/20261102T082403804646Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082403804646Z",
+    "log": "reports/b03-worker-1/logs/20261102T082403804646Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082403804646Z",
+    "log": "reports/b03-worker-1/logs/20261102T082403804646Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082434485492Z",
+    "log": "reports/b03-worker-1/logs/20261102T082434485492Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082434485492Z",
+    "log": "reports/b03-worker-1/logs/20261102T082434485492Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082434485492Z",
+    "log": "reports/b03-worker-1/logs/20261102T082434485492Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082434485492Z",
+    "log": "reports/b03-worker-1/logs/20261102T082434485492Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082434485492Z",
+    "log": "reports/b03-worker-1/logs/20261102T082434485492Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082958344613Z",
+    "log": "reports/b03-worker-1/logs/20261102T082958344613Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082958344613Z",
+    "log": "reports/b03-worker-1/logs/20261102T082958344613Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T082958344613Z",
+    "log": "reports/b03-worker-1/logs/20261102T082958344613Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T083536474953Z",
+    "log": "reports/b03-worker-1/logs/20261102T083536474953Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T083536474953Z",
+    "log": "reports/b03-worker-1/logs/20261102T083536474953Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T083536474953Z",
+    "log": "reports/b03-worker-1/logs/20261102T083536474953Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T083536474953Z",
+    "log": "reports/b03-worker-1/logs/20261102T083536474953Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T083536474953Z",
+    "log": "reports/b03-worker-1/logs/20261102T083536474953Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T083939280726Z",
+    "log": "reports/b03-worker-1/logs/20261102T083939280726Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T083939280726Z",
+    "log": "reports/b03-worker-1/logs/20261102T083939280726Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T110031007801Z",
+    "log": "reports/b03-worker-1/logs/20261102T110031007801Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T110031007801Z",
+    "log": "reports/b03-worker-1/logs/20261102T110031007801Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143016249249Z",
+    "log": "reports/b03-worker-1/logs/20261102T143016249249Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143016249249Z",
+    "log": "reports/b03-worker-1/logs/20261102T143016249249Z/native-worker-state.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143120924327Z",
+    "log": "reports/b03-worker-1/logs/20261102T143120924327Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143120924327Z",
+    "log": "reports/b03-worker-1/logs/20261102T143120924327Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143120924327Z",
+    "log": "reports/b03-worker-1/logs/20261102T143120924327Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143406254585Z",
+    "log": "reports/b03-worker-1/logs/20261102T143406254585Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143406254585Z",
+    "log": "reports/b03-worker-1/logs/20261102T143406254585Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143406254585Z",
+    "log": "reports/b03-worker-1/logs/20261102T143406254585Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143406254585Z",
+    "log": "reports/b03-worker-1/logs/20261102T143406254585Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T143406254585Z",
+    "log": "reports/b03-worker-1/logs/20261102T143406254585Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T144431761684Z",
+    "log": "reports/b03-worker-1/logs/20261102T144431761684Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T144431761684Z",
+    "log": "reports/b03-worker-1/logs/20261102T144431761684Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T144431761684Z",
+    "log": "reports/b03-worker-1/logs/20261102T144431761684Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T144600203516Z",
+    "log": "reports/b03-worker-1/logs/20261102T144600203516Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T144600203516Z",
+    "log": "reports/b03-worker-1/logs/20261102T144600203516Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T144600203516Z",
+    "log": "reports/b03-worker-1/logs/20261102T144600203516Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T144600203516Z",
+    "log": "reports/b03-worker-1/logs/20261102T144600203516Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T144600203516Z",
+    "log": "reports/b03-worker-1/logs/20261102T144600203516Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T145833320727Z",
+    "log": "reports/b03-worker-1/logs/20261102T145833320727Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T145833320727Z",
+    "log": "reports/b03-worker-1/logs/20261102T145833320727Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T145834620469Z",
+    "log": "reports/b03-worker-1/logs/20261102T145834620469Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T145834620469Z",
+    "log": "reports/b03-worker-1/logs/20261102T145834620469Z/native-worker-state.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150021233325Z",
+    "log": "reports/b03-worker-1/logs/20261102T150021233325Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150021233325Z",
+    "log": "reports/b03-worker-1/logs/20261102T150021233325Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150022497741Z",
+    "log": "reports/b03-worker-1/logs/20261102T150022497741Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150022497741Z",
+    "log": "reports/b03-worker-1/logs/20261102T150022497741Z/native-worker-state.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150430547307Z",
+    "log": "reports/b03-worker-1/logs/20261102T150430547307Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150430547307Z",
+    "log": "reports/b03-worker-1/logs/20261102T150430547307Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150438109966Z",
+    "log": "reports/b03-worker-1/logs/20261102T150438109966Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150438109966Z",
+    "log": "reports/b03-worker-1/logs/20261102T150438109966Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150815784069Z",
+    "log": "reports/b03-worker-1/logs/20261102T150815784069Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T150815784069Z",
+    "log": "reports/b03-worker-1/logs/20261102T150815784069Z/native-worker-state.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T164707422504Z",
+    "log": "reports/b03-worker-1/logs/20261102T164707422504Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T164707422504Z",
+    "log": "reports/b03-worker-1/logs/20261102T164707422504Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T164708779822Z",
+    "log": "reports/b03-worker-1/logs/20261102T164708779822Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T164708779822Z",
+    "log": "reports/b03-worker-1/logs/20261102T164708779822Z/native-worker-state.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T164808441802Z",
+    "log": "reports/b03-worker-1/logs/20261102T164808441802Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T164808441802Z",
+    "log": "reports/b03-worker-1/logs/20261102T164808441802Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T171856957257Z",
+    "log": "reports/b03-worker-1/logs/20261102T171856957257Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T171856957257Z",
+    "log": "reports/b03-worker-1/logs/20261102T171856957257Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T171901445522Z",
+    "log": "reports/b03-worker-1/logs/20261102T171901445522Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T171901445522Z",
+    "log": "reports/b03-worker-1/logs/20261102T171901445522Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172721071332Z",
+    "log": "reports/b03-worker-1/logs/20261102T172721071332Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172721071332Z",
+    "log": "reports/b03-worker-1/logs/20261102T172721071332Z/native-worker-state.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172824914153Z",
+    "log": "reports/b03-worker-1/logs/20261102T172824914153Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172824914153Z",
+    "log": "reports/b03-worker-1/logs/20261102T172824914153Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172824914153Z",
+    "log": "reports/b03-worker-1/logs/20261102T172824914153Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172904412706Z",
+    "log": "reports/b03-worker-1/logs/20261102T172904412706Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172904412706Z",
+    "log": "reports/b03-worker-1/logs/20261102T172904412706Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172904412706Z",
+    "log": "reports/b03-worker-1/logs/20261102T172904412706Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172904412706Z",
+    "log": "reports/b03-worker-1/logs/20261102T172904412706Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172916551993Z",
+    "log": "reports/b03-worker-1/logs/20261102T172916551993Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T172916551993Z",
+    "log": "reports/b03-worker-1/logs/20261102T172916551993Z/native-worker-state.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T173422756355Z",
+    "log": "reports/b03-worker-1/logs/20261102T173422756355Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T173422756355Z",
+    "log": "reports/b03-worker-1/logs/20261102T173422756355Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T173424206936Z",
+    "log": "reports/b03-worker-1/logs/20261102T173424206936Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T173424206936Z",
+    "log": "reports/b03-worker-1/logs/20261102T173424206936Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T173430761050Z",
+    "log": "reports/b03-worker-1/logs/20261102T173430761050Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T173430761050Z",
+    "log": "reports/b03-worker-1/logs/20261102T173430761050Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T183912454700Z",
+    "log": "reports/b03-worker-1/logs/20261102T183912454700Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T183912454700Z",
+    "log": "reports/b03-worker-1/logs/20261102T183912454700Z/native-worker-state.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop-idle-guard",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T183920456201Z",
+    "log": "reports/b03-worker-1/logs/20261102T183920456201Z/worker-stop-idle-guard.log"
+  },
+  {
+    "action": "stop",
+    "name": "worker-stop",
+    "argv": [
+      "docker",
+      "stop",
+      "--signal",
+      "SIGINT",
+      "--time",
+      "20",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T183920456201Z",
+    "log": "reports/b03-worker-1/logs/20261102T183920456201Z/worker-stop.log"
+  },
+  {
+    "action": "stop",
+    "name": "wait-native-offline",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T183920456201Z",
+    "log": "reports/b03-worker-1/logs/20261102T183920456201Z/wait-native-offline.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T184045013153Z",
+    "log": "reports/b03-worker-1/logs/20261102T184045013153Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T184045013153Z",
+    "log": "reports/b03-worker-1/logs/20261102T184045013153Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T184045013153Z",
+    "log": "reports/b03-worker-1/logs/20261102T184045013153Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T184045013153Z",
+    "log": "reports/b03-worker-1/logs/20261102T184045013153Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T184045013153Z",
+    "log": "reports/b03-worker-1/logs/20261102T184045013153Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T184100360034Z",
+    "log": "reports/b03-worker-1/logs/20261102T184100360034Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T184100360034Z",
+    "log": "reports/b03-worker-1/logs/20261102T184100360034Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T184418259769Z",
+    "log": "reports/b03-worker-1/logs/20261102T184418259769Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T184418259769Z",
+    "log": "reports/b03-worker-1/logs/20261102T184418259769Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T190750542443Z",
+    "log": "reports/b03-worker-1/logs/20261102T190750542443Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T190750542443Z",
+    "log": "reports/b03-worker-1/logs/20261102T190750542443Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T191925657735Z",
+    "log": "reports/b03-worker-1/logs/20261102T191925657735Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T191925657735Z",
+    "log": "reports/b03-worker-1/logs/20261102T191925657735Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T193239648155Z",
+    "log": "reports/b03-worker-1/logs/20261102T193239648155Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261102T193239648155Z",
+    "log": "reports/b03-worker-1/logs/20261102T193239648155Z/native-worker-state.log"
+  },
+  {
+    "action": "start",
+    "name": "worker-start",
+    "argv": [
+      "docker",
+      "start",
+      "cpjudge-b03-worker"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T093858765971Z",
+    "log": "reports/b03-worker-1/logs/20261103T093858765971Z/worker-start.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T093858765971Z",
+    "log": "reports/b03-worker-1/logs/20261103T093858765971Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T093858765971Z",
+    "log": "reports/b03-worker-1/logs/20261103T093858765971Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T093858765971Z",
+    "log": "reports/b03-worker-1/logs/20261103T093858765971Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T093858765971Z",
+    "log": "reports/b03-worker-1/logs/20261103T093858765971Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T093912228169Z",
+    "log": "reports/b03-worker-1/logs/20261103T093912228169Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T093912228169Z",
+    "log": "reports/b03-worker-1/logs/20261103T093912228169Z/native-worker-state.log"
+  },
+  {
+    "action": "start",
+    "name": "wait-native-online",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T094128738608Z",
+    "log": "reports/b03-worker-1/logs/20261103T094128738608Z/wait-native-online.log"
+  },
+  {
+    "action": "start",
+    "name": "ensure-private-readiness-verifier",
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/pramag/Documents/CP-Judge/deploy/site-local/worker_readiness.py",
+      "start"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T094128738608Z",
+    "log": "reports/b03-worker-1/logs/20261103T094128738608Z/ensure-private-readiness-verifier.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T094130878471Z",
+    "log": "reports/b03-worker-1/logs/20261103T094130878471Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T094130878471Z",
+    "log": "reports/b03-worker-1/logs/20261103T094130878471Z/native-worker-state.log"
+  },
+  {
+    "action": "status",
+    "name": "worker-container-status",
+    "argv": [
+      "docker",
+      "inspect",
+      "cpjudge-b03-worker",
+      "--format",
+      "{{.State.Status}} {{.Image}}"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T094133609879Z",
+    "log": "reports/b03-worker-1/logs/20261103T094133609879Z/worker-container-status.log"
+  },
+  {
+    "action": "status",
+    "name": "native-worker-state",
+    "argv": [
+      "docker",
+      "exec",
+      "-i",
+      "cpjudge-b01-site",
+      "python",
+      "manage.py",
+      "shell"
+    ],
+    "exit_status": 0,
+    "timestamp_utc": "20261103T094133609879Z",
+    "log": "reports/b03-worker-1/logs/20261103T094133609879Z/native-worker-state.log"
+  }
+]

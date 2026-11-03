@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "phase": "before",
+  "checks": {
+    "legacy_login_after_mapping_still_worked": true,
+    "two_pre_cutover_sessions_saved_privately": true,
+    "no_forced_change": true
+  }
+}

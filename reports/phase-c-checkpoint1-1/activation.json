@@ -1,0 +1,7 @@
+{
+  "status": "ACTIVATED; live acceptance pending",
+  "test_settings_used": false,
+  "hashing": "Django PBKDF2 default work factor",
+  "daemon": "stopped; lifecycle prevents restart",
+  "rollback": "c1.py rollback; additive schema retained"
+}

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "command": "python3 -B reports/b01-site-1/verify_evidence.py",
+  "exit_status": 0,
+  "baseline_files_checked": 249,
+  "changed_existing_files": [
+    "AGENTS.md",
+    "PROJECT_STATUS.md",
+    "SecureExam-Implementation-Plan.md"
+  ],
+  "all_other_previous_files_byte_identical": true,
+  "files_scanned_for_private_credentials": 83,
+  "credentials_found": false,
+  "independent_review": "PASS",
+  "reviewed_source_and_evidence_hashes_still_match": true,
+  "actual_browser_report": "browser-20261028T190727231770Z.json",
+  "git_diff_check_exit_status": 0,
+  "website_to_judge": "NOT TESTED",
+  "b02_started": false
+}

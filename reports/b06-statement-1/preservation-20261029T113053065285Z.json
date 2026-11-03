@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "models": 88,
+  "precise_baseline": true,
+  "expected_presentation_and_native_activity_fields": {
+    "judge.profile": [
+      "last_access"
+    ],
+    "judge.problem": [
+      "description"
+    ],
+    "auth.user": [
+      "last_login"
+    ]
+  },
+  "passwords_existing_domain_and_worker_auth_unchanged": true,
+  "private_access": true,
+  "judging": "NOT TESTED"
+}

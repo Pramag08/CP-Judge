@@ -1,0 +1,46 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 504B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/cpjudge-b01-site:local1
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/cpjudge-b01-site:local1@sha256:1151551384467c7dabb452dabfd52d05c94162e7203e1734f01b5b817db1edaf
+#4 resolve docker.io/library/cpjudge-b01-site:local1@sha256:1151551384467c7dabb452dabfd52d05c94162e7203e1734f01b5b817db1edaf 0.0s done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 10.55kB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/5] COPY --chown=site:site overlays/ /app/
+#6 CACHED
+
+#7 [3/5] COPY --chown=site:site mathjax/ /app/resources/vendor/mathjax-3.2.2/
+#7 CACHED
+
+#8 [4/5] COPY install_followup.py /tmp/install_followup.py
+#8 DONE 0.1s
+
+#9 [5/5] RUN python /tmp/install_followup.py library && python /tmp/install_followup.py source
+#9 0.473 Applied bounded library overlay; original CSS retained by namespace and WPadmin shim retained outside static finders.
+#9 0.551 Applied bounded source overlay; original CSS retained by namespace and WPadmin shim retained outside static finders.
+#9 DONE 0.6s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 0.3s done
+#10 exporting manifest sha256:681183e4efe1b0fcdc9d4fac2fe157151666f9fd9898b8066700b35fdb6d35f3 0.0s done
+#10 exporting config sha256:a6b66d5c260964fc1d1dd00f57b16dafa1e7bf8d62900a6c781e2ac3432c0059 0.0s done
+#10 exporting attestation manifest sha256:25ca457daaa2b36caa423925b166cdc1815c2bbbe763ab1bb856be58dc096032 0.0s done
+#10 exporting manifest list sha256:5f68b7388d469814e169e17e783d2f81ea8bf40f9a7592f8d5c411a50bdd5e41
+#10 exporting manifest list sha256:5f68b7388d469814e169e17e783d2f81ea8bf40f9a7592f8d5c411a50bdd5e41 0.0s done
+#10 naming to docker.io/library/cpjudge-b01-site:followup1 done
+#10 unpacking to docker.io/library/cpjudge-b01-site:followup1 0.1s done
+#10 DONE 0.6s

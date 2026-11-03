@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "task": "B03 only",
+  "independent_review": "PASS",
+  "worker": "cpjudge-local-worker",
+  "executors": [
+    "CPP11",
+    "CPP14",
+    "CPP17",
+    "CPP20",
+    "CPP23"
+  ],
+  "compiler_full_version": "16.2.0",
+  "native_advertised_version": "16",
+  "running": [
+    "website",
+    "MariaDB",
+    "Redis",
+    "native bridge",
+    "Celery worker",
+    "event daemon",
+    "native judge worker"
+  ],
+  "native_authenticated_registration": true,
+  "idle_disconnect_reconnect": "PASS",
+  "full_lifecycle_restart": "PASS",
+  "idempotent_start": "same worker container/PID",
+  "final_graceful_stop": "SIGINT, exit0, not OOMKilled",
+  "submitted_program_socket_config_denials": "PASS for all five executors",
+  "existing_data_and_pins": "PRESERVED",
+  "ordinary_verification_passwords": "UNCHANGED",
+  "new_languages": 0,
+  "installed_problems": 0,
+  "website_judging": "NOT TESTED",
+  "B04": "NOT STARTED",
+  "blockers": [],
+  "limitations": [
+    "idle-only lifecycle; refuses in-progress jobs/unknown judges",
+    "no in-flight recovery/load or remote TLS proof",
+    "B02 browser HTTP polling fallback/replay and production limits retained"
+  ],
+  "commit_or_push": false
+}

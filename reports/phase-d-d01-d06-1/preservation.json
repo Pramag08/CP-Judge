@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "existing_non_session_rows": 2098,
+  "model_sets": 68,
+  "original_accounts_hashes_submissions_imports_audits_contests_preserved": true,
+  "allowed_differences": "login/access/session-generation and judge liveness only",
+  "new_contest": "d01local1",
+  "native_label": "Q",
+  "native_order": 2,
+  "timezone": "Asia/Kolkata",
+  "utc_start_hour_minute": [
+    4,
+    30
+  ],
+  "utc_end_hour_minute": [
+    6,
+    30
+  ],
+  "native_limits": [
+    0.5,
+    65536
+  ],
+  "version_still_private": true,
+  "no_new_judging": true
+}

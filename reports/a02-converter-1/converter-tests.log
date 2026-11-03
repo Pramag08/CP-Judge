@@ -1,0 +1,11 @@
+test_limit_rounding_and_fixture_reproducibility (test_conversion.ConversionTests.test_limit_rounding_and_fixture_reproducibility) ... ok
+test_missing_answer_and_duplicate_zip_member (test_conversion.ConversionTests.test_missing_answer_and_duplicate_zip_member) ... ok
+test_refuses_existing_output (test_conversion.ConversionTests.test_refuses_existing_output) ... ok
+test_rejects_lossy_features (test_conversion.ConversionTests.test_rejects_lossy_features) ... ok
+test_rejects_traversal_duplicate_symlink_and_entity (test_conversion.ConversionTests.test_rejects_traversal_duplicate_symlink_and_entity) ... ok
+test_three_fixtures_preserve_data_limits_checker_and_groups (test_conversion.ConversionTests.test_three_fixtures_preserve_data_limits_checker_and_groups) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.340s
+
+OK

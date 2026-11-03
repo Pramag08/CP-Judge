@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+<p>Private installed version {{ version.code }}. Probes do not enable participant access or enter official standings. Each job expires after 120 seconds; native problem time and memory limits apply.</p>
+<h3>Register a known solution</h3>
+<form method="post">{% csrf_token %}{{ form.as_p() }}<button type="submit">Save private solution</button></form>
+<h3>Test a known solution</h3>
+{% for solution in solutions %}
+<form method="post" action="{{ url('cpj_probe_run',version_id=version.pk) }}">{% csrf_token %}
+<input type="hidden" name="digest" value="{{ version.digest }}"><input type="hidden" name="solution" value="{{ solution.pk }}"><input type="hidden" name="solution_digest" value="{{ solution.sha256 }}">
+<button type="submit">Test {{ solution.name }} ({{ solution.runtime.key }})</button></form>
+{% endfor %}
+<table class="table" id="probes"><tr><th>Probe</th><th>Solution/runtime</th><th>Status</th><th>Executed cases</th><th>Verified</th></tr>
+{% for probe in probes %}<tr data-probe="{{ probe.id }}"><td>{{ probe.id }}</td><td>{{ probe.solution }} / {{ probe.runtime }}</td><td class="probe-status">{{ probe.status }} {{ probe.diagnostic }}</td><td>{{ probe.cases }}</td><td>{{ 'Yes' if probe.verified else 'No' }}</td></tr>{% endfor %}</table>
+<p>Refresh for pending results. Changed version, source or runtime invalidates the receipt. Raw compiler and checker output stays with the trusted operator.</p>
+{% endblock %}

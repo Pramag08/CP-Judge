@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "email_only_cutover": "BLOCKED",
+  "checks": {
+    "existing_password_email_login": true,
+    "case_whitespace_normalization": true,
+    "wrong_password_rejected": true,
+    "replacement_invalidates_old_session": true,
+    "email_correction_admin_only": true,
+    "participant_roster_admin_privacy": true
+  }
+}

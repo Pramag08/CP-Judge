@@ -1,0 +1,10 @@
+{
+  "name": "cpjudge-native-events",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "ws": "8.22.0",
+    "simplesets": "1.0.0",
+    "qu": "0.1.0"
+  }
+}

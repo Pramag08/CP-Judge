@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "original_model_sets": 64,
+  "original_non_session_rows_checked": 1900,
+  "original_account_ids_hashes_emails_and_college_history_preserved": true,
+  "prior_submissions_case_rows_and_official_standings_preserved": true,
+  "normal_native_activity_fields": {
+    "judge.judge": [
+      "load",
+      "ping",
+      "start_time"
+    ],
+    "judge.profile": [
+      "last_access"
+    ],
+    "judge.problem": [
+      "ac_rate"
+    ],
+    "auth.user": [
+      "last_login"
+    ],
+    "cpjudge.identity": [
+      "generation"
+    ]
+  },
+  "expired_contest_profile_pointers_restored": true,
+  "actual_private_probes": 2,
+  "synthetic_external_accounts_added": 1,
+  "synthetic_fixture_resets": 2,
+  "participant_submission": {
+    "id": 19,
+    "participation_mode": "native virtual practice in ended fixture contest",
+    "verdict": "AC",
+    "cases": 103,
+    "callback_cases": 103,
+    "native_dispatches": 1,
+    "runtime": "CPP23",
+    "time_seconds": 2,
+    "memory_kib": 262144
+  },
+  "email_only_cutover": false,
+  "missing_email_blockers": 4,
+  "current_worker_online": true,
+  "native_runtime_values_preserved_across_reconnect_ids": true,
+  "no_active_jobs": true,
+  "same_import_probe_participant_standings_integration": "NOT TESTED; probe version differs from preserved participant fixture"
+}

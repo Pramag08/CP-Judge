@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "models_checked": 63,
+  "existing_rows_checked": 1776,
+  "account_passwords_college_ids_submissions_results_keys_preserved": true,
+  "allowed_changes": "native login/access/session generation and judge liveness only"
+}

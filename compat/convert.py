@@ -17,6 +17,14 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with Path(path).open('rb') as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b''):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 class Unsupported(ValueError):
     pass
 
@@ -42,24 +50,12 @@ def safe_path(root, name):
     return root.joinpath(*p.parts)
 
 
-def extract(archive, target):
-    with zipfile.ZipFile(archive) as z:
-        if len(z.infolist()) > 10000 or sum(i.file_size for i in z.infolist()) > 1024**3:
-            raise Unsupported('archive exceeds entry/size budget')
-        seen = set()
-        for i in z.infolist():
-            p = safe_path(target, i.filename)
-            if p in seen or (i.external_attr >> 16) & 0o170000 == 0o120000:
-                raise Unsupported('duplicate member or symlink')
-            seen.add(p)
-            if i.file_size > 256 * 1024**2:
-                raise Unsupported('archive member exceeds 256 MiB')
-            if i.is_dir():
-                p.mkdir(parents=True, exist_ok=True)
-            else:
-                p.parent.mkdir(parents=True, exist_ok=True)
-                with z.open(i) as src, p.open('wb') as dst:
-                    shutil.copyfileobj(src, dst)
+def extract(archive, target, limits=None):
+    from compat.archive import ArchiveRejected, extract_zip
+    try:
+        return extract_zip(archive, target, limits)
+    except ArchiveRejected as exc:
+        raise Unsupported(str(exc)) from exc
 
 
 def required(root, name):
@@ -224,7 +220,7 @@ def convert(archive, output):
                     z.write(f, f.relative_to(install))
         manifest['issues'] = [vars(i) for i in bundle.issues]
         manifest['status'] = 'PASS: conversion only; judging NOT TESTED'
-        manifest['source_sha256'] = hashlib.sha256(Path(archive).read_bytes()).hexdigest()
+        manifest['source_sha256'] = file_sha256(archive)
         manifest['dependencies'] = json.loads((ROOT / 'dependencies.json').read_text())
         (staged / 'conversion-report.json').write_text(json.dumps(manifest, indent=2) + '\n')
         shutil.copytree(staged, output)

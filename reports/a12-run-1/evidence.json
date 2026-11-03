@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "scope": "source identity, AST inspection and isolated unsupported-route checks",
+  "pins": {
+    "site": "604d60cfd764bc708b04ffd75b715a5398b91f8b",
+    "worker": "1245dc4158dbb9e906c4c103e1ea939e012ee79b"
+  },
+  "source_sha256": {
+    "site/judge/judgeapi.py": "0b4bc0e2df4bf28cf3bd264d61a3859d2181235206d40eff0b429f5ec579cc4a",
+    "site/judge/bridge/django_handler.py": "8397c07be81d008ca55d335d4c64ce01438c174eccf2bc9b22317f6d4c6f303e",
+    "worker/dmoj/packet.py": "eeca1447e6817ce0085cc1b696a8bd9afc832768e4135405ee6832490e9c5d79",
+    "worker/dmoj/control.py": "d9baabb1f5722c278a230a1bb0dd9560e978979e8d1baa86db2b78d1b6d8d22b",
+    "worker/dmoj/judge.py": "831cc3dce51cabda2e28fd5def3feabb572c635fa562ac8ed25211606e50da79",
+    "worker/dmoj/commands/submit.py": "b3e25d7c4426ca80817464c684378749865e7e9d7dd9713dfd8626d282b4f7f6",
+    "worker/dmoj/graders/standard.py": "c61de4e7c9105ab830e9c630b0428930823e4765ec390ee618ab44451a24bb5e",
+    "worker/dmoj/executors/base_executor.py": "0ad1c74b1f449543d8bc2aa753057e3336dc9fc040e316902ccfc71c1d34de91",
+    "worker/dmoj/executors/compiled_executor.py": "c2255761af9d9c94f1c8f442e3c6f3d041989296ea563396753aed3a77fc0035",
+    "worker/dmoj/utils/communicate.py": "cd14996ebb41065da7d6c9f88c7b3d5e4f783cc3b453481078c06739169f1ab0",
+    "worker/dmoj/error.py": "a4d523ae712dd2bd0e456fd1cbd1ab55ca1cb00fb7ecf1a6fa2184f77f6a87d5"
+  },
+  "native_receive_packet_names": [
+    "disconnect",
+    "get-current-submission",
+    "ping",
+    "submission-request",
+    "terminate-submission"
+  ],
+  "unknown_custom_input_packet": "logged unknown; no dispatch",
+  "control_post_run": 404,
+  "native_TracedPopen_arguments": [
+    "address_grace",
+    "cpu_affinity",
+    "cwd",
+    "data_grace",
+    "env",
+    "executable",
+    "fsize",
+    "memory",
+    "nproc",
+    "personality",
+    "security",
+    "stderr",
+    "stdin",
+    "stdout",
+    "time",
+    "wall_time"
+  ],
+  "custom_runner_implemented": false,
+  "actual_custom_input_execution": "NOT RUN",
+  "sandbox_compatibility": "NOT TESTED",
+  "official_judging": "NOT RUN",
+  "source_modified": false
+}

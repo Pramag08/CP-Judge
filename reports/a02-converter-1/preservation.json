@@ -1,0 +1,42 @@
+{
+  "groups": {
+    "status": "PASS",
+    "tests_verified": 3,
+    "statement_assets_verified": 1,
+    "sample_tests_verified": 1,
+    "checker_bytes": "PASS",
+    "limits_and_groups": "PASS (configuration only)",
+    "judging": "NOT TESTED",
+    "source_sha256": "3258fda5917d9e4eb7ca1c2ba2823038945bfb3915a5f79a57cbebf65b263de5"
+  },
+  "multiple": {
+    "status": "PASS",
+    "tests_verified": 3,
+    "statement_assets_verified": 1,
+    "sample_tests_verified": 1,
+    "checker_bytes": "PASS",
+    "limits_and_groups": "PASS (configuration only)",
+    "judging": "NOT TESTED",
+    "source_sha256": "8ed5e0d0cf3bc3a4c7f78362d3fe545f6191d8b340625cab95ac218098c8e816"
+  },
+  "tokens": {
+    "status": "PASS",
+    "tests_verified": 3,
+    "statement_assets_verified": 1,
+    "sample_tests_verified": 1,
+    "checker_bytes": "PASS",
+    "limits_and_groups": "PASS (configuration only)",
+    "judging": "NOT TESTED",
+    "source_sha256": "3cb8d2dc537ff146a9e535e7bfcfd1b117345abfc5f56c2758688c76e08ab6d4"
+  },
+  "gaming-grid": {
+    "status": "PASS",
+    "tests_verified": 103,
+    "statement_assets_verified": 15,
+    "sample_tests_verified": 1,
+    "checker_bytes": "PASS",
+    "limits_and_groups": "PASS (configuration only)",
+    "judging": "NOT TESTED",
+    "source_sha256": "260abce9770f2c88cf8c93271cbfcbd6cea3f028c6eda536ad16256731d8a769"
+  }
+}

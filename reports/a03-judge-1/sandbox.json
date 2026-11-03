@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "container_id": "ea84e12927cba55a7d9ccb2bf8b59eabfb8809d8ca629b91ea9fe66d9eadeacf",
+  "requested_image": "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+  "container_image_content_id": "sha256:d8d9dded026cd9d2d4a4f41136b99fa935935f8638cab314ad0a0e567ebcf0e8",
+  "user": "judge",
+  "network_mode": "none",
+  "read_only_root": true,
+  "cap_drop": [
+    "ALL"
+  ],
+  "cap_add": [
+    "CAP_SYS_PTRACE"
+  ],
+  "security_opt": [
+    "no-new-privileges"
+  ],
+  "pids_limit": 128,
+  "memory_bytes": 2147483648,
+  "nano_cpus": 2000000000,
+  "tmpfs": {
+    "/tmp": "rw,exec,nosuid,size=1g,mode=1777"
+  },
+  "mounts": [
+    {
+      "destination": "/config.yml",
+      "type": "bind",
+      "read_only": true
+    },
+    {
+      "destination": "/problems",
+      "type": "bind",
+      "read_only": true
+    }
+  ],
+  "source": "docker inspect of live A03 container; raw inspection kept private"
+}

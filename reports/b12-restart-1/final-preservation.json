@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "mode": "final",
+  "models": 88,
+  "preserved_submissions": 11,
+  "preserved_testcase_rows": 927,
+  "expected_new_rows": {
+    "judge.submission": 1,
+    "judge.submissionsource": 1,
+    "judge.submissiontestcase": 103,
+    "judge.contestsubmission": 1
+  },
+  "existing_credentials_hashes_contest_submissions_all_case_rows_and_standings_preserved": true,
+  "allowed_activity": "native login/access and native problem statistics; bridge-owned transient state excluded",
+  "interrupted_submission_recovery": "NOT TESTED; no in-progress jobs during stop"
+}

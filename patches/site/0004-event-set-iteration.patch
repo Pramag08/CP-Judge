@@ -1,0 +1,15 @@
+--- a/websocket/daemon.js
++++ b/websocket/daemon.js
+@@ -33,10 +33,10 @@
+     this.push(message);
+     if (this.length > max_queue)
+         this.shift();
+-    followers.each(function (client) {
++    followers.array().forEach(function (client) {
+         client.got_message(message);
+     });
+-    pollers.each(function (request) {
++    pollers.array().forEach(function (request) {
+         request.got_message(message);
+     });
+     return message.id;

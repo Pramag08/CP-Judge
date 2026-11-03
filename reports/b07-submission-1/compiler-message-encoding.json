@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "native_SQL_message_sha256": "4c2c6272bea8ca6092ffd55409c2fadc252659a155883dd26f0d63354105f745",
+  "collected_private_log_sha256": "4e8a86e26c78889735bda94aedd564997dca363ad2ff977b8c78582b1f706a55",
+  "LF_canonical_sha256": "4e8a86e26c78889735bda94aedd564997dca363ad2ff977b8c78582b1f706a55",
+  "difference": "newline encoding only; subprocess text mode collects LF",
+  "warning_count": 3,
+  "lines": 10,
+  "command": ".venv/bin/python -B reports/b07-submission-1/verify_compiler_messages.py",
+  "exit_status": 0
+}

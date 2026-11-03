@@ -1,0 +1,18 @@
+{
+  "name": "cpjudge-local-worker",
+  "online": false,
+  "executors": [
+    "CPP11",
+    "CPP14",
+    "CPP17",
+    "CPP20",
+    "CPP23"
+  ],
+  "runtime_versions": [],
+  "problems": 0,
+  "start_time": "2026-10-29 09:02:39.101434+00:00",
+  "worker_container_exit_code": 0,
+  "worker_oom_killed": false,
+  "native_website_status_matches": true,
+  "website_status_http": 200
+}

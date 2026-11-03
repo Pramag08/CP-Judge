@@ -1,0 +1,41 @@
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:98: RuntimeWarning: Accessing the database during app initialization is discouraged. To fix this warning, avoid executing queries in AppConfig.ready() or when your app modules are imported.
+  warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+ 
+ -------------- a09@site v5.6.3 (recovery)
+--- ***** ----- 
+-- ******* ---- Linux-7.0.0-38-generic-x86_64-with-glibc2.36 2026-10-28 17:19:25
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         dmoj:0x7665f1793bf0
+- ** ---------- .> transport:   redis://redis:6379/1
+- ** ---------- .> results:     redis://redis:6379/2
+- *** --- * --- .> concurrency: 1 (solo)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . judge.tasks.contest.rescore_contest
+  . judge.tasks.contest.run_moss
+  . judge.tasks.demo.failure
+  . judge.tasks.demo.progress
+  . judge.tasks.demo.success
+  . judge.tasks.submission.rejudge_problem_filter
+  . judge.tasks.submission.rescore_problem
+  . judge.tasks.user.prepare_user_data
+
+[2026-10-28 17:19:25,673: WARNING/MainProcess] /usr/local/lib/python3.12/site-packages/celery/app/utils.py:203: CDeprecationWarning: 
+    The 'CELERY_RESULT_BACKEND' setting is deprecated and scheduled for removal in
+    version 6.0.0. Use the result_backend instead
+
+  deprecated.warn(description=f'The {setting!r} setting',
+
+[2026-10-28 17:19:25,673: WARNING/MainProcess] Please run `celery upgrade settings path/to/settings.py` to avoid these warnings and to allow a smoother upgrade to Celery 6.0.
+[2026-10-28 17:19:25,677: INFO/MainProcess] Connected to redis://redis:6379/1
+[2026-10-28 17:19:25,680: INFO/MainProcess] mingle: searching for neighbors
+[2026-10-28 17:19:26,688: INFO/MainProcess] mingle: all alone
+[2026-10-28 17:19:26,706: INFO/MainProcess] a09@site ready.
+[2026-10-28 17:19:39,068: INFO/MainProcess] Task judge.tasks.demo.success[513fe051-953a-4312-8c9d-4b58585cae17] received
+[2026-10-28 17:19:39,071: INFO/MainProcess] Task judge.tasks.demo.success[513fe051-953a-4312-8c9d-4b58585cae17] succeeded in 0.0025613750040065497s: None
