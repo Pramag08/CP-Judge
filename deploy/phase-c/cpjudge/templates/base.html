@@ -182,7 +182,7 @@
         <a id="navicon" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
         <ul id="nav-list">
             <li class="home-nav-element"><a href="{{ url('home') }}">{% include "site-logo-fragment.html" %}</a></li>
-            <li class="home-nav-element"><span class="nav-divider"></span></li>
+            {% if request.path != '/accounts/login/' %}<li class="home-nav-element"><span class="nav-divider"></span></li>
             <li class="home-menu-item"><a href="{{ url('home') }}" class="nav-home">{{ _('Home') }}</a></li>
             {% for node in mptt_tree(nav_bar) recursive %}
                 <li>
@@ -198,6 +198,7 @@
                 </li>
             {% endfor %}
             {% if request.user.is_authenticated and cpj_can_author %}<li><a href="{{ url('cpj_contest_list') }}">Author Contests</a></li>{% endif %}
+            {% endif %}
         </ul>
 
         <span id="user-links">
@@ -233,7 +234,7 @@
                         </ul>
                     </li>
                 </ul>
-            {% else %}
+            {% elif request.path != '/accounts/login/' %}
                 <span class="anon">
                     <a href="{{ url('auth_login') }}?next={{ LOGIN_RETURN_PATH|urlencode }}"><b>{{ _('Log in') }}</b></a>
                     {% if REGISTRATION_OPEN %}
@@ -308,10 +309,7 @@
     <footer>
         <span id="footer-content">
             <br>
-            <a style="color: #808080" href="https://dmoj.ca">{{ _('proudly powered by **DMOJ**')|markdown('default', strip_paragraphs=True) }}</a>
-            {% if misc_config.footer %}
-                | {{ misc_config.footer|safe }}
-            {% endif %}
+            CPJudge Made by Pramag Basantia
         </span>
     </footer>
 </div>

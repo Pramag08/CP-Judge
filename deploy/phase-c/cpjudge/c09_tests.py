@@ -78,6 +78,12 @@ class StatementTests(CompatibilityTests):
     sanitize('<p>partial</p><img src="'+src+'">',{},lambda k:k)
   for tex in (r'$$$\href{https://evil.invalid}{x}$$$',r'$$$\require{html}$$$',r'$$$\<b>href</b>{x}$$$'):
    with self.assertRaises(ValueError):sanitize(tex,{},lambda k:k)
+ def test_standalone_arrow_in_prose_and_math_preserve_meaning(self):
+  from cpjudge.presentation import sanitize
+  clean,assets=sanitize(r'<p>left \to right; $$$x \to y$$$</p>',{},lambda k:k)
+  self.assertIn('left → right',clean)
+  self.assertIn(r'\(x \to y\)',clean)
+  self.assertFalse(assets)
  def test_source_digest_and_manifest_tampering_suppress_statement(self):
   j=self.package();page,asset=self.urls(j);c=self.logged('C5A')
   (private_root()/j.archive_key).write_bytes(b'changed')

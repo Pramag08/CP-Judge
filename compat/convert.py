@@ -113,7 +113,11 @@ def read(root, ir):
     for i, t in enumerate(tests, 1):
         if t.get('sample', 'false') not in {'true', 'false'}:
             raise Unsupported('invalid sample flag')
-        if set(t.attrib) - {'method', 'cmd', 'sample', 'group'} or list(t):
+        if 'points' in t.attrib:
+            raise Unsupported('per-test points unsupported')
+        # Polygon may annotate a test with a human-readable description. It has
+        # no judging or scoring semantics; keep rejecting all other metadata.
+        if set(t.attrib) - {'method', 'cmd', 'sample', 'group', 'description'} or list(t):
             raise Unsupported('unsupported per-test scoring or metadata')
         ip = pattern_path(root, ts.findtext('input-path-pattern'), i)
         op = pattern_path(root, ts.findtext('answer-path-pattern'), i)

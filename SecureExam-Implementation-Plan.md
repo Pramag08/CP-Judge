@@ -6,6 +6,16 @@ Current task status and evidence: [PROJECT_STATUS.md](PROJECT_STATUS.md). Read i
 AGENTS.md before work; follow the current documentation workflow in section 19.
 MVP task selection and dependency edges: [MVP_DEPENDENCIES.md](MVP_DEPENDENCIES.md).
 
+**Current organizer ZIP default (8 November 2026): PASS — 1200:1 local.** `CPJ_ARCHIVE_LIMITS` applies 1200:1 to all organizer uploads with no #69 override; preflight and streamed extraction share it. Original #69 passed full strict extraction under the default, and published version7 / real AC101 remained unchanged. Twenty-one archive tests, one Django setting test and local service status passed. The inspected #69 standard batch configuration is preserved; arbitrary noninteractive Polygon configurations remain outside the proven support matrix when their scoring, checker, testset or I/O semantics lack a faithful native mapping. [Evidence and exact limits](reports/foobar-zip-default-1200-1/README.md). No commit/push.
+
+**Historical Test1 ZIP #69 continuation (8 November 2026): READY TO ADD — local real judge PASS at that boundary.** The original ZIP passed strict streamed extraction and isolated resource-bounded conversion with a then-existing job/owner/contest/SHA-matched 1200:1 exception; all 12 high-ratio files are required test inputs/answers. Default uploads were then at 100:1. Job69 had already completed queued conversion attempt3 when resumed. Authenticated private publication retry and exact worker installation led to a real CPP23 reference D/AC on 101/101 stored cases. The native 101 one-point cases, 2s/524288KiB and CPP17 checker were retained. Browser displayed Ready to add; version7 was not assigned to Test1. [Historical checks](reports/foobar-zip-limit-2/README.md). No commit/push.
+
+**Historical Test1 ZIP #69 diagnosis (7 November 2026): COMPLETE — metadata-only at that boundary.** The strict per-entry ratio check first rejected test-data entry41 at 333.83:1 against 100:1; 12 test-data entries exceeded the cap, max 986.85:1. Other measured archive size/count/expansion caps passed. The error named numeric measured and configured values; job69 was then failed and its original ZIP preserved. A 1200:1 bounded candidate passed central-directory checks but was not then applied without confirming the test files were required. Eighteen archive tests, one isolated site test and Chromium error display passed; no #69 conversion or judging at that boundary. [Historical evidence](reports/foobar-zip-limit-1/README.md). No commit/push.
+
+**Current foobar ZIP import / Test1 #64 (7 November 2026): COMPLETE — local PASS.** Plain `description` on Polygon test 1 is accepted without changing scoring; per-test points remain unsupported with actionable guidance. The existing import flow automatically queues conversion, follows private publication and signed real judge readiness, then offers editable Add to the same draft. Chromium verified #64 AC15 and Test1 B/order 1; separate job68 rejected per-test points. Seven converter and three isolated HTTP tests passed; no existing results, limits or contest scoring changed. [Evidence and retest](reports/foobar-zip-import-1/README.md). Next task only on request.
+
+**Current organizer simplification (4 November 2026): COMPLETE — local PASS.** Existing DMOJ workflow now has grouped author controls, local schedule pickers, revision-aware problem choices, bounded background reference judging, participant visibility controls, scoped roster actions, simplified login/footer and accurate separate lifecycle/privacy badges. The disposable private `simplify26` Chromium path passed import → real AC103 probe → publication → separate participant AC103/standings → Hide/Unhide/Remove/DQ; 23 focused tests and read-only live assertions pass. Additive migrations followed a private backup; no reset/rejudge/commit/push. [Exact path, commands and limits](reports/foobar-organizer-1/README.md). Next task only on request.
+
 **Current requested UI override (3 November 2026): COMPLETE — local PASS.** Supplied foobar logo and favicon, `foobar` titles, scoped Contests → Author Contests order, accessible account chevrons, read-only Results links, ended virtual-join rejection and removal of the broken contest Admin tab are implemented in existing templates/assets and the narrow native join route. Staff/participant Chromium, private ranking denial, count preservation and 14 focused tests passed. [Evidence](reports/ui-foobar-virtual-1/README.md). H03 remains pending; no commit or push. This supersedes the plain-text branding status below.
 
 **Local startup review (2 November 2026): COMPLETE — PASS.** B02 now has bounded
@@ -39,7 +49,7 @@ E09–E15 remains complete at its prior boundary. No F/G work is authorized.
 Retain completed A–D evidence. Reuse native DMOJ pages, Ace editor, authenticated
 polling and existing custom guards. Custom changes require a demonstrated gap.
 Monaco, split layout, new draft synchronization/autosave, custom Run, extra
-languages and redesign are deferred. The current header uses plain text.
+languages and redesign are deferred. The current header uses the supplied foobar logo.
 The local journey is a separate gate from college-server readiness; internet
 independence, second workers and fixed 150+/300-request guarantees are not required.
 The updated task rows/dependency selection below supersede historical broader
@@ -49,7 +59,7 @@ This is a proposed build specification, not a statement that these features alre
 
 The immediate goal is **CPJudge**, a simple individual-contest website with a
 DMOJ visual shell with an emphasis on essential actions. The signed-in home is the eligible
-contest list, with plain-text Contests-CPJudge at top left and authorized account actions
+contest list, with the supplied foobar logo at top left and authorized account actions
 at top right. Each contest has Problems, My Submissions and
 Standings. Authors create/edit contests, import Polygon packages, manage/remove
 entrants. D14 problem clarifications are deferred. Every participant owns their submissions, score
@@ -59,7 +69,7 @@ participants, one account per canonical email, one active session per account an
 scoped permissions are required. No mandatory college ID/email, public signup,
 Google login or forced first-login/reset password change. C18 email-only login is active after authorized development-fixture mappings and
 complete canonical inventory; C19 has removed the forced-change gate; verified
-college-ID behavior remains historical evidence. The header uses plain-text Contests-CPJudge. Teams, groups, special matches, format
+college-ID behavior remains historical evidence. The header uses the supplied foobar logo. Teams, groups, special matches, format
 selection, announcements, ratings and matchmaking are deferred, not completed.
 The later SecureExam desktop client may reuse the website/server.
 
@@ -428,7 +438,7 @@ sufficient; no split workspace or replacement editor is required.
 
 The inspected submit form has no file chooser. Verify the complete widget path
 before adding a bounded local source-file loader into the native source field;
-retain the same CSRF-protected submit endpoint, source limits and language checks.
+retain the same CSRF-protected submit| endpoint, source limits and language checks.
 Native Ctrl-S storage uses only a language key. Isolate retained saved code by
 account/contest/problem/language so a shared browser cannot restore another
 account's source. This is a narrow privacy fix, not a new draft service.

@@ -71,6 +71,10 @@ def preflight_directory(archive, limits):
             header = source.read(46)
             if len(header) != 46 or header[:4] != b'PK\x01\x02':
                 raise ArchiveRejected('Invalid ZIP directory entry')
+            compressed, expanded = struct.unpack('<LL', header[20:28])
+            if expanded > max(compressed, 1) * limits.ratio:
+                raise ArchiveRejected(
+                    f'ZIP entry ratio exceeded: {actual} {expanded} {compressed} {limits.ratio}')
             name_size, extra_size, comment_size = struct.unpack('<3H', header[28:34])
             if name_size > 4096:
                 raise ArchiveRejected('ZIP member name exceeds path limit')
@@ -123,9 +127,14 @@ def extract_zip(archive, target, limits=None):
                 if info.compress_type not in (zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED):
                     raise ArchiveRejected('Unsupported ZIP compression method')
                 metadata_total += info.file_size
-                if (info.file_size > limits.member_bytes or metadata_total > limits.expanded_bytes
-                        or info.file_size > max(info.compress_size, 1) * limits.ratio):
+                if info.file_size > limits.member_bytes or metadata_total > limits.expanded_bytes:
                     raise ArchiveRejected('ZIP exceeds expansion/ratio limit')
+                if info.file_size > max(info.compress_size, 1) * limits.ratio:
+                    # Numeric metadata only: never put a private member name in a
+                    # public-facing conversion error.
+                    raise ArchiveRejected(
+                        f'ZIP entry ratio exceeded: {len(paths) + 1} {info.file_size} '
+                        f'{info.compress_size} {limits.ratio}')
                 if not info.is_dir():
                     files.add(key)
                 paths.append((info, path, key))

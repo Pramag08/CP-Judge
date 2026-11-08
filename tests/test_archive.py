@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import zipfile
-from compat.archive import ArchiveLimits, ArchiveRejected, extract_zip
+from compat.archive import ArchiveLimits, ArchiveRejected, extract_zip, preflight_directory
 
 
 class ArchiveTests(unittest.TestCase):
@@ -83,8 +83,28 @@ class ArchiveTests(unittest.TestCase):
 
     def test_bomb_ratio(self):
         self.make([('bomb',b'0'*100000)], zipfile.ZIP_DEFLATED)
-        with self.assertRaises(ArchiveRejected):
+        with self.assertRaisesRegex(ArchiveRejected, r'ZIP entry ratio exceeded: 1 100000 [0-9]+ 10'):
             extract_zip(self.archive, self.target, ArchiveLimits(ratio=10))
+
+    def test_preflight_rejects_declared_ratio_above_1200_before_zipinfo(self):
+        import struct
+        self.make([('a',b'x')])
+        data=bytearray(self.archive.read_bytes())
+        directory=data.index(b'PK\x01\x02')
+        struct.pack_into('<L',data,directory+24,1201)
+        self.archive.write_bytes(data)
+        with patch('zipfile.ZipFile',side_effect=AssertionError('Should reject before ZipInfo allocation')):
+            with self.assertRaisesRegex(ArchiveRejected,r'ZIP entry ratio exceeded: 1 1201 1 1200'):
+                extract_zip(self.archive,self.target,ArchiveLimits(ratio=1200))
+
+    def test_preflight_accepts_declared_ratio_at_1200(self):
+        import struct
+        self.make([('a',b'x')])
+        data=bytearray(self.archive.read_bytes())
+        directory=data.index(b'PK\x01\x02')
+        struct.pack_into('<L',data,directory+24,1200)
+        self.archive.write_bytes(data)
+        preflight_directory(self.archive,ArchiveLimits(ratio=1200))
 
     def test_actual_stream_limits_even_if_metadata_lies(self):
         self.make([('a','x')])
@@ -104,6 +124,13 @@ class ArchiveTests(unittest.TestCase):
         with patch.object(zipfile.ZipFile,'open',return_value=io.BytesIO(b'X'*100)):
             with self.assertRaisesRegex(ArchiveRejected,'Actual extracted bytes'):
                 extract_zip(self.archive,self.target,ArchiveLimits(ratio=5))
+
+    def test_actual_ratio_above_1200_rejected_even_if_metadata_passes(self):
+        self.make([('a',b'x')])
+        with patch.object(zipfile.ZipFile,'open',return_value=io.BytesIO(b'X'*1201)):
+            with self.assertRaisesRegex(ArchiveRejected,'Actual extracted bytes'):
+                extract_zip(self.archive,self.target,ArchiveLimits(ratio=1200))
+        self.assertEqual((self.target/'a').stat().st_size,0)
 
     def test_destination_must_be_empty_and_not_symlink(self):
         self.make([('a','content')])

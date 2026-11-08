@@ -24,12 +24,15 @@ class DraftForm(forms.Form):
     name=forms.CharField(max_length=100,label='Title')
     description=forms.CharField(max_length=2000,required=False,widget=forms.Textarea(attrs={'rows':4}),label='Description (plain text)')
     display_timezone=forms.CharField(max_length=64,initial='Asia/Kolkata',label='Timezone (IANA name)')
-    start_time=forms.CharField(label='Start (YYYY-MM-DD HH:MM in selected timezone)')
-    end_time=forms.CharField(label='End (YYYY-MM-DD HH:MM in selected timezone)')
+    start_time=forms.CharField(label='Start',widget=forms.DateTimeInput(attrs={'type':'datetime-local'}))
+    end_time=forms.CharField(label='End',widget=forms.DateTimeInput(attrs={'type':'datetime-local'}))
 
     def __init__(self,*args,editing=False,**kwargs):
         super().__init__(*args,**kwargs)
         if editing:self.fields.pop('key')
+        selected=(self.data.get('display_timezone') if self.is_bound else self.initial.get('display_timezone')) or 'Asia/Kolkata'
+        for field in ('start_time','end_time'):
+            self.fields[field].help_text=f'Selected timezone: {selected}'
 
     def clean(self):
         data=super().clean()
@@ -56,14 +59,14 @@ class DraftForm(forms.Form):
         return data
 
 class ProblemForm(forms.Form):
-    version=forms.ModelChoiceField(queryset=ProblemVersion.objects.none(),label='Immutable version')
+    version=forms.ModelChoiceField(queryset=ProblemVersion.objects.none(),label='Problem')
     label=forms.RegexField(r'^[A-Z0-9]{1,10}$',max_length=10,label='Label')
     order=forms.IntegerField(min_value=0,max_value=32767,label='Order (0-based)')
     def __init__(self,user,*args,**kwargs):
         super().__init__(*args,**kwargs)
         scopes=Grant.objects.filter(user=user,capability='problems.publish',revoked=False).values('contest_id')
         self.fields['version'].queryset=ProblemVersion.objects.filter(state='published',job__contest_id__in=scopes).select_related('problem').distinct()
-        self.fields['version'].label_from_instance=lambda v:f'{v.code} — {v.problem.name}'
+        self.fields['version'].label_from_instance=lambda v:f'{v.problem.name} — revision {v.pk}, imported {v.created:%Y-%m-%d}'
 
 
 def author(user):
@@ -139,7 +142,7 @@ def readiness(c,*,live=True):
         try:
             a=ContestVersionAdmission.objects.get(contest_problem=cp,revoked=False)
         except ContestVersionAdmission.DoesNotExist:
-            errors.append(f'{cp.problem.code}: no accepted private probe is bound to this contest problem. Run the import owner\'s probe, then select this version again.')
+            errors.append(f'{cp.problem.code}: no accepted private probe is bound to this contest problem. Open the import status, wait for the automatic reference check to pass, then add this version again.')
             continue
         try:
             from .admission import verify_approval
@@ -195,7 +198,7 @@ def edit(request,contest_key):
     c=managed(request.user,contest_key)
     zone=ZoneInfo(c.workflow.display_timezone)
     initial=dict(name=c.name,description=c.description,display_timezone=str(zone),
-        start_time=c.start_time.astimezone(zone).strftime('%Y-%m-%d %H:%M'),end_time=c.end_time.astimezone(zone).strftime('%Y-%m-%d %H:%M'))
+        start_time=c.start_time.astimezone(zone).strftime('%Y-%m-%dT%H:%M'),end_time=c.end_time.astimezone(zone).strftime('%Y-%m-%dT%H:%M'))
     form=DraftForm(request.POST if request.method=='POST' else None,initial=initial,editing=True)
     if request.method=='POST':
         with transaction.atomic():
@@ -210,8 +213,14 @@ def edit(request,contest_key):
                 refresh_languages(c)
                 Audit.objects.create(actor=request.user,action='contest.edit',scope=str(c.pk))
                 return redirect('cpj_contest_edit',contest_key=c.key)
-    return render(request,'cpjudge/contest_edit.html',dict(title='Manage: '+c.name,contest=c,form=form,problem_form=ProblemForm(request.user),
-        problems=c.contest_problems.select_related('problem').order_by('order','pk'),errors=readiness(c) if not c.is_visible else [],rules=rules(c)),status=400 if request.method=='POST' else 200)
+    problems=list(c.contest_problems.select_related('problem').order_by('order','pk'))
+    used={cp.workflow_label.label for cp in problems}
+    next_label=next((label for label in 'ABCD' if label not in used),'E')
+    next_order=max((cp.order for cp in problems),default=-1)+1
+    return render(request,'cpjudge/contest_edit.html',dict(title='Manage: '+c.name,contest=c,form=form,
+        problem_form=ProblemForm(request.user,initial={'label':next_label,'order':next_order}),
+        problems=problems,errors=readiness(c) if not c.is_visible else [],rules=rules(c),
+        lifecycle=state(c)[0],visibility='Private' if c.is_private else 'Public'),status=400 if request.method=='POST' else 200)
 
 
 @require_POST

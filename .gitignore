@@ -4,3 +4,8 @@
 __pycache__/
 build/
 local-packages/
+/reports/b02-services-1/logs/
+/reports/b03-worker-1/logs/
+/reports/b03-worker-1/sandbox-*.json
+/reports/b03-worker-1/state-*.json
+/reports/site-local-runs/logs/

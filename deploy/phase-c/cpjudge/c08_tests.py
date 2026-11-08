@@ -7,13 +7,34 @@ from cpjudge.integration_tests import NativeUploadHTTPTests
 from cpjudge.imports import upload
 from cpjudge.models import ImportJob,Grant
 from cpjudge.conversion import attempt_path,queue_conversion
-from cpjudge.compatibility import preview,rejection_message,CORRECTIONS,PUBLIC_REJECTIONS
+from cpjudge.compatibility import preview,rejection_message,CORRECTIONS,PUBLIC_REJECTIONS,is_public_rejection
 
 class CompatibilityTests(TestCase):
  setUp=NativeUploadHTTPTests.setUp
  upload_file=NativeUploadHTTPTests.upload_file
  zip_bytes=NativeUploadHTTPTests.zip_bytes
  logged=NativeUploadHTTPTests.logged
+ def test_reviewed_ratio_exception_is_exact_job_only(self):
+  from types import SimpleNamespace
+  from cpjudge.imports import archive_limits
+  scope={'owner_id':1,'contest_key':'00001','sha256':'a'*64,'ratio':1200}
+  with self.settings(CPJ_ARCHIVE_LIMITS={'ratio':100},CPJ_TRUSTED_ARCHIVE_RATIOS={69:scope}):
+   job=SimpleNamespace(pk=69,owner_id=1,contest=SimpleNamespace(key='00001'),package_sha256='a'*64)
+   self.assertEqual(archive_limits().ratio,100)
+   self.assertEqual(archive_limits(job).ratio,1200)
+   for change in ({'pk':70},{'owner_id':2},{'contest':SimpleNamespace(key='other')},{'package_sha256':'b'*64}):
+    self.assertEqual(archive_limits(SimpleNamespace(**dict(vars(job),**change))).ratio,100)
+ def test_organizer_default_ratio_applies_without_job_exception(self):
+  from types import SimpleNamespace
+  from cpjudge.imports import archive_limits
+  from cpjudge.uploads import limits as upload_limits
+  job=SimpleNamespace(pk=69,owner_id=1,contest=SimpleNamespace(key='00001'),package_sha256='a'*64)
+  with self.settings(CPJ_ARCHIVE_LIMITS={'upload_bytes':128*1024**2,'entries':1024,
+      'member_bytes':128*1024**2,'expanded_bytes':320*1024**2,'ratio':1200},
+      CPJ_TRUSTED_ARCHIVE_RATIOS={}):
+   self.assertEqual(archive_limits().ratio,1200)
+   self.assertEqual(archive_limits(job),archive_limits())
+   self.assertEqual(upload_limits(),archive_limits())
  def stored(self):
   job=upload(self.users['C5A'],self.upload_file(),self.contests['c5a'])
   job.status='succeeded';job.attempt=1;job.token='a'*64
@@ -64,6 +85,11 @@ class CompatibilityTests(TestCase):
   c=self.logged('C5A');Grant.objects.filter(user=job.owner,capability='problems.import').update(revoked=True)
   self.assertEqual(c.get(f'/imports/{job.pk}/').status_code,403)
  def test_rejection_guidance_is_fixed_actionable_and_does_not_echo_private_text(self):
+  measured=rejection_message(ValueError('ZIP entry ratio exceeded: 41 485719 1455 100'))
+  self.assertIn('333.83:1',measured)
+  self.assertIn('100:1',measured)
+  self.assertTrue(is_public_rejection(measured))
+  self.assertFalse(is_public_rejection(measured+' /private/path'))
   for reason,correction in CORRECTIONS.items():
    self.assertEqual(rejection_message(ValueError(reason)),correction)
    self.assertIn(correction,PUBLIC_REJECTIONS)

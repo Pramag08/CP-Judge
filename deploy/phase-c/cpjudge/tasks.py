@@ -17,6 +17,11 @@ def convert_upload(job_id,attempt,token):
     from .conversion import execute_conversion
     return execute_conversion(job_id,attempt,token)
 
+@shared_task(acks_late=True, reject_on_worker_lost=True)
+def automatic_reference_check(version_id):
+    from .auto_probe import run
+    run(version_id)
+
 def export_authorized(job):
     user=get_user_model().objects.get(pk=job.owner_id)
     identity=Identity.objects.get(user=user)

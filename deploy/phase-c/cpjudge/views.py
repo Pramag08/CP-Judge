@@ -164,7 +164,7 @@ def own_profile(request):
 
 
 def import_upload(request, contest):
-    """Accept one private ZIP; conversion and publication are separate tasks."""
+    """Accept one private ZIP and queue its bounded conversion."""
     from django.core.exceptions import PermissionDenied, RequestDataTooBig, ValidationError
     from django.http import Http404
     from django.shortcuts import get_object_or_404, redirect, render
@@ -181,7 +181,7 @@ def import_upload(request, contest):
         raise Http404
     maximum=archive_limits().upload_bytes
     maximum_label=f'{maximum/(1024**2):g} MiB'
-    title='Upload one Polygon ZIP'
+    title='Import ZIP'
     if request.method=='GET':
         return render(request,'cpjudge/import_upload.html',{'title':title,'contest':obj,'maximum_label':maximum_label})
 
@@ -214,11 +214,14 @@ def import_upload(request, contest):
         return error(str(exc))
     except OSError:
         return error('The ZIP could not be stored. Please contact the administrator.',503)
+    from .conversion import queue_conversion
+    queue_conversion(request.user,job.pk)
     return redirect('cpj_import_confirm',job_id=job.pk)
 
 
 def import_confirm(request, job_id):
     from django.shortcuts import render
+    from zoneinfo import ZoneInfo
     from .imports import owned
     from .conversion import reconcile_imports
     owned(request.user,job_id)
@@ -228,8 +231,33 @@ def import_confirm(request, job_id):
     from .models import ProblemVersion
     from .policy import allowed
     version=ProblemVersion.objects.filter(job=job,attempt=job.attempt).first()
+    check_status,check_message=(None,None)
+    if version and version.state=='published':
+        from .auto_probe import status
+        check_status,check_message=status(version)
     can_publish=bool(job.contest_id and allowed(request.user,job.contest,'problems.publish'))
-    response=render(request,'cpjudge/import_confirm.html',{'version':version,'can_publish':can_publish,'title':'Private import status','job':job,'preview':preview(job),'public_error':public_error(job)})
+    ready_to_add=False
+    if check_status=='Ready' and can_publish:
+        try:
+            from .publication import verify_native
+            from .probes import binding
+            from .models import ProblemProbe
+            from .contest_readiness import check
+            probe=ProblemProbe.objects.filter(version=version,solution__name='Automatic reference check').select_related('solution__runtime').order_by('-pk').first()
+            binding(probe)
+            verify_native(version)
+            check(version.code,probe.solution.runtime.key)
+            ready_to_add=True
+        except Exception:
+            check_status,check_message='Checking problem','The published version or compatible judge is not ready. Refresh after checking the worker.'
+    problems=list(job.contest.contest_problems.select_related('workflow_label').all()) if job.contest_id else []
+    already_added=bool(version and any(p.problem_id==version.problem_id for p in problems))
+    used={p.workflow_label.label for p in problems}
+    next_label=next((x for x in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if x not in used),'A')
+    next_order=max((p.order for p in problems),default=-1)+1
+    zone=ZoneInfo(job.contest.workflow.display_timezone) if job.contest_id and hasattr(job.contest,'workflow') else ZoneInfo('UTC')
+    transient=job.error in {'The conversion queue is unavailable. Please retry.', 'Conversion service busy. Please retry.', 'Conversion was interrupted or did not start before its deadline. Please retry.', 'Conversion exceeded a resource limit or stopped unexpectedly. Review package size and retry.'}
+    response=render(request,'cpjudge/import_confirm.html',{'version':version,'can_publish':can_publish,'title':'Import ZIP','job':job,'preview':preview(job),'public_error':public_error(job),'check_status':check_status,'check_message':check_message,'ready_to_add':ready_to_add,'already_added':already_added,'next_label':next_label,'next_order':next_order,'zone':zone,'transient':transient})
     response['Cache-Control']='private, no-store'
     return response
 

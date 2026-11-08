@@ -83,6 +83,8 @@ class ProblemVersion(models.Model):
     problem = models.OneToOneField('judge.Problem', null=True, blank=True, on_delete=models.PROTECT)
     created = models.DateTimeField(auto_now_add=True)
     published = models.DateTimeField(null=True, blank=True)
+    auto_check_status = models.CharField(max_length=16, default='missing')
+    auto_check_message = models.CharField(max_length=300, blank=True)
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=['job','attempt'], name='cpj_version_attempt')]
@@ -147,6 +149,7 @@ class ContestEntry(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     participation = models.OneToOneField('judge.ContestParticipation', on_delete=models.PROTECT, related_name='registration')
     status = models.CharField(max_length=16, default='active', choices=[(x,x) for x in ('active','withdrawn','removed','dq')])
+    hidden = models.BooleanField(default=False)
     registered_at = models.DateTimeField()
     changed_at = models.DateTimeField()
     class Meta:

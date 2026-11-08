@@ -202,6 +202,25 @@ class EntryTests(AdmissionTests):
    self.assertEqual(ContestSubmission.objects.filter(submission__in=[s,t]).count(),2)
    self.assertEqual(Audit.objects.filter(action='entry.dq',subject=self.p).get().details['reason'],'Exclude rank')
 
+ def test_hide_preserves_rank_and_score_with_scoped_audit(self):
+  with patch('cpjudge.entries.server_now',return_value=self.running),patch('cpjudge.entries.dispatch'):
+   first=self.register();self.register(self.q)
+   s,_=self.submit()
+   Submission.objects.filter(pk=s.pk).update(status='D',result='AC',case_points=3,case_total=3)
+   s.refresh_from_db();s.update_contest()
+  score=ContestParticipation.objects.get(pk=first.participation_id).score
+  with self.assertRaises(PermissionDenied):e.sanction(self.p,self.contest.key,first.pk,'hide','Unauthorized')
+  e.sanction(self.owner,self.contest.key,first.pk,'hide','Organizer visibility choice')
+  first.refresh_from_db();self.assertTrue(first.hidden)
+  self.assertEqual(ContestParticipation.objects.get(pk=first.participation_id).score,score)
+  with patch('cpjudge.entries.server_now',return_value=self.running):
+   self.assertContains(self.logged('C5A').get(self.base+'/ranking/'),self.p.username)
+   self.assertNotContains(self.logged('C5B').get(self.base+'/ranking/'),self.p.username)
+  self.assertEqual(Audit.objects.get(action='entry.hide').details['reason'],'Organizer visibility choice')
+  e.sanction(self.owner,self.contest.key,first.pk,'unhide','Restore row')
+  with patch('cpjudge.entries.server_now',return_value=self.running):
+   self.assertContains(self.logged('C5B').get(self.base+'/ranking/'),self.p.username)
+
 # Reuse fixtures; accepted Phase C suites are not repeated.
 for _name in dir(AdmissionTests):
  if _name.startswith('test_'):setattr(EntryTests,_name,None)

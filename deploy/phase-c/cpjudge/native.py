@@ -93,7 +93,7 @@ PARTICIPANT = frozenset('cpj_author_test cpj_register cpj_deregister cpj_entry_s
     'all_submissions all_user_submissions all_user_submissions_old chronological_submissions user_submissions '
     'contest_all_user_submissions contest_user_submissions submission_source submission_source_raw submission_status '
     'submission_testcases_query submission_single_query submission_abort user_page user_problems user_pp_ajax '
-    'cpj_probes cpj_probe_run cpj_events cpj_roster cpj_export cpj_export_download cpj_import_upload cpj_import_confirm cpj_import_download cpj_import_convert cpj_statement_preview cpj_statement_asset cpj_publish cpj_version_asset cpj_profile imported_statement_asset'.split())
+    'cpj_probes cpj_probe_run cpj_auto_probe_retry cpj_events cpj_roster cpj_export cpj_export_download cpj_import_upload cpj_import_confirm cpj_import_download cpj_import_convert cpj_statement_preview cpj_statement_asset cpj_publish cpj_version_asset cpj_profile imported_statement_asset'.split())
 
 class NativePolicyMiddleware(MiddlewareMixin):
     def process_view(self,request,view,args,kwargs):

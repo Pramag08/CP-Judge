@@ -37,9 +37,17 @@ def private_root():
     return root
 
 
-def archive_limits():
+def archive_limits(job=None):
     from compat.archive import ArchiveLimits
-    return ArchiveLimits(**getattr(settings,'CPJ_ARCHIVE_LIMITS',{}))
+    limits=dict(getattr(settings,'CPJ_ARCHIVE_LIMITS',{}))
+    exception=getattr(settings,'CPJ_TRUSTED_ARCHIVE_RATIOS',{}).get(job.pk) if job is not None else None
+    if exception and (job.owner_id,job.contest.key,job.package_sha256)==(
+            exception['owner_id'],exception['contest_key'],exception['sha256']):
+        ratio=exception['ratio']
+        if type(ratio) is not int or ratio<=limits.get('ratio',ArchiveLimits().ratio) or ratio>1200:
+            raise ValueError('Invalid trusted archive ratio exception')
+        limits['ratio']=ratio
+    return ArchiveLimits(**limits)
 
 
 def upload(user, uploaded, contest=None, *, validate_archive=False):
@@ -125,7 +133,7 @@ def extracted_upload(user, job_id, *, staging_parent=None):
             raise ValidationError('Stored upload changed. Upload a new package.')
         with tempfile.TemporaryDirectory(prefix='extract-',dir=staging_parent or root) as attempt:
             staging=Path(attempt)/'source'
-            result=extract_zip(archive,staging,archive_limits())
+            result=extract_zip(archive,staging,archive_limits(job))
             writer,ir=upstream()
             problem,metadata=read(staging,ir)
             bundle=ir.ProblemBundle('polygon',[problem])

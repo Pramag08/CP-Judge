@@ -7,7 +7,7 @@ from django.db import transaction
 from django.utils import timezone
 from .imports import owned,authorize,private_root
 from .models import ImportJob
-from .compatibility import PUBLIC_REJECTIONS
+from .compatibility import is_public_rejection
 
 PUBLIC_ERRORS=frozenset({
     'Conversion service busy. Please retry.',
@@ -118,7 +118,7 @@ def execute_conversion(job_id,attempt,token):
     except Exception as exc:
         # Runner errors are bounded public messages; arbitrary framework/OS errors are never exposed.
         public=str(exc)
-        error=public if public in PUBLIC_ERRORS | PUBLIC_REJECTIONS else 'Conversion failed. Review problem.xml, test files, checker standard and scoring; then retry.'
+        error=public if public in PUBLIC_ERRORS or is_public_rejection(public) else 'Conversion failed. Review problem.xml, test files, checker standard and scoring; then retry.'
     with transaction.atomic():
         owner=get_user_model().objects.select_for_update().get(pk=owner_id)
         current=ImportJob.objects.select_for_update().select_related('contest').get(pk=job_id)

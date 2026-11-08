@@ -45,7 +45,7 @@ CPJ_IMPORT_ROOT = '/app/private-cpj-imports'
 # Keep finite independent ceilings for compressed, member and total bytes.
 CPJ_ARCHIVE_LIMITS = {'upload_bytes': 128 * 1024**2, 'entries': 1024,
                       'member_bytes': 128 * 1024**2, 'expanded_bytes': 320 * 1024**2,
-                      'ratio': 100}
+                      'ratio': 1200}
 FILE_UPLOAD_MAX_MEMORY_SIZE = 1024**2
 # Django's temporary upload is a mode-0600 file on the container's private /tmp
 # disk; imports.upload streams it onward to the mode-0700 private import root.

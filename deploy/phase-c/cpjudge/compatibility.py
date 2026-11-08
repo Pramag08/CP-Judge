@@ -19,7 +19,8 @@ CORRECTIONS = {
     'test-count mismatch or empty tests': 'Test count is empty or inconsistent. Export all test/answer pairs and make test-count match the tests list.',
     'group-level policy attributes unsupported': 'Unsupported group policy attributes. Export explicit complete-group scoring without custom group-container policies.',
     'invalid sample flag': 'Invalid sample flag. Mark each sample as true or false in problem.xml.',
-    'unsupported per-test scoring or metadata': 'Per-test scoring or custom test metadata is unsupported. Use supported complete-group scoring or request support for the intended scoring; do not discard required scoring.',
+    'per-test points unsupported': 'A test in problem.xml declares its own points. Per-test points cannot be preserved by this import. Keep the intended scoring and ask the organizer to use supported complete-group scoring only if it is equivalent; otherwise request per-test scoring support.',
+    'unsupported per-test scoring or metadata': 'A test has unsupported attributes or child metadata in problem.xml. Plain description annotations are accepted; per-test points are not. Remove only metadata that does not affect judging, or ask for support for the intended scoring.',
     'only explicit complete-group scoring supported': 'Unsupported scoring policy. Only explicit complete-group scoring is supported. Export that policy only if it preserves the intended rules; otherwise request scoring support.',
     'unknown group feature': 'Unsupported scoring group feature. Use complete-group points and dependencies, or request support for the required feature.',
     'unknown group dependency feature': 'Unsupported group dependency metadata. Declare dependencies using group references only.',
@@ -67,9 +68,20 @@ GENERIC_ERROR = ('Package metadata could not be validated. Check well-formed pro
                  'required test/answer files, checker standard and scoring. Export a corrected ZIP; '
                  'ask the organizer for details if the required feature is not supported.')
 
+_ENTRY_RATIO_REASON = re.compile(r'ZIP entry ratio exceeded: ([1-9][0-9]{0,4}) ([0-9]{1,12}) ([0-9]{1,12}) ([1-9][0-9]{0,5})\Z')
+_ENTRY_RATIO_PUBLIC = re.compile(r'ZIP entry [1-9][0-9]{0,4} expands from [0-9]{1,12} to [0-9]{1,12} bytes \([0-9]{1,8}\.[0-9]{2}:1\)\. Configured per-entry compression ratio limit: [1-9][0-9]{0,5}:1\. Keep required test data; ask the organizer to review a bounded limit increase\.\Z')
+
 
 def rejection_message(exc):
     reason = str(exc)
+    match = _ENTRY_RATIO_REASON.fullmatch(reason)
+    if match:
+        index, expanded, compressed, limit = map(int, match.groups())
+        measured = expanded / max(compressed, 1)
+        if measured > limit:
+            return (f'ZIP entry {index} expands from {compressed} to {expanded} bytes '
+                    f'({measured:.2f}:1). Configured per-entry compression ratio limit: {limit}:1. '
+                    'Keep required test data; ask the organizer to review a bounded limit increase.')
     if reason in CORRECTIONS:
         return CORRECTIONS[reason]
     for prefix, message in (
@@ -96,6 +108,10 @@ GROUP_ERRORS = {
 PUBLIC_REJECTIONS = frozenset(CORRECTIONS.values()) | frozenset(GROUP_ERRORS.values()) | {GENERIC_ERROR} | {
     rejection_message(ValueError(prefix)) for prefix in (
         'missing required package file:', 'unsafe package path:', 'unsupported test path pattern:')}
+
+
+def is_public_rejection(message):
+    return message in PUBLIC_REJECTIONS or bool(_ENTRY_RATIO_PUBLIC.fullmatch(message))
 
 
 ISSUE_GUIDANCE = {
@@ -164,4 +180,4 @@ def public_error(job):
         'Conversion was interrupted or did not start before its deadline. Please retry.',
         'Conversion failed. Review problem.xml, test files, checker standard and scoring; then retry.',
     }
-    return job.error if job.error in safe else GENERIC_ERROR
+    return job.error if job.error in safe or is_public_rejection(job.error) else GENERIC_ERROR

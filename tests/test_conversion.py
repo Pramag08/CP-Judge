@@ -73,6 +73,12 @@ class ConversionTests(unittest.TestCase):
                     convert(self.mutate(mutation), self.root / 'rejected')
                 self.assertFalse((self.root / 'rejected').exists())
 
+    def test_plain_test_description_does_not_change_scoring(self):
+        package = self.mutate(lambda s: s.replace('sample="true"', 'sample="true" description="Added Sample testcases"'))
+        convert(package, self.root / 'described')
+        conf = yaml.safe_load((self.root / 'described/groups/init.yml').read_text())
+        self.assertEqual([c['points'] for c in conf['test_cases']], [30, 50, 20])
+
     def test_rejects_traversal_duplicate_symlink_and_entity(self):
         for name, attrs in [('../escape', 0), ('link', 0o120777 << 16)]:
             with self.subTest(name=name):

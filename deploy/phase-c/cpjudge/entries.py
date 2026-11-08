@@ -131,7 +131,7 @@ def leave_view(request,contest):
 
 @transaction.atomic
 def sanction(actor,key,entry_id,action,reason,*,generation=None,auth_hash=None):
-    if action not in ('remove','dq'):raise PermissionDenied
+    if action not in ('remove','dq','hide','unhide'):raise PermissionDenied
     reason=reason.strip()
     if not reason or len(reason)>500:raise PermissionDenied('A reason of 1–500 characters is required.')
     # Audit.subject has a User FK, so lock BOTH accounts before the contest.
@@ -146,6 +146,13 @@ def sanction(actor,key,entry_id,action,reason,*,generation=None,auth_hash=None):
     if restricted(actor,c) or c.banned_users.filter(user=actor).exists():raise PermissionDenied
     entry=get_object_or_404(ContestEntry.objects.select_for_update(),pk=entry_id,contest=c)
     if entry.status=='withdrawn':raise PermissionDenied('This entry withdrew.')
+    if action in ('hide','unhide'):
+        if entry.status=='dq':raise PermissionDenied('This entry is disqualified.')
+        hidden=action=='hide'
+        if entry.hidden!=hidden:
+            entry.hidden=hidden;entry.changed_at=server_now();entry.save(update_fields=['hidden','changed_at'])
+            Audit.objects.create(actor=actor,subject=entry.user,action='entry.'+action,scope=str(c.pk),details={'entry':entry.pk,'reason':reason})
+        return entry
     target='dq' if action=='dq' or entry.status=='dq' else 'removed'
     if entry.status!=target:
         entry.status=target;entry.changed_at=server_now();entry.save(update_fields=['status','changed_at'])
@@ -168,7 +175,7 @@ def sanction_view(request,contest,entry_id):
 def roster(request,c):
     require(request.user,c,'roster.read')
     rows=ContestEntry.objects.filter(contest=c).select_related('user','participation').order_by('pk')
-    return render(request,'cpjudge/entry_roster.html',dict(title='Roster: '+c.name,contest=c,rows=rows,can_manage=allowed(request.user,c,'entrants.manage')))
+    return render(request,'cpjudge/entry_roster.html',dict(title='Participants',contest=c,rows=rows,can_manage=allowed(request.user,c,'entrants.manage'),nav_tab=[]))
 
 
 def payload(code,language,source):
@@ -256,6 +263,9 @@ def rankings(request,contest):
     if not contest_access(request.user,c) or server_now()<c.start_time:raise Http404
     from judge.views.contests import get_contest_ranking_list
     users,problems=get_contest_ranking_list(request,c,show_current_virtual=False)
+    if not allowed(request.user,c,'roster.read'):
+        hidden=set(c.registrations.filter(hidden=True).values_list('participation_id',flat=True))
+        users=[item for item in users if item[1].participation.pk not in hidden]
     from markupsafe import Markup,escape
     removed=set(c.registrations.filter(status='removed').values_list('participation_id',flat=True))
     users=[(rank,row._replace(display_name=Markup(str(escape(row.display_name))+' (Removed)')) if row.participation.pk in removed else row) for rank,row in users]

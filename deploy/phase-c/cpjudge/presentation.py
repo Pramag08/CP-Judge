@@ -15,10 +15,10 @@ TAGS={'div','span','p','ol','ul','li','pre','code','br','strong','b','em','i','s
 DROP={'script','style','link','meta','iframe','object','embed','svg','math','form','input','button',
       'textarea','video','audio','source','base','template','noscript'}
 TEX=frozenset(('frac dfrac tfrac sqrt sum prod int lim sin cos tan log ln min max cdot times div '
-    'le leq ge geq neq ne lt gt in notin subset subseteq cup cap emptyset forall exists '
+    'le leq ge geq neq ne lt gt to in notin subset subseteq cup cap emptyset forall exists '
     'alpha beta gamma delta epsilon theta lambda mu pi rho sigma phi omega Delta Sigma '
     'ldots cdots dots left right lbrace rbrace lceil rceil lfloor rfloor '
-    'text mathrm mathbf mathit mathbb overline underline vec binom pm mp infty '
+    'text texttt mathrm mathbf mathit mathbb overline underline vec binom pm mp infty '
     'begin end aligned cases matrix pmatrix bmatrix quad qquad displaystyle').split())
 
 
@@ -96,6 +96,17 @@ def sanitize(source, assets, url_for, notices=None):
             pre.text=text.strip('\n')+'\n'
     if removed:
         notices.append('Removed unsupported markup, attributes, links, scripts or uploaded CSS. Review the statement for lost meaning; preview does not approve publication.')
+    # Polygon HTML can emit a standalone arrow command in prose. Render that
+    # exact token as a text arrow; math-mode \to remains a MathJax command.
+    def prose_arrow(value):
+        if value is None:
+            return None
+        parts=re.split(r'(\$\$\$.*?\$\$\$)',value,flags=re.S)
+        return ''.join(part if i%2 else re.sub(r'(?<!\\)\\to(?![A-Za-z])','→',part)
+                       for i,part in enumerate(parts))
+    for node in root.iter():
+        node.text=prose_arrow(node.text)
+        node.tail=prose_arrow(node.tail)
     complete=''.join(root.itertext())
     if set(re.findall(r'\\([A-Za-z]+)',complete))-TEX:
         raise ValueError('Unsupported or unsafe math command; use the supported local math subset')

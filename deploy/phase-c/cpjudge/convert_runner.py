@@ -23,21 +23,22 @@ def main():
         import django;django.setup()
         from django.conf import settings
         from cpjudge.models import ImportJob
-        from cpjudge.imports import extracted_upload
+        from cpjudge.imports import extracted_upload,archive_limits
         from compat import convert as converter
-        from compat.archive import extract_zip,ArchiveLimits
+        from compat.archive import extract_zip
         # Apply the same strict bounds to converter-owned extraction passes.
-        converter.extract=lambda archive,target,limits=None:extract_zip(archive,target,limits or ArchiveLimits(**settings.CPJ_ARCHIVE_LIMITS))
         job=ImportJob.objects.select_related('owner').get(pk=job_id)
+        limits=archive_limits(job)
+        converter.extract=lambda archive,target,limits_arg=None:extract_zip(archive,target,limits)
         with extracted_upload(job.owner,job.pk,staging_parent=directory):pass
         slug=converter.convert(Path(settings.CPJ_IMPORT_ROOT)/job.archive_key,directory/'output')
         result={'ok':True,'slug':slug}
     except Exception as exc:
-        from cpjudge.compatibility import PUBLIC_REJECTIONS, rejection_message
+        from cpjudge.compatibility import is_public_rejection, rejection_message
         from django.core.exceptions import ValidationError
         # C06 already maps extraction/reader failures to fixed public messages.
         message = exc.messages[0] if isinstance(exc, ValidationError) and len(exc.messages)==1 else ''
-        result['error'] = message if message in PUBLIC_REJECTIONS else rejection_message(exc)
+        result['error'] = message if is_public_rejection(message) else rejection_message(exc)
     finally:
         (directory/'result.json').write_text(json.dumps(result))
     return 0 if result['ok'] else 1

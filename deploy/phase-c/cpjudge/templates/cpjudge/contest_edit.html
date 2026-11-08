@@ -1,12 +1,14 @@
 {% extends "base.html" %}{% block body %}
-<p><a href="{{ url('cpj_contest_list') }}">My contests</a> · <a href="{{ url('cpj_contest_preview',contest_key=contest.key) }}">Author preview / test mode</a> · <a href="{{ url('cpj_import_upload',contest=contest.key) }}">Import Polygon ZIP</a></p>
-<p><a href="{{ url('cpj_roster',contest=contest.key) }}">Roster and entrant management</a></p>
-<p>Status: {{ 'Published — settings locked' if contest.is_visible else 'Draft' }}. All problem versions remain private.</p>
-{% if not contest.is_visible %}<form method="post">{% csrf_token %}{{ form.as_p() }}<button type="submit">Save draft</button></form>
-<h3>Problems</h3><p>Select an authorized immutable version. Re-select after schedule edits to bind the current accepted probe to the new rules. Run missing probes from the import page.</p>
-<form method="post" action="{{ url('cpj_contest_problem',contest_key=contest.key) }}">{% csrf_token %}{{ problem_form.as_p() }}<button type="submit">Save problem</button></form>{% endif %}
-<table class="table"><tr><th>Label / order</th><th>Problem</th><th>Limits</th><th>Action</th></tr>{% for cp in problems %}<tr><td>{{ cp.workflow_label.label }} / {{ cp.order }}</td><td>{{ cp.problem.name }} ({{ cp.problem.code }})</td><td>{{ cp.problem.time_limit }}s / {{ cp.problem.memory_limit }} KiB</td><td>{% if not contest.is_visible %}<form method="post" action="{{ url('cpj_contest_remove',contest_key=contest.key) }}">{% csrf_token %}<input type="hidden" name="problem" value="{{ cp.pk }}"><button>Remove</button></form>{% endif %}</td></tr>{% endfor %}</table>
-<h3>Rules</h3><ul>{% for rule in rules %}<li>{{ rule }}</li>{% endfor %}</ul>
-{% if not contest.is_visible %}<h3>Publication checks</h3>{% if errors %}<ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul>{% else %}<p>Ready. Publication rechecks live worker bytes and runtimes.</p>{% endif %}
-<form method="post" action="{{ url('cpj_contest_publish',contest_key=contest.key) }}">{% csrf_token %}<button type="submit">Publish contest</button></form>{% endif %}
+<style>.cpj-section{margin:1.5em 0;padding:1em;border:1px solid #ddd}.cpj-badge{display:inline-block;padding:.3em .7em;margin-right:.4em;border:1px solid #777;border-radius:3px;font-weight:bold}</style>
+<p><a href="{{ url('cpj_contest_list') }}">Author Contests</a></p>
+<p><span class="cpj-badge">{{ lifecycle }}</span><span class="cpj-badge">{{ visibility }}</span></p>
+<section class="cpj-section"><h3>Details &amp; schedule</h3>
+{% if not contest.is_visible %}<form method="post">{% csrf_token %}{{ form.as_p() }}<p>Start and End use the selected timezone: <strong>{{ contest.workflow.display_timezone }}</strong>.</p><button type="submit">Save draft</button></form>
+{% else %}<p>{{ contest.name }} · {{ contest.start_time }} to {{ contest.end_time }} ({{ contest.workflow.display_timezone }}). Published settings are locked.</p>{% endif %}</section>
+<section class="cpj-section"><h3>Problems</h3>
+{% if not contest.is_visible %}<form method="post" action="{{ url('cpj_contest_problem',contest_key=contest.key) }}">{% csrf_token %}<p>{{ problem_form.version.label_tag() }} {{ problem_form.version }} <a href="{{ url('cpj_import_upload',contest=contest.key) }}">Upload problem ZIP</a></p><p>{{ problem_form.label.label_tag() }} {{ problem_form.label }}</p><p>{{ problem_form.order.label_tag() }} {{ problem_form.order }}</p><button type="submit">Add problem</button></form>{% endif %}
+<table class="table"><tr><th>Label / order</th><th>Problem</th><th>Limits</th><th>Actions</th></tr>{% for cp in problems %}<tr><td>{{ cp.workflow_label.label }} / {{ cp.order }}</td><td>{{ cp.problem.name }} ({{ cp.problem.code }})</td><td>{{ cp.problem.time_limit }}s / {{ cp.problem.memory_limit }} KiB</td><td>{% if not contest.is_visible %}<form method="post" action="{{ url('cpj_contest_remove',contest_key=contest.key) }}">{% csrf_token %}<input type="hidden" name="problem" value="{{ cp.pk }}"><button>Remove</button></form>{% endif %}</td></tr>{% else %}<tr><td colspan="4">No problems added yet.</td></tr>{% endfor %}</table></section>
+<section class="cpj-section"><h3>Participants</h3><p><a href="{{ url('cpj_roster',contest=contest.key) }}">Manage participants</a></p></section>
+<section class="cpj-section"><h3>Publish</h3>{% if not contest.is_visible %}{% if errors %}<p><strong>Blocked</strong> — complete these actions:</p><ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul>{% else %}<p><strong>Ready</strong> — schedule, problems, judge checks and worker are ready.</p>{% endif %}
+<form method="post" action="{{ url('cpj_contest_publish',contest_key=contest.key) }}">{% csrf_token %}<button type="submit">Publish contest</button></form>{% else %}<p>Published.</p>{% endif %}</section>
 {% endblock %}

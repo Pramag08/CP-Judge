@@ -261,11 +261,25 @@ def publish_view(request,job_id):
     except PublicationError:return headers(HttpResponse('A current successful conversion is required.',status=409))
     try:version=publish(request.user,job_id,attempt,admission)
     except (PermissionDenied,Http404):raise
-    except Exception:
+    except Exception as exc:
         logging.getLogger(__name__).exception("Private publication failed for import %s attempt %s",job_id,attempt)
-        # Keep the receipt and owned immutable files for retry/reconciliation.
-        return headers(render(request,'cpjudge/publication_error.html',{
-            'title':'Publication incomplete','job_id':job_id},status=409))
+        job=ImportJob.objects.get(pk=job_id)
+        findings=dict(job.findings)
+        findings['publication_error']=(
+            'The statement uses math markup outside the supported local subset. Correct the HTML statement in Polygon and upload a new ZIP.'
+            if str(exc)=='Unsupported or unsafe math command; use the supported local math subset'
+            else 'Private publication could not be verified. Ask the organizer to review the private diagnostic before retrying.')
+        job.findings=findings;job.save(update_fields=['findings'])
+        # Keep the receipt and owned immutable files for reconciliation; the
+        # draft-scoped import page shows the safe, persisted correction.
+        return redirect('cpj_import_confirm',job_id=job_id)
+    if not version.auto_check_status or version.auto_check_status == 'missing':
+        from .auto_probe import enqueue
+        enqueue(version)
+    job=ImportJob.objects.get(pk=job_id)
+    if 'publication_error' in job.findings:
+        findings=dict(job.findings);findings.pop('publication_error')
+        job.findings=findings;job.save(update_fields=['findings'])
     return redirect('cpj_import_confirm',job_id=job_id)
 
 

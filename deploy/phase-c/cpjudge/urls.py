@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth.views import LogoutView
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from . import views, probes, entries, contest_manage as cm
+from . import views, probes, entries, auto_probe, contest_manage as cm
 from .statement import statement_preview,statement_asset
 from .publication import publish_view,version_asset
 from . import author_tests
@@ -28,6 +28,7 @@ urlpatterns=[
     path('contest/<str:contest>/ranking/ajax',entries.native_ranking_ajax,name='contest_ranking_ajax'),
     path('private-versions/<int:version_id>/probes/',probes.page,name='cpj_probes'),
     path('private-versions/<int:version_id>/probes/run/',probes.run,name='cpj_probe_run'),
+    path('private-versions/<int:version_id>/automatic-check/',auto_probe.retry_view,name='cpj_auto_probe_retry'),
     path('accounts/login/',views.LocalLoginView.as_view(),name='auth_login'),
     path('accounts/logout/',LogoutView.as_view(),name='auth_logout'),
     path('accounts/password/change/',views.LocalPasswordChangeView.as_view(),name='password_change'),
